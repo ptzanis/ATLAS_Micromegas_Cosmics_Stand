@@ -85,7 +85,7 @@ E E 0 1 2 0 1 E 1.314925373134328 0 1 -9.685074626865671 -20 4 "[conical,-1.18,1
 2 1
 "PRIMITIVE_TEXT1"
 ""
-1 345 7.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 345 7.5 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -107,7 +107,7 @@ LANG:1 16 HV Station Setup
 13 6
 "validationMode"
 ""
-1 211 54 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 215 54 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -119,7 +119,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
-0  209 48 302 72
+0  213 48 306 72
 
 T 
 1

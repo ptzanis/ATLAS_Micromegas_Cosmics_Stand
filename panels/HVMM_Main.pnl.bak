@@ -423,7 +423,11 @@ LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
 T 
 1
 LANG:1 8 Setup HV
-E E E E
+"main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/setupHV.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
 6 50
 "configureBackground"
 ""
