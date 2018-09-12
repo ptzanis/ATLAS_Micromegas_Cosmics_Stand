@@ -1,0 +1,2895 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 1058 697 N "_3DFace" 0
+E E E E E 1 -1 -1 0  30 30
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 47
+"IPLU1"
+""
+1 450 80 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  448 78 492 102
+
+T 
+1
+LANG:1 5 IPLU1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPLU1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 48
+"IPRU1"
+""
+1 590 80 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  588 78 632 102
+
+T 
+1
+LANG:1 5 IPRU1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPRU1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 49
+"IPUM"
+""
+1 510 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  508 138 572 172
+
+T 
+1
+LANG:1 4 IPUM
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPUM\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+        
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 50
+"IPLU2"
+""
+1 483 259 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  471 227 515 247
+
+T 
+1
+LANG:1 5 IPLU2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPLU2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 52
+"IPLD1"
+""
+1 513 347 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  481 275 532 297
+
+T 
+1
+LANG:1 5 IPLD1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPLD1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+  
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 53
+"IPRD1"
+""
+1 610 347 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  548 275 599 297
+
+T 
+1
+LANG:1 5 IPRD1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPRD1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 54
+"IPLD2"
+""
+1 522 473 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  490 331 534 353
+
+T 
+1
+LANG:1 5 IPLD2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPLD2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 55
+"IPRD2"
+""
+1 597 473 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  545 331 589 353
+
+T 
+1
+LANG:1 5 IPRD2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPRD2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+30 57
+"TempSensorsTable"
+""
+1 50 14 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+57 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"hoverfclr" "N \"_Transparent\""
+"dashclr"N "_Transparent"
+"selectable" ""
+E E 0 0 1 0 1 E 0.6666666666666666 0 0.7425742574257425 -13.33333333333333 -0.3960396039603946 0 E 50 14 561 621
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 16 TempSensorsTable
+25 58
+"TempSensors"
+""
+1 30 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E "main(int row, string column)
+{
+  if (column == \"Alias\") {
+      DebugN(\"Only now came.\");
+  }
+}" 0
+
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"acceptDrops" ""
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  28 38 352 362
+"main()
+{
+
+  TempSensors.deleteAllLines();
+  refreshTempTable();
+ }     
+
+void refreshTempTable(){ 
+  // TempSensors.autoScroll(TRUE);
+
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels, dpes,channelname,channels;
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\"+(j-1)+\".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\"+(j-1)+\".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+      DebugN(alias);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + k +\".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+  TempSensors.tableMode(TABLE_SELECT_LINE);
+  TempSensors.selectByClick(TABLE_SELECT_LINE); 
+   
+ }
+ 
+ 
+        
+   
+   
+ 
+   
+    
+   
+     
+
+     
+
+   " 0
+"main(int row, string column, string value)
+{
+    
+    dyn_string line;
+    line = TempSensors.getLineN(row);
+    DebugN(\"Line is: \", line);
+    DebugN(\"row column is: \", row, column);
+    
+//     channelsTable.
+//     if (column == \"Alias\") {
+//         DebugN(\"Only now came.\");
+//     }
+      
+//     textField1.text = line[3];
+//     textField2.text = line[4];
+//     textField3.text = line[5];
+//     textField4.text = line[6];
+//     textField5.text = line[7];
+//     textField6.text = line[8];
+}
+" 0
+ 1 0 1 3 0 "Alias" 7 1 0 "s" 1
+LANG:1 5 Alias
+E
+1
+LANG:1 0 
+
+70 "Channel" 16 1 0 "s" 1
+LANG:1 7 Channel
+E
+1
+LANG:1 0 
+
+140 "mdeg" 10 1 0 "s" 1
+LANG:1 4 mdeg
+E
+1
+LANG:1 0 
+
+90 
+13 13 10 5
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 59
+"RefreshButton"
+""
+1 307.4261095063027 380.16659768212 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0  248 378 351 412
+
+T 
+1
+LANG:1 6 Remove
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"\";
+    // refreshTempTable();
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   // textField7.text = \"\";
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+10 67
+"POLYGON7"
+""
+1 450 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 4 450 160
+540 70
+630 160
+540 250
+ 1
+13 80
+"IPRU2"
+""
+1 635 259 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  563 227 607 247
+
+T 
+1
+LANG:1 5 IPRU2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPRU2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+10 87
+"POLYGON25"
+""
+1 630 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 4 630 160
+650 70
+540 70
+630 160
+ 1
+10 88
+"POLYGON26"
+""
+1 540 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 4 540 70
+430 70
+450 160
+540 70
+ 1
+13 92
+"HOLU1"
+""
+1 770 80 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  768 78 812 102
+
+T 
+1
+LANG:1 5 HOLU1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOLU1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    textField7.text = \"\";
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 93
+"HORU1"
+""
+1 910 80 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  908 78 952 102
+
+T 
+1
+LANG:1 5 HORU1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HORU1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 94
+"HOUM"
+""
+1 830 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  828 138 892 172
+
+T 
+1
+LANG:1 4 HOUM
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOUM\";
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 95
+"HOLU2"
+""
+1 764 82 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  792 227 836 247
+
+T 
+1
+LANG:1 5 HOLU2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOLU2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 96
+"HORU2"
+""
+1 755 79 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  883 227 927 247
+
+T 
+1
+LANG:1 5 HORU2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HORU2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 97
+"HOLD1"
+""
+1 765 67 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  803 275 854 297
+
+T 
+1
+LANG:1 5 HOLD1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOLD1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 98
+"HORD1"
+""
+1 757 67 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  865 275 916 297
+
+T 
+1
+LANG:1 5 HORD1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HORD1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 99
+"HOLD2"
+""
+1 760 73 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  808 331 852 353
+
+T 
+1
+LANG:1 5 HOLD2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOLD2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+  
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 100
+"HORD2"
+""
+1 758 73 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  866 331 910 353
+
+T 
+1
+LANG:1 5 HORD2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HORD2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+10 101
+"POLYGON29"
+""
+1 540 70 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 4 540 70
+430 70
+450 160
+540 70
+ 1
+10 102
+"POLYGON30"
+""
+1 630 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 4 630 160
+650 70
+540 70
+630 160
+ 1
+10 103
+"POLYGON31"
+""
+1 450 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 4 450 160
+540 70
+630 160
+540 250
+ 1
+13 110
+"closeButton"
+""
+1 963.2773109243701 550 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0  928 548 1031 582
+
+T 
+1
+LANG:1 5 Close
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+10 111
+"POLYGON38"
+""
+1 540 250 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 4 540 250
+630 160
+610 250
+540 250
+ 1
+10 112
+"POLYGON39"
+""
+1 450 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 4 450 160
+540 250
+470 250
+450 160
+ 1
+10 113
+"POLYGON40"
+""
+1 470 260 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+113 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 5 470 260
+540 260
+540 320
+480 320
+470 260
+ 1
+10 114
+"POLYGON41"
+""
+1 540 260 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 5 540 260
+610 260
+600 320
+540 320
+540 260
+ 1
+10 115
+"POLYGON42"
+""
+1 480 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 1 1 2 1 E U  1 E 5 480 320
+490 370
+540 370
+540 320
+480 320
+ 1
+10 116
+"POLYGON43"
+""
+1 540 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E U  1 E 5 540 320
+540 370
+590 370
+600 320
+540 320
+ 1
+10 117
+"POLYGON44"
+""
+1 540 250 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 4 540 250
+630 160
+610 250
+540 250
+ 1
+10 118
+"POLYGON45"
+""
+1 450 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 4 450 160
+540 250
+470 250
+450 160
+ 1
+10 119
+"POLYGON46"
+""
+1 540 260 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 5 540 260
+610 260
+600 320
+540 320
+540 260
+ 1
+10 120
+"POLYGON47"
+""
+1 470 260 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 5 470 260
+540 260
+540 320
+480 320
+470 260
+ 1
+10 121
+"POLYGON48"
+""
+1 540 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 0 1 2 1 E 1 0 1 320 0 1 E 5 540 320
+540 370
+590 370
+600 320
+540 320
+ 1
+10 122
+"POLYGON49"
+""
+1 480 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 2 1 1 2 1 E 1 0 1 320 0 1 E 5 480 320
+490 370
+540 370
+540 320
+480 320
+ 1
+6 125
+"RECTANGLE1"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 85.99999999999999 82 1 E 380 40 430 90
+6 126
+"RECTANGLE2"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 85.99999999999999 52 1 E 380 40 430 90
+6 127
+"RECTANGLE3"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 346 52 1 E 380 40 430 90
+6 128
+"RECTANGLE4"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 346 82 1 E 380 40 430 90
+6 129
+"RECTANGLE5"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 406 52 1 E 380 40 430 90
+6 130
+"RECTANGLE6"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 406 82 1 E 380 40 430 90
+6 132
+"RECTANGLE7"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 666 52 1 E 380 40 430 90
+6 133
+"RECTANGLE8"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 0.8 0 0.2 666 82 1 E 380 40 430 90
+30 136
+"FRAME1"
+""
+1 380 14 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+136 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 3.168316831683169 0 7.627118644067797 -823.9603960396041 -96.77966101694915 0 E 380 14 482 74
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 7 IP SIDE
+30 137
+"FRAME2"
+""
+1 380 14 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+137 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 3.168316831683169 0 7.627118644067797 -503.9603960396041 -96.77966101694915 0 E 380 14 482 74
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 7 HO SIDE
+13 139
+"IPCL2"
+""
+1 400 70 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  388 38 432 58
+
+T 
+1
+LANG:1 5 IPCL2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPCL2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 140
+"IPCL1"
+""
+1 400 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  388 108 432 128
+
+T 
+1
+LANG:1 5 IPCL1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPCL1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 141
+"IPCR2"
+""
+1 660 70 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  648 38 692 58
+
+T 
+1
+LANG:1 5 IPCR2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPCR2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 142
+"IPCR1"
+""
+1 660 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  648 108 692 128
+
+T 
+1
+LANG:1 5 IPCR1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"IPCR1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+      // if (textField7.text) {
+        // if (textField7.text == \" \") dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", \"\");
+              /*else*/ dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          //  }
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 144
+"HOCL1"
+""
+1 720 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  708 108 752 128
+
+T 
+1
+LANG:1 5 HOCL1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOCL1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 148
+"HOCR2"
+""
+1 980 70 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  968 38 1012 58
+
+T 
+1
+LANG:1 5 HOCR2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOCR2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 150
+"HOCR1"
+""
+1 980 140 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  968 108 1012 128
+
+T 
+1
+LANG:1 5 HOCR1
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOCR1\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+          
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 151
+"HOCL2"
+""
+1 720 70 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  708 38 752 58
+
+T 
+1
+LANG:1 5 HOCL2
+"main()
+{
+
+    dyn_int selected;
+    dyn_dyn_string lines;
+    string alias =\"HOCL2\";
+    
+    
+    selected=TempSensors.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)  lines[i] = TempSensors.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+       dpSetAlias(lines[i][2]+ \".mdeg:_original.._value\", alias); 
+         
+     }
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+    
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+       //DebugN(\"Alias:\",allchannels[i]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+13 152
+"Refresh_Values"
+""
+1 76.40493697479008 380.16659768212 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0  28 378 112 412
+
+T 
+1
+LANG:1 7 Refresh
+"main()
+{
+
+  
+       
+    setInputFocus(myModuleName(), myPanelName(), \"TempSensors\");
+   
+    delay(1);
+    TempSensors.deleteAllLines();
+    refreshTempTable();  
+}
+
+void refreshTempTable(){ 
+   
+  TempSensors.tableMode(TABLE_SELECT_NOTHING);
+  TempSensors.font(\"Lucida Grande\");
+  
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+   allChannels = dpNames(\"*\",\"ElmbBarrel\");
+   
+   for(int i =1; i<=dynlen(allChannels); i++){
+     for (int j=1; j<=10; j++){
+       dpGet(allChannels[i] + \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\",mdeg[j]);
+       alias = dpGetAlias(allChannels[i]+ \".ntc.ntc0\" + (j-1) + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc0\"+(j-1),\"mdeg\",mdeg[j]);
+     }
+     for (int k=10; k<=29; k++){
+       dpGet(allChannels[i] + \".ntc.ntc\" + k + \".mdeg:_original.._value\",mdeg[k]);
+        alias = dpGetAlias(allChannels[i]+ \".ntc.ntc\" + k + \".mdeg:_original.._value\");
+       TempSensors.appendLine(\"Alias\",alias,\"Channel\",allChannels[i]+\".ntc.ntc\"+k,\"mdeg\",mdeg[k]);
+     }
+   }
+   DebugN(\"allchannels:\",allChannels);
+   setInputFocus (myModuleName(), myPanelName(), \"TempSensors\");  
+   TempSensors.tableMode(TABLE_SELECT_LINE);
+   TempSensors.selectByClick(TABLE_SELECT_LINE);
+   
+ }
+
+    
+
+" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

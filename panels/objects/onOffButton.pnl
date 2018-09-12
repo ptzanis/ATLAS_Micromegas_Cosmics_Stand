@@ -1,0 +1,363 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 120 31 N "_3DFace" 6
+"$dpeGetInitialState"
+"$dpeToSetOff"
+"$dpeToSetOn"
+"$valueIsOn"
+"$valueSetOff"
+"$valueSetOn"
+"main()
+{
+    
+    if (checkCurrentState() == TRUE) {
+        groupOffButtonHide();
+        groupOnButtonShow();
+    }
+    else {
+        groupOnButtonHide();
+        groupOffButtonShow();
+    }
+    
+    // Access Control
+//     dyn_string exceptionInfo;
+//     DisableAll();
+//     fwAccessControl_setupPanel(\"ApplyPanelAccessControl\",exceptionInfo);
+//     if (dynlen(exceptionInfo)) {fwAccessControl_displayException(exceptionInfo);return;};
+}
+
+
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "bool checkCurrentState() {
+      
+    string dpeInitialState = $dpeGetInitialState;
+    anytype onValue = $valueIsOn;
+    anytype retrievedValue;
+    
+    if (dpExists(dpeInitialState)) dpGet(dpeInitialState, retrievedValue);
+
+    if (retrievedValue == onValue) return TRUE;
+    else return FALSE;
+}
+
+void groupOffButtonHide() {
+    
+    offEllipse.visible(FALSE);
+    ELLIPSE7.visible(FALSE);
+    ELLIPSE8.visible(FALSE);
+    RECTANGLE3.visible(FALSE);
+    offLabel.visible(FALSE);
+}
+
+void groupOffButtonShow() {
+    
+    offEllipse.visible(TRUE);
+    ELLIPSE7.visible(TRUE);
+    ELLIPSE8.visible(TRUE);
+    RECTANGLE3.visible(TRUE);
+    offLabel.visible(TRUE);
+}
+
+void groupOnButtonHide() {
+    
+    ELLIPSE1.visible(FALSE);
+    ELLIPSE2.visible(FALSE);
+    ELLIPSE3.visible(FALSE);
+    onLabel.visible(FALSE);
+    RECTANGLE1.visible(FALSE);
+}
+    
+void groupOnButtonShow() {
+    
+    ELLIPSE1.visible(TRUE);
+    ELLIPSE2.visible(TRUE);
+    ELLIPSE3.visible(TRUE);
+    onLabel.visible(TRUE);
+    RECTANGLE1.visible(TRUE);
+}
+
+void ApplyPanelAccessControl(string s1, string s2) {
+    
+    DisableAll();
+    dyn_string exceptionInfo;
+    bool hasExpertPrivilege = FALSE;
+    fwAccessControl_isGranted(\"CSC:Control\", hasExpertPrivilege, exceptionInfo);
+    if (dynlen(exceptionInfo)) {fwAccessControl_displayException(exceptionInfo);return;};
+    if (hasExpertPrivilege) EnableAll();
+}
+
+void EnableAll() {
+    
+    setValue(\"clickArea\", \"enabled\", TRUE);
+}
+
+void DisableAll() {
+    
+    setValue(\"clickArea\", \"enabled\", FALSE);
+}
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"UnifiedDraw" ""
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+0
+LAYER, 1 
+1
+LANG:1 0 
+7 46
+"ELLIPSE2"
+""
+1 24 44 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 1 0 1 -50 -435 1 E 100 447 10 10
+7 42
+"ELLIPSE1"
+""
+1 24 44 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E 1 0 1 -31 -499 1 E 44 511 10 10
+7 50
+"ELLIPSE7"
+""
+1 24 44 E E E 1 E 1 E N {0,0,0} E N "FwAtlasFg" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E 1 0 1 -39 -297 1 E 52 309 10 10
+7 51
+"ELLIPSE8"
+""
+1 24 44 E E E 1 E 1 E N {0,0,0} E N "FwAtlasFg" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 1 0 1 -53 -327 1 E 103 339 10 10
+6 43
+"RECTANGLE1"
+""
+1 20 20 E E E 1 E 1 E N "FwAtlasBg" E N "FwAtlasBg" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "FwAtlasBg"
+E E 0 0 1 2 1 E 1 0 1 -30 -532 1 E 44 534 79 554
+6 52
+"RECTANGLE3"
+""
+1 20 20 E E E 1 E 1 E N "FwAtlasFg" E N "FwAtlasFg" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "FwAtlasBg"
+E E 0 0 1 2 1 E 1 0 1 -37 -23 1 E 51 25 86 45
+2 55
+"offLabel"
+""
+1 185.2312806446043 -50 E E E 1 E 1 E N "FwAtlasBg" E N "_Transparent" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 12 4 71 24
+0 2 2 "0s" 0 0 0 65 0 0  12 4 1
+1
+LANG:1 31 Sans Serif,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 3 OFF
+2 48
+"onLabel"
+""
+1 -33 4 E E E 1 E 1 E N "FwAtlasFg" E N "_Transparent" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E -8 4 51 24
+0 2 2 "0s" 0 0 0 65 0 0  4 4 1
+1
+LANG:1 31 Sans Serif,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 2 ON
+4 53
+"LINE5"
+""
+1 18 -549 E E E 1 E 1 E N "black" E N {255,255,255} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E  14 22 50 22
+4 54
+"LINE6"
+""
+1 16.00000000000001 -527 E E E 1 E 1 E N "black" E N {255,255,255} E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E  14 2 50 2
+7 47
+"ELLIPSE3"
+""
+1 157 47 E E E 1 E 1 E N "black" E N "STD_hover" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 1 0 1 -54 -380 4 "[linear,pad,-1.14,-0.48,1.16,1.49,0,{0,0,0},0.765,{255,255,255}]" E 104 392 11 11
+7 56
+"offEllipse"
+""
+1 157 47 E E E 1 E 1 E N "black" E N "STD_hover" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 1 0 1 -40 -173 4 "[linear,pad,-1.14,-0.48,1.16,1.49,0,{0,0,0},0.765,{255,255,255}]" E 53 185 11 11
+6 57
+"clickArea"
+""
+1 30 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E "main()
+{
+    
+    string dpeToSetOn = $dpeToSetOn;
+    anytype valueSetOn = $valueSetOn;
+    string dpeToSetOff = $dpeToSetOff;
+    anytype valueSetOff = $valueSetOff;
+    DebugN(\"I came here to set...\");
+    if (onLabel.visible) { //Turn it off
+        DebugN(\"OFF...\", dpeToSetOn, valueSetOn);
+        groupOnButtonHide();
+        groupOffButtonShow();
+        if (dpExists(dpeToSetOn)) dpSetWait(dpeToSetOn, valueSetOff);
+    } else if (offLabel.visible) {
+        DebugN(\"ON...\", dpeToSetOff, valueSetOff);
+        groupOffButtonHide();
+        groupOnButtonShow();
+        if (dpExists(dpeToSetOff)) dpSetWait(dpeToSetOff, valueSetOn);
+    }
+}
+
+" 0
+ 0 1 1 2 1 E 1 0 1 -35 -23 1 E 35 23 98 47
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+1 0 "SHAPE_GROUP0" -1
+12 0 
+42 43 46 50 51 52 55 53 54 56 57 47 
+
+0

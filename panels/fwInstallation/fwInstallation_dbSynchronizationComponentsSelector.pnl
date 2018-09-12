@@ -1,0 +1,996 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 437 548 N "_3DFace" 0
+"main()
+{
+  init();
+}
+" 0
+ E E E E 1 -1 -1 0  -166 20
+""0  1
+E "
+#uses \"fwInstallationDBAgent.ctl\"
+
+
+const string CHECK_BOX_NAME_PREFIX = \"chkbx\";
+const string CHECK_BOX_MODE_LOCAL = \"Local\";
+const string CHECK_BOX_MODE_CENTRAL = \"Central\";
+
+const bool IS_CENTRAL = true;
+const bool IS_LOCAL = false;
+
+const dyn_string CHECK_BOX_NAMES_LIST = makeCheckBoxNamesList();
+
+dyn_string makeCheckBoxNamesList()
+{
+  dyn_string checkBoxNamesList;
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_PROJ_PATHS] = \"ProjPaths\";
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_PROJ_MANAGERS] = \"ProjManagers\";
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_DIST_PEERS] = \"DistPeers\";
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_COMP_FILE_ISSUES] = \"CompFileIssues\";
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_REDU_CONF] = \"ReduConf\";
+  checkBoxNamesList[FW_INSTALLATION_DB_AGENT_SYNC_DEV_AND_APPS] = \"DevAndApps\";
+  return checkBoxNamesList;
+}
+
+
+
+init()
+{
+  dyn_bool syncCompsEnabledInLocal = fwInstallationDBAgent_getEnabledSynchronizationComponents(false);
+  dyn_bool syncCompsEnabledInCentral = fwInstallationDBAgent_getEnabledSynchronizationComponents(true);
+
+  setCheckBoxesItem(CHECK_BOX_MODE_LOCAL, syncCompsEnabledInLocal);
+  setCheckBoxesItem(CHECK_BOX_MODE_CENTRAL, syncCompsEnabledInCentral);
+}
+
+
+
+
+setCheckBoxesItem(string mode, dyn_bool syncCompsEnabled)
+{
+  int checkBoxListLen = dynlen(CHECK_BOX_NAMES_LIST);
+  for(int i=1;i<=checkBoxListLen;i++)
+  {
+    string checkBoxName = CHECK_BOX_NAME_PREFIX + mode + CHECK_BOX_NAMES_LIST[i];
+    if(!shapeExists(checkBoxName)){
+      continue;
+    }
+    
+    bool syncEnabled = syncCompsEnabled[i];
+    if(mode == CHECK_BOX_MODE_LOCAL){
+      enableCentralCheckBoxesItem(checkBoxName, syncEnabled);
+    }else{
+      bool itemEnabled;
+      getValue(checkBoxName, \"itemEnabled\", 0, itemEnabled);
+      syncEnabled &= itemEnabled;
+    }
+    
+    setValue(checkBoxName, \"state\", 0, syncEnabled);
+  }
+}
+
+dyn_bool getCheckBoxesItem(string mode)
+{
+  dyn_bool syncCompsEnabled = fwInstallationDBAgent_getEnabledSynchronizationComponents((mode == CHECK_BOX_MODE_CENTRAL));
+  
+  int checkBoxListLen = dynlen(CHECK_BOX_NAMES_LIST);
+  for(int i=1;i<=checkBoxListLen;i++)
+  {
+    string checkBoxName = CHECK_BOX_NAME_PREFIX + mode + CHECK_BOX_NAMES_LIST[i];
+    if(!shapeExists(checkBoxName)){
+      continue;
+    }
+    getValue(checkBoxName, \"state\", 0, syncCompsEnabled[i]);
+  }
+  return syncCompsEnabled;
+}
+
+enableCentralCheckBoxesItem(string localCheckBoxName, bool enable)
+{
+  string centralCheckBoxName = localCheckBoxName;
+  strreplace(centralCheckBoxName, CHECK_BOX_MODE_LOCAL, CHECK_BOX_MODE_CENTRAL);
+  if(!shapeExists(centralCheckBoxName)){
+    return;
+  }
+  setValue(centralCheckBoxName, \"itemEnabled\", 0, enable);
+  if(!enable){
+    setValue(centralCheckBoxName, \"state\", 0, false);
+  }
+}
+
+saveState()
+{
+  fwInstallationDBAgent_setEnabledSynchronizationComponents(IS_LOCAL, getCheckBoxesItem(CHECK_BOX_MODE_LOCAL));
+  fwInstallationDBAgent_setEnabledSynchronizationComponents(IS_CENTRAL, getCheckBoxesItem(CHECK_BOX_MODE_CENTRAL));
+}
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"bgRectangle"
+""
+1 20 530 E E E 1 E 1 E N "_Transparent" E N "FwInstallationCorporateColor" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E -1 -1 1268 29
+2 1
+"title"
+""
+1 8 2 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E U  0 E 10 4 416 25
+0 2 0 "0s" 0 0 0 192 0 0  10 4 1
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 44 Enable/Disable DB synchronization components
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 28 41 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 28 41 340 56
+0 2 2 "0s" 0 0 0 192 0 0  28 41 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 49 Select DB-Agent components to synchronize with DB
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 60 131.75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 131.75 139 147
+0 2 2 "0s" 0 0 0 192 0 0  60 131.75 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 13 Project paths
+2 4
+"PRIMITIVE_TEXT3"
+""
+1 60 165 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 165 164 180
+0 2 2 "0s" 0 0 0 192 0 0  60 165 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 16 Project managers
+2 5
+"PRIMITIVE_TEXT4"
+""
+1 60 198.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 198.25 198 213
+0 2 2 "0s" 0 0 0 192 0 0  60 198.25 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 23 Distributed connections
+2 6
+"PRIMITIVE_TEXT5"
+""
+1 60 264.75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 264.75 169 280
+0 2 2 "0s" 0 0 0 192 0 0  60 264.75 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 18 Redu configuration
+2 7
+"PRIMITIVE_TEXT6"
+""
+1 60 298 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 298 207 313
+0 2 2 "0s" 0 0 0 192 0 0  60 298 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 24 Devices and Applications
+2 8
+"PRIMITIVE_TEXT7"
+""
+1 60 231.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 231.5 190 247
+0 2 2 "0s" 0 0 0 192 0 0  60 231.5 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 21 Component file issues
+20 9
+"chkbxLocalProjPaths"
+""
+1 257.5 129.75 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  255.5 127.75 273.5 150.75
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  enableCentralCheckBoxesItem(this.name(), state == 1);
+}" 0
+20 11
+"chkbxCentralProjPaths"
+""
+1 326.5000000000001 129.75 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  324.5000000000001 127.75 342.5 150.75
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE2 12
+"PRIMITIVE_TEXT8"
+""
+1 248 98.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 248 98.5 281 114
+0 2 2 "0s" 0 0 0 192 0 0  248 98.5 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Local
+2 13
+"PRIMITIVE_TEXT9"
+""
+1 312 98.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 312 98.5 355 114
+0 2 2 "0s" 0 0 0 192 0 0  312 98.5 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 7 Central
+2 14
+"PRIMITIVE_TEXT10"
+""
+1 60 86.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 60 86.5 128 102
+0 2 2 "0s" 0 0 0 192 0 0  60 86.5 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 9 Component
+2 15
+"PRIMITIVE_TEXT11"
+""
+1 235 69 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 235 69 366 84
+0 2 2 "0s" 0 0 0 192 0 0  235 69 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 20 Synchronization mode
+20 16
+"chkbxLocalProjManagers"
+""
+1 257.5 163 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  255.5 161 273.5 184
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE20 17
+"chkbxLocalDistPeers"
+""
+1 257.5 196.25 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  255.5 194.25 273.5 217.25
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  enableCentralCheckBoxesItem(this.name(), state == 1);
+}" 0
+20 18
+"chkbxCentralDistPeers"
+""
+1 326.5000000000001 196.25 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  324.5000000000001 194.25 342.5 217.25
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE20 19
+"chkbxLocalCompFileIssues"
+""
+1 257.5 229.5 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  255.5 227.5 273.5 250.5
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  enableCentralCheckBoxesItem(this.name(), state == 1);
+}" 0
+20 20
+"chkbxCentralReduConf"
+""
+1 326.5000000000001 262.75 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  324.5000000000001 260.75 342.5 283.75
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE20 21
+"chkbxLocalDevAndApps"
+""
+1 257.5 296 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  255.5 294 273.5 317
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE2 22
+"PRIMITIVE_TEXT12"
+""
+1 28 462 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 28 462 400 495
+0 2 2 "0s" 0 0 0 192 0 0  28 462 2
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 63 Important: Please note that all synchronization components that
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 63 are enabled in central mode may modify the project config file.
+2 23
+"PRIMITIVE_TEXT13"
+""
+1 28 334 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 28 334 93 349
+0 2 2 "0s" 0 0 0 192 0 0  28 334 1
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Information
+2 26
+"PRIMITIVE_TEXT16"
+""
+1 28 359 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 28 359 396 410
+0 2 2 "0s" 0 0 0 192 0 0  28 359 3
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 54 Disabling synchronization in local mode for components
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 53 that are synchronized in both local and central modes
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 63 automatically deactivates also synchronization in central mode.
+13 30
+"btnCancel"
+""
+1 344 511 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:0 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0  342.0000000000001 509 420.0000000000001 537
+
+T 
+2
+LANG:1 6 Cancel
+LANG:0 6 Cancel
+"main()
+{
+  PanelOff();
+}
+" 0
+ E E E
+13 31
+"btnApply"
+""
+1 262.0000000000001 511 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:0 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0  260.0000000000001 509 338.0000000000001 537
+
+T 
+2
+LANG:1 5 Apply
+LANG:0 2 OK
+"main()
+{
+  saveState();
+ 	//save
+}
+
+
+
+
+
+
+
+
+
+" 0
+ E E E
+13 32
+"btnOk"
+""
+1 180.0000000000001 511 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:0 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0  178.0000000000001 509 256.0000000000001 537
+
+T 
+2
+LANG:1 2 OK
+LANG:0 2 OK
+"main()
+{
+  saveState();
+  PanelOff();
+ 	//save and close
+}
+
+
+
+
+
+
+
+
+
+
+
+" 0
+ E E E
+4 33
+"LINE1"
+""
+1 54.00000000000002 123 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  54.00000000000002 123 372 123
+4 34
+"LINE2"
+""
+1 299 95 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  299 95 299 325
+4 35
+"LINE3"
+""
+1 227 65 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  227 65 227 325
+4 37
+"LINE5"
+""
+1 371 65 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  371 65 371 325
+4 38
+"LINE6"
+""
+1 53 324 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  53 324 372.0000000000001 324
+4 39
+"LINE7"
+""
+1 53 65 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  53 65 372.0000000000001 65
+4 40
+"LINE8"
+""
+1 53 64 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  53 64 53 324
+4 41
+"LINE9"
+""
+1 226 94 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 2 1 E  226 94 371 94
+2 42
+"PRIMITIVE_TEXT17"
+""
+1 27 419 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 1 2 1 E U  0 E 27 419 373 452
+0 2 2 "0s" 0 0 0 192 0 0  27 419 2
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 57 Changes made here will be visible in Database Consistency
+1
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 55 panel after next synchronization performed by DB-Agent.
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -1,0 +1,194 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 210 48 N "_3DFace" 4
+"$dpe"
+"$unit"
+"$x"
+"$y"
+"main()
+{
+    dyn_string parameters;
+    parameters = makeDynString(\"$dpe:\"+$dpe,\"$format:[3.3f]\",
+                                        \"$parameter:\",
+                                        \"$unit:\" + $unit,
+                                        \"$color:black\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$width:\" + 60,
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(),myPanelName(),\"objects/parameter.pnl\",\"value\" + $dpe, parameters,$x,$y,0,1,.93);
+    
+}" 0
+ E E E E 1 -1 -1 0  10 10
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 2
+"channelBorder"
+""
+1 340 0 E E E 1 E 1 E N "STD_grey_light" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 2 1 1 E 1 0 1 10 0 1 E 130 11 -3 29
+6 3
+"onOffStatus"
+""
+1 340 0 E E E 1 E 1 E N "STD_grey_light" E N {227,227,227} E E
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"Old/dualPlotPopUp.pnl\",
+      dpGetAlias($dpe+\".\")+\" \"+$dpe,
+      makeDynString(\"$dpe:\" + $dpe));
+}
+
+" 0
+ E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 2 1 1 E 1 0 1 5 0 1 E 75 10 1 28
+2 1
+"channelNameText"
+""
+1 148.9964788732394 84.30438987858031 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+    ChildPanelOnCentral(\"objects/fwTreniding/fwTrendingFaceplateFullCaption.pnl\", dpGetAlias($dpe+\".\")+\" \"+$dpe,
+                       makeDynString(\"$dpe:\" + $dpe));
+}" 0
+ E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"dashclr"N "_Transparent"
+"main()
+{
+    string bName;    
+    string alias=dpGetAlias($dpe+\".\");
+    if (alias!=\"\")
+        bName = alias;
+    else
+        bName = substr($dpe, strlen(getSystemName()) + 13);
+    if (bName == \"h1\") bName = \"Bx\";
+    else if (bName == \"h2\") bName = \"By\";
+    else if (bName == \"h3\") bName = \"Bz\";
+    else if (bName == \"hAll\") bName = \"B (Total)\";
+    else if (bName == \"T\") bName = \"Temp\";
+    this.text = bName;
+    this.toolTipText= bName;
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 9 13 79 36
+0 2 2 "0s" 0 0 0 64 0 0  9 13 2
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 9 MDM Value
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+20 4
+"checkBox"
+""
+1 180 9 E E E 1 E 0 E N "_3DText" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  178 7 202 31
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+"main()
+{    
+    if (dynContains(channelsToPlot, $dpe) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);                                
+}
+" 0
+"main(int button, int state)
+{
+    disableAllCheckboxes();
+    loadPlots(\"\");
+    delay(1);
+    enableAllCheckboxes();
+}" 0
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

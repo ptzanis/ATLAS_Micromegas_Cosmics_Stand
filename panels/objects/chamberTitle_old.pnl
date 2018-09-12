@@ -1,0 +1,262 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 316 23 N "_3DFace" 1
+"$title"
+"main()
+{
+    titleText.text = $title;
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+4 1
+"chamberLine"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E  0 10 286 10
+2 4
+"titleText"
+""
+1 0 0 E E E 1 E 1 E N "_WindowText" E N "white" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  1 E 20 0 120 18
+0 2 2 "0s" 0 0 0 193 0 0  70 0 1
+1
+LANG:1 34 Lucida Grande,11,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 12 ChamberTitle
+7 6
+"radioButtonCircleBg"
+""
+1 7 15 E E E 1 E 1 E N "STD_grey_dark" E N "STD_trend_pen6" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"dashclr"N "_Transparent"
+E "main()
+{
+    // make channels of the specific chamber invisible
+}" 0
+ 0 1 1 2 1 E 1 0 1 -7 -15 1 E 305 25 5 5
+4 7
+"minusLine"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverfclr" "N \"black\""
+"dashclr"N "_Transparent"
+E "main()
+{
+    // call the same function in scopelib as the ellipse
+}" 0
+ 0 1 1 2 1 E  295 10 302 10
+4 10
+"plusLine"
+""
+1 0 0 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverfclr" "N \"black\""
+"dashclr"N "_Transparent"
+"main()
+{
+    string chamberName = $title;
+    bool isVisible;
+    dpGet(chamberName + \".Visibility:_original.._value\", isVisible);
+    if (isVisible) this.visible(FALSE);
+    else this.visible(TRUE);
+}" 0
+ E 0 1 1 2 1 E  298 7 298 14
+20 11
+"checkBox"
+""
+1 0 0 E E E 0 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  268 3 282 17
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+    string title = $title;
+    dyn_string chamberMap;
+    dyn_string commonPlots;
+    dpGet(title + \".Mapping\", chamberMap);
+    
+    for (int i =1; i<=dynlen(chamberMap); i++) {
+        chamberMap[i] = getSystemName() + \"CAEN/\" + chamberMap[i];
+    }
+    commonPlots = dynIntersect(chamberMap, channelsToPlot);
+    if (commonPlots == chamberMap) setValue(\"\", \"state\", 0, 1);
+}" 0
+"main(int button, int state)
+{
+    removeBmonitor();    
+    string chamberName = $title;
+    dyn_string chamberMap, chamberMapCheckboxes;
+    dpGet(chamberName + \".Mapping\", chamberMap);
+    dyn_string allCheckboxes = getShapes(myModuleName(),myPanelName(), \"shapeType\", \"CHECK_BOX\");
+    dyn_string chamberCheckboxes, inMapping;
+    
+    for (int i = 1; i<=dynlen(chamberMap); i++) {
+        inMapping[i] = \"channelObject_\" + getSystemName() + \"CAEN/\" + chamberMap[i] + \".checkBox\";
+    }
+     chamberCheckboxes = dynIntersect(inMapping, allCheckboxes); 
+//     DebugN(chamberCheckboxes);
+
+    if (state == 1) {
+        for(int i = 1; i<=dynlen(chamberCheckboxes); i++) {
+            setValue(chamberCheckboxes[i], \"state\", 0, 1); 
+        }
+    } else {
+        for(int i = 1; i<=dynlen(chamberCheckboxes); i++) {
+            setValue(chamberCheckboxes[i], \"state\", 0, 0);
+        }
+    }
+    
+    disableAllCheckboxes();
+    for (int i = 1; i<=dynlen(chamberMap); i++)
+        loadPlots(getSystemName() + \"CAEN/\" + chamberMap[i]);
+    delay(1);
+    enableAllCheckboxes();
+}
+" 0
+6 8
+"minMaxButton"
+""
+1 29 22 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"dashclr"N "_Transparent"
+E "main()
+{
+    string chamberName = $title;
+    bool isVisible;
+    dyn_string chambers = dpNames(\"*\", \"TbscsChamber\");
+    dyn_string chambersToLoad;
+    int yOffset = 0;
+    
+    dynAppend(chambersToLoad, getSystemName() + chamberName);
+    int position = dynContains(chambers, getSystemName() + chamberName);
+    removeChannelsForChamber(chambers[position]);
+
+    dpGet(chamberName + \".Visibility:_original.._value\", isVisible);
+
+    if (isVisible) dpSetWait(chamberName + \".Visibility:_original.._value\", FALSE);
+    else dpSetWait(chamberName + \".Visibility:_original.._value\", TRUE);
+    
+    if (plusLine.visible == TRUE) plusLine.visible(FALSE);
+    else plusLine.visible(TRUE);
+    
+    for (int i = position + 1; i <= dynlen(chambers) ; i++) {
+        //DebugN(\"I m going to remove \", chambers[i], \" chamber from number and its channels.\");
+        dynAppend(chambersToLoad, chambers[i]);
+        removeChamberObjects(chambers[i]);
+    }
+    
+    loadChambers(chambersToLoad, yOffset);
+    removeSymbol(myModuleName(), myPanelName(), \"chamberTitle_pnl_Ref_\" + chamberName);
+}" 0
+ 0 1 1 2 1 E 1 0 1 -29 -22 1 E 334 25 320 39
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+1 0 "retractbutton" -1
+1 0 
+6 
+
+0

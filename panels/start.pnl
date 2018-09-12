@@ -1,0 +1,78 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 200 200 N "_3DFace" 0
+"main()
+{
+   dyn_anytype params; 
+   params[1] = \"M1\"; 
+   params[2] = -1; 
+   params[3] = -1; 
+   params[4] = 70; 
+   params[5] = 70; 
+   params[6] = 1; 
+   params[7] = 1; 
+   params[8] = \"Scale\"; 
+   params[9] = \"TBSCS_Main.pnl\"; 
+   params[10] = \"Paris!\"; 
+   params[11] = makeDynString(); 
+
+   ModuleOnWithPanel(\"M1\", -1, -1, 1400, 1150, 1, 1,
+                     \"Scale\",\"TBSCS_Main.pnl\",\"TestBeam SCS\",makeDynString()); 
+   delay(3);   
+   PanelOff();
+}" 0
+ E E E E 1 -1 -1 0  70 70
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"RECTANGLE21"
+""
+1 980 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E 1 0 1 -7 -8 2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 7 8 206 207
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -1,0 +1,610 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 833 196 N "_3DFace" 2
+"$layer"
+"$node"
+E E E E E 1 -1 -1 0  -1 9
+""0  1
+E "void appendSectorToHardware(string node,string sectorName)
+{
+    
+  this.backCol(\"WF_Head\");  
+  selectedField.text(\"Node: \"+node+\" , Sector: \"+sectorName);
+  
+  string channelToAppend,aliasOfChannel;
+  
+  dpGet(\"N\"+node+\".Mapping.\"+sectorName+\".Channel\",channelToAppend);
+  dpGet(\"N\"+node+\".Mapping.\"+sectorName+\".Alias\",aliasOfChannel);
+  
+   hardwareSelection.deleteAllItems();
+   hardwareSelection.appendItem(channelToAppend);
+   aliasField.text(aliasOfChannel);
+   
+}
+void clearSectorsColor(string layer)
+{
+  for(int i=6;i<=8;i++)
+  {
+  setValue(layer+\"L\"+i,\"backCol\",\"white\");
+  setValue(layer+\"R\"+i,\"backCol\",\"white\");
+  }
+  
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+10 0
+"R8"
+""
+1 410 210 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -70 -200 1 E 5 410 210
+240 210
+240.0000000000003 270
+393.0000000000003 270
+410 210
+ 1
+10 1
+"L8"
+""
+1 240 210 E E E 1 E 1 E N {0,0,0} E N "white" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -70 -200 1 E 7 240 210
+70 210
+87.00000000000023 270
+240.0000000000003 270
+240 210
+240 210
+240 210
+ 1
+10 2
+"R7"
+""
+1 393.0000000000003 270 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -69.49999999999994 -200 1 E 5 393.0000000000003 270
+240.0000000000003 270
+239 330
+373.9999999999999 330
+393.0000000000003 270
+ 1
+10 3
+"L7"
+""
+1 240.0000000000003 270 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -70 -200 1 E 5 240.0000000000003 270
+87.00000000000023 270
+104.0000000000001 330
+239 330
+240.0000000000003 270
+ 1
+10 4
+"R6"
+""
+1 375.9999999999999 330 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -70.99999999999994 -200 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+10 5
+"L6"
+""
+1 375.9999999999999 330 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+}" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 410 -200 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+14 6
+"selectedField"
+""
+1 514.5 22 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  512.5 11 692 41
+2 "0s" 0 0 0 0 0 -1  E E E
+2 8
+"nodeText"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 316.25 21.00000000000001 0 E 30 50 203 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 22 Set Channel Hardware :
+22 11
+"hardwareSelection"
+""
+1 519.7500000000001 74.99999999999999 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E "main(bool enter)
+{
+  
+
+    
+//    this.deleteAllItems;
+//    this.appendItem(\"\");
+
+//      dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\");
+    
+    
+  
+    
+//     for (int i = 1; i <= dynlen(allChannels); i++){
+      
+//        this.appendItem = substr(allChannels[i], strlen(getSystemName())+5);
+      
+      
+//    }
+    
+
+  
+  
+
+  
+    
+    
+}" 0
+
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  517.7500000000001 68.99999999999999 745.2499999999999 92.99999999999999
+0
+
+"main()
+{
+//     string node=$node;
+//     string layer=$layer;
+    
+    
+    
+// dpGet(\"N\"+node+\".Mapping.L1L1.Channel\");
+  
+//    this.deleteAllItems;
+//    this.appendItem(\"\");
+
+//     dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\");
+    
+    
+  
+    
+//     for (int i = 1; i <= dynlen(allChannels); i++){
+      
+//       this.appendItem = substr(allChannels[i], strlen(getSystemName())+5);
+      
+      
+//     }
+    
+    
+    
+}" 0
+
+E
+E
+ 0 0
+13 14
+"applySelection"
+""
+1 697.0624999999999 113 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  695.0624999999999 108 719.0624999999999 132
+
+P 
+4294967295
+"pictures/apply_22.png"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  hardwareSelection.enabled(FALSE);
+  this.enabled(FALSE);
+  deleteSelection.enabled(TRUE);
+  
+  aliasField.enabled(FALSE);  
+}" 0
+ E E "main()
+{
+  this.enabled(FALSE);
+}" 0
+
+2 17
+"PRIMITIVE_TEXT1"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 352 60.00000000000001 0 E 30 50 166 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 19 Set Channel Alias :
+14 19
+"aliasField"
+""
+1 520.25 113 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  518.25 106 635.25 132
+3 "0s" 0 0 0 0 0 -1  E E E
+13 20
+"PUSH_BUTTON2"
+""
+1 520.1875 160 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  518.1875 149 662.1875 183
+
+T 
+1
+LANG:1 3 Set
+E E E E
+2 21
+"PRIMITIVE_TEXT2"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 361.5 -33.99999999999999 0 E 30 50 151 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 17 Selected Sector :
+30 22
+"FRAME1"
+""
+1 0 -7 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.048880465154504 0 1.038647342995169 -8.126762820512932 -3.729468599033817 0 E 0 -7 781 201
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+13 23
+"deleteSelection"
+""
+1 723.0624999999999 113 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  721.0624999999999 108 745.0624999999999 132
+
+P 
+4294967295
+"pictures/delete_32.png"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+   hardwareSelection.enabled(TRUE);
+   hardwareSelection.deleteAllItems;
+   dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\");
+         
+   for (int i = 1; i <= dynlen(allChannels); i++){  
+      hardwareSelection.appendItem = substr(allChannels[i], strlen(getSystemName())+5);         
+    }
+   applySelection.enabled(TRUE);
+   this.enabled(FALSE);
+   
+   aliasField.enabled(TRUE);
+   
+   
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

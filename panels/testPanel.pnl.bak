@@ -1,0 +1,85 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 536 348 N "_3DFace" 0
+E E E E E 1 -1 -1 0  200 194
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 1
+"tetsButton"
+""
+1 268 159 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  266 123 470 207
+
+T 
+1
+LANG:1 9 Set Alias
+"main(mapping event)
+{
+   dyn_string mainframe1527=dpNames(\"*\", \"FwCaenCrateSY1527\");
+   dyn_string allChannels=dpNames(mainframe1527[1]+\"/board*/channel*\");
+
+  for(int i=0;i<dynlen(allChannels);i++)
+   {
+   
+//     dpSetAlias(allChannels[i],\"E\"+channelCounter+layerPlace+\"N1\");
+
+  
+   }   
+   
+
+   
+   
+   
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

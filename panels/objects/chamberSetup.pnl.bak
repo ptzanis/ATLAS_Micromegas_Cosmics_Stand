@@ -1,0 +1,2409 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 783 315 N "_3DFace" 4
+"$layer"
+"$mode"
+"$node"
+"$type"
+"main()
+{
+   string type=$type;
+   string layer=$layer; 
+   string mode=$mode;  
+   
+   //DebugN(\"MODE ---->  \"+mode);
+   
+  if(type==\"1\" && mode==\"Validation\")
+   {
+    for(int i=1;i<=5;i++)
+     {
+      setValue(layer+\"L\"+i,\"visible\",TRUE); 
+      setValue(layer+\"R\"+i,\"visible\",TRUE); 
+     }
+      D1.visible(TRUE);
+   }
+   
+  if(type==\"2\" && mode==\"Validation\")
+   {
+  for(int i=6;i<=8;i++)
+     {
+      setValue(layer+\"L\"+i,\"visible\",TRUE); 
+      setValue(layer+\"R\"+i,\"visible\",TRUE); 
+     }
+     D2.visible(TRUE);
+   }
+ 
+  if(mode==\"Cosmics\")
+   {
+      setValue(\"type\"+type,\"visible\",TRUE); 
+      setValue(\"D\"+type+\"Cosmics\",\"visible\",TRUE); 
+   }
+  
+  
+
+   
+  
+     
+  
+}" 0
+ E E E E 1 -1 -1 0  7.373237179487063 2.000000000000002
+""0  1
+E "void appendSectorToHardware(string node,string sectorName,bool cosmicsEnabled=FALSE)
+{
+    
+  this.backCol(\"WF_Head\"); 
+  if(!cosmicsEnabled) 
+    selectedText.text(\"Selected Sector :\");
+  else
+    selectedText.text(\"Selected Layer :\");   
+  
+  selectedField.text(sectorName);
+     
+  string channelToAppend,aliasOfChannel;
+  
+  dpGet(\"N\"+node+\".Mapping.\"+sectorName+\".Channel\",channelToAppend);
+  dpGet(\"N\"+node+\".Mapping.\"+sectorName+\".Alias\",aliasOfChannel);
+  
+   hardwareSelection.deleteAllItems();
+   hardwareSelection.appendItem(channelToAppend);
+   aliasField.text(aliasOfChannel);
+   
+   
+   hardwareSelection.enabled(FALSE);
+   aliasField.enabled(FALSE);
+   applySelection.enabled(FALSE);
+   deleteSelection.enabled(TRUE);
+   configureButton.enabled(FALSE);
+   
+   
+}
+
+void configureHardwareAliasToSector(string node,string sectorName,bool cosmicsEnabled=FALSE)
+{
+    
+     string hardToConfigure,aliasToConfigure;
+     
+     hardToConfigure=hardwareSelection.text();
+     aliasToConfigure=aliasField.text();
+
+  dpSet(\"N\"+node+\".Mapping.\"+sectorName+\".Channel\",hardToConfigure);
+  dpSet(\"N\"+node+\".Mapping.\"+sectorName+\".Alias\",aliasToConfigure);
+  
+   
+}
+
+void clearSectorsColor(string layer)
+{
+  for(int i=1;i<=8;i++)
+  {
+  setValue(layer+\"L\"+i,\"backCol\",\"white\");
+  setValue(layer+\"R\"+i,\"backCol\",\"white\");
+  }
+  
+   for(int i=1;i<=2;i++)
+  {
+  setValue(\"D\"+i,\"backCol\",\"white\");
+  } 
+  
+  for(int i=1;i<=2;i++)
+  {
+  setValue(\"type\"+i,\"backCol\",\"white\");
+  } 
+  
+   for(int i=1;i<=2;i++)
+  {
+  setValue(\"D\"+i+\"Cosmics\",\"backCol\",\"white\");
+  }   
+  
+  
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+10 0
+"R8"
+""
+1 410 210 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -52.5 -156 1 E 5 410 210
+240 210
+240.0000000000003 270
+393.0000000000003 270
+410 210
+ 1
+10 1
+"L8"
+""
+1 240 210 E E E 1 E 0 E N {0,0,0} E N "white" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -52.5 -156 1 E 7 240 210
+70 210
+87.00000000000023 270
+240.0000000000003 270
+240 210
+240 210
+240 210
+ 1
+10 2
+"R7"
+""
+1 393.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -51.99999999999994 -156 1 E 5 393.0000000000003 270
+240.0000000000003 270
+239 330
+373.9999999999999 330
+393.0000000000003 270
+ 1
+10 3
+"L7"
+""
+1 240.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -52.5 -156 1 E 5 240.0000000000003 270
+87.00000000000023 270
+104.0000000000001 330
+239 330
+240.0000000000003 270
+ 1
+10 4
+"R6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -53.49999999999994 -156 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+10 5
+"L6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5 -156 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+14 6
+"selectedField"
+""
+1 553.6875 83 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  551.6875 72 632 102
+2 "0s" 0 0 0 0 0 -1  E E E
+2 7
+"nodeText"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 333.75 76 0 E 30 50 203 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 22 Set Channel Hardware :
+22 8
+"hardwareSelection"
+""
+1 537.2500000000001 130 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E "main(bool enter)
+{
+  
+
+    
+//    this.deleteAllItems;
+//    this.appendItem(\"\");
+
+//      dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\");
+    
+    
+  
+    
+//     for (int i = 1; i <= dynlen(allChannels); i++){
+      
+//        this.appendItem = substr(allChannels[i], strlen(getSystemName())+5);
+      
+      
+//    }
+    
+
+  
+  
+
+  
+    
+    
+}" 0
+
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  535.2500000000001 124 762.7499999999999 148
+0
+
+"main()
+{
+//     string node=$node;
+//     string layer=$layer;
+    
+    
+    
+// dpGet(\"N\"+node+\".Mapping.L1L1.Channel\");
+  
+//    this.deleteAllItems;
+//    this.appendItem(\"\");
+
+//     dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\");
+    
+    
+  
+    
+//     for (int i = 1; i <= dynlen(allChannels); i++){
+      
+//       this.appendItem = substr(allChannels[i], strlen(getSystemName())+5);
+      
+      
+//     }
+    
+    
+    
+}" 0
+
+E
+E
+ 0 0
+13 9
+"applySelection"
+""
+1 714.875 178.25 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  712.875 173.25 736.875 197.25
+
+P 
+4294967295
+"pictures/apply_22.png"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  hardwareSelection.enabled(FALSE);
+  this.enabled(FALSE);
+  deleteSelection.enabled(TRUE);
+  
+  aliasField.enabled(FALSE);  
+  
+  configureButton.enabled(TRUE);
+  
+  
+}" 0
+ E E "main()
+{
+  this.enabled(FALSE);
+}" 0
+
+2 10
+"PRIMITIVE_TEXT1"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 369.5 115 0 E 30 50 166 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 19 Set Channel Alias :
+14 11
+"aliasField"
+""
+1 537.75 168 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  535.75 161 652.75 187
+3 "0s" 0 0 0 0 0 -1  E E E
+13 12
+"configureButton"
+""
+1 537.6875 233 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  535.6875 222 679.6875 256
+
+T 
+1
+LANG:1 9 Configure
+"main(mapping event)
+{
+  string node=$node;
+  string layer=$layer;
+  string type=$type;
+  string mode=$mode;  
+  
+  configureHardwareAliasToSector(node,selectedField.text());
+  
+}" 0
+ E E E
+2 13
+"selectedText"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 388.2286326868725 27.00000000000001 0 E 30 50 105 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 11 Selected  :
+30 14
+"FRAME1"
+""
+1 0 -7 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.9867009779750167 0 1.478260869565217 9.373237179487063 14.34782608695652 0 E 0 -7 781 201
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+13 15
+"deleteSelection"
+""
+1 740.875 178.25 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  738.875 173.25 762.875 197.25
+
+P 
+4294967295
+"pictures/delete_32.png"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+   hardwareSelection.enabled(TRUE);
+   hardwareSelection.deleteAllItems;
+   hardwareSelection.appendItem(\"\");   
+   
+   dyn_string allChannels=dpNames(\"CAEN/*/board*/channel*\"); 
+     
+   for (int i = 1; i <= dynlen(allChannels); i++){  
+      hardwareSelection.appendItem = substr(allChannels[i], strlen(getSystemName())+5);         
+    }
+   applySelection.enabled(TRUE);
+   this.enabled(FALSE);
+   
+   aliasField.enabled(TRUE);
+   
+   
+   
+}" 0
+ E E E
+10 26
+"R5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -52.5 -375 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 27
+"R4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -53.49999999999983 -375 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+10 28
+"R3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1 0 1 -52.5 -375 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 29
+"R2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1.021276595744681 0 1 -59.6063829787234 -375 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+10 30
+"R1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 1.026315789473684 0 1 -61.25419932810749 -375 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+10 31
+"L5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5000000000001 -375 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 32
+"L4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5000000000001 -375 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+10 33
+"L3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5000000000001 -375 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 34
+"L2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5000000000001 -375 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+10 35
+"L1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+  
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+this.name()+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -1 0 1 427.5000000000001 -375 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+30 36
+"FRAME2"
+""
+1 702 154 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.8142857142857142 0 1.058823529411765 138.6839285714287 1.191176470588232 0 E 702 154 773 189
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 37
+"RECTANGLE1"
+""
+1 420 30 E E E 1 E 1 E N {0,0,0} E N "Green" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.000000000000003 0 1 -99.00000000000092 234.4390934844193 1 E 420 30 440 50
+2 39
+"PRIMITIVE_TEXT3"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9899354129935922 0 1.228128645225795 313.2818084361797 205.6107315447426 0 E 30 50 202 63
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 26 Hardware Matching (OFF/ON)
+6 40
+"RECTANGLE3"
+""
+1 420 30 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 -118.9999999999997 234.4390934844193 1 E 420 30 440 50
+10 41
+"type1"
+""
+1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  string node=$node;
+  string layer=$layer+\"S\"; 
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 1 0 1 -1.320268756998701 0 1 E 4 67.50000000000011 25
+307.5 25
+266.1405375139977 275
+108.5000000000001 275
+ 1
+10 42
+"type2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+   string node=$node;
+   string layer=$layer+\"S\"; 
+    clearSectorsColor(layer); 
+    appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 1 0 1 0.5000000000001705 0 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
+6 43
+"D2"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer+\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 1.0020964360587 0 0.875 -0.1415094339622741 34.25 1 E 67.5 234 306 250
+6 44
+"D1"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer+\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 3.542483989078607 0 1 -277.1797815720279 4 1 E 108.5000000000001 275 153 289
+6 45
+"D2Cosmics"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 1.0020964360587 0 0.875 0.3584905660378581 34.25 1 E 67.5 234 306 250
+6 46
+"D1Cosmics"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  
+  EP_setBackColor(node);
+}
+void EP_setBackColor(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 3.542483989078607 0 1 -277.1797815720279 4 1 E 108.5000000000001 275 153 289
+2 47
+"PRIMITIVE_TEXT4"
+""
+1 381.25 25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   string type=$type;
+   string layer=$layer; 
+   string node=$node;
+   
+   this.text(\"Node: \"+node+\" , Type: \"+type+\" , Layer: \"+layer);
+}" 0
+ E 2 1 3 2 1 E U  0 E 381.25 25 571 47
+0 2 2 "0s" 0 0 0 192 0 0  381.25 25 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 19 Node,Type and Layer
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

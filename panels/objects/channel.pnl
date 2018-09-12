@@ -1,0 +1,291 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 316 23 N "_3DFace" 4
+"$chName"
+"$dpe"
+"$x"
+"$y"
+"main()
+{
+
+    int x1 = (int)$x + 60;
+    int x2 = (int)$x + 137;
+    int y = (int)$y;
+    string chName = $chName;
+    string dpeBare = substr(dpe, strlen(getSystemName()));
+
+    dyn_string parameters;
+    parameters = makeDynString(\"$dpe:\" + dpe + \".actual.vMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:V\",
+                                        \"$width:\",
+                                        \"$color:black\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpeBare + \"_Voltage\",
+              parameters, x1, y, 0, .85, .93);
+    
+    parameters = makeDynString(\"$dpe:\" + dpe + \".actual.iMon\", \"$format:[6.3f]\",
+                                        \"$parameter:\",
+                                        \"$unit:uA\",
+                                        \"$width:\",
+                                        \"$color:black\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpeBare + \"_Current\",
+              parameters, x2, y, 0, .85, .93);
+    
+}
+
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "string dpe = $dpe;" 0
+ 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+20 4
+"checkBox"
+""
+1 3 0 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  291 -2 315 22
+1
+T 
+1
+LANG:1 0 
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+"main()
+{    
+    if (dynContains(channelsToPlot, dpe) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);                                
+}
+" 0
+"main(int button, int state)
+{
+
+    string text;
+    getValue(myModuleNameMain + \".\" + myPanelNameMain + \":bFieldButton\", \"text\", text); //[\"M1\"][\"TestBeam SCS\"]
+
+    if (text == \"HV Monitor\") removeBmonitor();
+    
+    disableAllCheckboxes();
+    loadPlots(\"\");
+    enableAllCheckboxes();
+}" 0
+6 2
+"channelBorder"
+""
+1 9 9 E E E 1 E 1 E N "STD_grey_light" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 2 1 1 E 1 0 1 -9 -9 1 E 293 10 6 28
+6 3
+"onOffStatus"
+""
+1 9 9 E E E 1 E 1 E N "STD_grey_light" E N "Green" E E
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"Old/dualPlotPopUp.pnl\",
+      dpGetAlias($dpe+\".\")+\" \"+$dpe,
+      makeDynString(\"$dpe:\" + $dpe));
+}
+
+" 0
+ E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+"main()
+{
+   EP_setBackColor();
+}
+
+EP_setBackColor()
+{
+    dyn_errClass err;
+
+    dpConnect(\"EP_setBackColorCB\", 
+              dpe + \".actual.Trip:_online.._value\");
+    err = getLastError();
+    if (dynlen(err) > 0)
+        setValue(\"\", \"color\", \"_dpdoesnotexist\");
+}
+
+EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  
+    touchChannels();
+    
+    bool isOn = 0;
+    dpGet(dpe + \".actual.isOn:_original.._value\", isOn);
+    if (boNewValue) {
+        setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
+
+        string result = alertViaEmail(\"simone.sottocornola01@universitadipavia.it\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: [URGENT] Channel tripped!\", \"\");
+        delay(10);
+        //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + result);
+        DebugN(\"Alert via mail: \", result);
+        string resultSMS = alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
+        //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + resultSMS);
+        DebugN(\"Alert via SMS: \", resultSMS);
+    }
+    else {
+        if (isOn) {setValue(\"\", \"backCol\", \"FwStateOKPhysics\");}
+        else {setValue(\"\", \"backCol\", \"FwDead\");}
+  }
+}
+
+
+
+
+
+
+
+" 0
+ E 0 1 2 1 1 E U  1 E 123 1 0 19
+2 1
+"channelNameText"
+""
+1 5 0 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+ "main()
+{
+      ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
+}" 0
+ E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"dashclr"N "_Transparent"
+"main()
+{
+  
+    dyn_string tmp = stringToDynString(dpe, \"/\");
+    string alias = dpGetAlias(dpe + \".\");
+    if (alias != \"\")
+        this.text = alias;
+    else
+        this.text = substr(tmp[3], 5, 2) + \"  \" + substr(tmp[4], 8, 2);
+    this.toolTipText = \"Board: \" + substr(tmp[3], 5, 2) + \" Channel: \" + substr(tmp[4], 8, 2);
+    
+}
+" 0
+ E 0 1 1 2 1 E U  0 E 5 4 119 27
+0 2 2 "0s" 0 0 0 65 0 0  5 4 2
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 10 HV Channel
+1
+LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 5
+"rightClickArea"
+""
+1 3.660377358490575 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ "main()
+{
+    
+}" 0
+ E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E U  1 E 306 18 124 2
+6 6
+"spacer"
+""
+1 0 0 E E E 1 E 1 E N "_Transparent" E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  1 E 0 20 -4 0
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

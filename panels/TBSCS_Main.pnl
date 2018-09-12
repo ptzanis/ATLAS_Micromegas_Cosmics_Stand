@@ -1,0 +1,2574 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1352 950 N "_3DFace" 0
+"main()
+{   
+    
+    myModuleNameMain = myModuleName();
+    myPanelNameMain = myPanelName();
+    
+    LayerOff(2); 
+    splashScreen(TRUE);
+    LayerOn(3);
+    LayerOn(4);
+    touchChannels();
+    loadBrowser();
+    
+    setPanelSize(\"embMod1\", \"chamberList\", TRUE, 0, 0);
+
+}" 0
+ E E E E 1 -1 -1 0  20 20
+""0  1
+E "/* *************************************************************************************** *
+ *    Developer: Paris Moschovakos                                                         *
+ *    e-mail: paris.moschovakos@cern.ch                                                    *
+ *    Date: 2/3/2015                                                                       *
+ * *************************************************************************************** */
+
+#uses \"TBSCSGeneral.ctl\"
+
+void refreshConfigurationTable() {
+    
+  channelsTable.tableMode(TABLE_SELECT_NOTHING);
+    channelsTable.font(\"Lucida Grande\"); 
+
+    dyn_string allChannels, dpes;
+    float tempi0, tempv0, temprUp, temprDwn, temptripTime, VMax;
+    string alias;
+    bool isOn;
+    
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    
+    for (int i = 1; i <= dynlen(allChannels); i++){
+        dpGet(allChannels[i] + \".readBackSettings.i0:_original.._value\", tempi0);
+        dpGet(allChannels[i] + \".readBackSettings.v0:_original.._value\", tempv0);
+        dpGet(allChannels[i] + \".readBackSettings.rUp:_original.._value\", temprUp);
+        dpGet(allChannels[i] + \".readBackSettings.rDwn:_original.._value\", temprDwn);
+        dpGet(allChannels[i] + \".readBackSettings.tripTime:_original.._value\", temptripTime);
+        alias = dpGetAlias(allChannels[i] + \".\");
+        dpGet(allChannels[i] + \".readBackSettings.vMaxSoftValue:_original.._value\", VMax);
+        channelsTable.appendLine(\"Alias\", alias, \"Channels\", substr(allChannels[i], strlen(getSystemName()) + 5),
+                                 \"v0\", tempv0, \"i0\", tempi0, \"rUp\", temprUp,
+                                 \"rDwn\", temprDwn, \"trip\", temptripTime, \"VMax\", VMax);
+        dpGet(allChannels[i] + \".actual.isOn:_original.._value\", isOn);
+        if (isOn) {
+            channelsTable.cellBackColRC(i-1, \"Alias\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"Channels\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"v0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"i0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"rUp\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"rDwn\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"trip\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"VMax\", \"FwStateOKPhysics\");
+        }
+    }
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\"); 
+    channelsTable.tableMode(TABLE_SELECT_MULTIPLE);
+    channelsTable.selectByClick(TABLE_SELECT_LINE);
+    
+}
+
+archiving() {
+    
+    while (isArchiving()) {     
+        workingLabel.text(\" Archiving in progress.\");
+        if (!isArchiving()) {workingLabel.text(\" Archiving has been stopped.\"); break;}
+        delay(1);
+        workingLabel.text(\" Archiving in progress..\");
+        if (!isArchiving()) {workingLabel.text(\" Archiving has been stopped.\"); break;}
+        delay(1);
+        workingLabel.text(\" Archiving in progress...\");
+        if (!isArchiving()) {workingLabel.text(\" Archiving has been stopped.\"); break;}
+        delay(1);
+        workingLabel.text(\" Archiving in progress\");
+        if (!isArchiving()) {workingLabel.text(\" Archiving has been stopped.\"); break;}
+        delay(1);
+    }
+}
+
+touchChannels() {
+
+  dyn_string psChannels = dpNames(\"*\", \"FwCaenChannel\");
+
+  float temp1, temp2;
+  for (int i = 1; i <= dynlen(psChannels); i++) {
+      dpGet(psChannels[i] + \".actual.vMon:_original.._value\", temp1);
+      dpGet(psChannels[i] + \".actual.iMon:_original.._value\", temp2);
+      dpSetWait(psChannels[i] + \".actual.vMon:_original.._value\", temp1);
+      dpSetWait(psChannels[i] + \".actual.iMon:_original.._value\", temp2);
+  }
+}
+
+loadBrowser() {
+  
+    addSymbol(myModuleName(), myPanelName(), \"objects/beam.pnl\", \"ebrowserRef\", makeDynString(),
+              90, 676, 0, 1, 1);
+
+}
+
+
+
+
+
+
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0
+LAYER, 0 
+1
+LANG:1 7 Monitor
+6 0
+"level1Background"
+""
+1 10 150 E E E 1 E 1 E N {236,236,236} E N {236,236,236} E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 2 1 E 1 0 1 5 0 1 E -5 30 1260 954
+6 1
+"histoArea"
+""
+1 450 180 E E E 1 E 0 E N {0,0,0} E N {227,227,227} E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 350 51 1239 930
+30 4
+"histosFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+157 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.058139534883721 0 1.112745098039216 -62.093023255814 -91.85294117647062 0 E 380 114 1241 931
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 8 HV Plots
+6 5
+"chambersBackground"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 10 40 330 604
+13 2
+"settingsButton"
+""
+1 340.1275279106859 5 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  338 3 462 27
+
+T 
+1
+LANG:1 8 Settings
+"main()
+{
+    
+    // clearScreen();
+    SwitchLayer(1,2);
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ E E E
+13 3
+"bFieldButton"
+""
+1 460 5 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  458 3 582 27
+
+T 
+1
+LANG:1 15 B-field Monitor
+"main()
+{
+    
+    string buttonName = bFieldButton.text(); 
+    
+    if (buttonName == \"B-field Monitor\") {
+        removePlots(0);
+        addSymbol(myModuleName(), myPanelName(), \"objects/bmonitor.pnl\", \"bmon\",
+                  makeDynString(\"$x:\" + 350, \"$y:\" + 51), 0, 0, 0, 1, 1.1);
+        histosFrame.text = \"B-Field Sensors\";
+        bFieldButton.text = \"HV Monitor\";
+    } else {
+        removeBmonitor();
+        histosFrame.text = \"HV Plots\";
+        bFieldButton.text = \"B-field Monitor\";
+    }  
+}
+" 0
+ E E E
+6 219
+"logoShape1"
+""
+1 700 10 E E E 1 E 0 E N "_Transparent" E N "_Transparent" E E
+ E E
+255 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"hoverfclr" "N \"Black\""
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 695 376 893 574
+13 450
+"hideShowBrowserButton"
+""
+1 0 -2 E E E 1 E 1 E N "_ButtonText" E N "white" E E
+ E E
+297 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+2
+"hoverbclr" "N {236,236,236}"
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  9 608 330 625
+
+T 
+1
+LANG:1 14 Hide Beam Info
+"main()
+{
+    int xButton, yButton, xContainer, yContainer, xChambersBgPos, yChambersBgPos,
+        xChambersBgSize, yChambersBgSize, difYPos;
+    
+    difYPos = 315;
+    
+    getValue(\"hideShowBrowserButton\", \"position\", xButton, yButton);
+    getValue(\"hideShowButtonContainer\", \"position\", xContainer, yContainer);
+    getValue(\"chambersBackground\", \"position\", xChambersBgPos, yChambersBgPos);
+    getValue(\"chambersBackground\", \"size\", xChambersBgSize, yChambersBgSize);
+    
+    if (hideShowBrowserButton.text == \"Hide Beam Info\") {
+      
+        removeSymbol(myModuleName(), myPanelName(), \"ebrowserRef\");
+
+        hideShowBrowserButton.position(xButton, yButton + difYPos);
+        hideShowButtonContainer.position(xContainer, yContainer + difYPos);
+        hideShowBrowserButton.text(\"Show Beam Info\");
+        
+        embMod1.size(xChambersBgSize, yChambersBgSize + difYPos);
+        //chambersBackground.size(xChambersBgSize, yChambersBgSize + difYPos);
+        yChambersBgPos = yChambersBgPos - 22;
+        //chambersBackground.position(xChambersBgPos, yChambersBgPos);
+        embMod1.position(xChambersBgPos, yChambersBgPos);
+      }
+    else {
+              
+        yChambersBgPos = yChambersBgPos;        
+        hideShowBrowserButton.position(xButton, yButton - difYPos);
+        hideShowButtonContainer.position(xContainer, yContainer - difYPos);
+        hideShowBrowserButton.text(\"Hide Beam Info\");
+
+        embMod1.size(xChambersBgSize, yChambersBgSize);//yChambersBgSize - difYPos
+        //chambersBackground.size(xChambersBgSize, yChambersBgSize - difYPos);
+        //chambersBackground.position(xChambersBgPos, yChambersBgPos);
+        embMod1.position(xChambersBgPos, yChambersBgPos);
+      
+        loadBrowser();  
+    }
+    
+}" 0
+ E E E
+6 451
+"hideShowButtonContainer"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+298 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 0 -13 1 E 10 622 330 638
+29 481
+"embMod1"
+""
+1 -1 0 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+299 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+5
+"frameShadow" "enum 32"
+"verticalScrollBarPolicy" "enum 2"
+"horizontalScrollBarPolicy" "enum 1"
+"frameShape" "enum 6"
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  9 40 329 604
+15 Canvas.Canvas.1
+0
+"main()
+{
+  
+    this.ModuleName = \"embMod1\"; 
+    RootPanelOnModule(\"objects/chamberHolder.pnl\", \"chamberList\", \"embMod1\", \"\");
+
+}
+" 0
+0
+LAYER, 1 
+1
+LANG:1 8 Settings
+6 7
+"level2Background"
+""
+1 10 150 E E E 1 E 1 E N {236,236,236} E N {236,236,236} E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 2 1 E 1 0 1 5 0 1 E -5 30 1260 954
+6 126
+"bfieldBackground"
+""
+1 659 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+249 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 10 0 1 E 620 410 1239 633
+14 317
+"TEXT_FIELD3"
+""
+1 1093 540.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+281 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1091 539 1145 563
+3 "0s" 0 0 0 0 0 -1  E E E
+14 315
+"TEXT_FIELD2"
+""
+1 1093 510.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+279 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1091 509 1145 533
+3 "0s" 0 0 0 0 0 -1  E E E
+14 313
+"TEXT_FIELD1"
+""
+1 1093 480.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+277 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1091 479 1145 503
+3 "0s" 0 0 0 0 0 -1  E E E
+22 312
+"COMBO_BOX1"
+""
+1 876.5000000000001 511.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+276 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  875 510 1005 534
+2
+2
+LANG:1 10 Quadratic 
+LANG:10001 10 Quadratic 
+
+0
+2
+LANG:1 6 Linear
+LANG:10001 6 Linear
+
+0
+
+E
+E
+E
+ 1 0
+17 310
+"SELECTION_LIST1"
+""
+1 700 490 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+274 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  698 488 832 560
+4
+2
+LANG:1 12 MDM1 Sensor0
+LANG:10001 13 ELMB1 Sensor0
+
+0
+2
+LANG:1 12 MDM1 Sensor1
+LANG:10001 13 ELMB1 Sensor1
+
+0
+2
+LANG:1 12 MDM2 Sensor0
+LANG:10001 13 ELMB2 Sensor0
+
+0
+2
+LANG:1 12 MDM2 Sensor1
+LANG:10001 13 ELMB2 Sensor1
+
+0
+
+E
+E
+E
+
+0 0
+2 318
+"PRIMITIVE_TEXT14"
+""
+1 1027 480.5 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+282 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 1054 480.5 1073 495
+0 2 2 "0s" 0 0 0 194 0 0  1073 480.5 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 3 c1:
+2 319
+"PRIMITIVE_TEXT15"
+""
+1 1027 510.5 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+283 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 1054 510.5 1073 525
+0 2 2 "0s" 0 0 0 194 0 0  1073 510.5 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 3 c2:
+2 320
+"PRIMITIVE_TEXT16"
+""
+1 1027 540.5 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+284 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 1054 540.5 1073 555
+0 2 2 "0s" 0 0 0 194 0 0  1073 540.5 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 3 c3:
+30 321
+"FRAME10"
+""
+1 630 395 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+285 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2084006462035541 0 0.4530612244897961 911.7075928917609 281.5408163265306 0 E 630 395 1250 641
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 12 Coefficients
+6 8
+"archivingBackground"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 630 45 1249 398
+6 9
+"configureBackground"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 10 155 619 941
+6 10
+"setBackground"
+""
+1 200 770 E E E 1 E 1 E N {228,228,228} E N {228,228,228} E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 2 1 1 E 1.02 0 0.8333333333333333 -23.00000000000001 145.3333333333334 1 E 200 770 600 890
+6 11
+"exportBackground"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 630 645 1249 941
+6 12
+"setupBackground"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 0 -2 1 E 10 47 619 145
+30 13
+"exportFrame"
+""
+1 540 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+93 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.8842857142857145 0 0.5531135531135536 152.4857142857142 576.9450549450548 0 E 540 114 1241 661
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Export Data
+13 14
+"setButton"
+""
+1 286.0273437500002 848.16659768212 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  215 846 338 880
+
+T 
+1
+LANG:1 3 Set
+"main()
+{
+    
+    touchChannels();
+    
+    dyn_int selected;
+    dyn_dyn_string lines;
+    
+    selected=channelsTable.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)
+        lines[i] = channelsTable.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+        if (textField1.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.v0:_original.._value\", textField1.text);
+        if (textField2.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.i0:_original.._value\", textField2.text);
+        if (textField3.text)  
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.rUp:_original.._value\", textField3.text);
+        if (textField4.text) 
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.rDwn:_original.._value\", textField4.text); 
+        if (textField5.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.tripTime:_original.._value\", textField5.text); 
+        if (textField6.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.vMaxSoftValue:_original.._value\", textField6.text);
+        if (textField7.text) {
+            if (textField7.text == \" \") dpSetAlias(getSystemName() + \"CAEN/\" + lines[i][2] + \".\", \"\");
+            else dpSetAlias(getSystemName() + \"CAEN/\" + lines[i][2] + \".\", textField7.text);
+          }
+    }
+    
+    setInputFocus(myModuleName(), myPanelName(), \"channelsTable\");
+    
+    textField1.text = \"\";
+    textField2.text = \"\";
+    textField3.text = \"\";
+    textField4.text = \"\";
+    textField5.text = \"\";
+    textField6.text = \"\";
+    textField7.text = \"\";
+    
+    delay(3);
+    channelsTable.deleteAllLines;
+    refreshConfigurationTable();  
+}
+" 0
+ E E E
+14 15
+"textField1"
+""
+1 -139 816.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  245 795 308 818
+3 "4d" 4 1 0 1 0 -1  E E E
+14 16
+"textField2"
+""
+1 -89 818.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  245 817 308 840
+3 "4.3f" 8 1 0 1 0 -1  E E E
+14 17
+"textField3"
+""
+1 259 776.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  519 795 582 818
+3 "0d" 0 1 0 1 0 -1  E E E
+14 18
+"textField4"
+""
+1 238 838.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  519 817 582 840
+3 "0d" 0 1 0 1 0 -1  E E E
+14 19
+"textField5"
+""
+1 286.5 756.3658940397357 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  375 817 438 840
+3 "0d" 0 1 0 1 0 -1  E E E
+13 20
+"onButton"
+""
+1 -141.0468749999998 800.208609271524 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  38 798 161 832
+
+T 
+1
+LANG:1 10 Channel On
+"main()
+{
+    
+    touchChannels();
+    
+    dyn_int selected;
+    dyn_dyn_string lines;
+    
+    selected=channelsTable.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)
+        lines[i] = channelsTable.getLineN(selected[i]);
+
+    for (int i = 1; i <= dynlen(lines); i++)
+        {dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.onOff:_original.._value\", 1);
+    }   
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");  
+}
+" 0
+ E E E
+13 21
+"offButton"
+""
+1 39.5 840 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  38 838 161 872
+
+T 
+1
+LANG:1 11 Channel Off
+"main()
+{
+    
+    touchChannels();
+    
+    dyn_int selected;
+    dyn_dyn_string lines;
+    
+    selected=channelsTable.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)
+        lines[i] = channelsTable.getLineN(selected[i]);
+
+    for (int i = 1; i <= dynlen(lines); i++)
+        {dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.onOff:_original.._value\", 0);
+    }
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ E E E
+14 22
+"textField6"
+""
+1 218 776.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  375 795 438 818
+3 "3d" 3 1 0 1 0 -1  E E E
+14 23
+"textField7"
+""
+1 439 853.1158940397356 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+108 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  437 851 582 874
+3 "20s" 20 1 0 1 0 -1  E E E
+30 24
+"configureFrame"
+""
+1 540 364 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+114 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.8577464788732395 0 1.375 -453.1830985915492 -350.5000000000001 0 E 540 364 1251 941
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 21 Configure HV channels
+13 25
+"createDptButton"
+""
+1 49.25 59.99999999999994 E E E 1 E 0 E N "_ButtonText" E N {236,236,236} E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  47 78 170 112
+
+T 
+1
+LANG:1 11 Create DPTs
+"main()
+{  
+    
+  if (checkDPTexistance() == 0) {
+    this.enabled = \"FALSE\";  
+  }
+  else {
+    createTbscsChamberDPT();
+    this.enabled = \"FALSE\";  
+  }
+}
+" 0
+ E E "main()
+{
+    
+  if (checkDPTexistance() == 0) {
+    this.enabled = \"FALSE\";
+    this.visible = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+    this.visible = \"TRUE\";
+  }
+}
+" 0
+
+30 26
+"archiveFrame"
+""
+1 540 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+116 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.8842857142857143 0 1.173202614379085 152.4857142857142 -93.74509803921568 0 E 540 114 1241 421
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 9 Archiving
+30 27
+"FRAME9"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+141 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.068421052631579 0 0.2694300518134714 -0.6842105263157883 -109.2642487046632 0 E 10 554 581 941
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 19 Create/Modify Setup
+13 28
+"addChamberButton"
+""
+1 170 100 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  318 78 441 112
+
+T 
+1
+LANG:1 18 Add new chamber...
+"main()
+{  
+    
+  ChildPanelOnCentral(\"objects/addNewChamber.pnl\", \"\", makeDynString(\"\")); 
+}
+" 0
+ E E E
+13 29
+"removeChamberButton"
+""
+1 165 60 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  183 78 306 112
+
+T 
+1
+LANG:1 16 Remove a chamber
+"main()
+{
+    
+    ChildPanelOnCentral(\"objects/deleteChamber.pnl\", \"\", makeDynString(\"\")); 
+}
+" 0
+ E E E
+25 30
+"channelsTable"
+""
+1 0 -75.56410256410258 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+ E "main(int row, string column)
+{
+  if (column == \"Alias\") {
+      DebugN(\"Only now came.\");
+  }
+}" 0
+
+173 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,12,5,50,0,0,0,0,0
+0  18 168 601 779
+"main()
+{
+    
+    this.columnWidth(0, 110);
+    this.columnWidth(1, 187);
+    this.columnWidth(2, 49);
+    
+    for (int i = 3; i < 8; i++) {
+        this.columnWidth(i, 43);
+    }
+    
+    refreshConfigurationTable();
+    
+    dyn_string allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    for (int i = 1; i <= dynlen(allChannels); i++){
+        dpConnect(\"colorTable\", allChannels[i] + \".actual.isOn:_online.._value\");
+    }   
+//     this.selectLineN(0);
+//     this.selectLineN(dynlen(allChannels));
+    
+}
+
+
+void colorTable(string channelDp, bool isOn) {
+
+    dyn_string allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    dyn_string channelDpParts = strsplit(channelDp, \".\");
+    channelDp = channelDpParts[1];
+    int i = dynContains(allChannels, channelDp);
+    
+    if (isOn) {
+        channelsTable.cellBackColRC(i - 1, \"Alias\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"Channels\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"v0\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"i0\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"rUp\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"rDwn\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"trip\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"VMax\", \"FwStateOKPhysics\");
+    } else {
+        channelsTable.cellBackColRC(i - 1, \"Alias\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"Channels\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"v0\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"i0\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"rUp\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"rDwn\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"trip\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"VMax\", \"{236,236,236}\");
+    }
+}
+    
+    " 0
+"main(int row, string column, string value)
+{
+    
+    dyn_string line;
+    line = channelsTable.getLineN(row);
+    DebugN(\"Line is: \", line);
+    DebugN(\"row column is: \", row, column);
+    
+//     channelsTable.
+//     if (column == \"Alias\") {
+//         DebugN(\"Only now came.\");
+//     }
+      
+//     textField1.text = line[3];
+//     textField2.text = line[4];
+//     textField3.text = line[5];
+//     textField4.text = line[6];
+//     textField5.text = line[7];
+//     textField6.text = line[8];
+}
+" 0
+ 1 0 1 8 1 "Alias" 8 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:1 12 Channel Name
+E
+1
+LANG:1 0 
+
+90 "Channels" 12 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:1 16 Hardware Address
+E
+1
+LANG:1 0 
+
+133 "v0" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 7 Voltage
+E
+1
+LANG:1 0 
+
+50 "i0" 5 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:1 4 Imax
+E
+1
+LANG:1 0 
+
+65 "rUp" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 3 rUp
+E
+1
+LANG:1 0 
+
+48 "rDwn" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 5 rDown
+E
+1
+LANG:1 0 
+
+60 "trip" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 Trip
+E
+1
+LANG:1 0 
+
+60 "VMax" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 Vmax
+E
+1
+LANG:1 0 
+
+54 
+13 13 "" 1 1
+LANG:1 2 #1
+10 8
+1
+LANG:1 34 Lucida Grande,-1,12,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+6 31
+"lockHolder"
+""
+1 280 900 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
+    
+    toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
+              \"textField5\", \"textField6\", \"textField7\");
+    toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
+    
+    if (!onButton.enabled) {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        lockInfoText.text = \"Click the lock to prevent further changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", TRUE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", TRUE);
+        }
+    }
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ "main()
+{
+    
+    dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
+    
+    toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
+              \"textField5\", \"textField6\", \"textField7\");
+    toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
+    
+    if (!onButton.enabled) {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        lockInfoText.text = \"Click the lock to prevent further changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", TRUE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", TRUE);
+        }
+        channelsTable.tableMode(TABLE_SELECT_MULTIPLE);
+    }
+    else {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
+        lockInfoText.text = \"Click the lock to make changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", FALSE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", FALSE);
+        }
+        channelsTable.tableMode(TABLE_SELECT_NOTHING);
+    }
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 -260 -8 2  1 0  "31.png" 4294967295 E 280 895 320 935
+2 33
+"PRIMITIVE_TEXT7"
+""
+1 199 797 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 192 797 245 811
+0 2 2 "0s" 0 0 0 194 0 0  245 797 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8 Voltage:
+2 34
+"PRIMITIVE_TEXT8"
+""
+1 199 819 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 179 819 245 833
+0 2 2 "0s" 0 0 0 194 0 0  245 819 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Imax (uA):
+2 35
+"PRIMITIVE_TEXT9"
+""
+1 329 797 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 334 797 375 811
+0 2 2 "0s" 0 0 0 194 0 0  375 797 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Vmax:
+2 36
+"PRIMITIVE_TEXT10"
+""
+1 473 797 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+194 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 456 797 519 811
+0 2 2 "0s" 0 0 0 194 0 0  519 797 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8 Ramp Up:
+2 37
+"PRIMITIVE_TEXT11"
+""
+1 473 819 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 439 819 519 833
+0 2 2 "0s" 0 0 0 194 0 0  519 819 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Ramp Down:
+2 38
+"PRIMITIVE_TEXT12"
+""
+1 329 818.5 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 313 818.5 375 833
+0 2 2 "0s" 0 0 0 194 0 0  375 818.5 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Trip Time:
+2 39
+"PRIMITIVE_TEXT13"
+""
+1 341.8046875000001 853 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 341.8046875000001 853 437 873
+0 2 2 "0s" 0 0 0 66 0 0  341.8046875000001 853 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 13 Channel Name:
+13 40
+"refreshButton"
+""
+1 566.6 190.4105960264905 E E E 1 E 0 E N "_ButtonText" E N "_Transparent" E E
+ E E
+105 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  595 165 618 189
+
+P 
+4294967295
+"pictures/refresh_e.gif"
+1
+LANG:1 7 Refresh
+"main()
+{
+    channelsTable.deleteAllLines;
+    refreshConfigurationTable();
+}
+  " 0
+ E E E
+1 545 2 "" 0
+0
+13 48
+"startArchivingButton"
+""
+1 341.1315789473684 195.375 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  928 208 1051 241
+
+T 
+1
+LANG:1 5 Start
+"main()
+{
+    
+    workingLabel.text(\"Configuring...\");
+    
+    dyn_string archivedDpes = dpNames(\"*\", \"FwCaenChannel\");  
+    string archiveClassName = \"TBSCS_Archive\";
+    int archiveType = DPATTR_ARCH_PROC_SIMPLESM;
+    int smoothProcedure = DPATTR_TIME_AND_VALUE_SMOOTH;
+    dyn_string exceptionInfo;
+    bool checkClass = TRUE;
+    float deadband;
+    float timeInterval;
+    
+    // Archive configuration
+    
+    for (int i = 1; i<=dynlen(archivedDpes); i++) {
+        
+        deadband = 0.1;      // Change these settings to adjust the detail
+        timeInterval = 1;    // of vMon archiving.
+        
+        fwArchive_configMultiple(archivedDpes[i] + \".actual.vMon\", archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+    
+        deadband = 0.5;        // Change these settings to adjust the detail
+        timeInterval = 1;    // of iMon archiving.
+        
+        fwArchive_configMultiple(archivedDpes[i] + \".actual.iMon\", archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+    
+        deadband = 1;        // Change these settings to adjust the detail
+        timeInterval = 1;    // of vSet archiving.
+        
+        fwArchive_configMultiple(archivedDpes[i] + \".readBackSettings.v0\", archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+    }
+    
+    workingLabel.text(\"Configuration completed!\");
+    delay(1);
+    
+    // Start archiving
+    
+    for (int i = 1; i <= dynlen(archivedDpes); i++) {
+        fwArchive_startMultiple(archivedDpes[i] + \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        fwArchive_startMultiple(archivedDpes[i] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        fwArchive_startMultiple(archivedDpes[i] + \".readBackSettings.v0\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+    }   
+    
+    if (dynlen(exceptionInfo) == 0) {
+        this.enabled = false;
+        stopArchivingButton.enabled = true;
+        cleanArchivesButton.enabled = false;
+        archiving();
+    }
+}
+" 0
+ E E E
+13 49
+"stopArchivingButton"
+""
+1 409 195.125 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  1068 208 1191 241
+
+T 
+1
+LANG:1 4 Stop
+"main()
+{   
+    this.enabled = false;
+    
+    dyn_string archivedDpes = dpNames(\"*\", \"FwCaenChannel\");  
+    dyn_string exceptionInfo;
+    
+    for (int i = 1; i <= dynlen(archivedDpes); i++) {
+        fwArchive_stopMultiple(archivedDpes[i] + \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+        fwArchive_stopMultiple(archivedDpes[i] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+        fwArchive_stopMultiple(archivedDpes[i] + \".readBackSettings.v0\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+    }
+
+    startArchivingButton.enabled = true;
+    cleanArchivesButton.enabled = true;
+    delay(1.1);
+    workingLabel.text(\" Archiving has been stopped.\");
+}
+" 0
+ E E E
+13 50
+"cleanArchivesButton"
+""
+1 470 150 E E E 0 E 0 E N "_ButtonText" E N {236,236,236} E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  981 252 1134 285
+
+T 
+1
+LANG:1 26 Clean previous archives...
+"main()
+{
+     string archiveClassDpName = \"dist_1:_ValueArchive_0\";
+     int archiveState;
+     string archiveStateText;
+     dyn_string exceptionInfo;
+     fwArchive_getClassState(archiveClassDpName, archiveState, archiveStateText, exceptionInfo);
+     
+     dyn_string archivedDpes = dpNames(\"*\", \"FwCaenChannel\");  
+     dyn_string exceptionInfo;
+         
+     for (int i = 1; i <= dynlen(archivedDpes); i++) {
+        fwArchive_deleteMultiple(archivedDpes[i] + \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        fwArchive_deleteMultiple(archivedDpes[i] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        fwArchive_deleteMultiple(archivedDpes[i] + \".readBackSettings.v0\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+     }
+     
+    this.enabled = false;
+    stopArchivingButton.enabled = false;
+    startArchivingButton.enabled = true;
+    workingLabel.text(\" Archives cleaned.\");
+    setValue(\"archiveIndicator\", \"backCol\", \"{68,255,62}\");
+}
+" 0
+ E E E
+6 51
+"lockHolder2"
+""
+1 280 900 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E "main()
+{
+    dyn_string textfields, enabled, toLockEnabled; 
+    
+    toLockEnabled = makeDynString(\"startArchivingButton\", \"cleanArchivesButton\", \"stopArchivingButton\");
+    
+    string fillPic;
+    getValue(\"lockHolder2\", \"fill\", fillPic);
+    bool isLocked = 1; 
+    if (fillPic == \"[pattern,[fit,any,unlocked.png]]\") isLocked = 0; 
+                    
+    if (isLocked) {
+        setValue(\"lockHolder2\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        lockInfoText2.text = \"Click the lock to prevent further changes.\";
+        
+        if (isArchiving()) { 
+            setValue(\"startArchivingButton\", \"enabled\", FALSE);
+            setValue(\"cleanArchivesButton\", \"enabled\", FALSE);
+            setValue(\"stopArchivingButton\", \"enabled\", TRUE);
+        } else {
+            setValue(\"startArchivingButton\", \"enabled\", TRUE);
+            setValue(\"cleanArchivesButton\", \"enabled\", TRUE);
+            setValue(\"stopArchivingButton\", \"enabled\", FALSE);
+        }
+    }
+    else {
+        setValue(\"lockHolder2\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
+        lockInfoText2.text = \"Click the lock to make changes.\";
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", FALSE);
+        }
+    }  
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 360 -550 2  1 0  "51.png" 4294967295 E 280 895 320 935
+2 54
+"workingLabel"
+""
+1 929.0000034463799 134 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    if (isArchiving()) 
+        archiving(); 
+    else 
+        workingLabel.text(\" Archiving has been stopped.\");
+}" 0
+ E 0 1 1 2 1 E 0.9321428571428571 0 1 63.03928571428577 0 0 E 931.2918148040771 134 1206.791814804077 154
+0 2 2 "0s" 0 0 0 64 0 0  931.2918148040771 134 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 18    Archiving state
+4 55
+"LINE4"
+""
+1 931 160 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E  931 160 1190 160
+7 56
+"archiveIndicator"
+""
+1 1180 130 E E E 1 E 1 E N {166,166,166} E N {255,255,255} E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -10 4 1 E 1195 126 4 4
+13 57
+"browseButton"
+""
+1 796 -1.4375 E E E 1 E 1 E N {0,0,0} E N {236,236,236} E E
+ E E
+244 0 0 0 0 0
+E E E
+0
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10001 84 -*-Arial-*-r-normal-*-13-*-100-100-*-*-iso8859-1|-13,0,0,0,404,0,0,0,0,0,0,0,0,Arial
+0  1143 683 1177 717
+
+P 
+14215660
+"pictures/fileselektor.xpm"
+2
+LANG:1 0 
+LANG:10001 0 
+"main()
+{
+    
+    string sPath;
+    string systemName;
+    int iErr;
+	
+    if(shapeExists(\"cbSystem\"))
+        systemName = cbSystem.text;
+    else
+        systemName = \"\";
+  
+    sPath = \"C:\\\\Projects\\\\TBSCS\";
+    iErr = folderSelector( sPath );
+    
+    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
+	    sPath += \"/\";
+        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
+    	strreplace(sPath, \"//\", \"/\");
+        strreplace(sPath, \"//\", \"/\");
+	    // update the widget with the directory path
+        destFolderTextField.text = sPath;
+    }
+}
+
+" 0
+ E E E
+14 58
+"destFolderTextField"
+""
+1 770.2815543831169 659.2499999999999 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  768 688 1142 711
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+    
+    string currentDate = formatTime(\"%d_%m\", getCurrentTime());
+    this.text(\"C:/\" + \"TB_data_\" + currentDate + \"/\");
+    // this.text(\"%USERPROFILE%\\\\Desktop\");
+}
+" 0
+ E
+2 59
+"destFolderLabel"
+""
+1 3694.666668139924 -40882 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+245 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.8359374999999999 0 1 606.15625 -209.625 0 E 70 900 450 920
+0 2 2 "0s" 0 0 0 64 0 0  70 900 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 21   Destination folder:
+13 82
+"exportIMonButton"
+""
+1 829.3124999999999 700.375 E E E 1 E 0 E N "_ButtonText" E N {236,236,236} E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  818 717 941 750
+
+T 
+1
+LANG:1 14 Export Current
+"main()
+{
+    
+    string start = getStartTime();
+    string end = getEndTime();
+    string dirPath = destFolderTextField.text + \"data/\";
+    
+    checkOrCreateDirectory(dirPath);
+    
+    dyn_string allChannels;  
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    for (int i = 1; i <= dynlen(allChannels); i++) {
+        allChannels[i] = substr(allChannels[i], strpos(allChannels[i], \"CAEN\") + 5);
+    }
+    
+    if (!exportCAEN(\"iMon\", allChannels, start, end)) 
+        DebugN(\"File exists in the specified directory. Please change directory or delete old files.\");
+}
+
+
+" 0
+ E E E
+13 83
+"exportVMonButton"
+""
+1 950.125 651.8718750000002 E E E 1 E 0 E N "_ButtonText" E N {236,236,236} E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  938 717 1061 750
+
+T 
+1
+LANG:1 14 Export Voltage
+"main()
+{
+    
+    string start = getStartTime();
+    string end = getEndTime();
+    string dirPath = destFolderTextField.text + \"data/\";
+    
+    checkOrCreateDirectory(dirPath);
+
+    
+    dyn_string allChannels;  
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    
+    for (int i = 1; i <= dynlen(allChannels); i++) {
+        allChannels[i] = substr(allChannels[i], strpos(allChannels[i], \"CAEN\") + 5);
+    }
+    
+    if (!exportCAEN(\"vMon\", allChannels, start, end, dirPath)) DebugN(\"File exists in the specify direcotry. Please change directory or delete old files.\");
+}
+
+" 0
+ E E E
+13 84
+"exportDataButton"
+""
+1 819.5 633.05 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  808 858 931 891
+
+T 
+1
+LANG:1 11 Export Data
+"main()
+{
+    this.enabled(FALSE);
+    this.text(\"Please wait...\");
+    
+    string start = getStartTime();
+    string end = getEndTime();
+    string dirPath = destFolderTextField.text + \"data/\";
+    
+    checkOrCreateDirectory(dirPath);
+
+    dyn_string allChannels;  
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    
+    for (int i = 1; i <= dynlen(allChannels); i++) {
+        allChannels[i] = substr(allChannels[i], strpos(allChannels[i], \"CAEN\") + 5);
+    }
+    
+    if (!exportCAEN(\"iMon\", allChannels, start, end, dirPath)) DebugN(\"File exists in the specify direcotry. Please change directory or delete old files.\");
+    if (!exportCAEN(\"vMon\", allChannels, start, end, dirPath)) DebugN(\"File exists in the specify direcotry. Please change directory or delete old files.\");
+     
+    this.text(\"Export Data - Tatsuya\");
+    this.enabled(TRUE);
+}
+" 0
+ E E "main()
+{
+    this.font(\"Lucinda Grande\");
+}" 0
+
+13 85
+"exportPlotsButton"
+""
+1 490.5 141 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+235 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  948 858 1071 891
+
+T 
+1
+LANG:1 12 Export Plots
+"main()
+{
+    this.enabled(FALSE);
+    this.text(\"Please wait...\");
+    
+    string sparkPath = PROJ_PATH + \"scripts/sparkGNU.bat\";
+    string gnuPath = PROJ_PATH + \"gnuplot/bin\";
+    string plotFormatPath = PROJ_PATH + \"scripts/plotFormatGNU.bat\";
+    string alias;
+    string tempPath = PROJ_PATH + \"temp/\";
+    string currentDate = formatTime(\"%d_%m\", getCurrentTime());
+    
+    int err = editCreateSpark(sparkPath, plotFormatPath, gnuPath);
+    //DebugN(\"Error value returned:\" + err);
+    
+    if (!exportTempData()) DebugN(\"Couldn't delete temp folder. Please delete old files manually.\",
+                                  \"Path: \" + PROJ_PATH + \"temp\");
+    
+    dyn_dyn_string channelDatPath; // channelDatPath[1][i] Channel Names [2][i] .dat Paths
+    
+    dyn_string allChannels;
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    
+    for (int i = 1; i <= dynlen(allChannels); i++) {
+        alias = dpGetAlias(allChannels[i] + \".\");
+        
+        if (alias == \"\") {
+            channelDatPath[1][i] = substr(allChannels[i], strlen(getSystemName()) + 5);
+            strreplace(channelDatPath[1][i], \"/\", \" \");
+        }
+        else
+            channelDatPath[1][i] = alias;
+        
+        allChannels[i] = substr(allChannels[i], strpos(allChannels[i], \"CAEN\") + 5);
+        strreplace(allChannels[i], \"/\", \"_\");
+        channelDatPath[2][i] = tempPath + \"vMon_\" + allChannels[i] + \"_\" + currentDate + \".dat\";
+        channelDatPath[3][i] = tempPath + \"iMon_\" + allChannels[i] + \"_\" + currentDate + \".dat\";
+    }
+    
+   // DebugN(channelDatPath);
+
+    for (int i = 1; i <= dynlen(channelDatPath[1]); i++) {
+        createPlotFormatBatch(plotFormatPath, makeDynString(channelDatPath[1][i], channelDatPath[2][i], channelDatPath[3][i]));
+        runBatch(sparkPath);
+    }
+    
+    // cleanTemp();
+    this.text(\"Export Plots\");
+    this.enabled(TRUE);
+}" 0
+ E E E
+13 86
+"mainPanelButton"
+""
+1 340.1275279106859 5 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  338 3 461 27
+
+T 
+1
+LANG:1 10 Main Panel
+"main()
+{    
+    SwitchLayer(2,1);
+   
+//      RootPanelOnModule(\"empty.pnl\", \"about\", \"embMod1\", \"\");
+//      delay(1);
+//      embMod1.ModuleName = \"embMod1\"; 
+//      RootPanelOnModule(\"objects/chamberHolder.pnl\", \"chamberList\", \"embMod1\", \"\");
+//      delay(1);
+//      setPanelSize(\"embMod1\", \"chamberList\", TRUE, 0, 0);
+     
+}
+" 0
+ E E E
+30 125
+"bFrame"
+""
+1 630 395 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+248 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.9999999999999999 0 0.9428571428571436 1.953992523340276e-14 31.57142857142833 0 E 630 395 1250 641
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 25 Configure B-field sensors
+13 156
+"PUSH_BUTTON1"
+""
+1 1085 878 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+250 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1083 871 1108 896
+
+T 
+1
+LANG:1 3 ...
+E E E E
+13 218
+"archivingSettings"
+""
+1 1210 364 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+254 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1208 358 1238 388
+
+P 
+4294967295
+"pictures/gear.png"
+1
+LANG:1 12 PUSH_BUTTON2
+"main()
+{
+     
+    ChildPanelOnCentral(\"objects/archivingSettings.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+13 298
+"exportSettings"
+""
+1 1200 908 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+262 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1208 902 1238 932
+
+P 
+4294967295
+"pictures/gear.png"
+1
+LANG:1 12 PUSH_BUTTON2
+"main()
+{
+     
+//     ChildPanelOnCentral(\"objects/archivingSettings.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+2 32
+"lockInfoText"
+""
+1 58.00003324057956 900 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    this.text(\"Click the lock to make changes.\");
+}" 0
+ E 0 1 1 2 1 E U  0 E 60 900 405 920
+0 2 2 "0s" 0 0 0 64 0 0  60 900 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 33   Click the lock to make changes.
+2 52
+"lockInfoText2"
+""
+1 3984.511492601269 -25656 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    this.text(\"Click the lock to make changes.\");
+}" 0
+ E 0 1 1 2 1 E U  0 E 680 360 1025 380
+0 2 2 "0s" 0 0 0 64 0 0  680 360 1
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 33   Click the lock to make changes.
+1 552 3 "" 14
+0
+13 511
+"busyBackgroundShadow"
+""
+1 389.9999999999999 521.2499999999982 E E E 1 E 0 E N "_Transparent" E N {0,0,0,148} E E
+ E E
+300 0 0 0 0 0
+E E E
+1
+2
+LANG:1 0 
+LANG:10001 0 
+
+1
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
+0  388 519 872 745
+
+T 
+2
+LANG:1 30 Button used as background pane
+LANG:10001 30 Button used as background pane
+E E E E
+13 544
+"SetTemp"
+""
+1 640.0840336134454 409.3534482758621 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+304 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  578 3 702 27
+
+T 
+1
+LANG:1 24 Add Temperature Channels
+"main()
+{  
+    
+  ChildPanelOnCentral(\"objects/SetTempPanel.pnl\", \"\", makeDynString(\"\")); 
+}
+" 0
+ E E E
+0
+LAYER, 2 
+1
+LANG:1 6 Common
+13 92
+"aboutButton"
+""
+1 753 4.999999999999943 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  862 3 986 27
+
+T 
+1
+LANG:1 10 Support...
+"main()
+{     
+    setValue(myModuleName() + \".\" + myPanelName() + \":ebrowserRef.ebrowser\", \"visible\", FALSE);
+    addSymbol(myModuleName(), myPanelName(), \"objects/shadow.pnl\", \"shadow\", makeDynString(), 0, 0, 1, 1, 1);    
+    ChildPanelOn(\"objects/about.pnl\", \"About\", makeDynString(), 400, 300);
+}
+
+" 0
+ E E E
+13 93
+"exitButton"
+""
+1 873 4.999999999999943 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
+0  982 3 1106 27
+
+T 
+1
+LANG:1 4 Exit
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+6 87
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.91044776119403 0 1 -10.00000000000001 -10 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E 0 40 670 0
+2 88
+"TitleTBSCS"
+""
+1 109 86 E E E 1 E 1 E N "Blue" E N "Blue" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 4 0 196 27
+0 2 2 "0s" 0 0 0 193 0 0  100 0 1
+1
+LANG:1 34 Lucida Grande,-1,24,5,75,0,0,0,0,0
+0 1
+LANG:1 12 TestBeam SCS
+4 89
+"LINE3"
+""
+1 6.927791673660977e-14 30 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E  0 30 1259 30
+15 446
+"clk"
+""
+1 1109 5 E E E 1 E 1 E N "STD_textfield_text" E N {236,236,236} E E
+ E E
+293 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1109 5 1249 25
+E 1 1 "%X" "%x"
+1 1 1 1
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0 
+0
+LAYER, 3 
+1
+LANG:1 5 Clean
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+3 2 "PANEL_REF2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/hddMonitor.pnl" 661 69 T 223 1 0 1 27 13.5
+0
+3 3 "dateSelection" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/dateTimeWidget.pnl" 741 784 T 250 1 0 1 11 -26
+9
+"$bDateAndTime""1"
+"$bEnabled""1"
+"$bShowTimeZone""0"
+"$iTimePeriod""86400"
+"$sEndDate"""
+"$sEndTime"""
+"$sStartDate"""
+"$sStartTime"""
+"$sTimeZone""0"
+0

@@ -1,0 +1,388 @@
+V 12
+1
+LANG:1 8 (NoName)
+PANEL,-1 -1 515 275 N {236,236,236} 22
+"$ZoomWindowTitle"
+"$bShowGrid"
+"$bShowLegend"
+"$bTrendLog"
+"$dsCurveColor"
+"$dsCurveDPE"
+"$dsCurveLegend"
+"$dsCurveRange"
+"$dsCurveScaleVisible"
+"$dsCurveToolTipText"
+"$dsCurveVisible"
+"$dsCurvesType"
+"$dsUnit"
+"$fMaxPercentageForLog"
+"$fMinForLog"
+"$iMarkerType"
+"$sBackColor"
+"$sDpName"
+"$sForeColor"
+"$sRefName"
+"$sTimeRange"
+"$templateParameters"
+E E E E E 1 -1 -1 0  0 0
+"objects_parampanels\\fwTrending\\fwTrendingDpSelector.pnl"0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 6 Layer1
+1 284 11 "" 80
+0
+1 285 11 "" 81
+0
+1 286 11 "" 82
+0
+1 287 11 "" 83
+0
+1 288 11 "" 84
+0
+1 289 11 "" 85
+0
+1 290 11 "" 86
+0
+1 291 11 "" 73
+0
+1 292 11 "" 74
+0
+1 293 11 "" 75
+0
+1 294 11 "" 76
+0
+1 295 11 "" 77
+0
+1 296 11 "" 78
+0
+1 297 11 "" 79
+0
+1 298 11 "" 56
+0
+1 299 11 "" 57
+0
+1 300 11 "" 58
+0
+1 301 11 "" 59
+0
+1 302 11 "" 60
+0
+1 303 11 "" 61
+0
+1 304 11 "" 62
+0
+1 305 11 "" 63
+0
+1 306 11 "" 35
+0
+1 307 11 "" 36
+0
+1 308 11 "" 38
+0
+1 309 11 "" 39
+0
+1 310 11 "" 40
+0
+1 311 11 "" 41
+0
+1 312 11 "" 42
+0
+1 313 11 "" 43
+0
+1 314 11 "" 71
+0
+1 315 11 "" 19
+0
+1 316 11 "" 24
+0
+1 317 11 "" 9
+0
+1 318 11 "" 15
+0
+1 319 11 "" 18
+0
+1 320 11 "" 23
+0
+1 321 11 "" 13
+0
+1 322 11 "" 14
+0
+1 323 11 "" 17
+0
+1 324 11 "" 22
+0
+1 325 11 "" 12
+0
+1 326 11 "" 11
+0
+1 327 11 "" 16
+0
+1 328 11 "" 20
+0
+1 329 11 "" 21
+0
+1 330 11 "" 25
+0
+1 331 11 "2" 0
+0
+1 269 10 "" 330
+0
+1 270 10 "" 332
+0
+1 271 10 "" 333
+0
+1 272 10 "" 335
+0
+1 273 10 "" 347
+0
+1 274 10 "" 360
+0
+1 275 10 "" 363
+0
+1 276 10 "" 362
+0
+1 277 10 "" 364
+0
+1 278 10 "" 365
+0
+1 279 10 "" 3
+0
+1 280 10 "" 359
+0
+1 281 10 "" 366
+0
+1 282 10 "" 367
+0
+1 283 10 "" 369
+0
+1 250 5 "" 29
+0
+1 251 5 "" 30
+0
+1 252 5 "" 31
+0
+1 253 5 "" 32
+0
+1 254 5 "" 22
+0
+1 255 5 "" 23
+0
+1 256 5 "" 39
+0
+1 257 5 "" 34
+0
+1 258 5 "" 40
+0
+1 259 5 "" 38
+0
+1 260 5 "" 35
+0
+1 261 5 "" 36
+0
+1 262 5 "" 37
+0
+1 263 5 "" 24
+0
+1 264 5 "" 25
+0
+1 265 5 "" 27
+0
+1 266 5 "" 41
+0
+1 267 5 "" 44
+0
+1 268 5 "" 45
+0
+13 166
+"toggleControlBar"
+""
+1 500 4 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 15 Toggle Menu Bar
+
+1
+"hoverfclr" "N \"blue\""
+1
+LANG:1 26 Arial,10,-1,5,75,0,0,0,0,0
+0  498 2 515 19
+
+T 
+1
+LANG:1 0 
+"main_p()
+{
+	string trendRunning;
+	string ref = $sRefName;
+	dyn_string exceptionInfo;
+	dyn_string plotShapes, plotData;
+		
+  fwTrending_getRuntimePlotDataWithStrings(ref, trendRunning, plotShapes, plotData, exceptionInfo, FALSE);  
+  if(plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON] == 0)
+   plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON] = 1;
+  else
+   plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON] = 0;
+    
+  fwTrending_controlBarOnOff(ref, plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON]);
+}  
+
+
+main()
+{
+	string trendRunning;
+	string ref = $sRefName;
+	dyn_string exceptionInfo;
+	dyn_string plotShapes, plotData;
+  int controlBarInt;
+  bit32 controlBarBits;
+  bool controlBarOn;
+		
+  fwTrending_getRuntimePlotDataWithStrings(ref, trendRunning, plotShapes, plotData, exceptionInfo, FALSE);  
+  controlBarInt = plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON];
+  controlBarBits = controlBarInt;
+  controlBarOn = getBit(controlBarBits,0);
+  setBit(controlBarBits,0,!controlBarOn);
+  controlBarInt = controlBarBits;
+  plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON] = controlBarInt;    
+  fwTrending_controlBarOnOff(ref, plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON]);
+}  
+
+" 0
+ E E "main()
+{
+  delay(2);
+  fwTrending_controlBarOnOff(\"\", 3);
+}  
+
+
+// main()
+// {
+//  	string trendRunning;
+//  	string ref = $sRefName;
+//  	dyn_string exceptionInfo;
+//  	dyn_string plotShapes, plotData;
+// 		
+//    fwTrending_getRuntimePlotDataWithStrings(ref, trendRunning, plotShapes, plotData, exceptionInfo, FALSE);  
+//    fwTrending_controlBarOnOff(ref, plotData[fwTrending_PLOT_OBJECT_CONTROL_BAR_ON]);
+//  }  " 0
+
+2 249
+"histoTitle"
+""
+1 -407.9999999999999 2 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+"main()
+{
+    dyn_string temp;
+    temp = $templateParameters;
+
+    int mdmPos = strpos(temp[1], \"MDM\");
+    if (mdmPos > 0) {
+        string mdmName = substr(temp[1], mdmPos, 4);
+        int sensorPos = strpos(temp[1], \"Sensor\");
+        string sensorName = substr(temp[1], sensorPos, 7);
+        string alias = dpGetAlias(getSystemName() + mdmName + \"_\" + sensorName + \".\");
+        if (alias == \"\")
+            this.text(mdmName + \" \" + sensorName);
+        else
+            this.text(alias);
+    }
+    else {
+        int caenPos = strpos(temp[1], \"CAEN\");
+        int boardPos = strpos(temp[1], \"board\");
+        string boardName = substr(temp[1], boardPos + 5, 2);
+        int channelPos = strpos(temp[1], \"channel\");
+        string channelName = substr(temp[1], channelPos + 7, 3);
+        string alias = dpGetAlias(getSystemName() + substr(temp[1], caenPos, channelPos + 10 - caenPos) + \".\");
+        if (alias == \"\")
+            this.text(\"Board \" + boardName + \" Channel \" + channelName);
+        else
+            this.text(alias);
+    }
+}" 0
+ E 0 1 1 2 1 E U  0 E 2 2 512 19
+0 2 2 "0s" 0 0 0 65 0 0  52 2 1
+1
+LANG:1 34 Lucida Grande,10,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Channel Name
+0
+LAYER, 1 
+1
+LANG:1 6 Layer2
+0
+LAYER, 2 
+1
+LANG:1 6 Layer3
+0
+LAYER, 3 
+1
+LANG:1 6 Layer4
+0
+LAYER, 4 
+1
+LANG:1 6 Layer5
+0
+LAYER, 5 
+1
+LANG:1 6 Layer6
+0
+LAYER, 6 
+1
+LANG:1 6 Layer7
+0
+LAYER, 7 
+1
+LANG:1 6 Layer8
+0
+3 5 "" -1
+"fwTrending\\fwTrendingTrendControl.pnl" 10 5 T 3 1 0 1.114942528735632 -10 16.42528735632184
+1
+"$sRefName""$sRefName"
+3 10 "trend" -1
+"fwTrending\\fwTrendingTrend.pnl" 170 60 T 1 1 0 0.7484423676012463 -170 -24.90654205607478
+22
+"$ZoomWindowTitle""$ZoomWindowTitle"
+"$bShowGrid""$bShowGrid"
+"$bShowLegend""$bShowLegend"
+"$bTrendLog""$bTrendLog"
+"$dsCurveColor""$dsCurveColor"
+"$dsCurveDPE""$dsCurveDPE"
+"$dsCurveLegend""$dsCurveLegend"
+"$dsCurveRange""$dsCurveRange"
+"$dsCurveScaleVisible""$dsCurveScaleVisible"
+"$dsCurveToolTipText""$dsCurveToolTipText"
+"$dsCurveVisible""$dsCurveVisible"
+"$dsCurvesType""$dsCurvesType"
+"$dsUnit""$dsUnit"
+"$fMaxPercentageForLog""$fMaxPercentageForLog"
+"$fMinForLog""$fMinForLog"
+"$iMarkerType""$iMarkerType"
+"$sBackColor""$sBackColor"
+"$sDpName""$sDpName"
+"$sForeColor""$sForeColor"
+"$sRefName""$sRefName"
+"$sTimeRange""$sTimeRange"
+"$templateParameters""$templateParameters"
+3 11 "trendCaption" -1
+"fwTrending\\fwTrendingFaceplateCaptionLarge.pnl" 20 220 T 4 1 0 1 -20 -20
+1
+"$sRefName""$sRefName"
+0
