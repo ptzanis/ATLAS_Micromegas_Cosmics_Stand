@@ -1,0 +1,1037 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 540 313 N "_3DFace" 2
+"$layer"
+"$node"
+E E E E E 1 -1 -1 0  -1 21
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+10 21
+"R8"
+""
+1 410 210 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 5 410 210
+240 210
+240.0000000000003 270
+393.0000000000003 270
+410 210
+ 1
+10 22
+"L8"
+""
+1 240 210 E E E 1 E 0 E N {0,0,0} E N "white" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 7 240 210
+70 210
+87.00000000000023 270
+240.0000000000003 270
+240 210
+240 210
+240 210
+ 1
+10 23
+"R7"
+""
+1 393.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -33.94419970631418 -111.1380597014925 1 E 5 393.0000000000003 270
+240.0000000000003 270
+239 330
+373.9999999999999 330
+393.0000000000003 270
+ 1
+10 24
+"L7"
+""
+1 240.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 5 240.0000000000003 270
+87.00000000000023 270
+104.0000000000001 330
+239 330
+240.0000000000003 270
+ 1
+10 25
+"R6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.74155653450802 -111.1380597014925 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+10 26
+"L6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063141 -111.1380597014925 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+10 27
+"R5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -249.2388059701492 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 28
+"R4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.74155653450796 -249.2388059701492 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+10 29
+"R3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -249.2388059701492 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 30
+"R2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5428812447277156 0 0.6305970149253731 -37.98753397694253 -249.2388059701492 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+10 31
+"R1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -38.8634657221364 -249.2388059701492 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+10 32
+"L5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 33
+"L4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+10 34
+"L3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 35
+"L2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+10 36
+"L1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  string sectorName=this.name();
+  
+  clearSectorsColor(layer); 
+  
+  appendSectorToHardware(node,sectorName);
+    
+ 
+}" 0
+ 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+10 37
+"type1"
+""
+1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  string node=$node;
+  string layer=$layer+\"S\"; 
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 323.1189427312775 31.23507462686567 1 E 4 67.50000000000011 25
+307.5 25
+266.1405375139977 275
+108.5000000000001 275
+ 1
+10 38
+"type2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+   string node=$node;
+   string layer=$layer+\"S\"; 
+    clearSectorsColor(layer); 
+    appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 158.697503671072 139.9477611940299 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
+6 39
+"D2"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer+\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.5326856238667389 0 0.5517723880597015 -6.377718671210488 8.833022388059703 1 E 67.5 234 306 250
+6 40
+"D1"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,layer+\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 1.883082531639435 0 0.6305970149253731 -153.6432906447489 -10.24253731343283 1 E 108.5000000000001 275 153 289
+6 41
+"D2Cosmics"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.5326856238667389 0 0.5517723880597015 -6.111933061812465 8.833022388059703 1 E 67.5 234 306 250
+6 42
+"D1Cosmics"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  string previousSectorName=this.name();
+  this.name(layer+previousSectorName);
+ 
+}
+" 0
+ "main(mapping event)
+{
+  
+  string node=$node;
+  string layer=$layer;
+  clearSectorsColor(layer); 
+  appendSectorToHardware(node,\"D\");  
+  
+  
+}" 0
+ 2 1 3 2 1 E 1.883082531639435 0 0.6305970149253731 -153.6432906447489 -10.24253731343283 1 E 108.5000000000001 275 153 289
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0
