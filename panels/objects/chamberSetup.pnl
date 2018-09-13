@@ -91,7 +91,6 @@ void configureHardwareAliasToSector(string node,string sectorName,bool cosmicsEn
   dpSet(\"N\"+node+\".Mapping.\"+sectorName+\".Channel\",hardToConfigure);
   dpSet(\"N\"+node+\".Mapping.\"+sectorName+\".Alias\",aliasToConfigure);
   
-  dpSetAlias(\"CAEN/\"+hardToConfigure+\".\",aliasToConfigure);  // Mapping's Alias to Channel's Alias (just for the table and the channels aliases)
   
    
 }
@@ -954,14 +953,15 @@ LANG:1 12 PUSH_BUTTON1
      
      // used to avoid conflict, but comment it if you want to do \"cosmics test\" with validation mode
      // for example, one channel can power up several sectors *Expert Mode , comment 17-21, uncomment 23 and 32
-     
+      /*
        tempAlias=dpGetAlias(allChannels[i]+\".\");
        if(tempAlias!=\"\")
          continue;
        else
         hardwareSelection.appendItem = substr(allChannels[i], strlen(getSystemName())+5);
-
-      // hardwareSelection.appendItem = substr(allChannels[i], strlen(getSystemName())+5); 
+       */
+     
+      hardwareSelection.appendItem = substr(allChannels[i], strlen(getSystemName())+5); 
        
     }
    applySelection.enabled(TRUE);
