@@ -1,8 +1,17 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 790 775 N "_3DFace" 0
-E E E E E 1 -1 -1 0  7.999999999999996 -2
+PANEL,-1 -1 790 191 N "_3DFace" 3
+"$layer"
+"$mode"
+"$type"
+"main()
+{
+   string type=$type;
+   string layer=$layer; 
+   string mode=$mode;
+}" 0
+ E E E E 1 -1 -1 0  7.999999999999996 -2
 ""0  1
 E E 3
 "CBRef" "1"
@@ -29,33 +38,35 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.952615250375685 0 1 -16.67322701051918 -41 0 E 28 41 421 81
+E E 0 1 3 2 1 E 0.952615250375685 0 1 23.32677298948082 -311 0 E 28 41 421 81
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0 1
 LANG:1 0 
-2 1
-"nodeText"
-""
-1 30 50 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
- E E
-1 0 0 0 0 0
-E E E
 0
+LAYER, 1 
 1
 LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12.1983372921615 -37 0 E 30 50 75 68
-0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+0
+LAYER, 2 
 1
-LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
-0 1
-LANG:1 5 Node:
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
 13 2
 "node1Button"
 ""
@@ -364,30 +375,48 @@ LANG:1 6 Node 8
   readyToSet();    
 }" 0
  E E E
-0
-LAYER, 1 
+30 13
+"FRAME1"
+""
+1 28 41 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+13 0 0 0 0 0
+E E E
+1
 1
 LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.952615250375685 0 1 -17.1732270105194 -41.00000000000001 0 E 28 41 421 81
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 1
+"nodeText"
+""
+1 30 50 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
 0
-LAYER, 2 
 1
 LANG:1 0 
-0
-LAYER, 3 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12.1983372921615 -37 0 E 30 50 75 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
 1
-LANG:1 0 
-0
-LAYER, 4 
-1
-LANG:1 0 
-0
-LAYER, 5 
-1
-LANG:1 0 
-0
-LAYER, 6 
-1
-LANG:1 0 
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 5 Node:
 0
 LAYER, 7 
 1
