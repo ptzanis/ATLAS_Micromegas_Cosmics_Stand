@@ -93,7 +93,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  483.53125 147.5 607.53125 181.5
+0  483.5312499999999 147.5 607.5312499999999 181.5
 
 T 
 1
@@ -102,6 +102,11 @@ LANG:1 10 Validation
 {
   this.enabled(FALSE);
   cosmicsButton.enabled(TRUE);
+  
+   addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node1\",
+               makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"Validation\"), 40, 240, 0, 1, 1);
+  
+  
   
 }" 0
  E E E
@@ -120,7 +125,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  628 147.5 752 181.5
+0  627.9999999999999 147.5 751.9999999999999 181.5
 
 T 
 1
@@ -129,6 +134,9 @@ LANG:1 7 Cosmics
 {
   this.enabled(FALSE);
   validationButton.enabled(TRUE);
+  
+   addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node1\",
+               makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"Cosmics\"), 40, 240, 0, 1, 1);
 }" 0
  E E E
 0
@@ -158,7 +166,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1259 976
+0  0 27 1259 975.9999999999999
 15 Canvas.Canvas.1
 0
 E0
@@ -188,7 +196,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1259 976
+0  0 27 1259 975.9999999999999
 15 Canvas.Canvas.1
 0
 E0
@@ -218,7 +226,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1259 976
+0  0 27 1259 975.9999999999999
 15 Canvas.Canvas.1
 0
 E0
@@ -248,7 +256,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1259 976
+0  0 27 1259 975.9999999999999
 15 Canvas.Canvas.1
 0
 E0
@@ -278,7 +286,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1259 976
+0  0 27 1259 975.9999999999999
 15 Canvas.Canvas.1
 0
 E0
@@ -352,7 +360,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  31.00000000000006 64.00000000000006 154.0000000000001 98.00000000000006
+0  31.00000000000006 64.00000000000004 154.0000000000001 98.00000000000006
 
 T 
 1
@@ -527,7 +535,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  163.0000000000001 64.00000000000003 286.0000000000001 98.00000000000003
+0  163.0000000000001 64.00000000000001 286.0000000000001 98.00000000000001
 
 T 
 1
@@ -636,7 +644,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1067 691 1130 714
+0  1067 690.9999999999999 1130 713.9999999999999
 3 "4d" 4 1 0 1 0 -1  E E E
 14 53
 "textField2"
@@ -653,7 +661,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1067 713 1130 736
+0  1067 712.9999999999999 1130 735.9999999999999
 3 "4.3f" 8 1 0 1 0 -1  E E E
 14 54
 "textField3"
@@ -670,7 +678,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1341 691 1404 714
+0  1341 690.9999999999999 1404 713.9999999999999
 3 "0d" 0 1 0 1 0 -1  E E E
 14 55
 "textField4"
@@ -687,7 +695,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1341 713 1404 736
+0  1341 712.9999999999999 1404 735.9999999999999
 3 "0d" 0 1 0 1 0 -1  E E E
 14 56
 "textField5"
@@ -704,7 +712,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1197 713 1260 736
+0  1197 712.9999999999999 1260 735.9999999999999
 3 "0d" 0 1 0 1 0 -1  E E E
 13 57
 "onButton"
@@ -721,7 +729,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999999 694 982.9999999999999 728
+0  859.9999999999998 694 982.9999999999998 728
 
 T 
 1
@@ -762,7 +770,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999999 734 982.9999999999999 768
+0  859.9999999999998 734 982.9999999999998 768
 
 T 
 1
@@ -803,7 +811,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1197 691 1260 714
+0  1197 690.9999999999999 1260 713.9999999999999
 3 "3d" 3 1 0 1 0 -1  E E E
 14 60
 "textField7"
@@ -820,7 +828,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1259 747 1404 770
+0  1259 746.9999999999999 1404 770
 3 "20s" 20 1 0 1 0 -1  E E E
 30 61
 "configureFrame"
@@ -863,7 +871,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  839.9999999999999 64.00000000000011 1423 675
+0  839.9999999999998 64.00000000000011 1423 674.9999999999999
 "#uses \"HVMMGeneral.ctl\"
 main()
 {
@@ -991,7 +999,7 @@ LANG:1 0
 LANG:1 2 #1
 10 8
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+LANG:1 26 Utopia,-1,5,5,50,0,0,0,0,0
 0 0 2 0 1 7
 1 0
 6 63
@@ -1228,7 +1236,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1419 64 1442 88
+0  1419 64 1442 87.99999999999999
 
 P 
 4294967295
@@ -1282,7 +1290,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  305.366174055829 255 489.366174055829 299
+0  305.3661740558289 255 489.3661740558289 299
 
 T 
 1
@@ -1372,7 +1380,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  438 0 521 25
+0  437.9999999999999 -2.220446049250313e-16 521 25
 
 T 
 1
@@ -1393,7 +1401,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  528 0 611 25
+0  527.9999999999999 -2.220446049250313e-16 611 25
 
 T 
 1
@@ -1414,7 +1422,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  618 0 701 25
+0  617.9999999999999 -2.220446049250313e-16 700.9999999999999 25
 
 T 
 1
@@ -1435,7 +1443,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  348 0 431 25
+0  347.9999999999999 -2.220446049250313e-16 431 25
 
 T 
 1
@@ -1456,7 +1464,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  747.8750000000001 0 860.8750000000001 25
+0  747.875 -2.220446049250313e-16 860.875 25
 
 T 
 1
@@ -1477,7 +1485,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1300 0 1413 25
+0  1300 -2.220446049250313e-16 1413 25
 
 T 
 1
@@ -1528,7 +1536,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  154 0 267 25
+0  154 -2.220446049250313e-16 266.9999999999999 25
 
 T 
 1
