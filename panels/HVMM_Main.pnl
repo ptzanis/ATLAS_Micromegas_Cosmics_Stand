@@ -52,7 +52,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 400.2499999999999 150.7916666666666 467 176.1666666666667
+E E 2 1 3 2 1 E U  0 E 400.2499999999999 150.7916666666666 467 176
 0 2 2 "0s" 0 0 0 192 0 0  400.2499999999999 150.7916666666666 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -98,7 +98,13 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 T 
 1
 LANG:1 10 Validation
-E E E E
+"main(mapping event)
+{
+  this.enabled(FALSE);
+  cosmicsButton.enabled(TRUE);
+  
+}" 0
+ E E E
 13 79
 "cosmicsButton"
 ""
@@ -119,7 +125,12 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 T 
 1
 LANG:1 7 Cosmics
-E E E E
+"main(mapping event)
+{
+  this.enabled(FALSE);
+  validationButton.enabled(TRUE);
+}" 0
+ E E E
 0
 LAYER, 1 
 1
