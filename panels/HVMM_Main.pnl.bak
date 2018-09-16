@@ -246,7 +246,51 @@ LANG:1 27 Utopia,-1,29,5,75,0,0,0,0,0
 T 
 1
 LANG:1 4 Save
-E E E E
+"main(mapping event)
+{
+  
+  int counterNodes;
+  if(!validationButton.enabled())  
+    counterNodes=4;
+  if(!cosmicsButton.enabled())  
+    counterNodes=8;
+  
+  
+  bool isNodeOn;
+  bool isSM1,isSM2,isLM1,isLM2;
+  string chamberOfNode;
+  for(int i=1;i<=counterNodes;i++) // chech nodes
+  {
+  getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
+  if(isNodeOn) 
+  {
+    //retrieve chamber type
+    
+    getValue(\"buttonSM1\"+\"_N\"+i,\"enabled\",isSM1);
+    if(!isSM1)
+      chamberOfNode=\"SM1\";
+    
+    getValue(\"buttonSM2\"+\"_N\"+i,\"enabled\",isSM2);  
+      if(!isSM2)
+      chamberOfNode=\"SM2\";  
+    getValue(\"buttonLM1\"+\"_N\"+i,\"enabled\",isLM1); 
+      if(!isLM1)
+      chamberOfNode=\"LM1\";  
+    getValue(\"buttonLM2\"+\"_N\"+i,\"enabled\",isLM2); 
+      if(!isLM2)
+      chamberOfNode=\"LM2\";    
+    
+    DebugN(chamberOfNode);
+    
+   }
+  
+  
+  
+  }
+  
+  
+}" 0
+ E E E
 0
 LAYER, 1 
 1
