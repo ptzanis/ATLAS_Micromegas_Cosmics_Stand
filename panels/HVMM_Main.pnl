@@ -25,7 +25,62 @@ buttonSetup.enabled(TRUE);
 
 this.enabled(FALSE);
   
-}" 0
+}
+
+bool chechIfUserHasTypeBatch()
+{
+  
+  int counterNodes;
+  if(!validationButton.enabled())  
+  {
+    counterNodes=4;
+  }
+  if(!cosmicsButton.enabled())  
+  {
+    counterNodes=8;
+  }  
+  
+  bool isNodeOn;
+  string batch;
+  int counterEnabledNodes=0;
+  int counterBatch=0;
+ for(int i=1;i<=counterNodes;i++) // chech nodes
+  {
+  getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
+  if(isNodeOn) 
+  {
+       counterEnabledNodes++;
+       getValue(\"mtfField\"+\"_N\"+i,\"text\",batch);       
+       if(strlen(batch)==14)
+       {
+         counterBatch++;
+        continue;      
+       }
+       else
+       {
+      setValue(\"mtfField\"+\"_N\"+i,\"backCol\",\"red\");
+      delay(1);
+      setValue(\"mtfField\"+\"_N\"+i,\"backCol\",\"_Window\");
+         continue;
+         
+       }
+    
+    
+  }
+  
+}
+  
+  if(counterEnabledNodes==counterBatch)
+  {
+    return TRUE;  
+  }
+ else
+  {return FALSE;}
+  
+  
+}
+
+" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -81,7 +136,7 @@ LANG:1 11 Select Mode
 13 78
 "validationButton"
 ""
-1 485.53125 160 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 485.5312500000001 160 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 77 0 0 0 0 0
 E E E
@@ -93,7 +148,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  483.5312499999999 147.5 607.53125 181.5
+0  483.5312500000001 147.5 607.5312500000001 181.5
 
 T 
 1
@@ -102,6 +157,7 @@ LANG:1 10 Validation
 {
   this.enabled(FALSE);
   cosmicsButton.enabled(TRUE);
+  saveButton.enabled(FALSE);
   int x=200;
   
   if(frameSector1.visible())
@@ -162,6 +218,7 @@ LANG:1 7 Cosmics
   
   this.enabled(FALSE);
   validationButton.enabled(TRUE);
+  saveButton.enabled(FALSE);
   
    int x=200;
    int y=240;
@@ -229,7 +286,7 @@ LANG:1 9 Sector #2
 13 82
 "saveButton"
 ""
-1 775.9999999999999 890.5416666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 775.9999999999999 890.5416666666666 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 81 0 0 0 0 0
 E E E
@@ -259,7 +316,9 @@ LANG:1 4 Save
     counterNodes=8;
   }  
   
-  
+  if(chechIfUserHasTypeBatch())
+    {
+    
   bool isNodeOn,isSM1,isSM2,isLM1,isLM2,cosmicsModeLayer,cosmicsModeSector;
   string chamberOfNode,mode,mtf;
   for(int i=1;i<=counterNodes;i++) // chech nodes
@@ -312,8 +371,19 @@ LANG:1 4 Save
   }
   
   
+  } // if batch exists
+  else
+  {
+  DebugN(\"Batch ID is needed!\");
+  }
+  
+  
 }" 0
- E E E
+ E E "main()
+{
+
+}" 0
+
 0
 LAYER, 1 
 1
