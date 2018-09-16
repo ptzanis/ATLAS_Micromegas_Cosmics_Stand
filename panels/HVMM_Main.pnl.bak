@@ -248,39 +248,62 @@ T
 LANG:1 4 Save
 "main(mapping event)
 {
-  
+   
   int counterNodes;
   if(!validationButton.enabled())  
+  {
     counterNodes=4;
+  }
   if(!cosmicsButton.enabled())  
+  {
     counterNodes=8;
+  }  
   
   
-  bool isNodeOn;
-  bool isSM1,isSM2,isLM1,isLM2;
-  string chamberOfNode;
+  bool isNodeOn,isSM1,isSM2,isLM1,isLM2,cosmicsModeLayer,cosmicsModeSector;
+  string chamberOfNode,mode,mtf;
   for(int i=1;i<=counterNodes;i++) // chech nodes
   {
   getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
   if(isNodeOn) 
   {
+    mode=chamberOfNode=\"\";
     //retrieve chamber type
     
     getValue(\"buttonSM1\"+\"_N\"+i,\"enabled\",isSM1);
     if(!isSM1)
-      chamberOfNode=\"SM1\";
-    
+    { chamberOfNode=\"SM1\";}   
     getValue(\"buttonSM2\"+\"_N\"+i,\"enabled\",isSM2);  
       if(!isSM2)
-      chamberOfNode=\"SM2\";  
+    {chamberOfNode=\"SM2\";  }
     getValue(\"buttonLM1\"+\"_N\"+i,\"enabled\",isLM1); 
       if(!isLM1)
-      chamberOfNode=\"LM1\";  
+    {chamberOfNode=\"LM1\"; } 
     getValue(\"buttonLM2\"+\"_N\"+i,\"enabled\",isLM2); 
       if(!isLM2)
-      chamberOfNode=\"LM2\";    
+    {chamberOfNode=\"LM2\";   } 
+      
+      getValue(\"mtfField\"+\"_N\"+i,\"text\",mtf);
     
-    DebugN(chamberOfNode);
+
+      if(!cosmicsButton.enabled())   
+      {
+       getValue(\"buttonLayerMode\"+\"_N\"+i,\"enabled\",cosmicsModeLayer);
+       getValue(\"buttonSectorMode\"+\"_N\"+i,\"enabled\",cosmicsModeSector);  
+       
+       if(!cosmicsModeLayer)
+         mode=\"Cosmics\";
+       if(!cosmicsModeSector)
+         mode=\"CosmicsExtra\";       
+      }
+   else
+      {mode=\"Validation\";}   
+      
+       DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
+//     dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
+//     dpSet(\"N\"+i+\".ChamberType\",chamberOfNode); //Set Chamber of Node
+//     dpSet(\"N\"+i+\".Mode\",mode); // Set Mode of Node
+//     dpSet(\"N\"+i+\".BatchId\",mtf);
     
    }
   
