@@ -61,10 +61,10 @@ bool chechIfUserHasSelectChamberType()
        }
        else
        {
-         saveButton.enabled(FALSE);  
+          saveButton.enabled(FALSE);  
    
       setValue(\"typeText\"+\"_N\"+i,\"foreCol\",\"red\");
-      delay(1);
+       delay(0,200);
       setValue(\"typeText\"+\"_N\"+i,\"foreCol\",\"_WindowText\");
          continue;
          
@@ -75,16 +75,79 @@ bool chechIfUserHasSelectChamberType()
   
 }
   
-  if(countEnabledNodes==countNodesHaveType)
-  { saveButton.enabled(TRUE); 
+  if(countEnabledNodes==countNodesHaveType && countEnabledNodes>0)
+  { 
+//   saveButton.enabled(TRUE); 
    return TRUE;
   } 
   else
-  {   return FALSE;}
+  {  
+   saveButton.enabled(FALSE);  
+   return FALSE;
+ }
   
   
 }
 
+bool chechIfUserHasSelectCosmicsMode()
+{
+   int counterNodes;
+  if(!validationButton.enabled())  
+  {
+    counterNodes=4;
+  }
+  if(!cosmicsButton.enabled())  
+  {
+    counterNodes=8;
+  }  
+  
+  bool isNodeOn,isbuttonLayerMode,isbuttonSectorMode;
+  int  countEnabledNodes=0;
+  int  countNodesHaveMode=0;
+  for(int i=1;i<=counterNodes;i++) // chech nodes
+  {
+  getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
+  if(isNodeOn) 
+  {
+       countEnabledNodes++;
+
+       getValue(\"buttonLayerMode\"+\"_N\"+i,\"enabled\",isbuttonLayerMode); 
+       getValue(\"buttonSectorMode\"+\"_N\"+i,\"enabled\",isbuttonSectorMode);    
+       
+       if(!isbuttonLayerMode || !isbuttonSectorMode)
+       {
+        countNodesHaveMode++;
+         continue;      
+       }
+       else
+       {
+         saveButton.enabled(FALSE);  
+
+      setValue(\"modeText\"+\"_N\"+i,\"foreCol\",\"red\");
+       delay(0,200);
+      setValue(\"modeText\"+\"_N\"+i,\"foreCol\",\"_WindowText\");
+         continue;
+         
+       }
+    
+    
+  }
+  
+}
+  
+  if(countEnabledNodes==countNodesHaveMode && countEnabledNodes>0)
+  { 
+//   saveButton.enabled(TRUE); 
+   return TRUE;
+  } 
+  else
+  {   
+   saveButton.enabled(FALSE);  
+   return FALSE;
+   }
+  
+  
+}
 " 0
  3
 "CBRef" "1"
@@ -181,10 +244,17 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",TRUE); 
     setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",TRUE);  
     saveButton.enabled(FALSE); 
+    chechIfUserHasSelectChamberType();
+    if(!cosmicsButton.enabled())
+    chechIfUserHasSelectCosmicsMode();
   }
   else
   {
-    chechIfUserHasSelectChamberType(); 
+    chechIfUserHasSelectChamberType();
+    if(!cosmicsButton.enabled())
+    chechIfUserHasSelectCosmicsMode();
+    
+    setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
     this.foreCol(\"red\");
     setValue(\"buttonSM1\"+\"_N\"+node,\"enabled\",FALSE);
     setValue(\"buttonSM2\"+\"_N\"+node,\"enabled\",FALSE);    
@@ -201,6 +271,10 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
   string previousAlias=this.name();
   this.name(previousAlias+\"_N\"+node);  
   
+  if(this.checked())
+    this.foreCol(\"green\");
+  else
+    this.foreCol(\"red\"); 
   
 }" 0
 2 20
@@ -256,8 +330,20 @@ LANG:1 3 SM1
   string node=$node;
   enableCurrentNodeAndDisableOther(node);
   
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
   
-  chechIfUserHasSelectChamberType();
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
 }" 0
  E E "main()
 {
@@ -293,8 +379,20 @@ LANG:1 3 SM2
   string node=$node;
   enableCurrentNodeAndDisableOther(node);
   
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
   
-  chechIfUserHasSelectChamberType();
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
 }" 0
  E E "main()
 {
@@ -330,8 +428,20 @@ LANG:1 3 LM1
   string node=$node;
   enableCurrentNodeAndDisableOther(node);
   
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
   
-  chechIfUserHasSelectChamberType();
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
 }" 0
  E E "main()
 {
@@ -367,8 +477,20 @@ LANG:1 3 LM2
   string node=$node;
   enableCurrentNodeAndDisableOther(node);
   
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
   
-  chechIfUserHasSelectChamberType();
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
 }" 0
  E E "main()
 {
@@ -484,6 +606,10 @@ LANG:1 8 Ch/Layer
 {
   string node=$node;
 swapLayerSectorMode(node);
+
+if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+  saveButton.enabled(TRUE);
+
 }" 0
  E E "main()
 {
@@ -523,6 +649,10 @@ LANG:1 9 Ch/Sector
 {
   string node=$node;
 swapLayerSectorMode(node);
+
+if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+  saveButton.enabled(TRUE);
+
 }" 0
  E E "main()
 {

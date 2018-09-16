@@ -59,7 +59,7 @@ bool chechIfUserHasTypeBatch()
        else
        {
       setValue(\"mtfField\"+\"_N\"+i,\"backCol\",\"red\");
-      delay(1);
+      delay(0,200);
       setValue(\"mtfField\"+\"_N\"+i,\"backCol\",\"_Window\");
          continue;
          
@@ -70,12 +70,14 @@ bool chechIfUserHasTypeBatch()
   
 }
   
-  if(counterEnabledNodes==counterBatch)
+  if(counterEnabledNodes==counterBatch && counterEnabledNodes>0)
   {
     return TRUE;  
   }
  else
-  {return FALSE;}
+  {
+    return FALSE;
+  }
   
   
 }
