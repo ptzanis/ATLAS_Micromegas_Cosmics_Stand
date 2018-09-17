@@ -285,6 +285,9 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
   else
     this.foreCol(\"red\"); 
   
+  
+  
+  
 }" 0
 2 20
 "typeText"

@@ -359,12 +359,12 @@ LANG:1 4 Save
       }
       if(!validationButton.enabled())   
         mode=\"ValidationQA\";   
-      
-       DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
-//     dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
-//     dpSet(\"N\"+i+\".ChamberType\",chamberOfNode); //Set Chamber of Node
-//     dpSet(\"N\"+i+\".Mode\",mode); // Set Mode of Node
-//     dpSet(\"N\"+i+\".BatchId\",mtf);
+     DebugN(\"********************************************************************************\");
+     DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
+     dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
+     dpSet(\"N\"+i+\".ChamberType\",chamberOfNode); //Set Chamber of Node
+     dpSet(\"N\"+i+\".Mode\",mode); // Set Mode of Node
+     dpSet(\"N\"+i+\".BatchId\",mtf);
     
    }
   
@@ -381,11 +381,7 @@ LANG:1 4 Save
   
   
 }" 0
- E E "main()
-{
-
-}" 0
-
+ E E E
 0
 LAYER, 1 
 1
