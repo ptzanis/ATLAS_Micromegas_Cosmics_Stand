@@ -353,12 +353,12 @@ LANG:1 4 Save
        getValue(\"buttonSectorMode\"+\"_N\"+i,\"enabled\",cosmicsModeSector);  
        
        if(!cosmicsModeLayer)
-         mode=\"Cosmics\";
+         mode=\"CosmicsBasic\";
        if(!cosmicsModeSector)
          mode=\"CosmicsExtra\";       
       }
-   else
-      {mode=\"Validation\";}   
+      if(!validationButton.enabled())   
+        mode=\"ValidationQA\";   
       
        DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
 //     dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
