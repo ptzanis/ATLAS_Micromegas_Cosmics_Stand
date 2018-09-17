@@ -14,6 +14,37 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
+13 1
+"buttonSM1_N1"
+""
+1 100 50 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  98 39.61904761904762 192 87.61904761904762
+
+T 
+1
+LANG:1 3 SM1
+"main(mapping event)
+{
+  string firstName=this.name();
+  strreplace(firstName,\"button\",\"\");
+  strreplace(firstName,\"_N1\",\"\");
+  DebugN(firstName);
+
+                   
+                   
+}" 0
+ E E E
 0
 LAYER, 1 
 1
