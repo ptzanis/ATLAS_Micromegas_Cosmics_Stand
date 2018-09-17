@@ -250,10 +250,19 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
   }
   else
   {
-    chechIfUserHasSelectChamberType();
-    if(!cosmicsButton.enabled())
-    chechIfUserHasSelectCosmicsMode();
     
+    if(!cosmicsButton.enabled())
+    {
+      if(chechIfUserHasSelectCosmicsMode() && chechIfUserHasSelectChamberType())
+      {      saveButton.enabled(TRUE);}
+    }
+    
+   if(!validationButton.enabled())
+    {
+   if(chechIfUserHasSelectChamberType())
+      saveButton.enabled(TRUE);
+    }   
+        
     setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
     this.foreCol(\"red\");
     setValue(\"buttonSM1\"+\"_N\"+node,\"enabled\",FALSE);
