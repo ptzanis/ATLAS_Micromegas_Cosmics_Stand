@@ -429,12 +429,14 @@ LANG:1 4 Save
     }      
       
     leftRight=\"L\";
-    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]); 
+    stripsToAppend[countChannel]=layer+countLayer+leftRight+countSector;
+//     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]); 
 //     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
     countChannel++;
     
     leftRight=\"R\";
-    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]);
+    stripsToAppend[countChannel]=layer+countLayer+leftRight+countSector;
+//     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]);
 //     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
     countChannel++;
     
@@ -452,7 +454,9 @@ LANG:1 4 Save
       
       for(int k=1;k<=4;k++)
       {
-        dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",driftToAppend[k]);
+        
+        driftToAppend[k]=layer+countLayer+\"D\";
+//         dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",driftToAppend[k]);
 //          DebugN(k,layer+countLayer+\"D\",driftToAppend[k]); 
 
         
@@ -482,7 +486,8 @@ LANG:1 4 Save
 //     DebugN(\"*********Strips\");
     for(int k=1;k<=4;k++)
     {
-     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",stripsToAppend[k]);
+      stripsToAppend[k]=layer+countLayer+\"S\";
+//      dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",stripsToAppend[k]);
 //      DebugN(k,layer+countLayer+\"S\",stripsToAppend[k]); 
      countChannel++;
      
@@ -491,7 +496,8 @@ LANG:1 4 Save
  // Drift Cosmics MM
 //     DebugN(\"\");
 //     DebugN(\"*********Drift\");
-    dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",driftToAppend[1]);
+    driftToAppend[1]=\"D\";
+//     dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",driftToAppend[1]);
 //     DebugN(1,\"D\",driftToAppend[1]);
  
    
@@ -1378,7 +1384,7 @@ LANG:1 0
 LANG:1 2 #1
 10 8
 1
-LANG:1 26 Utopia,-1,6,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0 0 2 0 1 7
 1 0
 6 63

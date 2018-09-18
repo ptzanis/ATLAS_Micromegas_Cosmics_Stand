@@ -73,7 +73,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
-0  79 10 143 31
+0  79 10 143 32
 2 "0s" 0 0 0 2 0 -1  E "main()
 {
   if (isDollarDefined(\"$width\") && $width!=\"\") fwFsmAtlasWidget_scaleWidth(60);  

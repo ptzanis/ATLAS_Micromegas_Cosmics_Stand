@@ -198,7 +198,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 -0.5 -4 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 63.5 -10 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  "main()
 {
       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
@@ -230,8 +230,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -0.5 0 113.5 23
-0 2 2 "0s" 0 0 0 65 0 0  -0.5 0 2
+ E 0 1 1 2 1 E U  0 E 63.5 -6 177.5 17
+0 2 2 "0s" 0 0 0 65 0 0  63.5 -6 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
