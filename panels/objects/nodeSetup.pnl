@@ -295,11 +295,14 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",FALSE); 
     setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",FALSE);  
     
+    
     dpSet(\"N\"+node+\".Enabled\",FALSE); 
     
     dpSet(\"N\"+node+\".ChamberType\",\"\");
     dpSet(\"N\"+node+\".BatchId\",\"\");
-    dpSet(\"N\"+node+\".Mode\",\"\"); 
+    dpSet(\"N\"+node+\".Mode\",\"\");
+    dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",\"\"); 
+    dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",\"\"); 
     
 
     

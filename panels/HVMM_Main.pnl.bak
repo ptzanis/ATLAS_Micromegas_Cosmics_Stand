@@ -86,7 +86,7 @@ bool chechIfUserHasTypeBatch()
  3
 "CBRef" "1"
 "EClose" E
-"dpi" "95.9971"
+"dpi" "96"
 0 1 9 9 9 9 1 6
 ""
 DISPLAY_LAYER, 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
@@ -367,30 +367,146 @@ LANG:1 4 Save
      
     // Final Node Configuration      
       
-     DebugN(\"********************************************************************************\");
-     DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
+//      DebugN(\"********************************************************************************\");
+//      DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
      dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
      dpSet(\"N\"+i+\".ChamberType\",chamberOfNode); //Set Chamber of Node
      dpSet(\"N\"+i+\".Mode\",mode); // Set Mode of Node
      dpSet(\"N\"+i+\".BatchId\",mtf);
      
+
+     
 //   Set Strips and Drift DPEs for each Node // Sector 
-    /*  //Under Construction
+   
+ 
      dyn_string stripsToAppend,driftToAppend;
-     if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
-     {
+  
+
+  
+  string node=i;  // *i is node  
+  
+  
+  int typeCounter,countGeneral,countLayer,countSector,countChannel;
+  string layer,leftRight;
+        
+  if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
+  {
        
-       
+    // Strips 
+//     DebugN(\"\");
+//     DebugN(\"*********Strips\");
+   
+  if(chamberOfNode==\"SM1\" || chamberOfNode==\"LM1\")  
+    { 
+      typeCounter=20;
+      countSector=1; 
+    } 
+  if(chamberOfNode==\"SM2\" || chamberOfNode==\"LM2\")  
+    {       
+      typeCounter=12;
+      countSector=6;      
+    }
+    
+  countGeneral=1;
+  countChannel=1;   
+  
+  layer=\"L\";
+  countLayer=1;
+  leftRight=\"L\";
+
+    
+  for(int k=1;k<=typeCounter;k++)
+  {
+    if(countGeneral==(typeCounter+4)/4)
+    {
+     countGeneral=1;
+     if(chamberOfNode==\"SM1\" || chamberOfNode==\"LM1\")  
+       countSector=1;
+     if(chamberOfNode==\"SM2\" || chamberOfNode==\"LM2\")
+       countSector=6; 
+     
+     countLayer++;
+    }      
+      
+    leftRight=\"L\";
+    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]); 
+//     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
+    countChannel++;
+    
+    leftRight=\"R\";
+    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]);
+//     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
+    countChannel++;
+    
+    countSector++;
+    
+    countGeneral++;
+    
+  }
+    
+  // Drift 
+//     DebugN(\"\");
+//     DebugN(\"*********Drift\");
+      layer=\"L\";
+      countLayer=1;
+      
+      for(int k=1;k<=4;k++)
+      {
+        dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",driftToAppend[k]);
+//          DebugN(k,layer+countLayer+\"D\",driftToAppend[k]); 
+
+        
+        countLayer++;  
        
      }
-     */     
+  
+//       DebugN(stripsToAppend);
+//       DebugN(\"  \");
+//       DebugN(driftToAppend);
+  
+  }//if val or cosmics extra
+  
+  
+  //---------------------------------------CosmicsBasic--------------------------------------------------------------------------------
+  
+  if(mode==\"CosmicsBasic\")
+  {
+
+
+      
+      
+    layer=\"L\";
+    countLayer=1;
+ // Strips Cosmics MM
+//     DebugN(\"\");
+//     DebugN(\"*********Strips\");
+    for(int k=1;k<=4;k++)
+    {
+     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",stripsToAppend[k]);
+//      DebugN(k,layer+countLayer+\"S\",stripsToAppend[k]); 
+     countChannel++;
      
+     countLayer++; 
+    }
+ // Drift Cosmics MM
+//     DebugN(\"\");
+//     DebugN(\"*********Drift\");
+    dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",driftToAppend[1]);
+//     DebugN(1,\"D\",driftToAppend[1]);
+ 
+   
+  } // if CosmicsBasic
+      
+   dpSet(\"N\"+i+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
+   dpSet(\"N\"+i+\".Mapping.ChannelsTotal.Drift\",driftToAppend);   // Append Drift Channels
+        
+   DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf,\" --------> READY!\");
     
-   }
+   } //  if node is on
   
   
   
-  }
+  } // for 
   
   
   } // if batch exists
@@ -1262,7 +1378,7 @@ LANG:1 0
 LANG:1 2 #1
 10 8
 1
-LANG:1 26 Utopia,-1,4,5,50,0,0,0,0,0
+LANG:1 26 Utopia,-1,6,5,50,0,0,0,0,0
 0 0 2 0 1 7
 1 0
 6 63

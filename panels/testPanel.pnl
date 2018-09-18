@@ -7,7 +7,7 @@ E E E E E 1 -1 -1 0  200 194
 E E 3
 "CBRef" "1"
 "EClose" E
-"dpi" "95.9971"
+"dpi" "96"
 0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
@@ -68,95 +68,125 @@ LANG:1 16 channelsToAppend
 "main(mapping event)
 {
   
+  
   dyn_string stripsToAppend,driftToAppend;
-  string mode;
-  mode=\"CosmicsBasic\";
   
-  string channel;
-  string node=\"1\";
-      
-      
-  int countGeneral=1;
-
-  string layer=\"L\";
-  int countLayer=1;
-  string leftRight=\"L\";
-  int countSector=1;
+  string mode=\"CosmicsBasic\";  //
   
+  string node=\"1\";  // 
+  
+  string type=\"SM1\";  //
+  
+  int typeCounter,countGeneral,countLayer,countSector,countChannel;
+  string layer,leftRight;
+        
   if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
   {
-    
-    
+       
     // Strips 
     DebugN(\"\");
     DebugN(\"*********Strips\");
-    for(int i=1;i<=64;i++)
-      {
-  
-      if(countGeneral==33)  
-        {
-    leftRight=\"R\";
-    countLayer=1;
-    countSector=1;
-          }
-  
-  
-       if(countLayer==5)
-        {
-   countLayer=1;
-   countSector++;
    
-        } 
-      dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",channel);
-//       DebugN(i,layer+countLayer+leftRight+countSector,channel);
+  if(type==\"SM1\" || type==\"LM1\")  
+    { 
+      typeCounter=20;
+      countSector=1; 
+    } 
+  if(type==\"SM2\" || type==\"LM2\")  
+    {       
+      typeCounter=12;
+      countSector=6;      
+    }
+    
+  countGeneral=1;
+  countChannel=1;   
+  
+  layer=\"L\";
+  countLayer=1;
+  leftRight=\"L\";
 
-      countLayer++;      
-      countGeneral++;      
+    
+  for(int i=1;i<=typeCounter;i++)
+  {
+    if(countGeneral==(typeCounter+4)/4)
+    {
+     countGeneral=1;
+     if(type==\"SM1\" || type==\"LM1\")  
+       countSector=1;
+     if(type==\"SM2\" || type==\"LM2\")
+       countSector=6; 
+     
+     countLayer++;
+    }      
       
-        }//for
+    leftRight=\"L\";
+    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]); 
+     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
+    countChannel++;
     
+    leftRight=\"R\";
+    dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]);
+     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
+    countChannel++;
     
-
-    // Drift 
+    countSector++;
+    
+    countGeneral++;
+    
+  }
+    
+  // Drift 
     DebugN(\"\");
     DebugN(\"*********Drift\");
-      string layer=\"L\";
-      int countLayer=1;
-
-    for(int i=1;i<=4;i++)
+      layer=\"L\";
+      countLayer=1;
+      
+      for(int i=1;i<=4;i++)
       {
-       dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",channel);
-//        DebugN(i,layer+countLayer+\"D\",channel); 
-       countLayer++;  
+        dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",driftToAppend[i]);
+         DebugN(i,layer+countLayer+\"D\",driftToAppend[i]); 
+
+        
+        countLayer++;  
        
      }
-    
-    
-    
   
-      }//if val or cosmics extra
+      DebugN(stripsToAppend);
+      DebugN(\"  \");
+      DebugN(driftToAppend);
+  
+  }//if val or cosmics extra
+  
+  
+  //---------------------------------------CosmicsBasic--------------------------------------------------------------------------------
   
   if(mode==\"CosmicsBasic\")
   {
-    string layer=\"L\";
-    int countLayer=1;
+
+
+      
+      
+    layer=\"L\";
+    countLayer=1;
  // Strips Cosmics MM
     DebugN(\"\");
     DebugN(\"*********Strips\");
     for(int i=1;i<=4;i++)
     {
-     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",channel);
-     DebugN(i,layer+countLayer+\"S\",channel);  
+     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",stripsToAppend[i]);
+     DebugN(i,layer+countLayer+\"S\",stripsToAppend[i]); 
+     countChannel++;
+     
      countLayer++; 
     }
  // Drift Cosmics MM
     DebugN(\"\");
     DebugN(\"*********Drift\");
-   dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",channel);
-   DebugN(\"D\",channel);
+    dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",driftToAppend[1]);
+    DebugN(1,\"D\",driftToAppend[1]);
  
    
-  }
+  } // if CosmicsBasic
 
       
       
