@@ -1,0 +1,126 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1900 1070 N "_3DFace" 0
+E E E E E 1 -1 -1 0  190 -1.999999999999986
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "95.9971"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+30 0
+"histosFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1.058139534883721 0 1.112745098039216 -82.09302325581484 -126.8529411764706 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 HV Plots
+30 1
+"channelsFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.3709302325581393 0 0.8578431372549019 -140.9534883720929 -97.79411764705883 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 11 HV Channels
+30 2
+"actionsFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.7779069767441869 0 1.311686860278702 935.3953488372085 -149.8687800591931 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 10 HV Actions
+30 3
+"extraFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.3709302325581393 0 0.4558823529411762 -140.953488372093 645.0294117647063 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 20 Env or Gas or GIFF++
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0
