@@ -524,6 +524,31 @@ LANG:1 4 Save
   
 }" 0
  E E E
+13 83
+"PUSH_BUTTON2"
+""
+1 230 969 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+82 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  228 908 512 1042
+
+T 
+1
+LANG:1 12 PUSH_BUTTON2
+"main(mapping event)
+{
+      RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"\"));         
+}" 0
+ E E E
 0
 LAYER, 1 
 1
@@ -554,7 +579,11 @@ LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
 0  0 29 1899 1098
 15 Canvas.Canvas.1
 0
-E0
+"main()
+{
+      this.ModuleName = \"embModuleN1\"; 
+}" 0
+0
 LAYER, 2 
 1
 LANG:1 0 
@@ -1833,7 +1862,12 @@ LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 T 
 1
 LANG:1 6 Node 1
-E E E E
+"main(mapping event)
+{
+    enabledAllTabButtons();
+  currentLayer(2);
+}" 0
+ E E E
 13 34
 "buttonOverview"
 ""

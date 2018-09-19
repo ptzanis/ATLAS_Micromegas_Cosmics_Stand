@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 334 20 N "white" 1
+PANEL,-1 -1 322 20 N "WF_PanelBackground" 1
 "$title"
 "main()
 {
@@ -38,7 +38,7 @@ E E 0 1 1 2 1 E  0.3374403374403361 10 320 10
 2 4
 "titleText"
 ""
-1 0 0 E E E 1 E 1 E N "_WindowText" E N "white" E E
+1 0 0 E E E 1 E 1 E N "_WindowText" E N "WF_PanelBackground" E E
  E E
 4 0 0 0 0 0
 E E E

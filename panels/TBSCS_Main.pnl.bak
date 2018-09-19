@@ -1,7 +1,9 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1900 1100 N "_3DFace" 0
+PANEL,-1 -1 1900 1100 N "_3DFace" 2
+"$layer"
+"$node"
 "main()
 {   
     
@@ -311,22 +313,22 @@ LANG:1 14 Hide Beam Info
     
     getValue(\"hideShowBrowserButton\", \"position\", xButton, yButton);
     getValue(\"hideShowButtonContainer\", \"position\", xContainer, yContainer);
-    getValue(\"chambersBackground\", \"position\", xChambersBgPos, yChambersBgPos);
-    getValue(\"chambersBackground\", \"size\", xChambersBgSize, yChambersBgSize);
+//     getValue(\"chambersBackground\", \"position\", xChambersBgPos, yChambersBgPos);
+//     getValue(\"chambersBackground\", \"size\", xChambersBgSize, yChambersBgSize);
     
     if (hideShowBrowserButton.text == \"Hide Beam Info\") {
       
-        removeSymbol(myModuleName(), myPanelName(), \"ebrowserRef\");
+//         removeSymbol(myModuleName(), myPanelName(), \"ebrowserRef\");
 
         hideShowBrowserButton.position(xButton, yButton + difYPos);
         hideShowButtonContainer.position(xContainer, yContainer + difYPos);
         hideShowBrowserButton.text(\"Show Beam Info\");
         
-        embMod1.size(xChambersBgSize, yChambersBgSize + difYPos);
+        channelsModule.size(xChambersBgSize, yChambersBgSize + difYPos);
         //chambersBackground.size(xChambersBgSize, yChambersBgSize + difYPos);
         yChambersBgPos = yChambersBgPos - 22;
         //chambersBackground.position(xChambersBgPos, yChambersBgPos);
-        embMod1.position(xChambersBgPos, yChambersBgPos);
+        channelsModule.position(xChambersBgPos, yChambersBgPos);
       }
     else {
               
@@ -335,12 +337,12 @@ LANG:1 14 Hide Beam Info
         hideShowButtonContainer.position(xContainer, yContainer - difYPos);
         hideShowBrowserButton.text(\"Hide Beam Info\");
 
-        embMod1.size(xChambersBgSize, yChambersBgSize);//yChambersBgSize - difYPos
+        channelsModule.size(xChambersBgSize, yChambersBgSize);//yChambersBgSize - difYPos
         //chambersBackground.size(xChambersBgSize, yChambersBgSize - difYPos);
         //chambersBackground.position(xChambersBgPos, yChambersBgPos);
-        embMod1.position(xChambersBgPos, yChambersBgPos);
+        channelsModule.position(xChambersBgPos, yChambersBgPos);
       
-        loadBrowser();  
+//         loadBrowser();  
     }
     
 }" 0
@@ -364,7 +366,7 @@ E E 2 1 3 2 1 E 1 0 1 0 -13 1 E 10 622 330 638
 29 481
 "embMod1"
 ""
-1 -1 0 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 365 5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 299 0 0 0 0 0
 E E E
@@ -380,7 +382,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  9 40 329 604
+0  375 45 695 609
 15 Canvas.Canvas.1
 0
 "main()
@@ -391,6 +393,243 @@ LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
 
 }
 " 0
+10 574
+"type2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+305 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+   string node=$node;
+   string layer=$layer+\"S\"; 
+    clearSectorsColor(layer); 
+    appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.4705749435879708 0 0.6380597014925373 1271.800385695278 16.54477611940298 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
+10 575
+"POLYGON1"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+306 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+   string node=$node;
+   string layer=$layer+\"S\"; 
+    clearSectorsColor(layer); 
+    appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.4705749435879708 0 0.6380597014925373 1591.791347335098 16.54477611940285 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
+10 576
+"POLYGON2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+307 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string node=$node;
+  string layer=$layer;
+  
+  EP_setBackColor(node,layer);
+}
+void EP_setBackColor(string node,string layer)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Mapping.\"+layer+\"S\"+\".Channel:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, string sNewValue)
+{
+  if (sNewValue == \"\"\"\")
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Mapping.L1L1.Channel}
+// DPConfig {:_online.._value}
+// DPType {string}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {\"\"}
+// Color1 {Red}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ "main(mapping event)
+{
+   string node=$node;
+   string layer=$layer+\"S\"; 
+    clearSectorsColor(layer); 
+    appendSectorToHardware(node,layer,TRUE);
+  
+  
+}" 0
+ 2 1 3 2 1 E 0.4705749435879708 0 0.6380597014925373 1271.565098223484 172.6940298507463 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
 0
 LAYER, 1 
 1
@@ -463,7 +702,7 @@ LANG:10001 0
 2
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
 LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
-0  1091 509 1145 533
+0  1091 508.9999999999999 1145 533
 3 "0s" 0 0 0 0 0 -1  E E E
 14 313
 "TEXT_FIELD1"
@@ -482,7 +721,7 @@ LANG:10001 0
 2
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
 LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
-0  1091 479 1145 503
+0  1091 478.9999999999999 1145 502.9999999999999
 3 "0s" 0 0 0 0 0 -1  E E E
 22 312
 "COMBO_BOX1"
@@ -501,7 +740,7 @@ LANG:10001 0
 2
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
 LANG:10001 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
-0  875 510 1005 534
+0  874.9999999999999 510 1005 534
 2
 2
 LANG:1 10 Quadratic 
@@ -897,7 +1136,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  375 817 438 840
+0  375 817 437.9999999999999 840
 3 "0d" 0 1 0 1 0 -1  E E E
 13 20
 "onButton"
@@ -996,7 +1235,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  375 795 438 818
+0  375 795 437.9999999999999 818
 3 "3d" 3 1 0 1 0 -1  E E E
 14 23
 "textField7"
@@ -1013,7 +1252,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  437 851 582 874
+0  437 851 582 873.9999999999999
 3 "20s" 20 1 0 1 0 -1  E E E
 30 24
 "configureFrame"
@@ -1574,7 +1813,7 @@ LANG:1 7 Refresh
 }
   " 0
  E E E
-1 545 2 "" 0
+1 577 2 "" 0
 0
 13 48
 "startArchivingButton"
@@ -1843,7 +2082,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E  931 160 1190 160
+E E 0 1 1 2 1 E  931.0000000000001 160 1190 160
 7 56
 "archiveIndicator"
 ""
@@ -2344,7 +2583,7 @@ LANG:1 0
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
 0 1
 LANG:1 33   Click the lock to make changes.
-1 552 3 "" 14
+1 584 3 "" 14
 0
 13 511
 "busyBackgroundShadow"

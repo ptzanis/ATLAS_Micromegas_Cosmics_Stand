@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 433 236 N "_3DFace" 4
+PANEL,-1 -1 433 236 N "WF_PanelBackground" 4
 "$chamberName"
 "$node"
 "$x"
@@ -48,7 +48,7 @@ PANEL,-1 -1 433 236 N "_3DFace" 4
 //             addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpeBare,
 //                       makeDynString(\"$alias:\"+dpesAlias[i],\"$chName:\" + chName, \"$dpe:\" +\"CAEN/\"+dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);
                addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpes[i],
-                          makeDynString(\"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);        
+                          makeDynString(\"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 0.9);        
             
             y = y + 18;
         }

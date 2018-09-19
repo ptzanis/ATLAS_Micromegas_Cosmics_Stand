@@ -45,10 +45,10 @@ LANG:1 0
 	if (isDollarDefined(\"$color\") && $color!=\"\") this.foreCol = $color;
 	if (isDollarDefined(\"$unit\") && $unit!=\"\") this.text = $unit;
 }" 0
- E 0 1 1 0 1 E U  0 E 147 13 192 30
+ E 0 1 1 0 1 E 0.9183673469387756 0 1 11.83673469387753 0 0 E 147 13 192 30
 0 2 0 "0s" 0 0 0 64 0 0  147 13 1
 1
-LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 14 2
@@ -89,7 +89,7 @@ LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 2 4
 "Name"
 ""
-1 0 0 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+1 0 -3 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
  "main()
 {
   fwFsmAtlasWidget_rightMousePressedOnParameter($dpe);
@@ -117,8 +117,8 @@ LANG:1 0
   
   fwFsmAtlasWidget_setDescriptionAsTooltip();
 }" 0
- E 0 1 1 2 1 E U  1 E 5 14 77 31
-0 2 2 "0s" 0 0 0 194 0 0  77 14 1
+ E 0 1 1 2 1 E U  1 E 5 11 77 28
+0 2 2 "0s" 0 0 0 194 0 0  77 11 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 0 1

@@ -85,13 +85,81 @@ void loadPlots(string node,string dpeOld) {
 
         dyn_string exceptionInfo;
         for (int i = 1; i <= plotsNumber; i++) {
-            fwTrending_addQuickFaceplate(myModuleNameMain,myPanelNameMain, "Plot" + i, 
+            fwTrending_addQuickFaceplate(myModuleNameMain ,myPanelNameMain, "Plot" + i, 
                                       makeDynString(channelsToPlot[i] + ".actual.vMon", channelsToPlot[i] + ".actual.iMon"),
                                       initCoo[i][1], initCoo[i][2], exceptionInfo, "_FwTrendingQuickPlotDefaults", scaling[i][1], scaling[i][2],dpeOld);
         }
     }
 }
 
+void loadChannels(string node, string type)
+{
+  
+    string chamberName=type;
+    dyn_string chamberMappingStrips,chamberMappingDrift; 
+    int channelsNo = 0;
+    int x = 5;//5
+    int channelHeight = 18;
+    int titleHeight = 28;
+    int y=5;
+    
+//     y[1] = 25; // Offset for first chamber
+  
+     dpGet("N"+node+".Mapping.ChannelsTotal.Strips",chamberMappingStrips);
+     dpGet("N"+node+".Mapping.ChannelsTotal.Drift",chamberMappingDrift);
+  
+//      y[2] = y[1] +  channelHeight * channelsNo + titleHeight;
+     
+     addSymbol(myModuleName() ,myPanelName(),"objects/chamber.pnl", "chamber.pnl.Ref." + chamberName,
+                  makeDynString("$node:"+node,"$chamberName:" + chamberName, "$x:" + x, "$y:" + y), 0, 0, 0, 1, 1);
+  
+}  
+
+void loadChannelsCosmics(int sector)
+{
+  
+  int startNodeSearch;
+  if(sector==1)
+      startNodeSearch=1;
+  if(sector==2)
+      startNodeSearch=5;  
+    
+  
+    dyn_string chamberName;
+    dyn_string chamberMappingStrips,chamberMappingDrift;
+    int channelsNo = 0;
+    int x = 5;//5
+    int channelHeight = 18;
+    int titleHeight = 28;
+    dyn_int y;
+    
+    y[1] = 25; // Offset for first chamber
+    
+    // calculates the y coordinate to place every chamber
+    for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
+        dpGet("N"+i+".ChamberType",chamberName[i]);
+        dpGet("N"+i+".Mapping.ChannelsTotal.Strips",chamberMappingStrips);
+        dpGet("N"+i+".Mapping.ChannelsTotal.Drift",chamberMappingDrift);
+        
+        channelsNo = dynlen(chamberMappingStrips)+dynlen(chamberMappingDrift);
+        y[i-startNodeSearch+2] = y[i-startNodeSearch+1] +  channelHeight * channelsNo + titleHeight;
+    }
+
+    
+  
+    for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
+        addSymbol(myModuleName() ,myPanelName(),"objects/chamber.pnl", "chamber.pnl.Ref." + chamberName[i-startNodeSearch+1],
+                  makeDynString("$node:"+i,"$chamberName:" + chamberName[i-startNodeSearch+1], "$x:" + x, "$y:" + y[i-startNodeSearch+1]), 0, 0, 0, 1, 1);
+    }
+
+  
+  
+  
+  
+  }
+  
+  
+  
 
 void refreshConfigurationTable() {
     

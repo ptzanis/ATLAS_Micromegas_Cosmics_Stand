@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 306 20 N "white" 5
+PANEL,-1 -1 263 20 N "white" 5
 "$chName"
 "$dpe"
 "$node"
@@ -10,8 +10,8 @@ PANEL,-1 -1 306 20 N "white" 5
 "main()
 {
 
-    int x1 = (int)$x + 60;
-    int x2 = (int)$x + 137;
+    int x1 = (int)$x + 31;
+    int x2 = (int)$x + 105;//118
     int y = (int)$y;
     string chName = $chName;
     string node   = $node; 
@@ -32,7 +32,7 @@ PANEL,-1 -1 306 20 N "white" 5
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpe + \"_Voltage\",
-              parameters, x1, y, 0, .87, 1);
+              parameters, x1, y, 0, .87, 0.93);
     
     parameters = makeDynString(\"$dpe:\" +\"CAEN/\" +dpeNEW + \".actual.iMon\", \"$format:[6.3f]\",
                                         \"$parameter:\",
@@ -43,7 +43,7 @@ PANEL,-1 -1 306 20 N "white" 5
                                         \"$qualityEl:\"+\"\");
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpe + \"_Current\",
-              parameters, x2, y, 0, .87, 1);
+              parameters, x2, y, 0, .87, 0.95);
     
 }
 
@@ -65,7 +65,7 @@ LANG:1 0
 20 4
 "checkBox"
 ""
-1 -22 -45 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 -65 -44 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -77,7 +77,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  286 1 302 17
+0  243 2 259 18
 1
 T 
 1
@@ -125,7 +125,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 2 1 1 E 1 0 1 -9 -9 1 E 293 10 6 28
+E E 0 1 2 1 1 E 0.8466898954703833 0 1 -8.0801393728223 -9 1 E 293 10 6 28
 6 3
 "onOffStatus"
 ""
@@ -207,11 +207,11 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 
 
 " 0
- E 0 1 2 1 1 E U  1 E 123 1 0 19
+ E 0 1 2 1 1 E 0.7317073170731707 0 1 0 0 1 E 123 1 0 19
 2 1
 "channelNameText"
 ""
-1 0.5 -4.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 -14 -3.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  "main()
 {
 //       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
@@ -225,7 +225,7 @@ LANG:1 0
 
 4
 "hoverbclr" "N \"_Transparent\""
-"layoutAlignment" "AlignCenter"
+"layoutAlignment" "AlignVCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "main()
@@ -247,8 +247,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E 0.5 -0.5 114.5 22.5
-0 2 2 "0s" 0 0 0 65 0 0  0.5 -0.5 2
+ E 0 1 1 2 1 E U  0 E -14 0.5 100 23.5
+0 2 2 "0s" 0 0 0 65 0 0  -14 0.5 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
@@ -261,11 +261,7 @@ LANG:1 0
 "rightClickArea"
 ""
 1 3.660377358490575 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
- "main()
-{
-    
-}" 0
- E
+ E E
 5 0 0 0 0 0
 E E E
 0
@@ -276,7 +272,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 1 0 1 -2.999999999999997 -2 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.7032967032967034 0 1 2.791208791208788 1 1 E 306 18 124 2
 6 6
 "spacer"
 ""
