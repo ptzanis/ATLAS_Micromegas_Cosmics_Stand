@@ -6,11 +6,13 @@ PANEL,-1 -1 1900 1050 N "_3DFace" 0
 {
     myModuleNameMain = myModuleName();
     myPanelNameMain = myPanelName();
-  loadChamberCosmics(1);
+    loadChamberCosmics(1); // 1=sector1 (N1-4), 2=sector2 (N5-8)
+    
 }" 0
  E E E E 1 -1 -1 0  190 -1.999999999999986
 ""0  1
-E "void loadChamberCosmics(int sector)
+E "#uses \"HVMMGeneral.ctl\"
+void loadChamberCosmics(int sector)
 {
   
   int startNodeSearch;
@@ -32,7 +34,7 @@ E "void loadChamberCosmics(int sector)
     
     // calculates the y coordinate to place every chamber
     for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
-      dpGet(\"N\"+i+\".ChamberType\",chamberName[i]);
+        dpGet(\"N\"+i+\".ChamberType\",chamberName[i]);
         dpGet(\"N\"+i+\".Mapping.ChannelsTotal.Strips\",chamberMappingStrips);
         dpGet(\"N\"+i+\".Mapping.ChannelsTotal.Drift\",chamberMappingDrift);
         
@@ -96,7 +98,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 1.058139534883721 0 1.112745098039216 -82.09302325581484 -126.8529411764706 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 1.040697674418606 0 1.096813725490196 -75.46511627907097 -125.0367647058824 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -116,7 +118,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.7779069767441869 0 1.311686860278702 935.3953488372085 -149.8687800591931 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.7965116279069779 0 1.311686860278702 912.3255813953477 -149.8687800591931 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1

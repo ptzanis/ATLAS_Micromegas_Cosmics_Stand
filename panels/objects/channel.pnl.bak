@@ -1,10 +1,10 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 311 18 N "white" 5
-"$alias"
+PANEL,-1 -1 346 17 N "white" 5
 "$chName"
 "$dpe"
+"$node"
 "$x"
 "$y"
 "main()
@@ -14,10 +14,14 @@ PANEL,-1 -1 311 18 N "white" 5
     int x2 = (int)$x + 137;
     int y = (int)$y;
     string chName = $chName;
-    string dpeBare = substr(dpe, strlen(getSystemName()));
+    string node   = $node; 
+//     string dpeBare = substr(dpe, strlen(getSystemName()));
+
+    string dpeNEW;
+    dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
 
     dyn_string parameters;
-    parameters = makeDynString(\"$dpe:\" + dpe + \".actual.vMon\", \"$format:[3.1f]\",
+    parameters = makeDynString(\"$dpe:\" +\"CAEN/\" +dpeNEW + \".actual.vMon\", \"$format:[3.1f]\",
                                         \"$parameter:\",
                                         \"$unit:V\",
                                         \"$width:\",
@@ -27,10 +31,10 @@ PANEL,-1 -1 311 18 N "white" 5
     
     
     
-    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpeBare + \"_Voltage\",
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpe + \"_Voltage\",
               parameters, x1, y, 0, .87, 1);
     
-    parameters = makeDynString(\"$dpe:\" + dpe + \".actual.iMon\", \"$format:[6.3f]\",
+    parameters = makeDynString(\"$dpe:\" +\"CAEN/\" +dpeNEW + \".actual.iMon\", \"$format:[6.3f]\",
                                         \"$parameter:\",
                                         \"$unit:uA\",
                                         \"$width:\",
@@ -38,7 +42,7 @@ PANEL,-1 -1 311 18 N "white" 5
                                         \"$bgcolor:_Transparent\",
                                         \"$qualityEl:\"+\"\");
     
-    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpeBare + \"_Current\",
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + chName + \"_\" + dpe + \"_Current\",
               parameters, x2, y, 0, .87, 1);
     
 }
@@ -46,7 +50,8 @@ PANEL,-1 -1 311 18 N "white" 5
 " 0
  E E E E 1 -1 -1 0  0 0
 ""0  1
-E "string dpe = $dpe;" 0
+E "string dpe = $dpe;
+string node=$node;" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -86,19 +91,23 @@ E E
 0
 "main()
 {    
-    if (dynContains(channelsToPlot, dpe) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);                                
+    string dpeNEW;
+    dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
+    dpeNEW=\"CAEN/\"+dpeNEW;
+    if (dynContains(channelsToPlot, dpeNEW) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);                                
 }
 " 0
-"main(int button, int state)
+"#uses \"HVMMGeneral.ctl\"
+main(int button, int state)
 {
 
 //     string text;
 //     getValue(myModuleNameMain + \".\" + myPanelNameMain + \":bFieldButton\", \"text\", text); //[\"M1\"][\"TestBeam SCS\"]
 
 //     if (text == \"HV Monitor\") removeBmonitor();
-    
+
     disableAllCheckboxes();
-    loadPlots(\"\");
+    loadPlots(node,dpe);
     enableAllCheckboxes();
 }" 0
 6 2
@@ -155,9 +164,10 @@ main()
 EP_setBackColor()
 {
     dyn_errClass err;
-
+    string dpeNEW;
+    dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
     dpConnect(\"EP_setBackColorCB\", 
-              dpe + \".actual.Trip:_online.._value\");
+              \"CAEN/\"+dpeNEW+ \".actual.Trip:_online.._value\");
     err = getLastError();
     if (dynlen(err) > 0)
         setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -169,17 +179,20 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
     touchChannels();
     
     bool isOn = 0;
-    dpGet(dpe + \".actual.isOn:_original.._value\", isOn);
+        string dpeNEW;
+    dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
+    
+    dpGet(\"CAEN/\"+dpeNEW+  + \".actual.isOn:_original.._value\", isOn);
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
 
-        string result = alertViaEmail(\"simone.sottocornola01@universitadipavia.it\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: [URGENT] Channel tripped!\", \"\");
-        delay(10);
+//         string result = alertViaEmail(\"simone.sottocornola01@universitadipavia.it\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: [URGENT] Channel tripped!\", \"\");
+//         delay(10);
         //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + result);
-        DebugN(\"Alert via mail: \", result);
-        string resultSMS = alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
+//         DebugN(\"Alert via mail: \", result);
+//         string resultSMS = alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
         //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + resultSMS);
-        DebugN(\"Alert via SMS: \", resultSMS);
+//         DebugN(\"Alert via SMS: \", resultSMS);
     }
     else {
         if (isOn) {setValue(\"\", \"backCol\", \"FwStateOKPhysics\");}
@@ -198,10 +211,10 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 63.5 -10 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 0.5 -4.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  "main()
 {
-      ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
+//       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
 }" 0
  E
 1 0 0 0 0 0
@@ -217,7 +230,11 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string alias=$alias;
+  string dpe=$dpe;
+  string node=$node;
+  string alias;
+ 
+  dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Alias\",alias);
   
   this.text(alias);
  
@@ -230,8 +247,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E 63.5 -6 177.5 17
-0 2 2 "0s" 0 0 0 65 0 0  63.5 -6 2
+ E 0 1 1 2 1 E U  0 E 0.5 -0.5 114.5 22.5
+0 2 2 "0s" 0 0 0 65 0 0  0.5 -0.5 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1

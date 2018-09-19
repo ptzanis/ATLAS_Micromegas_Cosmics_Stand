@@ -5,7 +5,7 @@
  *                                                                                         *
  *    Description: This library provides all the functions used in TBSCS project.          *
  * *************************************************************************************** */
-
+/*
 global dyn_string channelsToPlot;
 global string myModuleNameMain;
 global string myPanelNameMain;
@@ -218,7 +218,7 @@ createTbscsChamberDPT() {
 /**
  * Disables all checkboxes of the panel.
  */
-
+/*
 void disableAllCheckboxes() {
     // logoShape1.visible = TRUE;
      dyn_string allCheckboxes = getShapes(myModuleName(), myPanelName(), "shapeType", "CHECK_BOX");
@@ -255,7 +255,7 @@ int editCreateSpark(string sparkPath, string plotPath, string gnuPath) {
 /**
  * Enables all checkboxes of the panel.
  */
-
+/*
 void enableAllCheckboxes() {
   
     dyn_string allCheckboxes = getShapes(myModuleName(),myPanelName(), "shapeType", "CHECK_BOX");
@@ -501,7 +501,7 @@ void loadChambers(dyn_string chambers, int yOffset) {
  * calls gridToCoordinates to translate grid size to position coordinates and
  * finally calculates the scalling with calculateScales function.
  */
-
+/*
 void loadPlots(string dpe) {
   
     if (dpe == "") dpe = $dpe;
@@ -718,6 +718,7 @@ dyn_int splitScreenGridDimensions(int numberOfPlots, float sizeX, float sizeY) {
 /**
  *  Touches the values of vMon and iMon of All fwCaenChannel
  */
+/*
 touchChannels() {
 
   dyn_string psChannels = dpNames("*", "FwCaenChannel");
@@ -730,3 +731,4 @@ touchChannels() {
       dpSetWait(psChannels[i] + ".actual.iMon:_original.._value", temp2);
   }
 }
+*/

@@ -1,3 +1,15 @@
+#uses "scripts/libs/fwTrending/fwTrending.ctl"
+global dyn_string channelsToPlot;
+global string myModuleNameMain;
+global string myPanelNameMain;
+
+const float PREFERRED_PLOT_ASPECT_RATIO = 2.21;
+const float SIZE_OF_PLOTTABLE_AREA_X    = 890;
+const float SIZE_OF_PLOTTABLE_AREA_Y    = 880;
+const int   X_INITIAL_OF_PLOTTABLE_AREA = 325;
+const int   Y_INITIAL_OF_PLOTTABLE_AREA = 10;
+
+
 
 void currentLayer(int layer){
 
@@ -10,6 +22,76 @@ void currentLayer(int layer){
     {LayerOff(i);}
   }  
 }
+
+/**
+ * Disables all checkboxes of the panel.
+ */
+
+void disableAllCheckboxes() {
+    // logoShape1.visible = TRUE;
+     dyn_string allCheckboxes = getShapes(myModuleName(), myPanelName(), "shapeType", "CHECK_BOX");
+
+     for( int i = 1; i <= dynlen(allCheckboxes); i++) {
+         setValue(myModuleName() + "." + myPanelName() + ":" + allCheckboxes[i], "enabled", false);        
+     }
+}
+
+/**
+ * Enables all checkboxes of the panel.
+ */
+
+void enableAllCheckboxes() {
+  
+    dyn_string allCheckboxes = getShapes(myModuleName(),myPanelName(), "shapeType", "CHECK_BOX");
+    
+    for( int i = 1; i <= dynlen(allCheckboxes); i++) {
+        setValue(myModuleName() + "." + myPanelName() + ":" + allCheckboxes[i], "enabled", true);    
+    }
+    //logoShape1.visible = FALSE;
+}
+
+/**
+ * Shows a plot for the specified dpe. Position and size depends on 
+ * the channelsToPlot variable that contains all the plots to be plotted.
+ * Calls splitScreenGridDimensions to define the grid size, then
+ * calls gridToCoordinates to translate grid size to position coordinates and
+ * finally calculates the scalling with calculateScales function.
+ */
+
+void loadPlots(string node,string dpeOld) {
+  
+//     if (dpe == "") dpe = $dpe;
+    string dpe;
+    dpGet("N"+node+".Mapping."+dpeOld+".Channel" ,dpe);
+    dpe="CAEN/"+dpe;
+    bool isChecked;
+    int removeElement;
+    getValue("checkBox", "state", 0 ,isChecked);
+    if (isChecked == 1)
+        dynAppend(channelsToPlot, dpe);
+    else {
+        dynRemove(channelsToPlot, dynContains(channelsToPlot, dpe));
+    }
+
+    int plotsNumber = dynlen(channelsToPlot);
+    if ((isChecked == 1) && (plotsNumber > 1)) removePlots(plotsNumber - 1);
+    else if ((isChecked == 1) && (plotsNumber = 1)) ;
+    else removePlots(plotsNumber + 1);
+    
+    if (dynlen(channelsToPlot) > 0) {
+        dyn_int gridSize = splitScreenGridDimensions(plotsNumber, SIZE_OF_PLOTTABLE_AREA_X, SIZE_OF_PLOTTABLE_AREA_Y);
+        dyn_dyn_int initCoo = gridToCoordinates(plotsNumber, gridSize);
+        dyn_dyn_float scaling = calculateScales(plotsNumber, gridSize);
+
+        dyn_string exceptionInfo;
+        for (int i = 1; i <= plotsNumber; i++) {
+            fwTrending_addQuickFaceplate(myModuleNameMain,myPanelNameMain, "Plot" + i, 
+                                      makeDynString(channelsToPlot[i] + ".actual.vMon", channelsToPlot[i] + ".actual.iMon"),
+                                      initCoo[i][1], initCoo[i][2], exceptionInfo, "_FwTrendingQuickPlotDefaults", scaling[i][1], scaling[i][2],dpeOld);
+        }
+    }
+}
+
 
 void refreshConfigurationTable() {
     

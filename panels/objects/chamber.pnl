@@ -8,46 +8,12 @@ PANEL,-1 -1 433 236 N "_3DFace" 4
 "$y"
 "main()
 {
-  /*
-    string chName = $chamberName; 
-    dyn_string chamberMapping, dpes;
-    int y = $y;
-    int x = $x;
-    bool isVisible;
-    string dpeBare;
-    
-    // DebugN(\"Chamber \" + chName + \" loaded.\");
-  
-    dpGet(chName + \".Mapping:_original.._value\", chamberMapping);
- 
-    for (int i = 1; i <= dynlen(chamberMapping); i++){ 
-        dpes[i] = getSystemName() + \"CAEN/\" + chamberMapping[i];
-    }
-    // DebugN(\"Adding chamber object:\", \"titleObject_\" + chName);
-    // DebugN(\"addSymbol chamberTitle.pnl\", x, y);
-    addSymbol(myModuleName(), myPanelName(),\"objects/chamberTitle.pnl\", \"chamberTitle_pnl_Ref_\" + chName,
-              makeDynString(\"$title:\" + chName, \"$x:\" + x, \"$y:\" + y), x, y, 0, .95, 1);
-    
-    dpGet(chName + \".Visibility:_original.._value\", isVisible);
-    if (isVisible) {
-        y = y + 20;
-        for (int i = 1; i <= dynlen(chamberMapping); i++){
-            dpeBare = substr(dpes[i], strlen(getSystemName()));
-            addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpeBare,
-                      makeDynString(\"$chName:\" + chName, \"$dpe:\" + dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, .95, 1);
-            y = y + 18;
-        }
-    }
-  
-  
-  */
   
       string chName = $chamberName;
       string node=$node; 
       dyn_string chamberMappingStrips,chamberMappingDrift;
       dyn_string  dpes;
       dyn_string  dpesAlias;
-      string dpeBare;
       int y = $y;
       int x = $x; 
       int counterChannel=1; 
@@ -60,24 +26,30 @@ PANEL,-1 -1 433 236 N "_3DFace" 4
       dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",chamberMappingDrift);
 
         for (int i = 1; i <= dynlen(chamberMappingStrips); i++){ 
-            dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Channel\",dpes[counterChannel]);
-            dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Alias\",dpesAlias[counterChannel]);
-//               dpes[counterChannel] =\"N\"+i\".Mapping.\"+chamberMappingStrips[i]\".Channel\" \"CAEN/\" + chamberMappingStrips[i];
+//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Channel\",dpes[counterChannel]);
+//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Alias\",dpesAlias[counterChannel]);
+//             dpes[counterChannel] =\"N\"+i\".Mapping.\"+chamberMappingStrips[i]\".Channel\" \"CAEN/\" + chamberMappingStrips[i];
+               dpes[counterChannel] =chamberMappingStrips[i];
+          
               counterChannel++;        
         }
         
         for (int i = 1; i <= dynlen(chamberMappingDrift); i++){ 
-            dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Channel\",dpes[counterChannel]);
-            dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Alias\",dpesAlias[counterChannel]);
+//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Channel\",dpes[counterChannel]);
+//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Alias\",dpesAlias[counterChannel]);
+              dpes[counterChannel] =chamberMappingDrift[i];
+            
               counterChannel++;        
         }
         
         
         y = y + 20;
         for (int i = 1; i <= (dynlen(chamberMappingStrips)+dynlen(chamberMappingDrift)); i++){
-            dpeBare = substr(dpes[i], strlen(getSystemName()));
-            addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpeBare,
-                      makeDynString(\"$alias:\"+dpesAlias[i],\"$chName:\" + chName, \"$dpe:\" +\"CAEN/\"+dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);
+//             addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpeBare,
+//                       makeDynString(\"$alias:\"+dpesAlias[i],\"$chName:\" + chName, \"$dpe:\" +\"CAEN/\"+dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);
+               addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpes[i],
+                          makeDynString(\"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);        
+            
             y = y + 18;
         }
         

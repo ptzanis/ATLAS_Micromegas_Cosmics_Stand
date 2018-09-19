@@ -1458,7 +1458,7 @@ LANG:1 0
     setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
 }
 " 0
- 0 1 1 2 1 E 1 0 1 561.9999999999999 -112 2  1 0  "63.png" 4294967295 E 280 895 320 935
+ 0 1 1 2 1 E 1 0 1 561.9999999999999 -112 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
 2 64
 "PRIMITIVE_TEXT7"
 ""
@@ -1933,10 +1933,4 @@ LANG:1 5 Setup
 }" 0
  E E E
 0
-1 0 "SHAPE_GROUP1" -1
-21 0 
-71 62 57 58 52 53 56 59 54 55 60 68 67 66 69 70 51 65 64 72 63 
-
-"layoutAlignment" "AlignNone"
-"" ""
 0
