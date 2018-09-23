@@ -1,12 +1,15 @@
 #uses "scripts/libs/fwTrending/fwTrending.ctl"
-global dyn_string channelsToPlot;
-global string myModuleNameMain;
-global string myPanelNameMain;
+
+
+//  global dyn_string channelsToPlot;
+
+// global string myModuleNameMain;
+// global string myPanelNameMain;
 
 const float PREFERRED_PLOT_ASPECT_RATIO = 2.21;
-const float SIZE_OF_PLOTTABLE_AREA_X    = 890;
+const float SIZE_OF_PLOTTABLE_AREA_X    = 915;
 const float SIZE_OF_PLOTTABLE_AREA_Y    = 880;
-const int   X_INITIAL_OF_PLOTTABLE_AREA = 325;
+const int   X_INITIAL_OF_PLOTTABLE_AREA = 295;
 const int   Y_INITIAL_OF_PLOTTABLE_AREA = 10;
 
 
@@ -59,40 +62,171 @@ void enableAllCheckboxes() {
  */
 
 void loadPlots(string node,string dpeOld) {
-  
-//     if (dpe == "") dpe = $dpe;
-    string dpe;
-    dpGet("N"+node+".Mapping."+dpeOld+".Channel" ,dpe);
-    dpe="CAEN/"+dpe;
+    
     bool isChecked;
     int removeElement;
     getValue("checkBox", "state", 0 ,isChecked);
-    if (isChecked == 1)
-        dynAppend(channelsToPlot, dpe);
-    else {
-        dynRemove(channelsToPlot, dynContains(channelsToPlot, dpe));
+        
+    dyn_string DpesToPlot;
+    dpGet("N"+node+".DpesToPlot",DpesToPlot);    
+    
+    if (isChecked == 1){
+      dynAppend(DpesToPlot,"N"+node+".Mapping."+dpeOld);     
+    }
+    else{
+      dynRemove(DpesToPlot, dynContains(DpesToPlot,"N"+node+".Mapping."+dpeOld));
     }
 
-    int plotsNumber = dynlen(channelsToPlot);
-    if ((isChecked == 1) && (plotsNumber > 1)) removePlots(plotsNumber - 1);
+    dpSet("N"+node+".DpesToPlot",DpesToPlot);
+        
+    int plotsNumber = dynlen(DpesToPlot);
+    string channel,alias,nodeSubs;
+    if ((isChecked == 1) && (plotsNumber > 1)) removePlots(plotsNumber - 1,node);
     else if ((isChecked == 1) && (plotsNumber = 1)) ;
-    else removePlots(plotsNumber + 1);
+    else removePlots(plotsNumber + 1,node);
     
-    if (dynlen(channelsToPlot) > 0) {
+        if (dynlen(DpesToPlot) > 0) {
         dyn_int gridSize = splitScreenGridDimensions(plotsNumber, SIZE_OF_PLOTTABLE_AREA_X, SIZE_OF_PLOTTABLE_AREA_Y);
         dyn_dyn_int initCoo = gridToCoordinates(plotsNumber, gridSize);
         dyn_dyn_float scaling = calculateScales(plotsNumber, gridSize);
 
-        dyn_string exceptionInfo;
+        dyn_string exceptionInfo;          
         for (int i = 1; i <= plotsNumber; i++) {
-            fwTrending_addQuickFaceplate(myModuleNameMain ,myPanelNameMain, "Plot" + i, 
-                                      makeDynString(channelsToPlot[i] + ".actual.vMon", channelsToPlot[i] + ".actual.iMon"),
-                                      initCoo[i][1], initCoo[i][2], exceptionInfo, "_FwTrendingQuickPlotDefaults", scaling[i][1], scaling[i][2],dpeOld);
+          dpGet(DpesToPlot[i]+".Channel",channel);
+          dpGet(DpesToPlot[i]+".Alias",alias);
+          nodeSubs=substr(DpesToPlot[i],0,2);
+            fwTrending_addQuickFaceplate("embModuleN"+node,"N"+node, "Plot" + i, 
+                                      makeDynString("CAEN/"+channel+ ".actual.vMon", "CAEN/"+channel + ".actual.iMon"),
+                                      initCoo[i][1], initCoo[i][2], exceptionInfo, "_FwTrendingQuickPlotDefaults", scaling[i][1], scaling[i][2],alias,nodeSubs);
+              }                                 
+        }      
+}
+
+void loadPlotsCosmics(string node,string dpeOld,string sector) {
+       
+    bool isChecked;
+    int removeElement;
+    getValue("checkBox", "state", 0 ,isChecked);
+    
+    int nodeToStartSearch;    
+    if(sector=="1")
+      nodeToStartSearch=1;
+    if(sector=="2")
+      nodeToStartSearch=5; 
+    
+
+    dyn_string DpesToPlot,DpesToPlotTotal;
+    dpGet("N"+node+".DpesToPlot",DpesToPlot);    
+    
+    if (isChecked == 1){
+      dynAppend(DpesToPlot,"N"+node+".Mapping."+dpeOld);     
+    }
+    else{
+      dynRemove(DpesToPlot, dynContains(DpesToPlot,"N"+node+".Mapping."+dpeOld));
+    }
+
+    dpSet("N"+node+".DpesToPlot",DpesToPlot);
+
+    
+    for(int i=nodeToStartSearch;i<=nodeToStartSearch+3;i++)
+    {
+    dynClear(DpesToPlot);
+    dpGet("N"+i+".DpesToPlot",DpesToPlot);
+    dynAppend(DpesToPlotTotal,DpesToPlot);    
+      
+    }
+
+        
+    int plotsNumber = dynlen(DpesToPlotTotal);
+    string channel,alias,nodeSubs;
+    if ((isChecked == 1) && (plotsNumber > 1)) removePlotsCosmics(plotsNumber - 1,node,sector);
+    else if ((isChecked == 1) && (plotsNumber = 1)) ;
+    else removePlotsCosmics(plotsNumber + 1,node,sector);
+    
+        if (dynlen(DpesToPlotTotal) > 0) {
+        dyn_int gridSize = splitScreenGridDimensions(plotsNumber, SIZE_OF_PLOTTABLE_AREA_X, SIZE_OF_PLOTTABLE_AREA_Y);
+        dyn_dyn_int initCoo = gridToCoordinates(plotsNumber, gridSize);
+        dyn_dyn_float scaling = calculateScales(plotsNumber, gridSize);
+
+        dyn_string exceptionInfo;          
+        for (int i = 1; i <= plotsNumber; i++) {
+          dpGet(DpesToPlotTotal[i]+".Channel",channel);
+          dpGet(DpesToPlotTotal[i]+".Alias",alias);
+          nodeSubs=substr(DpesToPlotTotal[i],0,2);
+            fwTrending_addQuickFaceplate("embModuleN"+sector,"N"+sector, "Plot" + i, 
+                                      makeDynString("CAEN/"+channel+ ".actual.vMon", "CAEN/"+channel + ".actual.iMon"),
+                                      initCoo[i][1], initCoo[i][2], exceptionInfo, "_FwTrendingQuickPlotDefaults", scaling[i][1], scaling[i][2],alias,nodeSubs);
+        }          
+          
+          
+      
         }
+}
+/**
+ * Receives the numbers of plots to plot and the size of
+ * the grid available and returns the scale of each plot.
+ */ 
+
+dyn_dyn_float calculateScales(int nPlots, dyn_int grid) {
+  
+    dyn_dyn_float scales; 
+    float scx, scy;
+    
+    scx = (SIZE_OF_PLOTTABLE_AREA_X / grid[2]) / 517;
+    scy = (SIZE_OF_PLOTTABLE_AREA_Y / grid[1]) / 277;
+    
+    for (int i = 1; i <= nPlots; i++) {
+        dynAppend(scales, makeDynFloat(scx, scy));
+    } 
+    return scales;
+}
+
+
+/**
+ * Removes the first Nplots or if 0 is passsed it removes all the plots.
+ */
+
+void removePlots(int Nplots,string node) {
+  
+  dyn_string DpesToPlot;
+  dpGet("N"+node+".DpesToPlot",DpesToPlot);
+  
+  if (Nplots == 0) Nplots = dynlen(DpesToPlot);
+    dyn_string exceptionInfo;
+    
+    for (int i = 1; i <= Nplots; i++) {
+        fwTrending_removeFaceplate("embModuleN"+node ,"N"+node, "Plot" + i, exceptionInfo);
     }
 }
 
-void loadChannels(string node, string type)
+
+void removePlotsCosmics(int Nplots,string node,string sector) {
+  
+      int nodeToStartSearch;    
+    if(sector=="1")
+      nodeToStartSearch=1;
+    if(sector=="2")
+      nodeToStartSearch=5;
+    
+    
+    dyn_string DpesToPlot,DpesToPlotTotal;    
+    for(int i=nodeToStartSearch;i<=nodeToStartSearch+3;i++)
+    {
+    dynClear(DpesToPlot);
+    dpGet("N"+node+".DpesToPlot",DpesToPlot);
+    dynAppend(DpesToPlotTotal,DpesToPlot);    
+      
+    }
+  
+   if (Nplots == 0) Nplots = dynlen(DpesToPlotTotal);
+    dyn_string exceptionInfo;
+    
+    for (int i = 1; i <= Nplots; i++) {
+        fwTrending_removeFaceplate("embModuleN"+sector ,"N"+sector, "Plot" + i, exceptionInfo);
+    }
+}
+
+void loadChannels(string node, string type,string sector)
 {
   
     string chamberName=type;
@@ -111,17 +245,17 @@ void loadChannels(string node, string type)
 //      y[2] = y[1] +  channelHeight * channelsNo + titleHeight;
      
      addSymbol(myModuleName() ,myPanelName(),"objects/chamber.pnl", "chamber.pnl.Ref." + chamberName,
-                  makeDynString("$node:"+node,"$chamberName:" + chamberName, "$x:" + x, "$y:" + y), 0, 0, 0, 1, 1);
+                  makeDynString("$node:"+node,"$chamberName:" + chamberName,"$sector:"+sector, "$x:" + x, "$y:" + y), 0, 0, 0, 1, 1);
   
 }  
 
-void loadChannelsCosmics(int sector)
+void loadChannelsCosmics(string sector)
 {
   
   int startNodeSearch;
-  if(sector==1)
+  if(sector=="1")
       startNodeSearch=1;
-  if(sector==2)
+  if(sector=="2")
       startNodeSearch=5;  
     
   
@@ -149,7 +283,7 @@ void loadChannelsCosmics(int sector)
   
     for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
         addSymbol(myModuleName() ,myPanelName(),"objects/chamber.pnl", "chamber.pnl.Ref." + chamberName[i-startNodeSearch+1],
-                  makeDynString("$node:"+i,"$chamberName:" + chamberName[i-startNodeSearch+1], "$x:" + x, "$y:" + y[i-startNodeSearch+1]), 0, 0, 0, 1, 1);
+                  makeDynString("$node:"+i,"$chamberName:" + chamberName[i-startNodeSearch+1], "$x:" + x, "$y:" + y[i-startNodeSearch+1],"$sector:"+sector), 0, 0, 0, 1, 1);
     }
 
   
@@ -233,4 +367,52 @@ touchChannels() {
       dpSetWait(psChannels[i] + ".actual.vMon:_original.._value", temp1);
       dpSetWait(psChannels[i] + ".actual.iMon:_original.._value", temp2);
   }
+}
+
+dyn_int splitScreenGridDimensions(int numberOfPlots, float sizeX, float sizeY) {
+    
+    dyn_dyn_int arraySizeCandidates = makeDynInt(); 
+    float i = 1;
+    float rowsPerArrays = numberOfPlots;
+    float fac;
+    dyn_float factors;
+    
+    while (i <= rowsPerArrays) {
+        dynAppend(arraySizeCandidates, makeDynInt(i, rowsPerArrays));
+        if (i != rowsPerArrays) dynAppend(arraySizeCandidates, makeDynInt(rowsPerArrays, i));
+        i++;
+        rowsPerArrays = ceil(numberOfPlots/i);
+    }
+    
+    for ( int i = 1; i <= dynlen(arraySizeCandidates); i++) {
+          fac = (arraySizeCandidates[i][1] * sizeX) / (arraySizeCandidates[i][2] * sizeY);
+          dynAppend(factors, fabs(fac - PREFERRED_PLOT_ASPECT_RATIO));
+    }
+    
+    int pos = dynContains(factors, dynMin(factors));
+    dyn_int optimalSize = arraySizeCandidates[pos];
+    
+    return optimalSize;
+}
+/**
+ *  Gets the number of plots and the grid size in an area
+ *  and returns the coordinates of where the objects should
+ *  be deployed.
+ */
+
+dyn_dyn_int gridToCoordinates(int Nplots, dyn_int grid) {
+  
+    dyn_dyn_int initialPositions;
+    float x, y;
+
+    for (int i = 1; i <= grid[1]; i++) {
+        for (int j = 1; j <= grid[2]; j++) {
+            x = X_INITIAL_OF_PLOTTABLE_AREA + (j-1) * SIZE_OF_PLOTTABLE_AREA_X / grid[2];
+            y = Y_INITIAL_OF_PLOTTABLE_AREA + (i-1) * SIZE_OF_PLOTTABLE_AREA_Y / grid[1];
+            
+            dynAppend(initialPositions, makeDynInt(floor(x), floor(y)));
+        }
+    }
+    
+    return initialPositions;  
 }

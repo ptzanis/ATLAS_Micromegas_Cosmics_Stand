@@ -1,8 +1,9 @@
 V 14
 1
 LANG:1 8 (NoName)
-PANEL,-1 -1 515 275 N {236,236,236} 23
+PANEL,-1 -1 515 275 N {236,236,236} 24
 "$ZoomWindowTitle"
+"$alias"
 "$bShowGrid"
 "$bShowLegend"
 "$bTrendLog"
@@ -18,7 +19,7 @@ PANEL,-1 -1 515 275 N {236,236,236} 23
 "$fMaxPercentageForLog"
 "$fMinForLog"
 "$iMarkerType"
-"$plotName"
+"$node"
 "$sBackColor"
 "$sDpName"
 "$sForeColor"
@@ -138,9 +139,38 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
+      string alias=$alias;
+      string node=$node;
+      string mode,chamber;
+     dpGet(node+\".Mode\",mode);
+     dpGet(node+\".ChamberType\",chamber);
+     
+    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+     {   this.text(alias+\" - \"+chamber);}
+    if(mode==\"ValidationQA\")
+     {      this.text(alias);}
+      
+//       string mo=$node;  
+  
+  
+  
+    /*
+    string alias=$alias;
+    string node=$node;
+    string mode,chamber,aliasValue,aliasSubs;
+    dpGet(alias,aliasValue);
     
-    string plotName=$plotName;
-     this.text(plotName);
+    aliasSubs=substr(alias,0,2);
+
+    dpGet(aliasSubs+\".Mode\",mode);
+    dpGet(aliasSubs+\".ChamberType\",chamber);
+
+    
+    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+           this.text(aliasValue+\" - \"+chamber);
+    if(mode==\"ValidationQA\")
+           this.text(aliasValue);
+    
     /*
 
     int mdmPos = strpos(temp[1], \"MDM\");

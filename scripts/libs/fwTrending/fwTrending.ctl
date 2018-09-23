@@ -8946,7 +8946,7 @@ _fwTrending_preparePlotObjectForDisplay(dyn_dyn_string &plotData, string paramet
 */
 fwTrending_addQuickFaceplate(string moduleName, string panelName, string refName, dyn_string dpesToPlot,
 							 int x, int y, dyn_string &exceptionInfo, string plotDpName = "_FwTrendingQuickPlotDefaults",
-							 float xScale = 1.0, float yScale = 1.0,string plotName)
+							 float xScale = 1.0, float yScale = 1.0,string alias,string node)
 {
 	int i, length;
 	dyn_string templateParameterNames, templateParameterValues;
@@ -8976,7 +8976,7 @@ fwTrending_addQuickFaceplate(string moduleName, string panelName, string refName
 
 	fwTrending_addFaceplate(moduleName, panelName, refName, plotDpName,
 							templateParameterNames, templateParameterValues,
-							x, y, exceptionInfo, xScale, yScale,plotName);
+							x, y, exceptionInfo, xScale, yScale,alias,node);
 }
 
 
@@ -9008,7 +9008,7 @@ fwTrending_addQuickFaceplate(string moduleName, string panelName, string refName
 fwTrending_addFaceplate(string moduleName, string panelName, string refName, string plotDpName,
 						dyn_string templateParameterNames,
 						dyn_string templateParameterValues,
-						int x, int y, dyn_string &exceptionInfo, float xScale = 1.0, float yScale = 1.0,string plotName)
+						int x, int y, dyn_string &exceptionInfo, float xScale = 1.0, float yScale = 1.0,string alias,string node)
 {
 	int i, length;
 	string templateParameters;
@@ -9054,7 +9054,9 @@ fwTrending_addFaceplate(string moduleName, string panelName, string refName, str
 
 	dynAppend(dollarParameters, "$sRefName:" + refName + ".");
 	dynAppend(dollarParameters, "$templateParameters:" + templateParameters);
-  dynAppend(dollarParameters, "$plotName:" + plotName);
+  dynAppend(dollarParameters, "$alias:" + alias);
+  dynAppend(dollarParameters, "$node:" + node);
+  
 	addSymbol(moduleName, panelName, fwTrending_PANEL_PLOT_FACEPLATE_FULLCAPTION, refName, dollarParameters, x, y, 0, xScale, yScale);
 }
 

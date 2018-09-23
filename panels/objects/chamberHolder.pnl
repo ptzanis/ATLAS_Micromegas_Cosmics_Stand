@@ -12,11 +12,11 @@ main()
      string mode=$mode;  
      string node=$node; 
      string type=$type; 
-     int sector=$sector; 
+     string sector=$sector; 
      
        if(mode==\"ValidationQA\")   
        {        
-         loadChannels(node,type);        
+         loadChannels(node,type,sector);        
        }
      if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
          loadChannelsCosmics(sector); // 1=sector1 (N1-4), 2=sector2 (N5-8)

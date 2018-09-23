@@ -67,7 +67,7 @@ string alertViaSMS(string number, string sender, string subject, string mainBody
  * Receives the numbers of plots to plot and the size of
  * the grid available and returns the scale of each plot.
  */ 
-
+/*
 dyn_dyn_float calculateScales(int nPlots, dyn_int grid) {
   
     dyn_dyn_float scales; 
@@ -404,7 +404,7 @@ string getStartTime() {
  *  and returns the coordinates of where the objects should
  *  be deployed.
  */
-    
+  /*
 dyn_dyn_int gridToCoordinates(int Nplots, dyn_int grid) {
   
     dyn_dyn_int initialPositions;
@@ -421,7 +421,7 @@ dyn_dyn_int gridToCoordinates(int Nplots, dyn_int grid) {
     
     return initialPositions;  
 }
-
+*/
 /** 
  * Returns TRUE if archiving is configured and on
  * for all the CAEN channels. 
@@ -642,21 +642,21 @@ void removeChannelsForChamber(string chamber, bool force = FALSE) {
        }
     }
 }
-
+/*
 /**
  * Removes the first Nplots or if 0 is passsed it removes all the plots.
  */
 
-void removePlots (int Nplots) {
+// void removePlots (int Nplots) {
     
-    if (Nplots == 0) Nplots = dynlen(channelsToPlot);
-    dyn_string exceptionInfo;
+//     if (Nplots == 0) Nplots = dynlen(channelsToPlot);
+//     dyn_string exceptionInfo;
     
-    for (int i = 1; i <= Nplots; i++) {
-        fwTrending_removeFaceplate(myModuleNameMain, myPanelNameMain, "Plot" + i, exceptionInfo);
-    }
-}
-
+//     for (int i = 1; i <= Nplots; i++) {
+//         fwTrending_removeFaceplate(myModuleNameMain, myPanelNameMain, "Plot" + i, exceptionInfo);
+//     }
+// }
+    
 /**
  * Executes the spark batch that triggers GNUplot.
  */
@@ -688,7 +688,7 @@ void splashScreen(bool enabled) {
  *  Gets the number of plots and the size of the area
  *  and returns the optimal size of the grid to print them.
  */
-    
+ /*   
 dyn_int splitScreenGridDimensions(int numberOfPlots, float sizeX, float sizeY) {
     
     dyn_dyn_int arraySizeCandidates = makeDynInt(); 
@@ -714,7 +714,7 @@ dyn_int splitScreenGridDimensions(int numberOfPlots, float sizeX, float sizeY) {
     
     return optimalSize;
 }
-
+*/
 /**
  *  Touches the values of vMon and iMon of All fwCaenChannel
  */

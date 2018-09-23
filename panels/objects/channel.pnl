@@ -1,10 +1,11 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 263 20 N "white" 5
+PANEL,-1 -1 281 21 N "white" 6
 "$chName"
 "$dpe"
 "$node"
+"$sector"
 "$x"
 "$y"
 "main()
@@ -51,7 +52,10 @@ PANEL,-1 -1 263 20 N "white" 5
  E E E E 1 -1 -1 0  0 0
 ""0  1
 E "string dpe = $dpe;
-string node=$node;" 0
+string node=$node;
+
+
+" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -91,23 +95,39 @@ E E
 0
 "main()
 {    
+    string sector=$sector;    
+    dyn_string DpesToPlot;
+    dpGet(\"N\"+node+\".DpesToPlot\",DpesToPlot);      
+      if (dynContains(DpesToPlot,\"N\"+node+\".Mapping.\"+dpe) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);  
+/*
     string dpeNEW;
     dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
     dpeNEW=\"CAEN/\"+dpeNEW;
-    if (dynContains(channelsToPlot, dpeNEW) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);                                
+    if (dynContains(channelsToPlot, dpeNEW) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);  
+*/
+  
+    
 }
 " 0
 "#uses \"HVMMGeneral.ctl\"
 main(int button, int state)
 {
 
+//   \"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y,\"$sector:\"+sector
 //     string text;
 //     getValue(myModuleNameMain + \".\" + myPanelNameMain + \":bFieldButton\", \"text\", text); //[\"M1\"][\"TestBeam SCS\"]
 
 //     if (text == \"HV Monitor\") removeBmonitor();
 
+    string sector=$sector;
     disableAllCheckboxes();
-    loadPlots(node,dpe);
+    
+    if(sector==\"0\")
+    {loadPlots(node,dpe);}
+    
+    if(sector==\"1\" || sector==\"2\")
+    {loadPlotsCosmics(node,dpe,sector);}
+    
     enableAllCheckboxes();
 }" 0
 6 2

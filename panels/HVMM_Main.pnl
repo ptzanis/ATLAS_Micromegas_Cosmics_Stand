@@ -1,11 +1,10 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1900 1100 N "_3DFace" 0
+PANEL,-1 -1 1920 1100 N "_3DFace" 0
 "#uses \"HVMMGeneral.ctl\"
 main()
 {
-
 currentLayer(8);
 
 
@@ -150,7 +149,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  483.5312499999999 147.5 607.5312499999999 181.5
+0  483.5312499999998 147.5 607.5312499999999 181.5
 
 T 
 1
@@ -201,7 +200,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  627.9999999999999 147.5 751.9999999999999 181.5
+0  627.9999999999998 147.5 751.9999999999998 181.5
 
 T 
 1
@@ -305,7 +304,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,29,5,75,0,0,0,0,0
-0  773.9999999999995 867.9999999999997 967.9999999999995 920.3333333333331
+0  773.9999999999995 867.9999999999994 967.9999999999995 920.333333333333
 
 T 
 1
@@ -539,14 +538,22 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  228 908 512 1042
+0  228 907.9999999999999 511.9999999999999 1042
 
 T 
 1
 LANG:1 12 PUSH_BUTTON2
 "main(mapping event)
 {
-      RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"\"));         
+
+            
+//       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
+//       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
+  
+//           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"SM1\",\"$sector:\"+\"1\"));
+           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM1\",\"$sector:\"+\"0\"));
+           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+\"2\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM2\",\"$sector:\"+\"0\"));
+      
 }" 0
  E E E
 0
@@ -576,7 +583,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 29 1899 1098
+0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
 "main()
@@ -590,7 +597,7 @@ LANG:1 0
 29 39
 "embModuleN2"
 ""
-1 12 27 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 12 29 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 38 0 0 0 0 0
 E E E
@@ -610,17 +617,21 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1899 1096
+0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
-E0
+"main()
+{
+        this.ModuleName = \"embModuleN2\"; 
+}" 0
+0
 LAYER, 3 
 1
 LANG:1 0 
 29 40
 "embModuleN3"
 ""
-1 12 27 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 12 29 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 39 0 0 0 0 0
 E E E
@@ -640,7 +651,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1899 1096
+0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
 E0
@@ -650,7 +661,7 @@ LANG:1 0
 29 41
 "embModuleN4"
 ""
-1 12 27 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 12 29 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 40 0 0 0 0 0
 E E E
@@ -670,7 +681,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1899 1096
+0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
 E0
@@ -774,7 +785,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  31.00000000000006 64.00000000000004 154.0000000000001 98.00000000000004
+0  31.00000000000006 64.00000000000004 154.0000000000001 98.00000000000003
 
 T 
 1
@@ -902,6 +913,8 @@ for(int i=1;i<=4;i++)
      types[count+6]=makeDynInt(0,0,DPEL_STRING);
      elements[count+7]=makeDynString(\"\",\"\",\"EndTime\"); 
      types[count+7]=makeDynInt(0,0,DPEL_STRING);
+     elements[count+8]=makeDynString(\"\",\"DpesToPlot\"); 
+     types[count+8]=makeDynInt(0,DPEL_DYN_STRING);
 
 int x=dpTypeCreate(elements,types);
 
@@ -949,7 +962,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  163.0000000000001 64.00000000000001 286.0000000000001 98
+0  163.0000000000001 64 286.0000000000001 98
 
 T 
 1
@@ -990,7 +1003,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  1041 738.9999999999999 1164 772.9999999999999
+0  1041 738.9999999999998 1164 772.9999999999998
 
 T 
 1
@@ -1058,7 +1071,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1067 690.9999999999999 1130 713.9999999999998
+0  1067 690.9999999999999 1130 713.9999999999997
 3 "4d" 4 1 0 1 0 -1  E E E
 14 53
 "textField2"
@@ -1075,7 +1088,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1067 712.9999999999999 1130 735.9999999999998
+0  1067 712.9999999999998 1130 735.9999999999997
 3 "4.3f" 8 1 0 1 0 -1  E E E
 14 54
 "textField3"
@@ -1092,7 +1105,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1341 690.9999999999999 1404 713.9999999999998
+0  1341 690.9999999999999 1404 713.9999999999997
 3 "0d" 0 1 0 1 0 -1  E E E
 14 55
 "textField4"
@@ -1109,7 +1122,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1341 712.9999999999999 1404 735.9999999999998
+0  1341 712.9999999999998 1404 735.9999999999997
 3 "0d" 0 1 0 1 0 -1  E E E
 14 56
 "textField5"
@@ -1126,7 +1139,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1197 712.9999999999999 1260 735.9999999999998
+0  1197 712.9999999999998 1260 735.9999999999997
 3 "0d" 0 1 0 1 0 -1  E E E
 13 57
 "onButton"
@@ -1143,7 +1156,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999998 694 982.9999999999997 728
+0  859.9999999999998 694 982.9999999999995 728
 
 T 
 1
@@ -1184,7 +1197,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999998 733.9999999999999 982.9999999999997 767.9999999999999
+0  859.9999999999998 733.9999999999998 982.9999999999995 767.9999999999998
 
 T 
 1
@@ -1225,7 +1238,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1197 690.9999999999999 1260 713.9999999999998
+0  1197 690.9999999999999 1260 713.9999999999997
 3 "3d" 3 1 0 1 0 -1  E E E
 14 60
 "textField7"
@@ -1242,7 +1255,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  1259 746.9999999999998 1404 769.9999999999999
+0  1259 746.9999999999997 1404 769.9999999999999
 3 "20s" 20 1 0 1 0 -1  E E E
 30 61
 "configureFrame"
@@ -1285,7 +1298,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  839.9999999999997 64.00000000000011 1423 674.9999999999999
+0  839.9999999999995 64.00000000000011 1423 674.9999999999999
 "#uses \"HVMMGeneral.ctl\"
 main()
 {
@@ -1704,7 +1717,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  305.3661740558289 255 489.3661740558289 299
+0  305.3661740558289 255 489.3661740558288 299
 
 T 
 1
@@ -1794,12 +1807,17 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  437.9999999999997 -4.440892098500626e-16 521 25
+0  437.9999999999997 -6.661338147750939e-16 521 25
 
 T 
 1
 LANG:1 6 Node 2
-E E E E
+"main(mapping event)
+{
+  enabledAllTabButtons();
+  currentLayer(3);
+}" 0
+ E E E
 13 31
 "buttonN3"
 ""
@@ -1815,7 +1833,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  527.9999999999999 -4.440892098500626e-16 611 25
+0  527.9999999999999 -6.661338147750939e-16 611 25
 
 T 
 1
@@ -1836,7 +1854,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  617.9999999999999 -4.440892098500626e-16 700.9999999999999 25
+0  617.9999999999998 -6.661338147750939e-16 700.9999999999998 25
 
 T 
 1
@@ -1857,14 +1875,14 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  347.9999999999999 -4.440892098500626e-16 430.9999999999999 25
+0  347.9999999999999 -6.661338147750939e-16 430.9999999999998 25
 
 T 
 1
 LANG:1 6 Node 1
 "main(mapping event)
 {
-    enabledAllTabButtons();
+  enabledAllTabButtons();
   currentLayer(2);
 }" 0
  E E E
@@ -1883,7 +1901,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  747.875 -4.440892098500626e-16 860.8749999999999 25
+0  747.8749999999999 -6.661338147750939e-16 860.8749999999998 25
 
 T 
 1
@@ -1904,7 +1922,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1300 -4.440892098500626e-16 1413 25
+0  1300 -6.661338147750939e-16 1413 25
 
 T 
 1
@@ -1955,7 +1973,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  154 -4.440892098500626e-16 266.9999999999999 25
+0  154 -6.661338147750939e-16 266.9999999999998 25
 
 T 
 1

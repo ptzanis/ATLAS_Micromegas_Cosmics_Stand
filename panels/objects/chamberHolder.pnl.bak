@@ -12,11 +12,11 @@ main()
      string mode=$mode;  
      string node=$node; 
      string type=$type; 
-     int sector=$sector; 
+     string sector=$sector; 
      
        if(mode==\"ValidationQA\")   
        {        
-         loadChannels(node,type);        
+         loadChannels(node,type,sector);        
        }
      if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
          loadChannelsCosmics(sector); // 1=sector1 (N1-4), 2=sector2 (N5-8)
@@ -25,45 +25,7 @@ main()
 }" 0
  E E E E 1 -1 -1 0  0 0
 ""0  1
-E "/*
-#uses \"TBSCSGeneral.ctl\"
-
-void loadchambers4() {
-
-    dyn_string chamberMapping;
-    string chName;
-    int channelsNo = 0;
-    int x = 5;
-    int channelHeight = 18;
-    int titleHeight = 28;
-    int wght;
-    bool isMinimized;
-    dyn_int y;
-    
-    y[1] = 0; // Offset for first chamber
-    
-    // calculates the y coordinate to place every chamber
-    for (int i = 2; i <= dynlen(chamberName); i++) {
-        dpGet(chamberName[i-1] + \".Mapping:_original.._value\", chamberMapping);
-        channelsNo = dynlen(chamberMapping);
-        dpGet(chamberName[i-1] + \".Visibility:_original.._value\", isMinimized);
-        wght = isMinimized;
-        y[i] = y[i-1] + wght * channelHeight * channelsNo + titleHeight;
-    }
-    
-    for (int i=1; i <= dynlen(chamberName); i++){
-        chName = substr(chamberName[i], strlen(getSystemName())); 
-        addSymbol(myModuleName() ,myPanelName(),\"objects/chamber.pnl\", \"chamber_pnl_Ref_\" + chamberName[i],
-                makeDynString(\"$chamberName:\" + chName, \"$x:\" + x, \"$y:\" + y[i]), 0, 0, 0, 1, 1);
-    }
-    
-    //delay(1);
-    //dyn_string debug = getShapes(myModuleName(), \"objects/chamberHolder.pnl\", \"\");    
-    //DebugN(\"All shapes are:\", debug);
-}
-*/
-" 0
- 3
+E E 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
