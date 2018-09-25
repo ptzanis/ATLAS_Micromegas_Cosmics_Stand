@@ -1,7 +1,7 @@
 V 14
 1
-LANG:1 0 
-PANEL,-1 -1 270 1330 N "WF_PanelBackground" 4
+LANG:1 18 chamberHolderPanel
+PANEL,-1 -1 270 849 N "WF_PanelBackground" 4
 "$mode"
 "$node"
 "$sector"
@@ -12,23 +12,30 @@ main()
      string mode=$mode;  
      string node=$node; 
      string type=$type; 
-     string sector=$sector; 
-     
+     string sector=$sector;
+
+
        if(mode==\"ValidationQA\")   
        {        
          loadChannels(node,type,sector);        
        }
-     if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+       if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+       { 
+         this.size(270,2500);         
          loadChannelsCosmics(sector); // 1=sector1 (N1-4), 2=sector2 (N5-8)
 
+       }
+
+     
     
 }" 0
  E E E E 1 -1 -1 0  0 0
 ""0  1
-E E 3
+E E 4
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
+"sizePolicy" "Preferred Maximum"
 0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0

@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1920 1070 N "_3DFace" 4
+PANEL,-1 -1 1918 1070 N "_3DFace" 4
 "$mode"
 "$node"
 "$sector"
@@ -12,11 +12,50 @@ PANEL,-1 -1 1920 1070 N "_3DFace" 4
      string node=$node; 
      string type=$type; 
      string sector=$sector; 
+     int x=1212;
+     int y=10;
+     string batchID;
      
-      RootPanelOnModule(\"objects/chamberHolder.pnl\", \"channels\", \"channelsModule\"+\"_N\"+node, makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));         
+     RootPanelOnModule(\"objects/chamberHolder.pnl\", \"channels\", \"channelsModule\"+\"_N\"+node, makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));         
      
 
-    }" 0
+  if(mode==\"ValidationQA\")
+     {
+   
+   
+   
+     }    
+     
+     
+     
+     
+     
+     
+    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")     
+     {  
+     int nodeStart;
+    if(sector==\"1\")
+        nodeStart=1;
+    if(sector==\"2\")
+        nodeStart=5; 
+  
+    
+    
+    for(int i=nodeStart;i<=nodeStart+3;i++)
+    {
+        dpGet(\"N\"+i+\".Mode\",mode);
+        dpGet(\"N\"+i+\".ChamberType\",type);
+        dpGet(\"N\"+i+\".BatchId\",batchID);
+        
+        addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionCosmics.pnl\", \"nodeAction\"+node+\"_\"+type,
+               makeDynString(\"$node:\"+i,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1); 
+     y=y+210;     
+    }
+    
+   }  
+      
+      
+}" 0
  E E E E 1 -1 -1 0  190 -1.999999999999986
 ""0  1
 E "#uses \"HVMMGeneral.ctl\"
@@ -66,7 +105,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.8244186046511635 0 1.311686860278702 896.7209302325571 -149.868780059193 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.8232558139534889 0 1.311686860278702 897.1627906976731 -149.868780059193 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -221,86 +260,6 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 E E -1 1 3 2 1 E 0.953125 0 0.7279411764705882 -24.53125 309.2205882352942 1 E 10 622 330 638
-30 9
-"FRAME1"
-""
-1 1220 23 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-9 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 0.6299694189602446 0 -0.4892966360856281 0 E 1220 23 1911 351
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0 1
-LANG:1 3 SM1
-30 10
-"FRAME2"
-""
-1 1220 23 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-10 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 0.6299694189602446 0 206.1773700305811 0 E 1220 23 1911 351
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0 1
-LANG:1 3 SM1
-30 11
-"FRAME3"
-""
-1 1220 23 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-11 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 0.6299694189602446 0 412.8440366972477 0 E 1220 23 1911 351
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0 1
-LANG:1 3 SM1
-30 12
-"FRAME4"
-""
-1 1220 23 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-12 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 0.6299694189602446 0 619.5107033639144 0 E 1220 23 1911 351
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0 1
-LANG:1 3 SM1
 0
 LAYER, 1 
 1

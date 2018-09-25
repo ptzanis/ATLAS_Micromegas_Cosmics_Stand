@@ -364,37 +364,30 @@ LANG:1 4 Save
       if(!validationButton.enabled())   
         mode=\"ValidationQA\";  
      
-    // Final Node Configuration      
-      
-//      DebugN(\"********************************************************************************\");
-//      DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf);
-     dpSet(\"N\"+i+\".Enabled\",TRUE); // Enable Node
-     dpSet(\"N\"+i+\".ChamberType\",chamberOfNode); //Set Chamber of Node
-     dpSet(\"N\"+i+\".Mode\",mode); // Set Mode of Node
-     dpSet(\"N\"+i+\".BatchId\",mtf);
+    // Final Node Configuration -----------------------------------------------------------------------------------------------------------------  Start -----   
+           
+     dpSet(\"N\"+i+\".Enabled\",TRUE);                               // Enable Node
+     dpSet(\"N\"+i+\".ChamberType\",chamberOfNode);                 //Set Chamber of Node
+     dpSet(\"N\"+i+\".Mode\",mode);                                 // Set Mode of Node
+     dpSet(\"N\"+i+\".BatchId\",mtf);                              // Set MTF of Node
      
-
+    // Final Node Configuration -----------------------------------------------------------------------------------------------------------------  END  ------   
      
-//   Set Strips and Drift DPEs for each Node // Sector 
+//   Set Strips and Drift DPEs for each Node // Sector ******************************************************************
+    
+  dyn_string stripsToAppend,driftToAppend;
    
- 
-     dyn_string stripsToAppend,driftToAppend;
-  
-
-  
   string node=i;  // *i is node  
   
   
   int typeCounter,countGeneral,countLayer,countSector,countChannel;
   string layer,leftRight;
         
+   //--------------------------------------- ValidationQA / CosmicsExtra ------------------------------------------Strips/Drift append ---------------START--------- 
   if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
   {
        
-    // Strips 
-//     DebugN(\"\");
-//     DebugN(\"*********Strips\");
-   
+    // Strips    
   if(chamberOfNode==\"SM1\" || chamberOfNode==\"LM1\")  
     { 
       typeCounter=20;
@@ -429,84 +422,85 @@ LANG:1 4 Save
       
     leftRight=\"L\";
     stripsToAppend[countChannel]=layer+countLayer+leftRight+countSector;
-//     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]); 
-//     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
-    countChannel++;
-    
+    countChannel++;    
     leftRight=\"R\";
     stripsToAppend[countChannel]=layer+countLayer+leftRight+countSector;
-//     dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+leftRight+countSector+\".Channel\",stripsToAppend[countChannel]);
-//     DebugN(countChannel,layer+countLayer+leftRight+countSector,stripsToAppend[countChannel]);
-    countChannel++;
-    
-    countSector++;
-    
+    countChannel++;    
+    countSector++;    
     countGeneral++;
     
   }
     
   // Drift 
-//     DebugN(\"\");
-//     DebugN(\"*********Drift\");
       layer=\"L\";
       countLayer=1;
       
       for(int k=1;k<=4;k++)
-      {
-        
-        driftToAppend[k]=layer+countLayer+\"D\";
-//         dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"D\"+\".Channel\",driftToAppend[k]);
-//          DebugN(k,layer+countLayer+\"D\",driftToAppend[k]); 
-
-        
+      {        
+       driftToAppend[k]=layer+countLayer+\"D\";
         countLayer++;  
        
      }
-  
-//       DebugN(stripsToAppend);
-//       DebugN(\"  \");
-//       DebugN(driftToAppend);
-  
+   
   }//if val or cosmics extra
+
+   //--------------------------------------- ValidationQA / CosmicsExtra ------------------------------------------Strips/Drift append ---------------END---------   
   
-  
-  //---------------------------------------CosmicsBasic--------------------------------------------------------------------------------
+   //---------------------------------------    CosmicsBasic             ------------------------------------------Strips/Drift append ---------------Start---------   
   
   if(mode==\"CosmicsBasic\")
   {
-
-
-      
       
     layer=\"L\";
     countLayer=1;
- // Strips Cosmics MM
-//     DebugN(\"\");
-//     DebugN(\"*********Strips\");
     for(int k=1;k<=4;k++)
     {
       stripsToAppend[k]=layer+countLayer+\"S\";
-//      dpGet(\"N\"+node+\".Mapping.\"+layer+countLayer+\"S\"+\".Channel\",stripsToAppend[k]);
-//      DebugN(k,layer+countLayer+\"S\",stripsToAppend[k]); 
-     countChannel++;
+      countChannel++;
      
      countLayer++; 
     }
  // Drift Cosmics MM
-//     DebugN(\"\");
-//     DebugN(\"*********Drift\");
+
+   
     driftToAppend[1]=\"D\";
-//     dpGet(\"N\"+node+\".Mapping.\"+\"D\"+\".Channel\",driftToAppend[1]);
-//     DebugN(1,\"D\",driftToAppend[1]);
+
  
    
   } // if CosmicsBasic
-      
+ 
+
+   //---------------------------------------    CosmicsBasic             ------------------------------------------Strips/Drift append ---------------END---------   
+  
+  
+    // Final Node Configuration -----------------------------------------------------------------------------------------------------------------  Start -----   
+  
+  // dpSet Strips/Drift per enabled Node 
    dpSet(\"N\"+i+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
    dpSet(\"N\"+i+\".Mapping.ChannelsTotal.Drift\",driftToAppend);   // Append Drift Channels
         
    DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+mode,\" | MTF: \"+mtf,\" --------> READY!\");
+
+ if(mode==\"ValidationQA\")
+   {
+   RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+i, \"embModuleN\"+i, makeDynString(\"$node:\"+i,\"$mode:\"+mode,\"$type:\"+chamberOfNode,\"$sector:\"+\"0\"));  
+   }
+ if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+   {
+   string sector;
+   if((i>0) && (i<5))
+     sector=\"1\";
+    if((i>4) && (i<9))
+     sector=\"2\"; 
     
+   RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+sector, \"embModuleN\"+sector, makeDynString(\"$node:\"+sector,\"$mode:\"+mode,\"$type:\"+\"\",\"$sector:\"+sector));  
+   }   
+   
+
+   
+   
+    // Final Node Configuration -----------------------------------------------------------------------------------------------------------------  END -----   
+   
    } //  if node is on
   
   
@@ -550,9 +544,12 @@ LANG:1 12 PUSH_BUTTON2
 //       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
 //       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
   
-//           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"SM1\",\"$sector:\"+\"1\"));
-           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM1\",\"$sector:\"+\"0\"));
-           RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+\"2\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM2\",\"$sector:\"+\"0\"));
+//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"SM1\",\"$sector:\"+\"1\"));
+          
+//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"\",\"$sector:\"+\"1\"));
+           
+//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM1\",\"$sector:\"+\"0\"));
+//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+\"2\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM2\",\"$sector:\"+\"0\"));
       
 }" 0
  E E E
@@ -654,7 +651,11 @@ LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
 0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
-E0
+"main()
+{
+        this.ModuleName = \"embModuleN3\"; 
+}" 0
+0
 LAYER, 4 
 1
 LANG:1 0 
@@ -684,7 +685,11 @@ LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
 0  0 29 1919 1098
 15 Canvas.Canvas.1
 0
-E0
+"main()
+{
+        this.ModuleName = \"embModuleN4\"; 
+}" 0
+0
 LAYER, 5 
 1
 LANG:1 0 
@@ -1838,7 +1843,12 @@ LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 T 
 1
 LANG:1 6 Node 3
-E E E E
+"main(mapping event)
+{
+  enabledAllTabButtons();
+  currentLayer(4);
+}" 0
+ E E E
 13 32
 "buttonN4"
 ""
@@ -1859,7 +1869,12 @@ LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 T 
 1
 LANG:1 6 Node 4
-E E E E
+"main(mapping event)
+{
+  enabledAllTabButtons();
+  currentLayer(5);
+}" 0
+ E E E
 13 33
 "buttonN1"
 ""

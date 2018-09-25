@@ -1,12 +1,20 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 185 173 N "_3DFace" 2
+PANEL,-1 -1 138 172 N "_3DFace" 5
 "$layer"
+"$mode"
 "$node"
+"$sector"
+"$type"
 E E E E E 1 -1 -1 0  -1 21
 ""0  1
-E E 3
+E "     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;" 0
+ 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -33,27 +41,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 5 410 210
+ E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 410 210
 240 210
 240.0000000000003 270
 393.0000000000003 270
@@ -76,27 +80,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 7 240 210
+ E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 7 240 210
 70 210
 87.00000000000023 270
 240.0000000000003 270
@@ -121,27 +121,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -33.94419970631418 -111.1380597014925 1 E 5 393.0000000000003 270
+ E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.11641743021576 -131.6287313432836 1 E 5 393.0000000000003 270
 240.0000000000003 270
 239 330
 373.9999999999999 330
@@ -164,27 +160,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+  this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -111.1380597014925 1 E 5 240.0000000000003 270
+ E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 240.0000000000003 270
 87.00000000000023 270
 104.0000000000001 330
 239 330
@@ -207,27 +199,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.74155653450802 -111.1380597014925 1 E 5 375.9999999999999 330
+ E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -28.69053224361701 -131.8451492537313 1 E 5 375.9999999999999 330
 240 330
 240 390
 360 390
@@ -250,27 +238,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063141 -111.1380597014925 1 E 5 375.9999999999999 330
+ E 1 1 3 2 1 E -0.4007726921372793 0 0.6934701492537312 165.0540884496095 -131.6287313432836 1 E 5 375.9999999999999 330
 240 330
 240 390
 360 390
@@ -293,27 +277,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -249.2388059701492 1 E 5 240 400
+ E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 240 400
 240.5 450
 351 450
 360 400
@@ -336,27 +316,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.74155653450796 -249.2388059701492 1 E 5 351 450
+ E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -59.24002139314644 -249.2611940298508 1 E 5 351 450
 240.5 450
 240.4999999999999 500
 341.9999999999999 500
@@ -379,27 +355,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -34.20998531571217 -249.2388059701492 1 E 5 341.9999999999999 500
+ E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
 240 549.5
 334 550
@@ -422,27 +394,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5428812447277156 0 0.6305970149253731 -37.98753397694253 -249.2388059701492 1 E 5 240 549.5
+ E 1 1 3 2 1 E 0.5428812447277156 0 0.6305970149253731 -62.48599883558109 -249.2611940298508 1 E 5 240 549.5
 334 550
 327.0000000000001 601
 242.0000000000001 601
@@ -465,27 +433,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -38.8634657221364 -249.2388059701492 1 E 5 327.0000000000001 601
+ E 1 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
 241.5 650
 319 650
@@ -508,27 +472,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 240 400
+ E 1 1 3 2 1 E -0.5326786588350458 0 0.6305970149253731 196.8444132617724 -249.2611940298508 1 E 5 240 400
 240.5 450
 351 450
 360 400
@@ -551,27 +511,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 351 450
+ E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 351 450
 240.5 450
 240.4999999999999 500
 341.9999999999999 500
@@ -594,27 +550,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 341.9999999999999 500
+ E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
 240 549.5
 334 550
@@ -637,27 +589,23 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 240 549.5
+ E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 240 549.5
 334 550
 327.0000000000001 601
 242.0000000000001 601
@@ -680,108 +628,27 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
   
-  string node=$node;
-  string layer=$layer;
-  string sectorName=this.name();
-  
-  clearSectorsColor(layer); 
-  
-  appendSectorToHardware(node,sectorName);
-    
- 
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
 }" 0
- 2 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 220.9441997063142 -249.2388059701492 1 E 5 327.0000000000001 601
+ E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
 241.5 650
 319 650
 327.0000000000001 601
- 1
-10 37
-"type1"
-""
-1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-37 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "1"
-"main()
-{
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
-  string node=$node;
-  string layer=$layer+\"S\"; 
-  clearSectorsColor(layer); 
-  appendSectorToHardware(node,layer,TRUE);
-  
-  
-}" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -7.004313201224079 -12.7649253731343 1 E 4 67.50000000000011 25
-307.5 25
-266.1405375139977 275
-108.5000000000001 275
- 1
-10 38
-"type2"
-""
-1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-38 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "1"
-"main()
-{
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
-   string node=$node;
-   string layer=$layer+\"S\"; 
-    clearSectorsColor(layer); 
-    appendSectorToHardware(node,layer,TRUE);
-  
-  
-}" 0
- 2 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -6.302496328928044 -12.76492537313433 1 E 5 17.5 54
-357.5 54
-306.5000000000001 234
-67.5 234
-17.5 54
  1
 6 39
 "D2"
@@ -800,65 +667,19 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  
-
-  EP_setBackColor(node,layer);
-}
-void EP_setBackColor(string node,string layer)
-{
-  dyn_errClass err;
-
-  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+    if(type==\"SM2\" || type==\"LM2\")
+      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+    
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
   {
-    setValue(\"\", \"color\", \"_dpdoesnotexist\");
-    return;
-  }
-
-  dpConnect(\"EP_setBackColorCB\", 
-            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
-  err = getLastError();
-  if (dynlen(err) > 0)
-    setValue(\"\", \"color\", \"_dpdoesnotexist\");
-
-}
-
-
-void EP_setBackColorCB(string dpSource, string sNewValue)
-{
-  if (sNewValue == \"\"\"\")
-    setValue(\"\", \"backCol\", \"Red\");
-  else
-    setValue(\"\", \"backCol\", \"Green\");
-}
-
-// SimpleCtrlScript {EP_setBackColor}
-// DP {System1:N1.Mapping.L1L1.Channel}
-// DPConfig {:_online.._value}
-// DPType {string}
-// AlertHdl {FALSE}
-// DPEInvalid {}
-// DPEConfigInvalid {}
-// Operator1 {equal}
-// Operant1 {\"\"}
-// Color1 {Red}
-// Operator2 {else}
-// Operant2 {}
-// Color2 {Green}
-// SimpleCtrlScriptEnd {EP_setBackColor}
-" 0
- "main(mapping event)
-{
-  
-  string node=$node;
-  string layer=$layer;
-  clearSectorsColor(layer); 
-  appendSectorToHardware(node,layer+\"D\");  
-  
-  
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+   this.toolTipText(this.name());   
 }" 0
- 2 1 3 2 1 E 0.5326856238667389 0 0.5517723880597015 -6.377718671210488 8.833022388059703 1 E 67.5 234 306 250
+ E 1 1 3 2 1 E 0.3975334073191389 0 0.5517723880597015 -5.370721480186774 9.709888059701399 1 E 67.5 234 306 250
 6 40
 "D1"
 ""
@@ -876,65 +697,19 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
+  if(type==\"SM1\" || type==\"LM1\")
+    this.name(\"L\"+layer+\"D\"+\"_N\"+node);
   
-
-  EP_setBackColor(node,layer);
-}
-void EP_setBackColor(string node,string layer)
-{
-  dyn_errClass err;
-
-  if( !dpExists( \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\"))
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
   {
-    setValue(\"\", \"color\", \"_dpdoesnotexist\");
-    return;
-  }
-
-  dpConnect(\"EP_setBackColorCB\", 
-            \"System1:N\"+node+\".Mapping.\"+layer+\"D\"+\".Channel:_online.._value\");
-  err = getLastError();
-  if (dynlen(err) > 0)
-    setValue(\"\", \"color\", \"_dpdoesnotexist\");
-
-}
-
-
-void EP_setBackColorCB(string dpSource, string sNewValue)
-{
-  if (sNewValue == \"\"\"\")
-    setValue(\"\", \"backCol\", \"Red\");
-  else
-    setValue(\"\", \"backCol\", \"Green\");
-}
-
-// SimpleCtrlScript {EP_setBackColor}
-// DP {System1:N1.Mapping.L1L1.Channel}
-// DPConfig {:_online.._value}
-// DPType {string}
-// AlertHdl {FALSE}
-// DPEInvalid {}
-// DPEConfigInvalid {}
-// Operator1 {equal}
-// Operant1 {\"\"}
-// Color1 {Red}
-// Operator2 {else}
-// Operant2 {}
-// Color2 {Green}
-// SimpleCtrlScriptEnd {EP_setBackColor}
-" 0
- "main(mapping event)
-{
-  
-  string node=$node;
-  string layer=$layer;
-  clearSectorsColor(layer); 
-  appendSectorToHardware(node,layer+\"D\");  
-  
-  
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }  
+   this.toolTipText(this.name()); 
 }" 0
- 2 1 3 2 1 E 1.883082531639435 0 0.6305970149253731 -153.6432906447489 -10.24253731343283 1 E 108.5000000000001 275 153 289
+ E 1 1 3 2 1 E 1.860394790294382 0 0.6305970149253731 -175.6758218531913 -12.78731343283593 1 E 108.5000000000001 275 153 289
 6 41
 "D2Cosmics"
 ""
@@ -952,24 +727,19 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
-  
-  string node=$node;
-  string layer=$layer;
-  clearSectorsColor(layer); 
-  appendSectorToHardware(node,\"D\");  
-  
-  
-}" 0
- 2 1 3 2 1 E 0.5326856238667389 0 0.5517723880597015 -6.111933061812465 8.833022388059703 1 E 67.5 234 306 250
+   if(type==\"SM2\" || type==\"LM2\") 
+      this.name(\"D\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+     this.toolTipText(this.name());
+ }" 0
+ E 1 1 3 2 1 E 0.402132026224817 0 0.5517723880597015 -5.681128256320051 9.709888059701399 1 E 67.5 234 306 250
 6 42
 "D1Cosmics"
 ""
@@ -987,24 +757,88 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string node=$node;
-  string layer=$layer;
-  string previousSectorName=this.name();
-  this.name(layer+previousSectorName);
- 
-}
-" 0
- "main(mapping event)
-{
-  
-  string node=$node;
-  string layer=$layer;
-  clearSectorsColor(layer); 
-  appendSectorToHardware(node,\"D\");  
-  
-  
+     if(type==\"SM1\" || type==\"LM1\") 
+        this.name(\"D\"+\"_N\"+node);
+
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+  this.toolTipText(this.name());     
 }" 0
- 2 1 3 2 1 E 1.883082531639435 0 0.6305970149253731 -153.6432906447489 -10.24253731343283 1 E 108.5000000000001 275 153 289
+ E 1 1 3 2 1 E 1.838247233267068 0 0.6305970149253731 -172.9976302388558 -13.43656716417917 1 E 108.5000000000001 275 153 289
+10 51
+"S1"
+""
+1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+    if(type==\"SM1\" || type==\"LM1\")  
+        this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+    
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+  this.toolTipText(this.name());
+}" 0
+ E 1 1 3 1 1 E 0.5213797928899054 0 0.628 -30.11303993891272 -12.72238805970153 1 E 4 67.50000000000011 25
+307.5 25
+266.1405375139977 275
+108.5000000000001 275
+ 1
+10 52
+"S2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+     this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    this.toolTipText(this.name()); 
+}" 0
+ E 1 1 3 2 1 E 0.4012907458352249 0 0.6853174603174605 -5.624341830022502 -21.53965884861421 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
 0
 LAYER, 1 
 1
@@ -1034,4 +868,28 @@ LAYER, 7
 1
 LANG:1 0 
 0
+1 8 "SHAPE_GROUP22" -1
+7 0 
+21 22 23 24 25 26 39 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 9 "SHAPE_GROUP23" -1
+11 0 
+27 28 29 30 31 32 33 34 35 36 40 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 10 "SHAPE_GROUP24" -1
+2 0 
+41 52 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 11 "SHAPE_GROUP25" -1
+2 0 
+42 51 
+
+"layoutAlignment" "AlignNone"
+"" ""
 0
