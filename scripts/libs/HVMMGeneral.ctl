@@ -266,12 +266,19 @@ void loadChannelsCosmics(string sector)
     int channelHeight = 18;
     int titleHeight = 28;
     dyn_int y;
+    string side;
     
-    y[1] = 25; // Offset for first chamber
+    y[1] = 5; // Offset for first chamber
     
     // calculates the y coordinate to place every chamber
     for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
-        dpGet("N"+i+".ChamberType",chamberName[i]);
+      if(i==1 || i==2 || i==5 || i==6 )
+       {side="IP";}
+      else{
+       side="HO";
+      } 
+        dpGet("N"+i+".ChamberType",chamberName[i-startNodeSearch+1]);
+        chamberName[i-startNodeSearch+1]=chamberName[i-startNodeSearch+1]+"-"+side;
         dpGet("N"+i+".Mapping.ChannelsTotal.Strips",chamberMappingStrips);
         dpGet("N"+i+".Mapping.ChannelsTotal.Drift",chamberMappingDrift);
         
@@ -279,7 +286,7 @@ void loadChannelsCosmics(string sector)
         y[i-startNodeSearch+2] = y[i-startNodeSearch+1] +  channelHeight * channelsNo + titleHeight;
     }
 
-    
+
   
     for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
         addSymbol(myModuleName() ,myPanelName(),"objects/chamber.pnl", "chamber.pnl.Ref." + chamberName[i-startNodeSearch+1],

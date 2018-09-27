@@ -5,9 +5,101 @@ PANEL,-1 -1 1920 1100 N "_3DFace" 0
 "#uses \"HVMMGeneral.ctl\"
 main()
 {
-currentLayer(8);
+currentLayer(1);
+
+string setupMode;
+
+for(int i=1;i<=8;i++)
+{
+  dpGet(\"N\"+i+\".Mode\",setupMode);
+  if(setupMode!=\"\")
+    break;
+}
+
+// --------------------------------- Cosmics Mode ----------------------------------------------------------------------
+ 
+if(setupMode==\"ValidationQA\")
+    {
+  validationButton.enabled(FALSE);
+  cosmicsButton.enabled(TRUE);
+  saveButton.enabled(FALSE);
+  int x=200;
+  
+  if(frameSector1.visible())
+  {
+    for(int i=1;i<=8;i++)
+    {
+      removeSymbol(myModuleName(), myPanelName(), \"Node\"+i);
+    }
+    frameSector1.visible(FALSE);
+    frameSector2.visible(FALSE);
+    
+    frameIP1.visible(FALSE); 
+    textIP1.visible(FALSE);
+    frameHO1.visible(FALSE);
+    textHO1.visible(FALSE);
+    
+    frameIP2.visible(FALSE); 
+    textIP2.visible(FALSE);
+    frameHO2.visible(FALSE);
+    textHO2.visible(FALSE);
+    
+  }
+  
+  for(int i=1;i<=4;i++)
+  { 
+    addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
+               makeDynString(\"$node:\"+i,\"$mode:\"+\"Validation\"), x, 240, 0, 1, 1);
+    x=x+350;
+  }
+    }
 
 
+// --------------------------------- Cosmics Mode ----------------------------------------------------------------------
+ 
+if(setupMode==\"CosmicsBasic\" || setupMode==\"CosmicsExtra\")
+      {
+
+  
+  cosmicsButton.enabled(FALSE);
+  validationButton.enabled(TRUE);
+  saveButton.enabled(FALSE);
+  
+   int x=200;
+   int y=240;
+   frameSector1.visible(TRUE);
+   
+   frameIP1.visible(TRUE); 
+   textIP1.visible(TRUE);
+   frameHO1.visible(TRUE);
+   textHO1.visible(TRUE);
+   
+  for(int i=1;i<=4;i++)
+  { 
+    addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
+               makeDynString(\"$node:\"+i,\"$mode:\"+\"Cosmics\"), x, y, 0, 1, 1);
+    x=x+350;
+  }
+   
+   x=200;
+   y=y+280;
+   frameSector2.visible(TRUE);
+   
+   frameIP2.visible(TRUE); 
+   textIP2.visible(TRUE);
+   frameHO2.visible(TRUE);
+   textHO2.visible(TRUE);
+   for(int i=5;i<=8;i++)
+  { 
+    addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
+               makeDynString(\"$node:\"+i,\"$mode:\"+\"Cosmics\"), x, y, 0, 1, 1);
+    x=x+350;
+  }
+  
+      }
+
+  
+  
 }" 0
  E E E E 1 -1 -1 0  0 0
 ""0  1
@@ -171,6 +263,17 @@ LANG:1 10 Validation
     }
     frameSector1.visible(FALSE);
     frameSector2.visible(FALSE);
+    
+    frameIP1.visible(FALSE); 
+    textIP1.visible(FALSE);
+    frameHO1.visible(FALSE);
+    textHO1.visible(FALSE);
+    
+    frameIP2.visible(FALSE); 
+    textIP2.visible(FALSE);
+    frameHO2.visible(FALSE);
+    textHO2.visible(FALSE);
+    
   }
   
   for(int i=1;i<=4;i++)
@@ -229,6 +332,12 @@ LANG:1 7 Cosmics
    int x=200;
    int y=240;
    frameSector1.visible(TRUE);
+   
+   frameIP1.visible(TRUE); 
+   textIP1.visible(TRUE);
+   frameHO1.visible(TRUE);
+   textHO1.visible(TRUE);
+   
   for(int i=1;i<=4;i++)
   { 
     addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
@@ -239,6 +348,11 @@ LANG:1 7 Cosmics
    x=200;
    y=y+280;
    frameSector2.visible(TRUE);
+   
+   frameIP2.visible(TRUE); 
+   textIP2.visible(TRUE);
+   frameHO2.visible(TRUE);
+   textHO2.visible(TRUE);
    for(int i=5;i<=8;i++)
   { 
     addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
@@ -264,7 +378,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.9517241379310345 0 1.027649769585254 -20.34482758620689 11.94009216589857 0 E 200 183 1651 401
+E E 2 1 3 2 1 E 0.9517241379310345 0 1.07373271889401 -20.34482758620689 -6.493087557603861 0 E 200 183 1651 401
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
 0 1
@@ -284,7 +398,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.9517241379310345 0 1.027649769585254 -20.34482758620686 288.9400921658986 0 E 200 183 1651 401
+E E 2 1 3 2 1 E 0.9517241379310345 0 1.092165898617512 -20.34482758620686 270.1336405529954 0 E 200 183 1651 401
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
 0 1
@@ -313,6 +427,7 @@ LANG:1 4 Save
 {
    
   int counterNodes;
+  int countCosmics=0;
   if(!validationButton.enabled())  
   {
     counterNodes=4;
@@ -483,8 +598,14 @@ LANG:1 4 Save
 
  if(mode==\"ValidationQA\")
    {
+   RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+i, \"\"); 
+   delay(1);
    RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+i, \"embModuleN\"+i, makeDynString(\"$node:\"+i,\"$mode:\"+mode,\"$type:\"+chamberOfNode,\"$sector:\"+\"0\"));  
    }
+   
+     
+     // TO BE FIXED!!!
+     
  if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
    {
    string sector;
@@ -492,8 +613,10 @@ LANG:1 4 Save
      sector=\"1\";
     if((i>4) && (i<9))
      sector=\"2\"; 
+   RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+sector, \"\"); 
+   delay(1);
+   RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+sector, \"embModuleN\"+sector, makeDynString(\"$node:\"+sector,\"$mode:\"+mode,\"$type:\"+\"\",\"$sector:\"+sector));
     
-   RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+sector, \"embModuleN\"+sector, makeDynString(\"$node:\"+sector,\"$mode:\"+mode,\"$type:\"+\"\",\"$sector:\"+sector));  
    }   
    
 
@@ -507,6 +630,12 @@ LANG:1 4 Save
   
   } // for 
   
+
+  
+  
+  
+  
+  
   
   } // if batch exists
   else
@@ -517,42 +646,182 @@ LANG:1 4 Save
   
 }" 0
  E E E
-13 83
-"PUSH_BUTTON2"
+30 83
+"frameIP1"
 ""
-1 230 969 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 190 233 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
  E E
 82 0 0 0 0 0
 E E E
-8
+1
 1
 LANG:1 0 
 
-1
+3
 "layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.196428571428571 0 1.169491525423728 -47.32142857142856 -62.49152542372853 0 E 190 233 751 411
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  228 907.9999999999999 511.9999999999999 1042
-
-T 
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 86
+"textIP1"
+""
+1 481.2692307692307 401.8461538461538 E E E 1 E 0 E N "FwAtlasBg" E N "WF_PanelBackground" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
 1
-LANG:1 12 PUSH_BUTTON2
-"main(mapping event)
-{
+LANG:1 0 
 
-            
-//       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
-//       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));
-  
-//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"SM1\",\"$sector:\"+\"1\"));
-          
-//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"CosmicsBasic\",\"$type:\"+\"\",\"$sector:\"+\"1\"));
-           
-//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N1\", \"embModuleN1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM1\",\"$sector:\"+\"0\"));
-//            RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N2\", \"embModuleN2\", makeDynString(\"$node:\"+\"2\",\"$mode:\"+\"ValidationQA\",\"$type:\"+\"SM2\",\"$sector:\"+\"0\"));
-      
-}" 0
- E E E
+6
+"hoverfclr" "N \"FwAtlasBg\""
+"hoverbclr" "N \"WF_PanelBackground\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 2.554446917208679 0 0.8333333333333314 -725.9566435718189 -111.820512820512 1 E 442 401.8461538461538 520 420
+0 2 2 "0s" 0 0 0 193 0 0  481.2692307692307 401.8461538461538 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 IP WEDGE
+30 90
+"frameIP2"
+""
+1 190 233 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+89 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.196428571428571 0 1.169491525423728 -47.32142857142875 220.8418079096048 0 E 190 233 751 411
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 94
+"textIP2"
+""
+1 481.2692307692307 401.8461538461538 E E E 1 E 0 E N "FwAtlasBg" E N "WF_PanelBackground" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+6
+"hoverfclr" "N \"FwAtlasBg\""
+"hoverbclr" "N \"WF_PanelBackground\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 2.554446917208679 0 0.8333333333333314 -724.4768463384862 171.5128205128213 1 E 442 401.8461538461538 520 420
+0 2 2 "0s" 0 0 0 193 0 0  481.2692307692307 401.8461538461538 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 IP WEDGE
+30 95
+"frameHO1"
+""
+1 190 233 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+94 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.196428571428571 0 1.169491525423728 631.5605158730158 -62.1581920903953 0 E 190 233 751 411
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 96
+"textHO1"
+""
+1 481.2692307692307 401.8461538461538 E E E 1 E 0 E N "FwAtlasBg" E N "WF_PanelBackground" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+6
+"hoverfclr" "N \"FwAtlasBg\""
+"hoverbclr" "N \"WF_PanelBackground\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 2.554446917208679 0 0.8333333333333314 -47.07469912737452 -111.4871794871788 1 E 437 401.8461538461538 525 420
+0 2 2 "0s" 0 0 0 193 0 0  481.2692307692307 401.8461538461538 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 HO WEDGE
+30 97
+"frameHO2"
+""
+1 190 233 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+96 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.196428571428571 0 1.169491525423728 631.5605158730158 219.3033463711433 0 E 190 233 751 411
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 98
+"textHO2"
+""
+1 481.2692307692307 401.8461538461538 E E E 1 E 0 E N "FwAtlasBg" E N "WF_PanelBackground" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+6
+"hoverfclr" "N \"FwAtlasBg\""
+"hoverbclr" "N \"WF_PanelBackground\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 2.554446917208679 0 0.8333333333333314 -47.07469912737452 169.9743589743599 1 E 437 401.8461538461538 525 420
+0 2 2 "0s" 0 0 0 193 0 0  481.2692307692307 401.8461538461538 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 HO WEDGE
 0
 LAYER, 1 
 1

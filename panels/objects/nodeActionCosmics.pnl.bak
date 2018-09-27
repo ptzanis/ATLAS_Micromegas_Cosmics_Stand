@@ -63,8 +63,15 @@ LANG:1 0
 {
   string batchID=$batchID;
   string type=$type;
+  string side;
+  int node=$node;
+      if(node==1 || node==2 || node==5 || node==6 )
+       {side=\"IP\";}
+      else{
+       side=\"HO\";
+      } 
   
-  this.text(type+\" - \"+batchID);  
+  this.text(type+\"-\"+side+\" - \"+batchID);  
   
 }" 0
  E 2 1 3 2 1 E 1.005714285714286 0 0.7937743190661477 0 5.556420233463034 0 E 0 -7 701 251

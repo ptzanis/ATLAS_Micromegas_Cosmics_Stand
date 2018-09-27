@@ -141,12 +141,19 @@ LANG:1 0
 {
       string alias=$alias;
       string node=$node;
-      string mode,chamber;
+      string mode,chamber,side;
      dpGet(node+\".Mode\",mode);
      dpGet(node+\".ChamberType\",chamber);
      
+     if(node==\"N1\" || node==\"N2\" || node==\"N5\" || node==\"N6\" )
+       {side=\"IP\";}
+      else{
+       side=\"HO\";
+      } 
+     
+     
     if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
-     {   this.text(alias+\" - \"+chamber);}
+     {   this.text(alias+\" \"+chamber+\"-\"+side);}
     if(mode==\"ValidationQA\")
      {      this.text(alias);}
       
