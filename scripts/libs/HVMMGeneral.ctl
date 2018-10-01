@@ -274,7 +274,8 @@ void loadChannelsCosmics(string sector)
     for(int i=startNodeSearch;i<=(startNodeSearch+3);i++){
       if(i==1 || i==2 || i==5 || i==6 )
        {side="IP";}
-      else{
+      else
+      {
        side="HO";
       } 
         dpGet("N"+i+".ChamberType",chamberName[i-startNodeSearch+1]);

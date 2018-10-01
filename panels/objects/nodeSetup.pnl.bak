@@ -174,7 +174,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E -1 1 3 2 1 E 0.488135593220339 0 0.9222917537625414 -99.7457627118644 -211.9167015050166 1 E 190 240 780 400
+E E -1 1 3 2 1 E 0.4694915254237289 0 0.9222917537625414 -88.20338983050848 -211.9167015050165 1 E 190 240 780 400
 30 0
 "moduleFrame"
 ""
@@ -298,7 +298,8 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
    if(!validationButton.enabled())
     {
    if(chechIfUserHasSelectChamberType())
-      saveButton.enabled(TRUE);
+        saveButton.enabled(TRUE);
+    setValue(\"buttonN\"+node,\"visible\",FALSE);
     }   
         
     setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");

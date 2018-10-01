@@ -298,7 +298,8 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
    if(!validationButton.enabled())
     {
    if(chechIfUserHasSelectChamberType())
-      saveButton.enabled(TRUE);
+        saveButton.enabled(TRUE);
+    setValue(\"buttonN\"+node,\"visible\",FALSE);
     }   
         
     setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
