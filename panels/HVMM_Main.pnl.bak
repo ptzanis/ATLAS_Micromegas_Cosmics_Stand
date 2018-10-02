@@ -1105,7 +1105,7 @@ LANG:1 8 Settings
 13 46
 "createHVSetupDptButton"
 ""
-1 33.25000000000006 46 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 30 30 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 45 0 0 0 0 0
 E E E
@@ -1117,7 +1117,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  31.00000000000006 64.00000000000004 154.0000000000001 98.00000000000001
+0  27.75 48.00000000000004 150.7500000000001 82.00000000000001
 
 T 
 1
@@ -1630,7 +1630,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  839.9999999999994 64.00000000000011 1423 674.9999999999999
+0  839.9999999999995 64.00000000000013 1423 674.9999999999999
 "#uses \"HVMMGeneral.ctl\"
 main()
 {
@@ -1758,7 +1758,7 @@ LANG:1 0
 LANG:1 2 #1
 10 8
 1
-LANG:1 26 Utopia,-1,6,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0 0 2 0 1 7
 1 0
 6 63
@@ -2049,7 +2049,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  305.3661740558289 255 489.3661740558288 299
+0  305.3661740558289 255.0000000000001 489.3661740558288 299.0000000000001
 
 T 
 1
@@ -2060,6 +2060,110 @@ LANG:1 12 PUSH_BUTTON1
                makeDynString(\"$layer:\"+\"L1\",\"$node:\"+\"1\",\"$type:\"+\"1\",\"$mode:\"+\"Validation\"), 40, 240, 0, 1, 1);
 }" 0
  E E E
+13 99
+"acceptanceButton"
+""
+1 308.2773109243699 47.66666666666664 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  306.0000000000002 65.66666666666669 442 99.66666666666669
+
+T 
+1
+LANG:1 21 Set Acceptance Limits
+"main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/setupHV.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+13 100
+"createHVSetupPlusDptButton"
+""
+1 29.875 65.00000000000001 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  27.625 83.00000000000006 150.6250000000001 117
+
+T 
+1
+LANG:1 15 Create HV+ DPTs
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"HVSetupStatus\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"Mode\");
+types[2]=makeDynInt(0,DPEL_STRING);
+elements[3]=makeDynString(\"\",\"Archiving\");
+types[3]=makeDynInt(0,DPEL_BOOL);
+elements[4]=makeDynString(\"\",\"AcceptanceLimits\",\"\");
+types[4]=makeDynInt(0,DPEL_STRUCT);
+elements[5]=makeDynString(\"\",\"\",\"Voltage\");
+types[5]=makeDynInt(0,0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"\",\"downLimit\");
+types[6]=makeDynInt(0,0,0,DPEL_INT);
+elements[7]=makeDynString(\"\",\"\",\"\",\"upLimit\");
+types[7]=makeDynInt(0,0,0,DPEL_INT);
+elements[8]=makeDynString(\"\",\"\",\"Current\");
+types[8]=makeDynInt(0,0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"\",\"downLimit\");
+types[9]=makeDynInt(0,0,0,DPEL_INT);
+elements[10]=makeDynString(\"\",\"\",\"\",\"upLimit\");
+types[10]=makeDynInt(0,0,0,DPEL_INT);
+
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"ALL\",\"HVSetupStatus\");
+   
+      
+
+
+}" 0
+ E E "main()
+{
+    
+  if (searchDPTexistance(\"HVSetupStatus\") == 0) {
+    this.enabled = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+  }
+}
+" 0
+
 0
 LAYER, 7 
 1
@@ -2139,7 +2243,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  437.9999999999999 -2.220446049250313e-16 541 25
+0  437.9999999999999 -2.220446049250313e-16 541.0000000000001 25
 
 T 
 1
@@ -2165,7 +2269,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  547.9999999999999 -2.220446049250313e-16 650.9999999999999 25
+0  547.9999999999999 -2.220446049250313e-16 651 25
 
 T 
 1
@@ -2191,7 +2295,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  657.9999999999999 -2.220446049250313e-16 760.9999999999999 25
+0  657.9999999999999 -2.220446049250313e-16 761 25
 
 T 
 1
@@ -2217,7 +2321,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  327.9999999999999 -8.881784197001252e-16 430.9999999999997 25
+0  327.9999999999999 -6.661338147750939e-16 430.9999999999998 25
 
 T 
 1
@@ -2243,7 +2347,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  787.8749999999999 -8.881784197001252e-16 900.8749999999998 25
+0  787.8749999999999 -6.661338147750939e-16 900.8749999999998 25
 
 T 
 1
@@ -2264,7 +2368,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1300 -8.881784197001252e-16 1413 25
+0  1300 -6.661338147750939e-16 1413 25
 
 T 
 1
@@ -2315,7 +2419,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  154 -8.881784197001252e-16 266.9999999999997 25
+0  154 -6.661338147750939e-16 266.9999999999997 25
 
 T 
 1
