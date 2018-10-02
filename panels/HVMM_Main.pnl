@@ -17,28 +17,15 @@ for(int i=1;i<=8;i++)
 }
 
 bool enabledNode;
-string chamberOfNode;
+string chamberOfNode,mtf;
 
 
 // --------------------------------- ValidationQA Mode ----------------------------------------------------------------------
  
 if(setupMode==\"ValidationQA\")
     {
-  
-  for(int i=1;i<=4;i++)
-  {
-    dpGet(\"N\"+i+\".Enabled\",enabledNode);
-    if(enabledNode)
-    {  
-        dpGet(\"N\"+i+\".ChamberType\",chamberOfNode);
-        RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+i, \"\"); 
-        delay(1);
-        RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+i, \"embModuleN\"+i, makeDynString(\"$node:\"+i,\"$mode:\"+setupMode,\"$type:\"+chamberOfNode,\"$sector:\"+\"0\"));  
-        setValue(\"buttonN\"+i,\"visible\",TRUE);
-        setValue(\"buttonN\"+i,\"text\",\"Node \"+i+\"-\"+chamberOfNode);
-     }
-  }
-  
+
+    
   validationButton.enabled(FALSE);
   cosmicsButton.enabled(TRUE);
   saveButton.enabled(FALSE);
@@ -65,18 +52,36 @@ if(setupMode==\"ValidationQA\")
     
   }
   
+// Node Operation -->  
+  
   for(int i=1;i<=4;i++)
-  { 
+  {     
     addSymbol(myModuleName(), myPanelName(), \"objects/nodeSetup.pnl\", \"Node\"+i,
                makeDynString(\"$node:\"+i,\"$mode:\"+\"Validation\"), x, 240, 0, 1, 1);
     x=x+350;
+   
   }
   
+   for(int i=1;i<=4;i++)
+  {
+     
+       dpGet(\"N\"+i+\".Enabled\",enabledNode);
+    if(enabledNode)
+    {  
+        dpGet(\"N\"+i+\".ChamberType\",chamberOfNode);
+        dpGet(\"N\"+i+\".BatchId\",mtf);
+        RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+i, \"\"); 
+        delay(1);
+        RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+i, \"embModuleN\"+i, makeDynString(\"$node:\"+i,\"$mode:\"+setupMode,\"$type:\"+chamberOfNode,\"$sector:\"+\"0\"));  
+        setValue(\"buttonN\"+i,\"visible\",TRUE);
+        setValue(\"buttonN\"+i,\"text\",\"Node \"+i+\"-\"+chamberOfNode);
+        DebugN(\"Node: \"+i,\" | Chamber Type: \"+chamberOfNode,\" | Mode: \"+setupMode,\" | MTF: \"+mtf,\" --------> READY!\");
+     } 
+  }
+// <---   
   
-  
-  
- }
 
+}//if validation
 
 // --------------------------------- Cosmics Mode ----------------------------------------------------------------------
  
@@ -119,7 +124,35 @@ if(setupMode==\"CosmicsBasic\" || setupMode==\"CosmicsExtra\")
     x=x+350;
   }
   
-      }
+   int counterEnabledCosmics=0;
+  for(int i=1;i<=8;i++)
+   {
+     dpGet(\"N\"+i+\".Enabled\",enabledNode);
+     if(enabledNode)
+       counterEnabledCosmics=counterEnabledCosmics+i;
+
+     if(counterEnabledCosmics==10)
+     {
+       counterEnabledCosmics=0;
+       RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+\"1\", \"\"); 
+       delay(1);
+       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+\"1\", \"embModuleN\"+\"1\", makeDynString(\"$node:\"+\"1\",\"$mode:\"+setupMode,\"$type:\"+\"\",\"$sector:\"+\"1\"));
+       setValue(\"buttonN\"+\"1\",\"visible\",TRUE);
+       setValue(\"buttonN\"+\"1\",\"text\",\"Sector \"+\"1\");
+     }
+     if(counterEnabledCosmics==26)
+     {
+       RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+\"2\", \"\"); 
+       delay(1);
+       RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+\"2\", \"embModuleN\"+\"2\", makeDynString(\"$node:\"+\"2\",\"$mode:\"+setupMode,\"$type:\"+\"\",\"$sector:\"+\"2\"));
+       setValue(\"buttonN\"+\"2\",\"visible\",TRUE);
+       setValue(\"buttonN\"+\"2\",\"text\",\"Sector \"+\"2\");
+     } 
+       
+   }
+   
+   
+}//if cosmics
 
   
   
@@ -629,7 +662,6 @@ LANG:1 4 Save
    }
    
      
-     // TO BE FIXED!!!
      
  if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
    {
@@ -1726,7 +1758,7 @@ LANG:1 0
 LANG:1 2 #1
 10 8
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+LANG:1 26 Utopia,-1,6,5,50,0,0,0,0,0
 0 0 2 0 1 7
 1 0
 6 63
