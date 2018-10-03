@@ -325,6 +325,8 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",FALSE); 
     setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",FALSE);  
     
+    dyn_string clear;
+    dynClear(clear) ;   
     
     dpSet(\"N\"+node+\".Enabled\",FALSE); 
     
@@ -333,7 +335,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     dpSet(\"N\"+node+\".Mode\",\"\");
     dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",\"\"); 
     dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",\"\"); 
-    dpSet(\"N\"+node+\".DpesToPlot\",\"\");
+    dpSet(\"N\"+node+\".DpesToPlot\",clear);
 
   }"
 "main()

@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1918 1070 N "_3DFace" 4
+PANEL,-1 -1 1919 1070 N "_3DFace" 4
 "$mode"
 "$node"
 "$sector"
@@ -13,7 +13,7 @@ PANEL,-1 -1 1918 1070 N "_3DFace" 4
      string type=$type; 
      string sector=$sector; 
      int x=1212;
-     int y=10;
+     int y=54;//10
      string batchID;
      
 
@@ -261,6 +261,286 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 E E -1 1 3 2 1 E 0.953125 0 0.7279411764705882 -24.53125 309.2205882352942 1 E 10 622 330 638
+29 9
+"alarmToggle"
+""
+1 1423 24.99999999999999 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"skin" "enum 3"
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  1423 24.99999999999999 1463 44.99999999999999
+16 ToggleSwitch.ewo
+1
+0 "toggled" "(bool on)"
+"  double downLimitValue,upLimitValue; 
+  if(!on)
+  {
+  parameterText.text(\"[V]\"); 
+  dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimitValue);    
+  dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimitValue);    
+  downLimit.text(\"<\"+downLimitValue);
+  upLimit.text(\">\"+upLimitValue);
+  downLimitField.backCol(\"red\");
+  upLimitField.backCol(\"green\");
+  touchChannels();
+  }
+  
+  if(on)  
+  {
+  parameterText.text(\"[nA]\");
+  dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",downLimitValue);    
+  dpGet(\"ALL.AcceptanceLimits.Current.upLimit\",upLimitValue);    
+  downLimit.text(\"<\"+downLimitValue*1000);
+  upLimit.text(\">\"+upLimitValue*1000); 
+  downLimitField.backCol(\"green\");
+  upLimitField.backCol(\"red\");
+  touchChannels();
+    
+  }
+"
+E2 10
+"PRIMITIVE_TEXT1"
+""
+1 1408 24 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 1408 24 1421 42
+0 2 2 "0s" 0 0 0 192 0 0  1408 24 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 V
+2 11
+"PRIMITIVE_TEXT2"
+""
+1 1468 22 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 1468 22 1477 44
+0 2 2 "0s" 0 0 0 192 0 0  1468 22 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 1 I
+30 12
+"FRAME1"
+""
+1 593 10 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 813 4.999999999999998 0 E 593 10 667 40
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 13
+"downLimitField"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 0.9999999999999996 1491.248677248678 -65.99999999999996 1 E 18 88 150 110
+6 14
+"RECTANGLE2"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Yellow" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 0.9999999999999996 1576.299823633158 -65.99999999999996 1 E 18 88 150 110
+6 15
+"upLimitField"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Green" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 0.9999999999999996 1661.350970017636 -65.99999999999996 1 E 18 88 150 110
+6 16
+"RECTANGLE4"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Grey" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.1464379242157022 0 0.9999999999999996 1481.364117364117 -65.99999999999996 1 E 18 88 150 110
+2 18
+"nodeText"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E "main(mapping event)
+{
+  alarmColor();
+}" 0
+ 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 1272 -25.99999999999998 0 E 30 50 127 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Alarm Mode:
+2 20
+"upLimit"
+""
+1 1688.21164021164 20.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   int upLimitValue;
+  dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimitValue);    
+  this.text(\">\"+upLimitValue);
+
+}" 0
+ E 2 1 3 2 1 E U  0 E 1688.21164021164 20.5 1743 46
+0 2 2 "0s" 0 0 0 192 0 0  1688.21164021164 20.5 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 4 >XXX
+2 21
+"downLimit"
+""
+1 1518.189594356262 20.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   int downLimitValue;
+  dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimitValue);    
+  this.text(\"<\"+downLimitValue);
+
+}" 0
+ E 2 1 3 2 1 E U  0 E 1518.189594356262 20.25 1573 45
+0 2 2 "0s" 0 0 0 192 0 0  1518.189594356262 20.25 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 4 <XXX
+2 22
+"parameterText"
+""
+1 1760.166666666666 19.83333333333334 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 1760.166666666666 19.83333333333334 1790 45
+0 2 2 "0s" 0 0 0 192 0 0  1760.166666666666 19.83333333333334 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
 0
 LAYER, 1 
 1

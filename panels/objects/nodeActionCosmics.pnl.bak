@@ -163,6 +163,28 @@ T
 1
 LANG:1 7 Layer 4
 E E E E
+14 31
+"TEXT_FIELD1"
+""
+1 580 134 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  578 128 682 152
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  string mode=$mode;
+  this.text(mode);
+}" 0
+ E
 0
 LAYER, 1 
 1

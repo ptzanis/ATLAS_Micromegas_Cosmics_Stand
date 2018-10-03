@@ -1187,6 +1187,31 @@ shape layerButton;
     
 }" 0
  E E E
+13 91
+"closeButton"
+""
+1 767.875 553.7 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+91 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  765.875 544 828.125 570
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
 0
 LAYER, 1 
 1

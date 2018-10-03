@@ -474,7 +474,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,29,5,75,0,0,0,0,0
-0  773.9999999999995 867.9999999999993 967.9999999999994 920.333333333333
+0  773.9999999999995 867.9999999999993 967.9999999999995 920.333333333333
 
 T 
 1
@@ -1488,7 +1488,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999998 694 982.9999999999994 728
+0  859.9999999999998 694 982.9999999999995 728
 
 T 
 1
@@ -1529,7 +1529,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  859.9999999999998 733.9999999999997 982.9999999999994 767.9999999999997
+0  859.9999999999998 733.9999999999997 982.9999999999995 767.9999999999997
 
 T 
 1
@@ -2082,7 +2082,7 @@ T
 LANG:1 21 Set Acceptance Limits
 "main(mapping event)
 {
-    ChildPanelOnCentral(\"objects/setupHV.pnl\", \"\", makeDynString(\"\")); 
+    ChildPanelOnCentral(\"objects/setupAcceptanceLimits.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
 13 100
@@ -2125,15 +2125,15 @@ types[4]=makeDynInt(0,DPEL_STRUCT);
 elements[5]=makeDynString(\"\",\"\",\"Voltage\");
 types[5]=makeDynInt(0,0,DPEL_STRUCT);
 elements[6]=makeDynString(\"\",\"\",\"\",\"downLimit\");
-types[6]=makeDynInt(0,0,0,DPEL_INT);
+types[6]=makeDynInt(0,0,0,DPEL_FLOAT);
 elements[7]=makeDynString(\"\",\"\",\"\",\"upLimit\");
-types[7]=makeDynInt(0,0,0,DPEL_INT);
+types[7]=makeDynInt(0,0,0,DPEL_FLOAT);
 elements[8]=makeDynString(\"\",\"\",\"Current\");
 types[8]=makeDynInt(0,0,DPEL_STRUCT);
 elements[9]=makeDynString(\"\",\"\",\"\",\"downLimit\");
-types[9]=makeDynInt(0,0,0,DPEL_INT);
+types[9]=makeDynInt(0,0,0,DPEL_FLOAT);
 elements[10]=makeDynString(\"\",\"\",\"\",\"upLimit\");
-types[10]=makeDynInt(0,0,0,DPEL_INT);
+types[10]=makeDynInt(0,0,0,DPEL_FLOAT);
 
 int x=dpTypeCreate(elements,types);
 
@@ -2243,7 +2243,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  437.9999999999999 -2.220446049250313e-16 541.0000000000001 25
+0  437.9999999999999 -4.440892098500626e-16 541.0000000000001 25
 
 T 
 1
@@ -2269,7 +2269,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  547.9999999999999 -2.220446049250313e-16 651 25
+0  547.9999999999999 -4.440892098500626e-16 651 25
 
 T 
 1
@@ -2295,7 +2295,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  657.9999999999999 -2.220446049250313e-16 761 25
+0  657.9999999999999 -4.440892098500626e-16 761 25
 
 T 
 1

@@ -365,9 +365,10 @@ int searchDPTexistance(string search){
 
 touchChannels() {
   
-  dyn_string mainframe1527=dpNames("*", "FwCaenCrateSY1527");
-  dyn_string psChannels=dpNames(mainframe1527[1]+"/board*/channel*");
-
+//   dyn_string mainframe1527=dpNames("*", "FwCaenCrateSY1527");
+//   dyn_string psChannels=dpNames(mainframe1527[1]+"/board*/channel*");
+    dyn_string psChannels=dpNames("CAEN/*/board*/channel*");
+    
   float temp1, temp2;
   for (int i = 1; i <= dynlen(psChannels); i++) {
       dpGet(psChannels[i] + ".actual.vMon:_original.._value", temp1);

@@ -68,7 +68,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -9.999999999999996 18.00000000000001 0 E 30 50 116 68
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -9.999999999999996 14.00000000000001 0 E 30 50 116 68
 0 2 2 "0s" 0 0 0 192 0 0  30 50 1
 1
 LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
@@ -90,7 +90,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12 178 0 E 30 50 120 68
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12 174 0 E 30 50 120 68
 0 2 2 "0s" 0 0 0 192 0 0  30 50 1
 1
 LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
@@ -544,7 +544,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1 0 1.03448275862069 -7 1.20689655172413 0 E 26.74999999999946 112 39.99999999999999 137
+E E 2 1 3 2 1 E 1 0 1.03448275862069 -7 1.20689655172413 0 E 26.74999999999946 112 40 137
 0 2 2 "0s" 0 0 0 192 0 0  26.74999999999946 112 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -595,12 +595,18 @@ LANG:1 3 Set
 "main(mapping event)
 {
   
-dpSet(\"ALL.AcceptanceLimits.Voltage.downLimit\",voltageDown.text()); 
-dpSet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUp.text()); 
-
-dpSet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDown.text()); 
-dpSet(\"ALL.AcceptanceLimits.Current.upLimit\",currentUp.text());
+  double voltageDownValue,voltageUpValue,currentDownValue,currentUpValue;
   
+getValue(\"voltageDown\",\"text\",voltageDownValue);  
+getValue(\"voltageUp\",\"text\",voltageUpValue);  
+getValue(\"currentDown\",\"text\",currentDownValue);  
+getValue(\"currentUp\",\"text\",currentUpValue); 
+  
+dpSet(\"ALL.AcceptanceLimits.Voltage.downLimit\",voltageDownValue); 
+dpSet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpValue); 
+
+dpSet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownValue*0.001); 
+dpSet(\"ALL.AcceptanceLimits.Current.upLimit\",currentUpValue*0.001);
   
 
 PanelOff();

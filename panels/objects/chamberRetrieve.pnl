@@ -1,19 +1,187 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 138 172 N "_3DFace" 5
+PANEL,-1 -1 442 284 N "_3DFace" 5
 "$layer"
 "$mode"
 "$node"
 "$sector"
 "$type"
-E E E E E 1 -1 -1 0  -1 21
+"main()
+{
+  //alarmColorCosmics();
+ 
+//   alarmColor(mode);
+}" 0
+ E E E E 1 -1 -1 0  -1 21
 ""0  1
 E "     string node=$node; 
      string mode=$mode;  
      string type=$type; 
      string sector=$sector;
-     string layer=$layer;" 0
+     string layer=$layer;
+ 
+
+// ------------------------ General
+     
+ void alarmColor(string modeType)
+{
+  dyn_errClass err;
+  
+  
+
+  string nodeSubs,alias;
+  
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+        
+  string alarmMode,channel;
+  alarmMode=\"iMon\";  
+  
+  dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channel);
+
+  if( !dpExists( \"CAEN/\"+channel+\".actual.\"+alarmMode+\":_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"alarmColorConnect\", 
+            \"CAEN/\"+channel+\".actual.\"+alarmMode+\":_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");
+
+}
+ void alarmColorConnect(string dpSource, float fNewValue)
+{
+     dyn_errClass err;
+ string alarmMode,channel;
+  if(!alarmToggle.checked()) 
+  {alarmMode=\"vMon\";} 
+  if(alarmToggle.checked()) 
+  {alarmMode=\"iMon\";} 
+  
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+ 
+ dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channel);
+
+  if( !dpExists( \"CAEN/\"+channel+\".actual.\"+alarmMode+\":_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"CAEN/\"+channel+\".actual.\"+alarmMode+\":_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");
+ 
+ 
+   
+}
+
+void EP_setBackColorCB(string dpSource, float fNewValue)
+{
+  float downLimit,upLimit;
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  if(!alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimit);
+    
+    if (fNewValue > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+  else if (fNewValue > downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+  else
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+    
+    
+  } 
+  if(alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Current.upLimit\",upLimit);
+    
+    if (fNewValue > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+  else if (fNewValue > downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+  else
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+  }   
+  
+  bool isOn;
+  string channelIsOn;
+   dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channelIsOn);
+  dpGet(\"CAEN/\"+channelIsOn+\".actual.isOn\",isOn);
+  
+   if(!isOn)
+     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
+  
+  
+}  
+
+dyn_string returnAliasAndNode(string objectName)
+{
+  
+ string nodeSubs,alias;
+  objectName=this.name();
+ if(mode==\"ValidationQA\")
+  {
+  if(strlen(objectName)==7)
+    {
+      alias=substr(objectName,0,4); 
+      nodeSubs=substr(objectName,5,2); 
+    }
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }
+  } 
+ if(mode==\"CosmicsBasic\")
+  {
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }
+    if(strlen(objectName)==4)
+    {
+      alias=substr(objectName,0,1); 
+      nodeSubs=substr(objectName,2,2); 
+    }        
+  }
+ if(mode==\"CosmicsExtra\")
+  {
+  if(strlen(objectName)==7)
+    {
+      alias=substr(objectName,0,4); 
+      nodeSubs=substr(objectName,5,2); 
+    }
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }    
+  }  
+ 
+  dyn_string retNodeAlias;
+  dynAppend(retNodeAlias,nodeSubs); 
+  dynAppend(retNodeAlias,alias);   
+  
+return retNodeAlias;
+    
+}
+
+" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -24,6 +192,143 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
+10 51
+"S1"
+""
+1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N "white" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+    if(type==\"SM1\" || type==\"LM1\")  
+        this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+    
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+  this.toolTipText(this.name());
+  
+  
+    alarmColor(mode);
+    
+}" 0
+ E 1 1 3 1 1 E 0.5213797928899054 0 0.628 -30.11303993891272 -12.72238805970153 1 E 4 67.50000000000011 25
+307.5 25
+266.1405375139977 275
+108.5000000000001 275
+ 1
+6 42
+"D1Cosmics"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+     if(type==\"SM1\" || type==\"LM1\") 
+        this.name(\"D\"+\"_N\"+node);
+
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+  this.toolTipText(this.name());   
+
+    alarmColor(mode);  
+}" 0
+ E 1 1 3 2 1 E 1.838247233267068 0 0.6305970149253731 -172.9976302388558 -13.43656716417917 1 E 108.5000000000001 275 153 289
+6 41
+"D2Cosmics"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+      this.name(\"D\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+     this.toolTipText(this.name());
+             alarmColor(mode);
+ }" 0
+ E 1 1 3 2 1 E 0.402132026224817 0 0.5517723880597015 -5.681128256320051 9.709888059701399 1 E 67.5 234 306 250
+10 52
+"S2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+     this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    this.toolTipText(this.name()); 
+            alarmColor(mode);
+}" 0
+ E 1 1 3 2 1 E 0.4012907458352249 0 0.6853174603174605 -5.624341830022502 -21.53965884861421 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
 10 21
 "R8"
 ""
@@ -56,6 +361,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 410 210
 240 210
@@ -95,6 +401,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 7 240 210
 70 210
@@ -136,6 +443,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.11641743021576 -131.6287313432836 1 E 5 393.0000000000003 270
 240.0000000000003 270
@@ -175,6 +483,7 @@ LANG:1 0
     }
   }
   this.toolTipText(this.name());
+      alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 240.0000000000003 270
 87.00000000000023 270
@@ -214,6 +523,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -28.69053224361701 -131.8451492537313 1 E 5 375.9999999999999 330
 240 330
@@ -253,6 +563,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.4007726921372793 0 0.6934701492537312 165.0540884496095 -131.6287313432836 1 E 5 375.9999999999999 330
 240 330
@@ -260,6 +571,37 @@ LANG:1 0
 360 390
 375.9999999999999 330
  1
+6 39
+"D2"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    if(type==\"SM2\" || type==\"LM2\")
+      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+    
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+   this.toolTipText(this.name());  
+          alarmColor(mode); 
+}" 0
+ E 1 1 3 2 1 E 0.3975334073191389 0 0.5517723880597015 -5.370721480186774 9.709888059701399 1 E 67.5 234 306 250
 10 27
 "R5"
 ""
@@ -292,6 +634,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 240 400
 240.5 450
@@ -331,6 +674,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -59.24002139314644 -249.2611940298508 1 E 5 351 450
 240.5 450
@@ -370,6 +714,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
@@ -409,6 +754,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.5428812447277156 0 0.6305970149253731 -62.48599883558109 -249.2611940298508 1 E 5 240 549.5
 334 550
@@ -448,6 +794,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
@@ -487,6 +834,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.5326786588350458 0 0.6305970149253731 196.8444132617724 -249.2611940298508 1 E 5 240 400
 240.5 450
@@ -526,6 +874,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 351 450
 240.5 450
@@ -565,6 +914,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
@@ -604,6 +954,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 240 549.5
 334 550
@@ -643,6 +994,7 @@ LANG:1 0
     }
   }
     this.toolTipText(this.name());
+     alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
@@ -650,36 +1002,6 @@ LANG:1 0
 319 650
 327.0000000000001 601
  1
-6 39
-"D2"
-""
-1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-39 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"main()
-{
-    if(type==\"SM2\" || type==\"LM2\")
-      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
-    
-if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
-  {
-   if(type==\"SM2\" || type==\"LM2\")   
-    {
-      this.visible(TRUE);      
-    }
-  }    
-   this.toolTipText(this.name());   
-}" 0
- E 1 1 3 2 1 E 0.3975334073191389 0 0.5517723880597015 -5.370721480186774 9.709888059701399 1 E 67.5 234 306 250
 6 40
 "D1"
 ""
@@ -708,137 +1030,9 @@ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
     }
   }  
    this.toolTipText(this.name()); 
+        alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 1.860394790294382 0 0.6305970149253731 -175.6758218531913 -12.78731343283593 1 E 108.5000000000001 275 153 289
-6 41
-"D2Cosmics"
-""
-1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-41 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"main()
-{
-   if(type==\"SM2\" || type==\"LM2\") 
-      this.name(\"D\"+\"_N\"+node);
-   
-if(mode==\"CosmicsBasic\") 
-  {
-   if(type==\"SM2\" || type==\"LM2\")   
-    {
-      this.visible(TRUE);      
-    }
-  } 
-     this.toolTipText(this.name());
- }" 0
- E 1 1 3 2 1 E 0.402132026224817 0 0.5517723880597015 -5.681128256320051 9.709888059701399 1 E 67.5 234 306 250
-6 42
-"D1Cosmics"
-""
-1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-42 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"main()
-{
-     if(type==\"SM1\" || type==\"LM1\") 
-        this.name(\"D\"+\"_N\"+node);
-
-if(mode==\"CosmicsBasic\") 
-  {
-   if(type==\"SM1\" || type==\"LM1\")   
-    {
-      this.visible(TRUE);      
-    }
-  } 
-  this.toolTipText(this.name());     
-}" 0
- E 1 1 3 2 1 E 1.838247233267068 0 0.6305970149253731 -172.9976302388558 -13.43656716417917 1 E 108.5000000000001 275 153 289
-10 51
-"S1"
-""
-1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-51 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "1"
-"main()
-{
-    if(type==\"SM1\" || type==\"LM1\")  
-        this.name(\"L\"+layer+\"S\"+\"_N\"+node);
-    
-if(mode==\"CosmicsBasic\") 
-  {
-   if(type==\"SM1\" || type==\"LM1\")   
-    {
-      this.visible(TRUE);      
-    }
-  }    
-  this.toolTipText(this.name());
-}" 0
- E 1 1 3 1 1 E 0.5213797928899054 0 0.628 -30.11303993891272 -12.72238805970153 1 E 4 67.50000000000011 25
-307.5 25
-266.1405375139977 275
-108.5000000000001 275
- 1
-10 52
-"S2"
-""
-1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
- E E
-52 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "1"
-"main()
-{
-   if(type==\"SM2\" || type==\"LM2\") 
-     this.name(\"L\"+layer+\"S\"+\"_N\"+node);
-   
-if(mode==\"CosmicsBasic\") 
-  {
-   if(type==\"SM2\" || type==\"LM2\")   
-    {
-      this.visible(TRUE);      
-    }
-  }   
-    this.toolTipText(this.name()); 
-}" 0
- E 1 1 3 2 1 E 0.4012907458352249 0 0.6853174603174605 -5.624341830022502 -21.53965884861421 1 E 5 17.5 54
-357.5 54
-306.5000000000001 234
-67.5 234
-17.5 54
- 1
 0
 LAYER, 1 
 1
@@ -868,27 +1062,27 @@ LAYER, 7
 1
 LANG:1 0 
 0
-1 8 "SHAPE_GROUP22" -1
+1 13 "SHAPE_GROUP27" -1
 7 0 
-21 22 23 24 25 26 39 
+39 22 21 23 24 26 25 
 
 "layoutAlignment" "AlignNone"
 "" ""
-1 9 "SHAPE_GROUP23" -1
-11 0 
-27 28 29 30 31 32 33 34 35 36 40 
-
-"layoutAlignment" "AlignNone"
-"" ""
-1 10 "SHAPE_GROUP24" -1
+1 14 "SHAPE_GROUP28" -1
 2 0 
 41 52 
 
 "layoutAlignment" "AlignNone"
 "" ""
-1 11 "SHAPE_GROUP25" -1
+1 15 "SHAPE_GROUP29" -1
 2 0 
-42 51 
+51 42 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 16 "SHAPE_GROUP30" -1
+11 0 
+40 36 35 31 30 34 33 28 29 27 32 
 
 "layoutAlignment" "AlignNone"
 "" ""
