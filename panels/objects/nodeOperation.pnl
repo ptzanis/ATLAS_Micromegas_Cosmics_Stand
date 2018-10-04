@@ -62,7 +62,11 @@ E "#uses \"HVMMGeneral.ctl\"
   " 0
  3
 "CBRef" "1"
-"EClose" E
+"EClose" "main()
+{
+  alarmToggle.checked(FALSE);
+}" 0
+
 "dpi" "96"
 0 0 0
 ""

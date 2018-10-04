@@ -122,8 +122,8 @@ void EP_setBackColorCB(string dpSource, float fNewValue)
    dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channelIsOn);
   dpGet(\"CAEN/\"+channelIsOn+\".actual.isOn\",isOn);
   
-   if(!isOn)
-     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
+    if(!isOn)
+      setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
   
   
 }  

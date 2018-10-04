@@ -214,7 +214,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 {
   dyn_dyn_string test;
   
-  dynAppend(test[1],\"1\");  
+  dynAppend(test[1][0],\"1\");  
   
 }" 0
  E

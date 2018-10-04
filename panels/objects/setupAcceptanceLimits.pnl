@@ -421,9 +421,9 @@ void EP_textFieldIn()
 }
 
 
-void EP_textFieldInCB(string dp, int iNewValue)
+void EP_textFieldInCB(string dp, float iNewValue)
 {
-  setValue(\"\", \"text\", iNewValue);
+  setValue(\"\", \"text\", iNewValue*1000);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -476,9 +476,9 @@ void EP_textFieldIn()
 }
 
 
-void EP_textFieldInCB(string dp, int iNewValue)
+void EP_textFieldInCB(string dp, float iNewValue)
 {
-  setValue(\"\", \"text\", iNewValue);
+  setValue(\"\", \"text\", iNewValue*1000);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
