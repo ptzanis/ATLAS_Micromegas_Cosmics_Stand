@@ -196,7 +196,7 @@ EP_setBackColor()
 EP_setBackColorCB(string dpSource, bool boNewValue)
 {
   
-//     touchChannels();
+//      touchChannels();
     
     bool isOn = 0;
         string dpeNEW;
@@ -231,7 +231,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 -14.49999999999999 -2.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 -14.49999999999997 -2.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  "main()
 {
 //       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
@@ -267,8 +267,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -14.49999999999999 1.5 99.5 24.5
-0 2 2 "0s" 0 0 0 65 0 0  -14.49999999999999 1.5 2
+ E 0 1 1 2 1 E U  0 E -14.49999999999997 1.5 99.5 24.5
+0 2 2 "0s" 0 0 0 65 0 0  -14.49999999999997 1.5 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
@@ -292,7 +292,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.7032967032967034 0 1 2.791208791208788 1 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.7032967032967034 0 1 -2.574331329048306 0 1 E 306 18 124 2
 6 6
 "spacer"
 ""
