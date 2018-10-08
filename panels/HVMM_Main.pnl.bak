@@ -230,9 +230,10 @@ bool chechIfUserHasTypeBatch()
 }
 
 " 0
- 3
+ 4
 "CBRef" "1"
 "EClose" E
+"windowIcon" "NTUA Logo/Pyrforos[150].png"
 "dpi" "96"
 0 1 9 9 9 9 1 6
 ""

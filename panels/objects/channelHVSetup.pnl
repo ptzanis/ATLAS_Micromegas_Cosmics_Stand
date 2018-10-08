@@ -1,0 +1,543 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 923 172 N "_3DFace" 2
+"$alias"
+"$node"
+E E E E E 1 -1 -1 0  248.9999999999999 18
+""0  1
+E "string returnHVChannel()
+{  
+  string node=$node;
+  string alias=$alias;  
+  string channel;
+  dpGet(node+\".Mapping.\"+alias+\".Channel\",channel); 
+  channel=\"CAEN/\"+channel; 
+  return channel; 
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 0
+"setButton"
+""
+1 519.02734375 68.16659768211957 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  448 65.9999999999992 571 99.9999999999992
+
+T 
+1
+LANG:1 3 Set
+"main()
+{
+    
+//     touchChannels();
+    
+    dyn_int selected;
+    dyn_dyn_string lines;
+    
+    selected=channelsTable.getSelectedLines();
+    
+    for (int i = 1; i <= dynlen(selected); i++)
+        lines[i] = channelsTable.getLineN(selected[i]);    
+    
+    for (int i = 1; i <= dynlen(lines); i++) {
+        if (textField1.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.v0:_original.._value\", textField1.text);
+        if (textField2.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.i0:_original.._value\", textField2.text);
+        if (textField3.text)  
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.rUp:_original.._value\", textField3.text);
+        if (textField4.text) 
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.rDwn:_original.._value\", textField4.text); 
+        if (textField5.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.tripTime:_original.._value\", textField5.text); 
+        if (textField6.text)
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.vMaxSoftValue:_original.._value\", textField6.text);
+        if (textField7.text) {
+            if (textField7.text == \" \") dpSetAlias(getSystemName() + \"CAEN/\" + lines[i][2] + \".\", \"\");
+            else dpSetAlias(getSystemName() + \"CAEN/\" + lines[i][2] + \".\", textField7.text);
+          }
+    }
+    
+    setInputFocus(myModuleName(), myPanelName(), \"channelsTable\");
+    
+    textField1.text = \"\";
+    textField2.text = \"\";
+    textField3.text = \"\";
+    textField4.text = \"\";
+    textField5.text = \"\";
+    textField6.text = \"\";
+    textField7.text = \"\";
+    
+
+}
+" 0
+ E E E
+14 1
+"textField1"
+""
+1 89.99999999999989 39.11589403973517 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  474 17.99999999999943 537 40.9999999999992
+3 "4d" 4 1 0 1 0 -1  E E E
+14 2
+"textField2"
+""
+1 139.9999999999999 41.11589403973517 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  474 39.99999999999932 537 62.99999999999909
+3 "4.3f" 8 1 0 1 0 -1  E E E
+14 3
+"textField3"
+""
+1 488 -0.8841059602648329 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  748 17.99999999999943 811 40.9999999999992
+3 "0d" 0 1 0 1 0 -1  E E E
+14 4
+"textField4"
+""
+1 467 61.11589403973517 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  748 39.99999999999932 811 62.99999999999909
+3 "0d" 0 1 0 1 0 -1  E E E
+14 5
+"textField5"
+""
+1 515.5 -20.63410596026461 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  604 39.99999999999932 667 62.99999999999909
+3 "0d" 0 1 0 1 0 -1  E E E
+13 6
+"onButton"
+""
+1 87.95312500000011 23.20860927152353 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  266.9999999999998 20.99999999999955 389.9999999999995 54.99999999999955
+
+T 
+1
+LANG:1 10 Channel On
+"main()
+{    
+// touchChannels();    
+ 
+dpSetWait(returnHVChannel() + \".settings.onOff:_original.._value\", 1);
+
+}
+" 0
+ E E E
+13 7
+"offButton"
+""
+1 268.4999999999999 62.99999999999955 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  266.9999999999998 60.9999999999992 389.9999999999995 94.9999999999992
+
+T 
+1
+LANG:1 11 Channel Off
+"main()
+{    
+//   touchChannels();   
+dpSetWait(returnHVChannel() + \".settings.onOff:_original.._value\", 0);
+
+}
+" 0
+ E E E
+14 8
+"textField6"
+""
+1 447 -0.8841059602648329 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  604 17.99999999999943 667 40.9999999999992
+3 "3d" 3 1 0 1 0 -1  E E E
+14 9
+"textField7"
+""
+1 668 76.11589403973517 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
+0  666 73.99999999999909 811 96.99999999999943
+3 "20s" 20 1 0 1 0 -1  E E E
+6 10
+"lockHolder"
+""
+1 280 900 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
+    
+    toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
+              \"textField5\", \"textField6\", \"textField7\");
+    toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
+    
+    if (!onButton.enabled) {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        lockInfoText.text = \"Click the lock to prevent further changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", TRUE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", TRUE);
+        }
+    }
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ "main()
+{
+    
+    dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
+    
+    toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
+              \"textField5\", \"textField6\", \"textField7\");
+    toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
+    
+    if (!onButton.enabled) {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        lockInfoText.text = \"Click the lock to prevent further changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", TRUE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", TRUE);
+        }
+        channelsTable.tableMode(TABLE_SELECT_MULTIPLE);
+    }
+    else {
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
+        lockInfoText.text = \"Click the lock to make changes.\";
+        for (int i = 1; i <= dynlen(toLockEdit); i++) {
+            setValue(toLockEdit[i], \"enabled\", FALSE);
+        }
+        for (int i = 1; i <= dynlen(toLockEnabled); i++) {
+            setValue(toLockEnabled[i], \"enabled\", FALSE);
+        }
+        channelsTable.tableMode(TABLE_SELECT_NOTHING);
+    }
+    
+    setInputFocus (myModuleName(), myPanelName(), \"channelsTable\");
+}
+" 0
+ 0 1 1 2 1 E 1 0 1 -31.00000000000011 -785.0000000000005 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
+2 11
+"PRIMITIVE_TEXT7"
+""
+1 428 20 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 426 20 474 35
+0 2 2 "0s" 0 0 0 194 0 0  474 20 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8 Voltage:
+2 12
+"PRIMITIVE_TEXT8"
+""
+1 428 42 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 412 42 474 57
+0 2 2 "0s" 0 0 0 194 0 0  474 42 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Imax (uA):
+2 13
+"PRIMITIVE_TEXT9"
+""
+1 558 20 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 568 20 604 35
+0 2 2 "0s" 0 0 0 194 0 0  604 20 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Vmax:
+2 14
+"PRIMITIVE_TEXT10"
+""
+1 702 20 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 689 20 748 35
+0 2 2 "0s" 0 0 0 194 0 0  748 20 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8 Ramp Up:
+2 15
+"PRIMITIVE_TEXT11"
+""
+1 702 42 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 671 42 748 57
+0 2 2 "0s" 0 0 0 194 0 0  748 42 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Ramp Down:
+2 16
+"PRIMITIVE_TEXT12"
+""
+1 558 41.5 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 542 41.5 604 57
+0 2 2 "0s" 0 0 0 194 0 0  604 41.5 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Trip Time:
+2 17
+"PRIMITIVE_TEXT13"
+""
+1 570.8046875 76 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 570.8046875 76 666 96
+0 2 2 "0s" 0 0 0 66 0 0  570.8046875 76 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 13 Channel Name:
+2 18
+"lockInfoText"
+""
+1 287.0000332405795 123 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    this.text(\"Click the lock to make changes.\");
+}" 0
+ E 0 1 1 2 1 E U  0 E 288.9999999999999 123 634 143
+0 2 2 "0s" 0 0 0 64 0 0  288.9999999999999 123 1
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 33   Click the lock to make changes.
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

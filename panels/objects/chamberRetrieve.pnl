@@ -12,6 +12,7 @@ PANEL,-1 -1 442 284 N "_3DFace" 5
   //alarmColorCosmics();
  
 //   alarmColor(mode);
+
 }" 0
  E E E E 1 -1 -1 0  -1 21
 ""0  1
@@ -41,9 +42,8 @@ E "     string node=$node;
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
-
   dpConnect(\"EP_setBackColorCB\", 
-            \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\");
+            \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
 
   err = getLastError();
   if (dynlen(err) > 0)
@@ -765,7 +765,15 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
+ "main(mapping event)
+{   
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+ ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias)); 
+}" 0
+ 1 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
 241.5 650
 319 650
@@ -1002,6 +1010,44 @@ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
         alarmColor(mode);
 }" 0
  E 1 1 3 2 1 E 1.860394790294382 0 0.6305970149253731 -175.6758218531913 -12.78731343283593 1 E 108.5000000000001 275 153 289
+2 53
+"PRIMITIVE_TEXT1"
+""
+1 40.38526943838201 -10 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string type;
+  if(mode==\"ValidationQA\")
+  {this.visible(TRUE);}  
+  if(layer==1)
+    type=\"Eout\";
+  if(layer==2)
+    type=\"Ein\";
+  if(layer==3)
+    type=\"Sin\";
+  if(layer==4)
+    type=\"Sout\";
+  
+  this.text(\"Layer \"+layer+\"(\"+type+\")\");
+}" 0
+ E 2 1 3 2 1 E U  0 E 40.38526943838201 -10 117.3144724605828 5
+0 2 2 "0s" 0 0 0 192 0 0  40.38526943838201 -10 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Layer X(eta)
 0
 LAYER, 1 
 1
@@ -1046,12 +1092,6 @@ LANG:1 0
 1 15 "SHAPE_GROUP29" -1
 2 0 
 51 42 
-
-"layoutAlignment" "AlignNone"
-"" ""
-1 16 "SHAPE_GROUP30" -1
-11 0 
-40 36 35 31 30 34 33 28 29 27 32 
 
 "layoutAlignment" "AlignNone"
 "" ""

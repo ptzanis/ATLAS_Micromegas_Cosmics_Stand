@@ -19,9 +19,12 @@ PANEL,-1 -1 1919 1070 N "_3DFace" 4
 
   RootPanelOnModule(\"objects/chamberHolder.pnl\", \"channels\", \"channelsModule\"+\"_N\"+node, makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));         
   if(mode==\"ValidationQA\")
-     {
-   //nodeActionsValidation
-   
+     {   
+    dpGet(\"N\"+node+\".BatchId\",batchID);
+   addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionValidation.pnl\", \"nodeAction\"+node+\"_\"+type,
+               makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1);   
+    
+       
      }    
      
      
@@ -560,7 +563,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  1790 15.00000000000001 1872 52.00000000000001
+0  1790 15 1872 51.99999999999999
 
 T 
 1
