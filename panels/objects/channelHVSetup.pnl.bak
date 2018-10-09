@@ -1,13 +1,17 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 254 201 N "WF_PanelBackground" 2
+PANEL,-1 -1 254 201 N "WF_PanelBackground" 3
 "$alias"
 "$node"
+"$y"
 "main()
 {
   string node=$node;
   string alias=$alias; 
+  string y=$y;
+  
+ this.size(254,y);
   
   
 strreplace(node,\"N\",\"\");
@@ -765,7 +769,7 @@ LANG:1 5 Close
 2 31
 "PRIMITIVE_TEXT13"
 ""
-1 15 1 E E E 1 E 1 E N "black" E N {247,247,247} E E
+1 12 2 E E E 1 E 1 E N "black" E N {247,247,247} E E
  E E
 31 0 0 0 0 0
 E E E
@@ -777,8 +781,8 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 5 1 61 14
-0 2 2 "0s" 0 0 0 194 0 0  61 1 1
+E E 0 1 1 2 1 E U  0 E 2 2 58 15
+0 2 2 "0s" 0 0 0 194 0 0  58 2 1
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -786,7 +790,7 @@ LANG:1 9 Hardware:
 14 32
 "TEXT_FIELD1"
 ""
-1 63 6.409090909090908 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 59.99999999999999 -1 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 32 0 0 0 0 0
 E E E
@@ -798,8 +802,8 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  61 1 252 18
-3 "0s" 0 0 0 0 0 -1  E "main()
+0  57.99999999999999 1 252 18
+2 "0s" 0 0 0 0 0 -1  E "main()
 {
     string node=$node;
   string alias=$alias; 
