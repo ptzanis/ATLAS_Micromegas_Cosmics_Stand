@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 704 594 N "_3DFace" 7
+PANEL,-1 -1 704 827 N "_3DFace" 7
 "$batchID"
 "$mode"
 "$node"
@@ -80,6 +80,367 @@ LANG:1 0
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
 LANG:1 12 XMX, BatchID
+30 1
+"hvActionFrame"
+""
+1 0 583 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 0.6642335766423357 0 201.7518248175183 0 E 0 583 701 721
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 10 HV Actions
+13 2
+"offButton"
+""
+1 80 650 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  78 643 171.65625 669
+
+T 
+1
+LANG:1 3 OFF
+"main(mapping event)
+{
+  
+  string node=$node;
+  string sector=$sector;
+  string channel;
+  dyn_string stripChannels,driftChannels,channelSetOff;
+
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels);
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels);
+  
+  dynAppend(channelSetOff,stripChannels);
+  dynAppend(channelSetOff,driftChannels);
+  
+//   DebugN(channelSetOff);
+  
+  for(int i=1;i<=dynlen(channelSetOff);i++)
+  {
+    dpGet(\"N\"+node+\".Mapping.\"+channelSetOff[i]+\".Channel\",channel);
+     dpSetWait(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 0);    
+//   dpSetWait(\"CAEN/\"+channel+\".actual.status:_original.._value\", 0);    
+  }
+  
+//   DebugN(\"Sector: \"+sector+\", Node: \"+node+\" OFF \"+\"!\");
+  touchChannels();
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  
+  this.name(this.name()+\"_N\"+node);
+  this.toolTipText(this.name());
+  
+  
+  
+}" 0
+
+13 3
+"onButton"
+""
+1 -18.69474085365823 625 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  78.00000000000023 616 171.9218750000002 642
+
+T 
+1
+LANG:1 2 ON
+"main(mapping event)
+{
+  
+  string node=$node;
+  string sector=$sector;
+  string channel;
+  dyn_string stripChannels,driftChannels,channelSetOn;
+
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels);
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels);
+  
+  dynAppend(channelSetOn,stripChannels);
+  dynAppend(channelSetOn,driftChannels);
+  
+//   DebugN(channelSetOn);
+  
+  for(int i=1;i<=dynlen(channelSetOn);i++)
+  {
+    dpGet(\"N\"+node+\".Mapping.\"+channelSetOn[i]+\".Channel\",channel);
+     dpSetWait(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1); 
+//   dpSetWait(\"CAEN/\"+channel+\".actual.status:_original.._value\", 1);       
+  }
+  
+//   DebugN(\"Sector: \"+sector+\", Node: \"+node+\" ON \"+\"!\");
+  touchChannels();
+  
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  
+  this.name(this.name()+\"_N\"+node);
+  this.toolTipText(this.name());
+  
+  
+  
+}" 0
+
+22 4
+"selectionComboBox"
+""
+1 213.0000000000001 620 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  211.0000000000002 611.8 365.0000000000002 662.3
+6
+1
+LANG:1 6 Module
+
+0
+1
+LANG:1 7 Layer 1
+
+0
+1
+LANG:1 7 Layer 2
+
+0
+1
+LANG:1 7 Layer 3
+
+0
+1
+LANG:1 7 Layer 4
+
+0
+1
+LANG:1 11 Combination
+
+0
+
+"main()
+{
+  string node=$node;
+  
+  this.name(this.name()+\"_N\"+node);
+  this.toolTipText(this.name());
+  
+  
+  
+}" 0
+
+E
+E
+ 0 0
+22 5
+"COMBO_BOX1"
+""
+1 372.0000000000002 625.2625 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  370.0000000000002 612.1625 445.0000000000002 662.4125
+11
+1
+LANG:1 0 
+
+0
+1
+LANG:1 4 -100
+
+0
+1
+LANG:1 3 -50
+
+0
+1
+LANG:1 3 -20
+
+0
+1
+LANG:1 3 -10
+
+0
+1
+LANG:1 2 -5
+
+0
+1
+LANG:1 2 +5
+
+0
+1
+LANG:1 3 +10
+
+0
+1
+LANG:1 3 +20
+
+0
+1
+LANG:1 3 +50
+
+0
+1
+LANG:1 4 +100
+
+0
+
+E
+E
+E
+ 0 0
+14 6
+"TEXT_FIELD4"
+""
+1 452.0000000000002 624.2785714285715 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  450.0000000000002 612.175 538.0000000000002 662.3
+3 "3s" 3 0 0 1 0 -1  E E E
+13 7
+"PUSH_BUTTON3"
+""
+1 394.5000000000002 702.2766666666668 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  583.8043478260872 611.9166666666667 631.8043478260872 662.9166666666667
+
+P 
+4294967295
+"pictures/apply_22.png"
+1
+LANG:1 12 PUSH_BUTTON3
+E E E E
+30 8
+"FRAME1"
+""
+1 10 603 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 60.00000000000023 -5 0 E 10 603 131 681
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Module
+30 9
+"FRAME2"
+""
+1 10 603 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 3.741666666666667 0 1 163.5833333333336 -5 0 E 10 603 131 681
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Set Voltage
+2 10
+"parameterText"
+""
+1 538.1666666666663 621.8333333333334 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 538.1666666666663 621.8333333333334 575.0000000000002 653
+0 2 2 "0s" 0 0 0 192 0 0  538.1666666666663 621.8333333333334 1
+1
+LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
 0
 LAYER, 1 
 1

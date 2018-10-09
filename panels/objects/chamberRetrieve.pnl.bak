@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 442 284 N "_3DFace" 5
+PANEL,-1 -1 160 179 N "_3DFace" 5
 "$layer"
 "$mode"
 "$node"
@@ -210,7 +210,11 @@ if(mode==\"CosmicsBasic\")
     alarmColor(mode);
     
 }" 0
- E 1 1 3 1 1 E 0.5213797928899054 0 0.628 -30.11303993891272 -12.72238805970153 1 E 4 67.50000000000011 25
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 1 1 E 0.5213797928899054 0 0.628 -30.11303993891279 -12.72238805970154 1 E 4 67.50000000000011 25
 307.5 25
 266.1405375139977 275
 108.5000000000001 275
@@ -250,7 +254,88 @@ if(mode==\"CosmicsBasic\")
 
     alarmColor(mode);  
 }" 0
- E 1 1 3 2 1 E 1.838247233267068 0 0.6305970149253731 -172.9976302388558 -13.43656716417917 1 E 108.5000000000001 275 153 289
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 1.838247233267068 0 0.6305970149253731 -172.9976302388559 -13.43656716417918 1 E 108.5000000000001 275 153 289
+2 80
+"S1_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM1\" || type==\"LM1\") 
+     this.name(\"L\"+layer+\"S\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+}
+
+" 0
+ E 2 1 3 2 1 E 1 0 1.088499358700291 17.86836547665263 44.77388362803354 0 E 35 13 64.71988644909263 26.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 81
+"D1_Cosmics_Text"
+""
+1 62.49325228626704 157.6641791044775 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM1\" || type==\"LM1\") 
+    this.name(\"L\"+layer+\"D\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,2,1)); 
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 62.49325228626704 157.6641791044775 92.21313873535969 171.1194029850746
+0 2 2 "0s" 0 0 0 192 0 0  62.49325228626704 157.6641791044775 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
 6 41
 "D2Cosmics"
 ""
@@ -285,7 +370,11 @@ if(mode==\"CosmicsBasic\")
      this.toolTipText(this.name());
              alarmColor(mode);
  }" 0
- E 1 1 3 2 1 E 0.402132026224817 0 0.5517723880597015 -5.681128256320051 9.709888059701399 1 E 67.5 234 306 250
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.402132026224817 0 0.5517723880597015 -5.681128256320051 9.709888059701399 1 E 67.5 234 306 250
 10 52
 "S2"
 ""
@@ -320,12 +409,93 @@ if(mode==\"CosmicsBasic\")
     this.toolTipText(this.name()); 
             alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4012907458352249 0 0.6853174603174605 -5.624341830022502 -21.53965884861421 1 E 5 17.5 54
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4012907458352249 0 0.6853174603174605 -5.624341830022502 -21.53965884861421 1 E 5 17.5 54
 357.5 54
 306.5000000000001 234
 67.5 234
 17.5 54
  1
+2 78
+"S2_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+     this.name(\"L\"+layer+\"S\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+}
+
+" 0
+ E 2 1 3 2 1 E 1 0 1.088499358700291 19.86864233666255 47.77388362803357 0 E 35 13 64.71988644909263 26.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 79
+"D2_Cosmics_Text"
+""
+1 63.71085375325285 136.8134328358207 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+    this.name(\"L\"+layer+\"D\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,2,1)); 
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 63.71085375325285 136.8134328358207 93.4307402023455 150.2686567164179
+0 2 2 "0s" 0 0 0 192 0 0  63.71085375325285 136.8134328358207 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
 10 21
 "R8"
 ""
@@ -364,7 +534,11 @@ LANG:1 0
     this.toolTipText(this.name());
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 410 210
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 410 210
 240 210
 240.0000000000003 270
 393.0000000000003 270
@@ -408,7 +582,11 @@ LANG:1 0
     this.toolTipText(this.name());
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 7 240 210
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 7 240 210
 70 210
 87.00000000000023 270
 240.0000000000003 270
@@ -454,7 +632,11 @@ LANG:1 0
     this.toolTipText(this.name());
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.11641743021576 -131.6287313432836 1 E 5 393.0000000000003 270
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.11641743021576 -131.6287313432836 1 E 5 393.0000000000003 270
 240.0000000000003 270
 239 330
 373.9999999999999 330
@@ -498,7 +680,11 @@ LANG:1 0
   this.toolTipText(this.name());
       alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 240.0000000000003 270
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -27.3168037762845 -131.6287313432836 1 E 5 240.0000000000003 270
 87.00000000000023 270
 104.0000000000001 330
 239 330
@@ -542,7 +728,11 @@ LANG:1 0
     this.toolTipText(this.name());
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -28.69053224361701 -131.8451492537313 1 E 5 375.9999999999999 330
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.4007726921372793 0 0.6934701492537312 -28.69053224361701 -131.8451492537313 1 E 5 375.9999999999999 330
 240 330
 240 390
 360 390
@@ -586,7 +776,11 @@ LANG:1 0
     this.toolTipText(this.name());
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.4007726921372793 0 0.6934701492537312 165.0540884496095 -131.6287313432836 1 E 5 375.9999999999999 330
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E -0.4007726921372793 0 0.6934701492537312 165.0540884496095 -131.6287313432836 1 E 5 375.9999999999999 330
 240 330
 240 390
 360 390
@@ -626,7 +820,313 @@ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
    this.toolTipText(this.name());  
           alarmColor(mode); 
 }" 0
- E 1 1 3 2 1 E 0.3975334073191389 0 0.5517723880597015 -5.370721480186774 9.709888059701399 1 E 67.5 234 306 250
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 1 1 3 2 1 E 0.3975334073191389 0 0.5517723880597015 -5.370721480186774 9.709888059701399 1 E 67.5 234 306 250
+2 68
+"L8_Text"
+""
+1 35 29.50448909790495 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35 29.50448909790495 64.71988644909266 42.9597129785021
+0 2 2 "0s" 0 0 0 192 0 0  35 29.50448909790495 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 69
+"PRIMITIVE_TEXT3"
+""
+1 58.00869911211595 138.5111940298506 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    if(type==\"SM2\" || type==\"LM2\")
+      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+    
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3));  
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 58.00869911211595 138.5111940298506 87.7285855612086 151.9664179104477
+0 2 2 "0s" 0 0 0 192 0 0  58.00869911211595 138.5111940298506 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 70
+"L7_Text"
+""
+1 35 73 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35 73 64.71988644909266 86.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  35 73 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 71
+"L6_Text"
+""
+1 35 109 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35 109 64.71988644909266 122.4552238805971
+0 2 2 "0s" 0 0 0 192 0 0  35 109 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 72
+"R8_Text"
+""
+1 82 29.50448909790495 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 82 29.50448909790495 111.7198864490927 42.9597129785021
+0 2 2 "0s" 0 0 0 192 0 0  82 29.50448909790495 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 73
+"R7_Text"
+""
+1 82 73 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 82 73 111.7198864490927 86.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  82 73 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 74
+"R6_Text"
+""
+1 82 109 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 82 109 111.7198864490927 122.4552238805971
+0 2 2 "0s" 0 0 0 192 0 0  82 109 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
 10 27
 "R5"
 ""
@@ -665,7 +1165,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 240 400
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 240 400
 240.5 450
 351 450
 360 400
@@ -709,7 +1213,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -59.24002139314644 -249.2611940298508 1 E 5 351 450
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -59.24002139314644 -249.2611940298508 1 E 5 351 450
 240.5 450
 240.4999999999999 500
 341.9999999999999 500
@@ -753,7 +1261,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 341.9999999999999 500
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
 240 549.5
 334 550
@@ -797,7 +1309,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 0.5428812447277156 0 0.6305970149253731 -62.48599883558109 -249.2611940298508 1 E 5 240 549.5
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5428812447277156 0 0.6305970149253731 -62.48599883558109 -249.2611940298508 1 E 5 240 549.5
 334 550
 327.0000000000001 601
 242.0000000000001 601
@@ -847,7 +1363,7 @@ LANG:1 0
 {
     hvChannelSetup(this.name(),43);
 }" 0
- 1 1 3 2 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
+ 0 2 2 1 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
 241.5 650
 319 650
@@ -891,7 +1407,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.5326786588350458 0 0.6305970149253731 196.8444132617724 -249.2611940298508 1 E 5 240 400
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5326786588350458 0 0.6305970149253731 196.8444132617724 -249.2611940298508 1 E 5 240 400
 240.5 450
 351 450
 360 400
@@ -935,7 +1455,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 351 450
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 351 450
 240.5 450
 240.4999999999999 500
 341.9999999999999 500
@@ -979,7 +1503,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 341.9999999999999 500
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 341.9999999999999 500
 240.4999999999999 500
 240 549.5
 334 550
@@ -1023,7 +1551,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 240 549.5
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 240 549.5
 334 550
 327.0000000000001 601
 242.0000000000001 601
@@ -1067,7 +1599,11 @@ LANG:1 0
     this.toolTipText(this.name());
      alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 327.0000000000001 601
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5190415637260796 0 0.6305970149253731 193.3485376398482 -249.2611940298508 1 E 5 327.0000000000001 601
 242.0000000000001 601
 241.5 650
 319 650
@@ -1107,7 +1643,479 @@ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\")
    this.toolTipText(this.name()); 
         alarmColor(mode);
 }" 0
- E 1 1 3 2 1 E 1.860394790294382 0 0.6305970149253731 -175.6758218531913 -12.78731343283593 1 E 108.5000000000001 275 153 289
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 1.860394790294382 0 0.6305970149253731 -173.6758218531913 -12.78731343283593 1 E 108.5000000000001 275 153 289
+2 55
+"L5_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E 1 0 1.088499358700291 0 -0.9734929457032024 0 E 35 13 64.71988644909263 26.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 56
+"R5_Text"
+""
+1 81.86836547665263 13.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 81.86836547665263 13.2518656716417 111.5882519257453 26.70708955223884
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 13.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 59
+"L4_Text"
+""
+1 35 43 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35 43 64.71988644909263 56.45522388059715
+0 2 2 "0s" 0 0 0 192 0 0  35 43 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 60
+"R4_Text"
+""
+1 81.86836547665263 43.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 81.86836547665263 43.2518656716417 111.5882519257453 56.70708955223884
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 43.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 61
+"L3_Text"
+""
+1 35.00869911211623 74.52425373134315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35.00869911211623 74.52425373134315 64.72858556120886 87.9794776119403
+0 2 2 "0s" 0 0 0 192 0 0  35.00869911211623 74.52425373134315 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 62
+"R3_Text"
+""
+1 81.86836547665263 75.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 81.86836547665263 75.2518656716417 111.5882519257453 88.70708955223884
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 75.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 63
+"L2_Text"
+""
+1 34.80549989907061 104.9794776119402 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 34.80549989907061 104.9794776119402 64.52538634816324 118.4347014925373
+0 2 2 "0s" 0 0 0 192 0 0  34.80549989907061 104.9794776119402 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 64
+"R2_Text"
+""
+1 82 105 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 82 105 111.7198864490927 118.4552238805971
+0 2 2 "0s" 0 0 0 192 0 0  82 105 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 65
+"L1_Text"
+""
+1 35.35377987569906 137.9999999999999 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 35.35377987569906 137.9999999999999 65.07366632479169 151.455223880597
+0 2 2 "0s" 0 0 0 192 0 0  35.35377987569906 137.9999999999999 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 66
+"R1_Text"
+""
+1 82 138 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ E 2 1 3 2 1 E U  0 E 82 138 111.7198864490927 151.4552238805971
+0 2 2 "0s" 0 0 0 192 0 0  82 138 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 67
+"D1_Text"
+""
+1 60.71085375325289 160.3134328358207 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if(type==\"SM1\" || type==\"LM1\")
+    this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+  
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }  
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+
+}" 0
+ E 2 1 3 2 1 E U  0 E 60.71085375325289 160.3134328358207 90.43074020234553 173.7686567164179
+0 2 2 "0s" 0 0 0 192 0 0  60.71085375325289 160.3134328358207 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
 2 53
 "PRIMITIVE_TEXT1"
 ""
@@ -1175,21 +2183,27 @@ LAYER, 7
 1
 LANG:1 0 
 0
-1 17 "SHAPE_GROUP31" -1
-7 0 
-39 26 25 23 24 22 21 
+1 23 "SHAPE_GROUP38" -1
+14 0 
+22 21 24 23 25 26 39 71 70 73 68 72 74 69 
 
 "layoutAlignment" "AlignNone"
 "" ""
-1 18 "SHAPE_GROUP32" -1
-2 0 
-41 52 
+1 29 "SHAPE_GROUP48" 30
+4 0 
+79 41 52 78 
 
 "layoutAlignment" "AlignNone"
 "" ""
-1 19 "SHAPE_GROUP33" -1
-2 0 
-51 42 
+1 30 "SHAPE_GROUP49" -1
+0 1 
+
+29 
+"layoutAlignment" "AlignNone"
+"" ""
+1 31 "SHAPE_GROUP50" -1
+4 0 
+81 42 51 80 
 
 "layoutAlignment" "AlignNone"
 "" ""
