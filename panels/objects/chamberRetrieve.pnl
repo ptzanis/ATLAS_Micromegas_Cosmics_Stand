@@ -2138,7 +2138,17 @@ LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 T 
 1
 LANG:1 12 Layer X(eta)
-E E E "main()
+"main(mapping event)
+{
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer\"+layer+\"_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type));
+}" 0
+ E E "main()
 {
      string node=$node; 
      string mode=$mode;  
