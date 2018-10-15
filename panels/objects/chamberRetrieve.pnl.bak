@@ -2146,7 +2146,7 @@ LANG:1 12 Layer X(eta)
      string sector=$sector;
      string layer=$layer;
      
-       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer\"+layer+\"_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode));
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer\"+layer+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type));
 }" 0
  E E "main()
 {
@@ -2180,7 +2180,6 @@ if(type==\"SM2\" || type==\"LM2\")
   {
 //   this.position(x,y);
     setValue(this.name(),\"position\",x,y);
-    DebugN(x,y);  
   }  
   
 }" 0
