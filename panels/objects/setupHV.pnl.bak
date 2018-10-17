@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 841 578 N "_3DFace" 0
+PANEL,-1 -1 841 592 N "_3DFace" 0
 E E E E E 1 -1 -1 0  -11 0
 ""0  1
 E "void readyToSet()
@@ -1185,6 +1185,31 @@ shape layerButton;
     readyToSet();
     
     
+}" 0
+ E E E
+13 91
+"closeButton"
+""
+1 771 572 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+91 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  769 562.3 831.25 588.3
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
 }" 0
  E E E
 0

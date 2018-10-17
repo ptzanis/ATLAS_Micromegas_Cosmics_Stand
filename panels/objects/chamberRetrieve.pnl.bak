@@ -2121,8 +2121,18 @@ LANG:1 4 L1L1
 13 82
 "layerButton"
 ""
-1 26 171 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
- E E
+1 26 171 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ "main(mapping event)
+{
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer \"+layer+\" | Node \"+node+\" (Setup)\", makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type,\"$x:\"+550,\"$y:\"+30));
+}" 0
+ E
 82 0 0 0 0 0
 E E E
 8
@@ -2146,7 +2156,7 @@ LANG:1 12 Layer X(eta)
      string sector=$sector;
      string layer=$layer;
      
-       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer\"+layer+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type));
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer \"+layer+\" | Node \"+node+\" (Display)\", makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type,\"$x:\"+20,\"$y:\"+30));
 }" 0
  E E "main()
 {

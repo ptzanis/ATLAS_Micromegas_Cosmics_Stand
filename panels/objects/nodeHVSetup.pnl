@@ -1,0 +1,357 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 552 593 N "_3DFace" 4
+"$layer"
+"$mode"
+"$node"
+"$type"
+E E E E E 1 -1 -1 0  5.329070518200751e-15 -3.000000000000014
+""0  1
+E "string node=$node; 
+string mode=$mode;  
+string type=$type; 
+string layer=$layer;
+
+void refreshConfigurationTable(bool nodeMode,bool layerMode) {
+      
+   channelsTable.tableMode(TABLE_SELECT_NOTHING);
+   channelsTable.font(\"Utopia\"); 
+
+    dyn_string dpes;
+    float tempi0, tempv0, temprUp, temprDwn, temptripTime, VMax;
+    string alias;
+    bool isOn;
+    
+    dyn_string allChannels,aliasAllChannels;
+    dynAppend(allChannels,channelsReturn(nodeMode,layerMode));
+    dynAppend(aliasAllChannels,aliasAllChannelsReturn(nodeMode,layerMode));
+
+    
+    for (int i = 1; i <= dynlen(allChannels); i++){
+        dpGet(allChannels[i] + \".readBackSettings.i0:_original.._value\", tempi0);
+        dpGet(allChannels[i] + \".readBackSettings.v0:_original.._value\", tempv0);
+        dpGet(allChannels[i] + \".readBackSettings.rUp:_original.._value\", temprUp);
+        dpGet(allChannels[i] + \".readBackSettings.rDwn:_original.._value\", temprDwn);
+        dpGet(allChannels[i] + \".readBackSettings.tripTime:_original.._value\", temptripTime);
+        alias =aliasAllChannels[i];
+        dpGet(allChannels[i] + \".readBackSettings.vMaxSoftValue:_original.._value\", VMax);
+        channelsTable.appendLine(\"Alias\", alias, \"Channels\", substr(allChannels[i],13),
+                                 \"v0\", tempv0, \"i0\", tempi0, \"rUp\", temprUp,
+                                 \"rDwn\", temprDwn, \"trip\", temptripTime, \"VMax\", VMax);
+        dpGet(allChannels[i] + \".actual.isOn:_original.._value\", isOn);
+        if (isOn) {
+            channelsTable.cellBackColRC(i-1, \"Alias\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"Channels\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"v0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"i0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"rUp\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"rDwn\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"trip\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"VMax\", \"FwStateOKPhysics\");
+        }
+    }
+    
+    channelsTable.tableMode(TABLE_SELECT_MULTIPLE);
+    channelsTable.selectByClick(TABLE_SELECT_LINE);
+    
+}
+
+dyn_string channelsReturn(bool nodeMode,bool layerMode)
+{  
+    dyn_string allChannels,aliasAllChannels;
+    dyn_string stripChannels,driftChannels;
+    string channel;
+    
+    // Node Mode 
+    if(nodeMode)
+    {    
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels); 
+    dynAppend(aliasAllChannels,stripChannels);  
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels); 
+    dynAppend(aliasAllChannels,driftChannels);   
+    
+    for(int i=1; i<=dynlen(aliasAllChannels); i++)
+    {
+     dpGet(\"N\"+node+\".Mapping.\"+aliasAllChannels[i]+\".Channel\",channel);
+     channel=getSystemName()+\"CAEN/\"+channel;
+     dynAppend(allChannels,channel);
+    }    
+    
+    }//node mode
+    
+    // Layer Mode 
+    if(layerMode)
+    { 
+
+    allChannels=dpNames(\"N\"+node+\".Mapping.L\"+layer+\"*.Channel\",\"HVSetup\");  
+
+    
+
+    /*
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels);
+    dynAppend(aliasAllChannels,stripChannels);  
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels); 
+    dynAppend(aliasAllChannels,driftChannels);   
+    
+    for(int i=1; i<=dynlen(aliasAllChannels); i++)
+    {
+     dpGet(\"N\"+node+\".Mapping.\"+aliasAllChannels[i]+\".Channel\",channel);
+     channel=getSystemName()+\"CAEN/\"+channel;
+     dynAppend(allChannels,channel);
+    }    
+    */
+    
+    }//Layer mode
+      
+   return allChannels;      
+}
+
+dyn_string aliasAllChannelsReturn(bool nodeMode,bool layerMode)
+{  
+    dyn_string aliasAllChannels;
+    dyn_string stripChannels,driftChannels;
+
+    
+    //  Node Mode 
+    if(nodeMode)
+    {    
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels); 
+    dynAppend(aliasAllChannels,stripChannels);  
+    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels); 
+    dynAppend(aliasAllChannels,driftChannels);   
+    
+    }//node mode
+      
+    if(layerMode)
+    {
+
+    }    
+    
+   return aliasAllChannels;      
+}
+/*
+dyn_string channelLayerAliasReturn(string node,string mode,string type,string layer)
+{
+  dyn_string channelAlias,channel;
+  int countChannel;
+  if(mode==\"ValidationQA\")
+     {
+       
+     if(type==\"SM1\"||\"LM1\")
+       {
+         for(int i=1;i<=5;i++)
+         {
+              channelAlias[countChannel]=\"L\"+layer+\"L\"+i;
+              countChannel++;
+              channelAlias[countChannel]=\"L\"+layer+\"L\"+i;
+         }
+      }
+  
+    }
+  
+}
+*/
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+25 0
+"channelsTable"
+""
+1 10 -118.485113606126 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 34 Lucida Grande,-1,12,5,50,0,0,0,0,0
+0  16.98100172711572 26.85734573522613 540.9810017271157 512
+"main()
+{
+    
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string layer=$layer;  
+  
+    
+    for (int i = 3; i < 8; i++) {
+        this.columnWidth(i, 43);
+    }
+    
+
+    dyn_string allChannels,aliasAllChannels;
+    dyn_string stripChannels,driftChannels;
+    string channel;
+    
+
+    
+    refreshConfigurationTable(TRUE,FALSE);
+    
+    dyn_string allChannels;
+    dynAppend(allChannels,channelsReturn(TRUE,FALSE));
+    
+     
+    for (int i = 1; i <= dynlen(allChannels); i++){
+        dpConnect(\"colorTable\",allChannels[i] + \".actual.isOn:_online.._value\");
+    }   
+
+}
+
+
+void colorTable(string channelDp, bool isOn) {
+
+
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string layer=$layer;
+
+    dyn_string allChannels;
+    dynAppend(allChannels,channelsReturn(TRUE,FALSE));
+    
+    dyn_string channelDpParts = strsplit(channelDp, \".\");
+    channelDp = channelDpParts[1];  
+    int i = dynContains(allChannels, channelDp);
+    
+    if (isOn) {
+        channelsTable.cellBackColRC(i - 1, \"Alias\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"Channels\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"v0\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"i0\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"rUp\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"rDwn\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"trip\", \"FwStateOKPhysics\");
+        channelsTable.cellBackColRC(i - 1, \"VMax\", \"FwStateOKPhysics\");
+    } else {
+        channelsTable.cellBackColRC(i - 1, \"Alias\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"Channels\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"v0\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"i0\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"rUp\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"rDwn\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"trip\", \"{236,236,236}\");
+        channelsTable.cellBackColRC(i - 1, \"VMax\", \"{236,236,236}\");
+    }
+}
+ 
+    " 0
+"main(int row, string column, string value)
+{
+    
+//     dyn_string line;
+//     line = channelsTable.getLineN(row);
+
+    
+//     channelsTable.
+//     if (column == \"Alias\") {
+//         DebugN(\"Only now came.\");
+//     }
+      
+//     textField1.text = line[3];
+//     textField2.text = line[4];
+//     textField3.text = line[5];
+//     textField4.text = line[6];
+//     textField5.text = line[7];
+//     textField6.text = line[8];
+}
+" 0
+ 1 0 1 8 1 "Alias" 3 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:1 12 Channel Name
+E
+1
+LANG:1 0 
+
+40 "Channels" 19 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+LANG:1 16 Hardware Address
+E
+1
+LANG:1 0 
+
+200 "v0" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 7 Voltage
+E
+1
+LANG:1 0 
+
+50 "i0" 5 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:1 4 Imax
+E
+1
+LANG:1 0 
+
+65 "rUp" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 3 rUp
+E
+1
+LANG:1 0 
+
+48 "rDwn" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 5 rDown
+E
+1
+LANG:1 0 
+
+60 "trip" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 Trip
+E
+1
+LANG:1 0 
+
+60 "VMax" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 Vmax
+E
+1
+LANG:1 0 
+
+54 
+13 13 "" 1 1
+LANG:1 2 #1
+10 8
+1
+LANG:1 34 Lucida Grande,-1,12,5,50,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

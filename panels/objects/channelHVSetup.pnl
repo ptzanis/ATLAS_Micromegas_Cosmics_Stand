@@ -145,8 +145,8 @@ LANG:1 3 Set
             dpSetWait(returnHVChannel() + \".settings.tripTime:_original.._value\", textField5.text); 
         if (textField6.text)
             dpSetWait(returnHVChannel() + \".settings.vMaxSoftValue:_original.._value\", textField6.text); 
-        if (hvSelectionCombo.text)
-        {
+        if (hvSelectionCombo.text!=\"\")
+        {   vStart=0.0;
             dpGet(returnHVChannel() + \".settings.v0:_original.._value\", vStart);
             dpSetWait(returnHVChannel() + \".settings.v0:_original.._value\",vStart+(float)hvSelectionCombo.text);
          }     
@@ -158,7 +158,8 @@ LANG:1 3 Set
     textField3.text = \"\";
     textField4.text = \"\";
     textField5.text = \"\";
-    textField6.text = \"\";    
+    textField6.text = \"\";  
+    hvSelectionCombo.text=\"\";  
         
         
         float tempi0, tempv0, temprUp, temprDwn, temptripTime, VMax;
