@@ -1018,7 +1018,7 @@ LANG:1 38 HV Actions (Choose Section from table)
 13 23
 "closeButton"
 ""
-1 728 289 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 724 292 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 22 0 0 0 0 0
 E E E
@@ -1030,7 +1030,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  726 279.3 788.25 305.3
+0  722 282.3 784.25 308.3
 
 T 
 1

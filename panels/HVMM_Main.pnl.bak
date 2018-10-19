@@ -1248,6 +1248,11 @@ for(int i=1;i<=4;i++)
      types[count+7]=makeDynInt(0,0,DPEL_STRING);
      elements[count+8]=makeDynString(\"\",\"DpesToPlot\"); 
      types[count+8]=makeDynInt(0,DPEL_DYN_STRING);
+     elements[count+9]=makeDynString(\"\",\"Configuration\"); 
+     types[count+9]=makeDynInt(0,DPEL_BOOL);  
+     elements[count+9]=makeDynString(\"\",\"BarGraphCounter\"); 
+     types[count+9]=makeDynInt(0,DPEL_DYN_INT);     
+     
 
 int x=dpTypeCreate(elements,types);
 

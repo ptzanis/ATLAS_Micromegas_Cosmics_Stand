@@ -46,7 +46,9 @@ E "     string node=$node;
   }
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
-
+  
+//   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
+  
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");
@@ -54,7 +56,7 @@ E "     string node=$node;
  
    
 }
-void EP_setBackColorCB(string dpSource, float fNewValue)
+void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2,float fNewValueVoltage,string dpSource3,bool fNewValueIsOn)
 {
   float downLimit,upLimit;
   string nodeSubs,alias;
@@ -65,12 +67,12 @@ void EP_setBackColorCB(string dpSource, float fNewValue)
   {
     dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimit);
     dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimit);
-    
-    if (fNewValue > upLimit)
+
+    if (fNewValueVoltage > upLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
-   if (fNewValue > downLimit && fNewValue < upLimit)
+   if (fNewValueVoltage > downLimit && fNewValueVoltage < upLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
-   if (fNewValue < downLimit)
+   if (fNewValueVoltage < downLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
     
     
@@ -79,25 +81,34 @@ void EP_setBackColorCB(string dpSource, float fNewValue)
   {
     dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",downLimit);
     dpGet(\"ALL.AcceptanceLimits.Current.upLimit\",upLimit);
-    
-    if (fNewValue > upLimit)
+
+    if (fNewValueCurrent > upLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
-   if (fNewValue > downLimit && fNewValue < upLimit)
+   if (fNewValueCurrent > downLimit && fNewValueCurrent < upLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
-   if (fNewValue < downLimit)
+   if (fNewValueCurrent < downLimit)
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
   }   
   
-  bool isOn;
-  string channelIsOn;
-   dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channelIsOn);
-  dpGet(\"CAEN/\"+channelIsOn+\".actual.isOn\",isOn);
+//   bool isOn;
+//   string channelIsOn;
+//   dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channelIsOn);
+//   dpGet(\"CAEN/\"+channelIsOn+\".actual.isOn\",isOn);
   
-    if(!isOn)
+    if(!fNewValueIsOn)
       setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
   
   
 }  
+
+void barGraphFill(string dpSource){
+  
+  
+  
+  
+  
+}
+
 
 dyn_string returnAliasAndNode(string objectName)
 {
