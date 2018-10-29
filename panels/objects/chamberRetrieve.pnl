@@ -46,8 +46,8 @@ E "     string node=$node;
   }
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
-  
-//   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
+ //edit 
+//   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
   
   err = getLastError();
   if (dynlen(err) > 0)
@@ -101,10 +101,45 @@ void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2
   
 }  
 
-void barGraphFill(string dpSource){
+void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,float fNewValueCurrent){
+ 
+  float voltageUpLimit,currentDownLimit;
+  string objectName=this.name();
+  string layerFromObject;
+  dyn_int matrixStart;
   
+  dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpLimit);
+  dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownLimit);
   
+  substr(objectName,1,2);
   
+      //Voltage  
+    if(fNewValueVoltage>voltageUpLimit)
+    {
+        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
+        matrixStart[(int)objectName+(int)objectName-1]++;
+        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);         
+    }
+    else
+    {
+        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
+        matrixStart[(int)objectName+(int)objectName-1]--;  
+        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);               
+    }
+      //Current
+    if(fNewValueCurrent<currentDownLimit)
+    {
+        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
+        matrixStart[(int)objectName+(int)objectName]++;
+        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);                  
+    }
+    else
+    {
+        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
+        matrixStart[(int)objectName+(int)objectName]--;  
+        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);                 
+    }  
+
   
   
 }

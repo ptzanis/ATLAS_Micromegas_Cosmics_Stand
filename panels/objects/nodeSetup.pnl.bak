@@ -312,7 +312,28 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
         saveButton.enabled(TRUE);
    
     setValue(\"buttonN\"+node,\"visible\",FALSE);
-    RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+node, \"\"); 
+    RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+node, \"\");
+   
+   
+   dyn_string stripsToAppend,driftToAppend;
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftToAppend); 
+   dyn_string archivedDpes,archivedChannel;
+   dynClear(archivedDpes);
+   dynAppend(archivedDpes,stripsToAppend);
+   dynAppend(archivedDpes,driftToAppend);
+   dyn_string exceptionInfo;
+   for (int i = 1; i <= dynlen(archivedDpes); i++) {
+        dpGet(\"N\"+node+\".Mapping.\"+archivedDpes[i]+\".Channel\",archivedChannel[i]); 
+        fwArchive_stopMultiple(\"CAEN/\"+archivedChannel[i]+ \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+        fwArchive_stopMultiple(\"CAEN/\"+archivedChannel[i] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);     
+     
+   } 
+      DebugN(\"----------------------------Archive Status \"+node+\" | OFF\");
+   
+    
     }   
         
     setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
@@ -335,7 +356,11 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     dpSet(\"N\"+node+\".Mode\",\"\");
     dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",\"\"); 
     dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",\"\"); 
-    dpSet(\"N\"+node+\".DpesToPlot\",clear);
+    dpSet(\"N\"+node+\".DpesToPlot\",clear);    
+    dpSet(\"N\"+node+\".Archiving.Status\",0); 
+    
+    
+    
 
   }"
 "main()
