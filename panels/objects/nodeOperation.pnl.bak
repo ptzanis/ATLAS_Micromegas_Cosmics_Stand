@@ -24,7 +24,9 @@ PANEL,-1 -1 1919 1070 N "_3DFace" 4
    addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionValidation.pnl\", \"nodeAction\"+node+\"_\"+type,
                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1);   
     
-       
+//     RootPanelOnModule(\"objects/extraHolder.pnl\", \"extra\", \"extraModule\"+\"_N\"+node, makeDynString());
+     RootPanelOnModule(\"GIFFPP.pnl\", \"extra\", \"extraModule\"+\"_N\"+node, makeDynString());
+  
      }    
      
      
@@ -729,6 +731,33 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
  E 0 1 3 2 1 E 1 0 1 -1 4 1 E 1901 161 9 9
+29 31
+"extraModule"
+""
+1 -9.089171974522316 789.3934925281044 E E E 1 E 1 E N "_3DText" E N "WF_PanelBackground" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"sizePolicy" "Fixed Expanding"
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  0.9999999999999922 789 287.9999999999997 1066
+15 Canvas.Canvas.1
+0
+"main()
+{
+
+     string node=$node;     
+    this.ModuleName = \"extraModule\"+\"_N\"+node; 
+
+
+}" 0
 0
 LAYER, 1 
 1

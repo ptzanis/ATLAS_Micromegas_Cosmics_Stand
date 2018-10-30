@@ -141,6 +141,8 @@ LANG:1 0
 {
       string alias=$alias;
       string node=$node;
+      if(alias!=\"\")
+      {
       string mode,chamber,side;
      dpGet(node+\".Mode\",mode);
      dpGet(node+\".ChamberType\",chamber);
@@ -156,7 +158,7 @@ LANG:1 0
      {   this.text(alias+\" \"+chamber+\"-\"+side);}
     if(mode==\"ValidationQA\")
      {      this.text(alias);}
-      
+  }
 //       string mo=$node;  
   
   

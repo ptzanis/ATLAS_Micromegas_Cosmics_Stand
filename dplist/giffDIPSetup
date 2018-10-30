@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!--2018.10.29 17.02.26:084 Export DIP config-->
+<configuration publisherName="pcatlnswbb501_1490" queryTimeout="15" dns="" managerNumber="1" name="DIPConfig_1" parameters="">
+ <!--DIP publication(s)-->
+ <!--DIP subscription(s)-->
+ <subscription type="single" name="dip/GIFpp/PPE154/Mode" xsdType="xsd:string">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.PPE154.Mode</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.PPE154.Mode</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/DownStreamPosC" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.DownStreamPos.C</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.DownStreamPos.C</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/Moving" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.Moving</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.Moving</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/SourceON" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.SourceON</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.SourceON</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Humidity_Inside_Bunker" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.EnvParameters.Humidity_Inside_Bunker</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.EnvParameters.Humidity_Inside_Bunker</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Temp_Inside_Bunker" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.EnvParameters.Temp_Inside_Bunker</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.EnvParameters.Temp_Inside_Bunker</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/PPE154/PPEDoorSts" xsdType="xsd:string">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.PPE154.PPEDoorSts</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.PPE154.PPEDoorSts</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/DownStreamPos/EffectiveAttenuation" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.DownStreamPos.EffectiveAttenuation</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/UpStreamPos/EffectiveAttenuation" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.UpStreamPos.EffectiveAttenuation</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/PPE154/KeysSts" xsdType="xsd:string">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.PPE154.KeysSts</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.PPE154.KeysSts</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/DownStreamPos/A" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.DownStreamPos.A</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.DownStreamPos.A</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/DownStreamPos/B" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.DownStreamPos.B</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.DownStreamPos.B</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/Siren" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.Siren</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.Siren</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/Veto" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.Veto</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.Veto</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Atmospheric_Pressure" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.EnvParameters.Atmospheric_Pressure</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.EnvParameters.Atmospheric_Pressure</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Temp_Outside_Bunker" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.EnvParameters.Temp_Outside_Bunker</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.EnvParameters.Temp_Outside_Bunker</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/PPE154/PPXDoorSts" xsdType="xsd:string">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.PPE154.PPXDoorSts</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.PPE154.PPXDoorSts</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Humidity_Outside_Bunker" xsdType="xsd:float">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.EnvParameters.Humidity_Outside_Bunker</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.EnvParameters.Humidity_Outside_Bunker</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/EmergencyStop" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.EmergencyStop</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.EmergencyStop</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Irradiator/SourceOFF" xsdType="xsd:bool">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Irradiator.SourceOFF</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Irradiator.SourceOFF</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/UpStreamPos/A" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.UpStreamPos.A</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.UpStreamPos.A</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/UpStreamPos/C" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.UpStreamPos.C</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.UpStreamPos.C</description>
+  <unit></unit>
+ </subscription>
+ <subscription type="single" name="dip/GIFpp/Attenuators/UpStreamPos/B" xsdType="xsd:int">
+  <dpe>
+   <name>GIFFPP</name>
+   <alias></alias>
+   <element>.Attenuators.UpStreamPos.B</element>
+   <tag>__DIP_DEFAULT__</tag>
+  </dpe>
+  <buffer>1000</buffer>
+  <overwrite>TRUE</overwrite>
+  <type>GIFFppInfo</type>
+  <description>GIFFPP.Attenuators.UpStreamPos.B</description>
+  <unit></unit>
+ </subscription>
+</configuration>

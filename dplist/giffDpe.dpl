@@ -1,0 +1,141 @@
+# ascii dump of database
+
+# DpType
+TypeName
+GIFFppInfo.GIFFppInfo	1#1
+	EnvParameters	1#2
+		Atmospheric_Pressure	22#3
+		Humidity_Inside_Bunker	22#4
+		Humidity_Outside_Bunker	22#5
+		Temp_Inside_Bunker	22#6
+		Temp_Outside_Bunker	22#7
+	Attenuators	1#8
+		DownStreamPos	1#9
+			A	21#11
+			B	21#12
+			C	21#13
+			EffectiveAttenuation	22#14
+		UpStreamPos	1#10
+			A	21#15
+			B	21#16
+			C	21#17
+			EffectiveAttenuation	22#18
+	Irradiator	1#19
+		EmergencyStop	23#20
+		Moving	23#21
+		Siren	23#22
+		SourceOFF	23#23
+		SourceON	23#24
+		Veto	23#25
+	PPE154	1#26
+		KeysSts	25#27
+		Mode	25#28
+		PPEDoorSts	25#29
+		PPXDoorSts	25#30
+	archiving	23#31
+
+# Datapoint/DpId
+DpName	TypeName	ID
+GIFFPP	GIFFppInfo	2852020
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+API (1)/0	GIFFPP.EnvParameters.Atmospheric_Pressure	GIFFppInfo	963.97058105469	0x8300000007000101	31.08.2018 14:53:01.731
+API (1)/0	GIFFPP.EnvParameters.Humidity_Inside_Bunker	GIFFppInfo	53.826026916504	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.EnvParameters.Humidity_Outside_Bunker	GIFFppInfo	41.211421966553	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.EnvParameters.Temp_Inside_Bunker	GIFFppInfo	20.895267486572	0x8300000007200101	31.08.2018 14:53:08.134
+API (1)/0	GIFFPP.EnvParameters.Temp_Outside_Bunker	GIFFppInfo	24.064338684082	0x8300000007000101	31.08.2018 14:53:08.134
+API (1)/0	GIFFPP.Attenuators.DownStreamPos.A	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.731
+API (1)/0	GIFFPP.Attenuators.DownStreamPos.B	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.731
+API (1)/0	GIFFPP.Attenuators.DownStreamPos.C	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.731
+API (1)/0	GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Attenuators.UpStreamPos.A	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Attenuators.UpStreamPos.B	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Attenuators.UpStreamPos.C	GIFFppInfo	2	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation	GIFFppInfo	2.2000000476837	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.EmergencyStop	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.Moving	GIFFppInfo	0	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.Siren	GIFFppInfo	0	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.SourceOFF	GIFFppInfo	0	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.SourceON	GIFFppInfo	1	0x8300000007200101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.Irradiator.Veto	GIFFppInfo	0	0x8300000007000101	31.08.2018 14:53:01.831
+API (1)/0	GIFFPP.PPE154.KeysSts	GIFFppInfo	"All Keys Presents"	0x8300000007020101	29.08.2018 15:48:17.698
+API (1)/0	GIFFPP.PPE154.Mode	GIFFppInfo	"CLOSED"	0x8300000007020101	29.08.2018 15:48:50.428
+API (1)/0	GIFFPP.PPE154.PPEDoorSts	GIFFppInfo	"Closed"	0x8300000007000101	29.08.2018 15:48:07.891
+API (1)/0	GIFFPP.PPE154.PPXDoorSts	GIFFppInfo	"Closed"	0x8300000007000101	29.08.2018 13:51:23.201
+UI (1)/0	GIFFPP.archiving	GIFFppInfo	0	0x8300000000100101	01.08.2018 08:56:19.990
+
+# DistributionInfo
+Manager/User	ElementName	TypeName	_distrib.._type	_distrib.._driver
+UI (1)/0	GIFFPP.EnvParameters.Atmospheric_Pressure	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Inside_Bunker	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Outside_Bunker	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.EnvParameters.Temp_Inside_Bunker	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.EnvParameters.Temp_Outside_Bunker	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.A	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.B	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.C	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.A	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.B	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.C	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.EmergencyStop	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.Moving	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.Siren	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.SourceOFF	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.SourceON	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.Irradiator.Veto	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.PPE154.KeysSts	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.PPE154.Mode	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.PPE154.PPEDoorSts	GIFFppInfo	56	\13
+UI (1)/0	GIFFPP.PPE154.PPXDoorSts	GIFFppInfo	56	\13
+
+# PeriphAddrMain
+Manager/User	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+UI (1)/0	GIFFPP.EnvParameters.Atmospheric_Pressure	GIFFppInfo	16	"dip/GIFpp/Atmospheric_Pressure!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Inside_Bunker	GIFFppInfo	16	"dip/GIFpp/Humidity_Inside_Bunker!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Outside_Bunker	GIFFppInfo	16	"dip/GIFpp/Humidity_Outside_Bunker!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.EnvParameters.Temp_Inside_Bunker	GIFFppInfo	16	"dip/GIFpp/Temp_Inside_Bunker!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.EnvParameters.Temp_Outside_Bunker	GIFFppInfo	16	"dip/GIFpp/Temp_Outside_Bunker!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.A	GIFFppInfo	16	"dip/GIFpp/Attenuators/DownStreamPos/A!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.B	GIFFppInfo	16	"dip/GIFpp/Attenuators/DownStreamPos/B!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.C	GIFFppInfo	16	"dip/GIFpp/Attenuators/DownStreamPos/C!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation	GIFFppInfo	16	"dip/GIFpp/Attenuators/DownStreamPos/EffectiveAttenuation!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.A	GIFFppInfo	16	"dip/GIFpp/Attenuators/UpStreamPos/A!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.B	GIFFppInfo	16	"dip/GIFpp/Attenuators/UpStreamPos/B!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.C	GIFFppInfo	16	"dip/GIFpp/Attenuators/UpStreamPos/C!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation	GIFFppInfo	16	"dip/GIFpp/Attenuators/UpStreamPos/EffectiveAttenuation!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.EmergencyStop	GIFFppInfo	16	"dip/GIFpp/Irradiator/EmergencyStop!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.Moving	GIFFppInfo	16	"dip/GIFpp/Irradiator/Moving!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.Siren	GIFFppInfo	16	"dip/GIFpp/Irradiator/Siren!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.SourceOFF	GIFFppInfo	16	"dip/GIFpp/Irradiator/SourceOFF!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.SourceON	GIFFppInfo	16	"dip/GIFpp/Irradiator/SourceON!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.Irradiator.Veto	GIFFppInfo	16	"dip/GIFpp/Irradiator/Veto!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.PPE154.KeysSts	GIFFppInfo	16	"dip/GIFpp/PPE154/KeysSts!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.PPE154.Mode	GIFFppInfo	16	"dip/GIFpp/PPE154/Mode!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.PPE154.PPEDoorSts	GIFFppInfo	16	"dip/GIFpp/PPE154/PPEDoorSts!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+UI (1)/0	GIFFPP.PPE154.PPXDoorSts	GIFFppInfo	16	"dip/GIFpp/PPE154/PPXDoorSts!__DIP_DEFAULT__"	 	 	0	0	\0	0	0	1	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	0	"DIP"
+
+# DbArchiveInfo
+Manager/User	ElementName	TypeName	DetailNr	_archive.._type	_archive.._archive	_archive.._class	_archive.._interv	_archive.._interv_type	_archive.._std_type	_archive.._std_tol	_archive.._std_time	_archive.._round_val	_archive.._round_inv
+UI (1)/0	GIFFPP.EnvParameters.Atmospheric_Pressure	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.EnvParameters.Atmospheric_Pressure	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Inside_Bunker	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Inside_Bunker	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Outside_Bunker	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.EnvParameters.Humidity_Outside_Bunker	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.EnvParameters.Temp_Inside_Bunker	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.EnvParameters.Temp_Inside_Bunker	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.EnvParameters.Temp_Outside_Bunker	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.EnvParameters.Temp_Outside_Bunker	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.A	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.A	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.B	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.B	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.C	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.C	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
+UI (1)/0	GIFFPP.Irradiator.SourceON	GIFFppInfo		45	0
+UI (1)/0	GIFFPP.Irradiator.SourceON	GIFFppInfo	1	3		_ValueArchive_0	0	0	2	0.1	01.01.1970 00:00:01.000	0	0
