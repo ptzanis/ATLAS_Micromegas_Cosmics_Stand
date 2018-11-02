@@ -1190,7 +1190,7 @@ shape layerButton;
 13 91
 "closeButton"
 ""
-1 771 572 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 771 567 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 91 0 0 0 0 0
 E E E
@@ -1202,7 +1202,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  769 562.3 831.25 588.3
+0  769 557.3 831.25 583.3
 
 T 
 1

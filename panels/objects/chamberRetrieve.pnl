@@ -23,8 +23,7 @@ E "     string node=$node;
      string type=$type; 
      string sector=$sector;
      string layer=$layer;
- 
-
+     
 // ------------------------ General
 
   void alarmColor(string modeType)
@@ -47,7 +46,7 @@ E "     string node=$node;
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
  //edit 
-//   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
+   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
   
   err = getLastError();
   if (dynlen(err) > 0)
@@ -111,37 +110,48 @@ void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,floa
   dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpLimit);
   dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownLimit);
   
-  substr(objectName,1,2);
-  
+  string sectionChamber=substr(objectName,0,4);
+  string layerNumber=substr(objectName,1,1);
       //Voltage  
     if(fNewValueVoltage>voltageUpLimit)
     {
-        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
-        matrixStart[(int)objectName+(int)objectName-1]++;
-        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);         
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",1);    
     }
     else
     {
-        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
-        matrixStart[(int)objectName+(int)objectName-1]--;  
-        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);               
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",0);              
     }
       //Current
     if(fNewValueCurrent<currentDownLimit)
     {
-        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
-        matrixStart[(int)objectName+(int)objectName]++;
-        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);                  
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",1);               
     }
     else
     {
-        dpGet(\"N\"+node+\".BarGraphCounter\",matrixStart);
-        matrixStart[(int)objectName+(int)objectName]--;  
-        dpSet(\"N\"+node+\".BarGraphCounter\",matrixStart);                 
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",0);                          
     }  
 
+      dyn_string layerChannels=dpNames(\"N\"+node+\".Mapping.L\"+layerNumber+\"*{R,L}*\",\"HVSetup\");  
+
+      int resultVoltage=0;
+      int resultCurrent=0;
+      int countVoltage,countCurrent;
+      for(int i=1;i<=dynlen(layerChannels);i++)
+      {
+        resultVoltage=0;
+        resultCurrent=0;
+        dpGet(layerChannels[i]+\".isVoltageGood\",resultVoltage);
+        countVoltage=countVoltage+resultVoltage;
+        dpGet(layerChannels[i]+\".isCurrectGood\",resultCurrent);
+        countCurrent=countCurrent+resultCurrent;        
+      }
+     
+      
+      
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Voltage\",countVoltage);
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Current\",countCurrent);
   
-  
+          
 }
 
 

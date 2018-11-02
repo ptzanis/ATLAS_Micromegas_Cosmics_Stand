@@ -1,0 +1,364 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 648 643 N "_3DFace" 0
+E E E E E 1 -1 -1 0  20 30
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 10 10 589 30
+0 2 2 "0s" 0 0 0 192 0 0  10 10 1
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 70 The BarTrend widget is for graphs where the X-axis is not linear time.
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 20 340 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 340 522 383
+0 2 2 "0s" 0 0 0 192 0 0  20 340 2
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 60 Two corresponding arrays (X and Y) of points to be plotted. 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 44 (Implemented as a BarTrend of type "curve".)
+2 3
+"PRIMITIVE_TEXT3"
+""
+1 20 83 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 83 543 103
+0 2 2 "0s" 0 0 0 192 0 0  20 83 1
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 61 A histogram. (Implemented as a BarTrend of type "BarField".) 
+27 4
+"paulsMeteorHistogramDisplay"
+""
+1 210 110 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  208 108 612 272
+2 0 20 5 0 "%H:%M" 0 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  0 3 0 1 0 1 N {0,0,0}
+0 0 50 10 0 "%H:%M" 0 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  0 3 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N {0,0,0} 2 0 0 40 0 N {255,0,0} N {255,0,0} N "STD_valve_open" 0 0 2
+"main()
+    
+{ int replyCode;
+  dyn_float xAltitude;
+
+  float yMeteorsRecordedDuringOctoberInAllOfTheLast5Years = 5;
+  float yMeteorsRecordedDuringNovemberInAllOfTheLast5Years = 22;
+  float yMeteorsRecordedDuringDecemberInAllOfTheLast5Years = 44;
+  float yMeteorsRecordedDuringJanuaryInAllOfTheLast5Years = 33;  
+  float yMeteorsRecordedDuringFebruaryInAllOfTheLast5Years = 15;  
+
+
+  dyn_float yMeteorsRecordedBins;
+  yMeteorsRecordedBins = makeDynFloat(yMeteorsRecordedDuringOctoberInAllOfTheLast5Years , 
+                                      yMeteorsRecordedDuringNovemberInAllOfTheLast5Years , 
+                                      yMeteorsRecordedDuringDecemberInAllOfTheLast5Years , 
+                                      yMeteorsRecordedDuringJanuaryInAllOfTheLast5Years ,
+                                      yMeteorsRecordedDuringFebruaryInAllOfTheLast5Years
+                                      );
+  
+  
+  shape paulsMeteorHistogramDisplay = getShape(\"paulsMeteorHistogramDisplay\");  
+  paulsMeteorHistogramDisplay.data(yMeteorsRecordedBins); 
+  
+  paulsMeteorHistogramDisplay.flush;
+  
+}   
+  
+  
+ " 0
+
+2 5
+"PRIMITIVE_TEXT4"
+""
+1 18 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 18 130 205 196
+0 2 2 "0s" 0 0 0 192 0 0  18 130 3
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 22 "Counts" on the Y-axis
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 20 "Bins" on the X-axis
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 6
+"PRIMITIVE_TEXT5"
+""
+1 20 412 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 20 412 293 593
+0 2 2 "0s" 0 0 0 192 0 0  20 412 8
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 28 X-axis values are not time. 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 29 (In this example, they are a 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 27 distance to the mesurement 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 14 station in km)
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 30 Y-axis values in this example 
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 31 are water discharge values seen
+1
+LANG:1 26 Arial,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 27 at the measurement station.
+30 7
+"FRAME1"
+""
+1 0 54 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.9402985074626865 0 0.738562091503268 0 14.11764705882353 0 E 0 54 671 361
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 9 Example 1
+30 8
+"FRAME2"
+""
+1 0 384 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 1 0 0.8469945355191257 0 -15.24590163934431 0 E 0 384 631 751
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 9 Example 2
+4 11
+"LINE2"
+""
+1 390 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 4 1 2 1 E  390 40 580 40
+27 0
+"paulsXYWidget"
+""
+1 310 430 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  308 428 622 572
+2 0 30 5 0 "%H:%M" 0 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  0 3 0 1 0 1 N {0,0,0}
+0 0 50 5 0 "%H:%M" 0 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  0 3 0 1 0 1 N {0,0,0}
+1 0 0 20 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N "red" 5 0 0 30 0 N {255,0,0} N {255,0,0} N "STD_valve_open" 0 1 0 0 1 0 1 N {0,0,0} 1
+"main()
+    
+{ dyn_float xStationDistanceFromRiverSource;
+  dyn_float ySpringDischargeValuesPerStation;
+  
+  xStationDistanceFromRiverSource =  makeDynFloat(  0,  2,  7, 25 );
+  ySpringDischargeValuesPerStation = makeDynFloat(  5,  8, 40, 28 );
+
+  
+  shape paulsXYWidget = getShape(\"paulsXYWidget\");  
+  paulsXYWidget.data(xStationDistanceFromRiverSource, ySpringDischargeValuesPerStation);
+  paulsXYWidget.flush;
+  
+}   
+  
+  
+ " 0
+
+4 12
+"LINE3"
+""
+1 467 33 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 4 1 2 1 E  467 33 490 33
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

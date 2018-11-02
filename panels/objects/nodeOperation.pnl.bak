@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1919 1070 N "_3DFace" 4
+PANEL,-1 -1 1918 1070 N "_3DFace" 4
 "$mode"
 "$node"
 "$sector"
@@ -756,6 +756,128 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 
 
 }" 0
+27 32
+"barTrend"
+""
+1 1221 699.716814159292 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1219 657 1570 875
+2 1 3.99 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0  0 0 0 1 0 1 N {0,0,0}
+0 0 10 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 1 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N {0,0,0} 2 0 0 10 0 N {255,0,0} N {255,0,0} N "Green" 0 1 1
+"main()    
+{  
+  string node=$node;
+  dpConnect(\"changeHisto\",\"N\"+node+\".BarGraphCounter.L1.Voltage\",\"N\"+node+\".BarGraphCounter.L2.Voltage\",\"N\"+node+\".BarGraphCounter.L3.Voltage\",\"N\"+node+\".BarGraphCounter.L4.Voltage\");  
+ }
+
+void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNewValue2,string dpSource3, float fNewValue3,string dpSource4, float fNewValue4)
+{
+  int replyCode;
+  dyn_float xAltitude; 
+  string node=$node;
+  dyn_float layerValue;
+
+  for(int i=1;i<=4;i++)
+  {
+  dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
+  }  
+
+
+    shape bartrendDisplay = getShape(\"barTrend\");  
+  bartrendDisplay.data(layerValue); 
+  
+  bartrendDisplay.flush;
+  
+}
+  
+
+
+
+  
+  
+  
+ " 0
+
+27 33
+"barTrendTotal"
+""
+1 1603 699 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  1601 656.283185840708 1848 874.283185840708
+2 1 1 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0  0 0 0 1 0 1 N {0,0,0}
+0 0 40 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 1 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N {0,0,0} 2 0 0 40 0 N {255,0,0} N {255,0,0} N "Green" 0 1 1
+"main()    
+{  
+  string node=$node;
+  dpConnect(\"changeHisto\",\"N\"+node+\".BarGraphCounter.L1.Voltage\",\"N\"+node+\".BarGraphCounter.L2.Voltage\",\"N\"+node+\".BarGraphCounter.L3.Voltage\",\"N\"+node+\".BarGraphCounter.L4.Voltage\");  
+ }
+
+void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNewValue2,string dpSource3, float fNewValue3,string dpSource4, float fNewValue4)
+{
+  int replyCode;
+  dyn_float xAltitude; 
+  string node=$node;
+  dyn_float layerValue;
+  float totalValue;
+
+  for(int i=1;i<=4;i++)
+  {
+  dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
+  totalValue=totalValue+layerValue[i];
+  }  
+
+
+    shape bartrendDisplay = getShape(\"barTrendTotal\");  
+  bartrendDisplay.data(totalValue); 
+  
+  bartrendDisplay.flush;
+  
+}
+  
+
+
+
+  
+  
+  
+ " 0
+
 0
 LAYER, 1 
 1

@@ -950,15 +950,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.619318181818182 0 0.3469387755102041 -118.2386363636364 482.3469387755102 0 E 178 734 531 931
+E E 2 1 3 2 1 E 1.619318181818182 0 0.2755102040816326 521.7613636363636 -69.22448979591833 0 E 178 734 531 931
 1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 0 1
 LANG:1 5 Extra
 13 102
 "PUSH_BUTTON1"
 ""
-1 190 770 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 830.0170738544468 160 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 101 0 0 0 0 0
 E E E
@@ -970,7 +970,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  187.9999999999996 757.5 311.9999999999998 791.5
+0  828.0170738544464 147.5 952.0170738544466 181.5
 
 T 
 1
@@ -979,7 +979,7 @@ E E E E
 13 103
 "PUSH_BUTTON2"
 ""
-1 320.4687499999999 770 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 960.4858238544467 160 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 102 0 0 0 0 0
 E E E
@@ -991,7 +991,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  318.4687499999995 757.5 442.4687499999997 791.5
+0  958.4858238544464 147.5 1082.485823854447 181.5
 
 T 
 1
@@ -1000,7 +1000,7 @@ E E E E
 13 104
 "PUSH_BUTTON3"
 ""
-1 599.1017523871527 770.21875 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1239.118826241599 160.21875 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 103 0 0 0 0 0
 E E E
@@ -1012,7 +1012,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  597.1017523871524 757.71875 721.1017523871525 791.71875
+0  1237.118826241599 147.71875 1361.118826241599 181.71875
 
 T 
 1
@@ -1021,7 +1021,7 @@ E E E E
 13 105
 "PUSH_BUTTON4"
 ""
-1 450.3515625000001 770 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1090.368636354447 160 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 104 0 0 0 0 0
 E E E
@@ -1033,7 +1033,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  448.3515624999997 757.5 592.1480034722219 791.5
+0  1088.368636354447 147.5 1232.165077326669 181.5
 
 T 
 1
@@ -1339,7 +1339,11 @@ for(int i=1;i<=64;i++)
   types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
   elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
   types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
-  count=count+3;
+  elements[count+3]=makeDynString(\"\",\"\",\"\",\"isVoltageGood\");    //Edit
+  types[count+3]=makeDynInt(0,0,0,DPEL_INT);                    //Edit
+  elements[count+4]=makeDynString(\"\",\"\",\"\",\"isCurrectGood\");    //Edit
+  types[count+4]=makeDynInt(0,0,0,DPEL_INT);                     //Edit
+  count=count+5;
   
   countGeneral++;
   }
@@ -1408,10 +1412,15 @@ for(int i=1;i<=4;i++)
      types[count+8]=makeDynInt(0,DPEL_DYN_STRING);
      elements[count+9]=makeDynString(\"\",\"Configuration\"); 
      types[count+9]=makeDynInt(0,DPEL_BOOL);  
-     elements[count+9]=makeDynString(\"\",\"BarGraphCounter\"); 
-     types[count+9]=makeDynInt(0,DPEL_DYN_INT);     
+     elements[count+10]=makeDynString(\"\",\"BarGraphCounter\",\"\"); 
+     types[count+10]=makeDynInt(0,DPEL_STRUCT);          
+     elements[count+11]=makeDynString(\"\",\"\",\"Voltage\"); 
+     types[count+11]=makeDynInt(0,0,DPEL_DYN_INT);
+     elements[count+12]=makeDynString(\"\",\"\",\"Current\"); 
+     types[count+12]=makeDynInt(0,0,DPEL_DYN_INT); 
      
-
+ 
+     
 int x=dpTypeCreate(elements,types);
 
  if (x == 0){

@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 475 309 N "_3DFace" 0
+PANEL,-1 -1 804 536 N "_3DFace" 0
 E E E E E 1 -1 -1 0  200 194
 ""0  1
 E E 3
@@ -14,12 +14,12 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-13 6
-"PUSH_BUTTON2"
+13 8
+"PUSH_BUTTON1"
 ""
-1 144 138 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 31 109 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-5 0 0 0 0 0
+7 0 0 0 0 0
 E E E
 8
 1
@@ -29,23 +29,76 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  142 104 332 184
+0  29 77 397.0000000000001 154
 
 T 
 1
-LANG:1 12 PUSH_BUTTON2
+LANG:1 12 PUSH_BUTTON1
 "main(mapping event)
 {
-//   dyn_int testDyn;
-   dyn_int matrixStart,matrixEnd;
-   dpGet(\"N1.BarGraphCounter\",matrixStart); 
-
-  matrixStart[2]= matrixStart[2]+1;
-    dpSet(\"N1.BarGraphCounter\", matrixStart); 
- 
   
+  dyn_int ds;
+  dynAppend(ds,\"\");
+   dynAppend(ds,\"\");
+    dynAppend(ds,\"\");
+     dynAppend(ds,\"\"); 
+     DebugN(ds);
+//   dpSet(\"N1.BarGraphCounter.Voltage\",makeDynInt(\"Null\",\"Null\",1,\"Null\"));
 }" 0
  E E E
+27 15
+"barTrend"
+""
+1 117 249 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  115 247 597.0000000000001 440.0000000000002
+2 0 4 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 0 0 1 0 1 N {0,0,0}
+0 0 10 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 1 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 1 1 0 1 N {0,0,0} 2 0 0 10 0 N {255,0,0} N {255,0,0} N "Green" 0 0 1
+"main()    
+{ 
+  
+  
+  
+
+  int replyCode;
+  dyn_float xAltitude; 
+  string node=1;
+  dyn_float layerValue;
+
+  for(int i=1;i<=4;i++)
+  {
+  dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
+  }  
+
+  DebugN(layerValue);
+    shape bartrendDisplay = getShape(\"barTrend\");  
+  bartrendDisplay.data(layerValue); 
+  
+  bartrendDisplay.flush;
+  
+}   
+  
+  
+ " 0
+
 0
 LAYER, 1 
 1
