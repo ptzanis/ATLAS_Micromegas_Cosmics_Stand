@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 704 827 N "_3DFace" 7
+PANEL,-1 -1 704 846 N "_3DFace" 7
 "$batchID"
 "$mode"
 "$node"
@@ -109,7 +109,66 @@ return channelSetOff;
    
   
   
-}" 0
+}
+
+void layerFieldCounter(string layer)
+{
+  dyn_errClass err;
+  string node=$node; 
+  this.name(this.name()+\"_N\"+node);
+  if(layer!=\"Total\")
+  {
+  if( !dpExists( \"System1:N\"+node+\".BarGraphCounter.\"+layer+\".Voltage:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"layerFieldCounterCB\",
+            \"System1:N\"+node+\".BarGraphCounter.\"+layer+\".Voltage:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.\"+layer+\".Current:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(this.name(), \"color\", \"_dpdoesnotexist\");
+  }
+  else
+  {
+    dpConnect(\"totalLayerFieldCounterCB\",
+            \"System1:N\"+node+\".BarGraphCounter.L1.Voltage:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L2.Voltage:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L3.Voltage:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L4.Voltage:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L1.Current:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L2.Current:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L3.Current:_online.._value\",\"System1:N\"+node+\".BarGraphCounter.L4.Current:_online.._value\");  
+     
+  }
+}
+
+
+void layerFieldCounterCB(string dp1, int iNewValueVoltage,string dp2, int iNewValueCurrent)
+{
+  string type=$type; 
+  int numberOfSections;
+  if(type==\"SM1\"||type==\"LM1\")
+      numberOfSections=10;    
+  if(type==\"SM2\"||type==\"LM2\")
+      numberOfSections=6;     
+   if(!alarmToggle.checked())       
+      setValue(this.name(), \"text\", iNewValueVoltage+\" /\"+numberOfSections);
+   if(alarmToggle.checked())       
+      setValue(this.name(), \"text\", iNewValueCurrent+\" /\"+numberOfSections);   
+   
+}
+
+void totalLayerFieldCounterCB(string dp1, int iNewValue1,string dp2, int iNewValue2,string dp3, int iNewValue3,string dp4, int iNewValue4,string dp5, int iNewValue1Current,string dp6, int iNewValue2Current,string dp7, int iNewValue3Current,string dp8, int iNewValue4Current)
+{
+  string type=$type; 
+  int numberOfSections;
+  if(type==\"SM1\"||type==\"LM1\")
+      numberOfSections=40;    
+  if(type==\"SM2\"||type==\"LM2\")
+      numberOfSections=24;     
+   if(!alarmToggle.checked())           
+      setValue(this.name(), \"text\", iNewValue1+iNewValue2+iNewValue3+iNewValue4+\" /\"+numberOfSections);
+   if(alarmToggle.checked())           
+      setValue(this.name(), \"text\", iNewValue1Current+iNewValue2Current+iNewValue3Current+iNewValue4Current+\" /\"+numberOfSections);   
+}  
+
+" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -722,6 +781,395 @@ LANG:1 0
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
 LANG:1 12 XMX, BatchID
+27 19
+"barTrendVoltage"
+""
+1 106 645 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  104 598.0973451327434 455 838.0973451327435
+2 1 3.99 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0  0 0 0 1 0 1 N {0,0,0}
+0 0 10 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 1 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N {0,0,0} 2 0 0 10 0 N {255,0,0} N {255,0,0} N "Green" 0 1 1
+"main()    
+{  
+  string node=$node;
+  string type=$type;
+    if(type==\"SM1\"||type==\"LM1\")
+      this.yRange(10.0);    
+  if(type==\"SM2\"||type==\"LM2\")
+      this.yRange(6.0);    
+  
+  dpConnect(\"changeHisto\",\"N\"+node+\".BarGraphCounter.L1.Voltage\",\"N\"+node+\".BarGraphCounter.L2.Voltage\",\"N\"+node+\".BarGraphCounter.L3.Voltage\",\"N\"+node+\".BarGraphCounter.L4.Voltage\",\"N\"+node+\".BarGraphCounter.L1.Current\",\"N\"+node+\".BarGraphCounter.L2.Current\",\"N\"+node+\".BarGraphCounter.L3.Current\",\"N\"+node+\".BarGraphCounter.L4.Current\");  
+ }
+
+void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNewValue2,string dpSource3, float fNewValue3,string dpSource4, float fNewValue4,string dpSource5, float fNewValue5,string dpSource6, float fNewValue6,string dpSource7, float fNewValue7,string dpSource8, float fNewValue8)
+{
+  int replyCode;
+  dyn_float xAltitude; 
+  string node=$node;
+  dyn_float layerValue;
+
+  for(int i=1;i<=4;i++)
+  {
+  if(!alarmToggle.checked())    
+    dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
+  if(alarmToggle.checked())   
+    dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Current\",layerValue[i]);  
+  }  
+
+
+  shape bartrendDisplay = getShape(this.name());
+  bartrendDisplay.data(layerValue); 
+  
+  bartrendDisplay.flush;
+  
+}
+  
+
+
+
+  
+  
+  
+ " 0
+
+27 20
+"barTrendTotalVoltage"
+""
+1 106 649.1363061717043 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  453 598.0973451327434 566 838.0973451327434
+2 1 1 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0  0 0 0 1 0 1 N {0,0,0}
+0 0 40 1 0 "%H:%M" 1 1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  0 1 0 1 0 1 N {0,0,0}
+1 0 0 500 1
+LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
+0  3 0 1 0 1 N {0,0,0}
+0 0 1 0 1 N {0,0,0} 2 0 0 40 0 N {255,0,0} N {255,0,0} N "Green" 0 1 1
+"main()    
+{  
+  string node=$node;
+    string type=$type;
+    if(type==\"SM1\"||type==\"LM1\")
+      this.yRange(40.0);    
+  if(type==\"SM2\"||type==\"LM2\")
+      this.yRange(24.0);  
+  dpConnect(\"changeHisto\",\"N\"+node+\".BarGraphCounter.L1.Voltage\",\"N\"+node+\".BarGraphCounter.L2.Voltage\",\"N\"+node+\".BarGraphCounter.L3.Voltage\",\"N\"+node+\".BarGraphCounter.L4.Voltage\",\"N\"+node+\".BarGraphCounter.L1.Current\",\"N\"+node+\".BarGraphCounter.L2.Current\",\"N\"+node+\".BarGraphCounter.L3.Current\",\"N\"+node+\".BarGraphCounter.L4.Current\");  
+ }
+
+void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNewValue2,string dpSource3, float fNewValue3,string dpSource4, float fNewValue4,string dpSource5, float fNewValue5,string dpSource6, float fNewValue6,string dpSource7, float fNewValue7,string dpSource8, float fNewValue8)
+{
+  int replyCode;
+  dyn_float xAltitude; 
+  string node=$node;
+  dyn_float layerValue;
+  float totalValue;
+
+  for(int i=1;i<=4;i++)
+  {
+      if(!alarmToggle.checked()) 
+        dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
+      if(alarmToggle.checked())
+        dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Current\",layerValue[i]);
+  totalValue=totalValue+layerValue[i];
+  }  
+
+
+    shape bartrendDisplay = getShape(this.name());  
+  bartrendDisplay.data(totalValue); 
+  
+  bartrendDisplay.flush;
+  
+}
+  
+
+
+
+  
+  
+  
+ " 0
+
+14 21
+"layerTextField"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  135 794.0973451327434 217 818.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Layer 1\");
+}" 0
+ E
+14 22
+"layerCounterL1"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  135 813.0973451327434 217 837.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L1\");
+
+}
+
+" 0
+ E
+14 23
+"TEXT_FIELD1"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  214 794.0973451327434 296 818.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Layer 2\");
+}" 0
+ E
+14 24
+"TEXT_FIELD2"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  293 794.0973451327434 375 818.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Layer 3\");
+}" 0
+ E
+14 25
+"TEXT_FIELD3"
+""
+1 133 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  372 794.0973451327434 454 818.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Layer 4\");
+}" 0
+ E
+14 26
+"layerCounterL2"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  214 813.0973451327434 296 837.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L2\");
+
+}
+
+" 0
+ E
+14 27
+"layerCounterL3"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  293 813.0973451327434 375 837.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L3\");
+
+}
+
+" 0
+ E
+14 28
+"layerCounterL4"
+""
+1 133 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  372 813.0973451327434 454 837.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L4\");
+
+}
+
+" 0
+ E
+14 29
+"TEXT_FIELD4"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  484 794.0973451327434 565 818.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Total\");
+}" 0
+ E
+14 30
+"layerCounterTotal"
+""
+1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  484 813.0973451327434 565 837.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"Total\");
+
+}
+
+" 0
+ E
+30 31
+"FRAME5"
+""
+1 1239 628 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.84251968503937 0 2.384087337689192 -2282.881889763779 -910.2068480688124 0 E 1239 628 1621 736
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
 0
 LAYER, 1 
 1
