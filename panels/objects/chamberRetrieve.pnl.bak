@@ -46,7 +46,7 @@ E "     string node=$node;
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
  //edit 
-   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\");
+   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"isOn\"+\":_online.._value\");
   
   err = getLastError();
   if (dynlen(err) > 0)
@@ -100,7 +100,7 @@ void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2
   
 }  
 
-void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,float fNewValueCurrent){
+void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,float fNewValueCurrent,string dpSource5,bool fNewValueIsOn){
  
   float voltageUpLimit,currentDownLimit;
   string objectName=this.name();
@@ -113,7 +113,7 @@ void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,floa
   string sectionChamber=substr(objectName,0,4);
   string layerNumber=substr(objectName,1,1);
       //Voltage  
-    if(fNewValueVoltage>voltageUpLimit)
+    if(fNewValueVoltage>voltageUpLimit && fNewValueIsOn)
     {
      dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",1);    
     }
@@ -122,7 +122,7 @@ void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,floa
      dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",0);              
     }
       //Current
-    if(fNewValueCurrent<currentDownLimit)
+    if(fNewValueCurrent<currentDownLimit && fNewValueIsOn)
     {
      dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",1);               
     }
