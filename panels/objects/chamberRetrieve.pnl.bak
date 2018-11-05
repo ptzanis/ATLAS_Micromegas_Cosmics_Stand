@@ -46,8 +46,10 @@ E "     string node=$node;
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
  //edit 
+  if(strlen(alias)==4)
+  {
    dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"isOn\"+\":_online.._value\");
-  
+   }
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");

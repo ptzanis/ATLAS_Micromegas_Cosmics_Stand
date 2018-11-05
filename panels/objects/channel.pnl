@@ -53,7 +53,25 @@ PANEL,-1 -1 281 21 N "white" 6
 ""0  1
 E "string dpe = $dpe;
 string node=$node;
-
+#uses \"email.ctl\"
+string alertViaEmail(string recipient, string sender, string subject, string mainBody) {
+ 
+    dyn_string emailContent;
+    int ret; 
+    string status; 
+    string smtpServer = \"cernmx.cern.ch\";
+    string hostName = getHostname(); 
+    
+    emailContent[1] = recipient;
+    emailContent[2] = sender;
+    emailContent[3] = subject;
+    emailContent[4] = mainBody;
+  
+    emSendMail(smtpServer, hostName, emailContent, ret);
+    if (ret == 0)  status = \"Message sent\";
+    else status = \"Message sent failed\";
+    return status;
+}
 
 " 0
  3
@@ -206,11 +224,11 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
 
-//         string result = alertViaEmail(\"simone.sottocornola01@universitadipavia.it\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: [URGENT] Channel tripped!\", \"\");
+//          string result = alertViaEmail(\"polyneikis.tzanis@cern.ch\", \"HVStationGIF@cern.ch\", \"HVStationGIF: [URGENT] Channel tripped!\", \"Channel \"+dpe+\" Tripped !!!!\");
 //         delay(10);
-        //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + result);
+     //   alertViaSMS(\"+41762532819\", \"TestbeamSCS\", \"Trip message sent: URGENT to \", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + result);
 //         DebugN(\"Alert via mail: \", result);
-//         string resultSMS = alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
+//          string resultSMS = alertViaSMS(\"+41762532819\", \"TestbeamSCS\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
         //alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + resultSMS);
 //         DebugN(\"Alert via SMS: \", resultSMS);
     }
@@ -231,7 +249,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 -14.49999999999997 -2.5 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 -14 -2 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  "main()
 {
 //       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
@@ -267,8 +285,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -14.49999999999997 1.5 99.5 24.5
-0 2 2 "0s" 0 0 0 65 0 0  -14.49999999999997 1.5 2
+ E 0 1 1 2 1 E U  0 E -14 2 99.99999999999997 25
+0 2 2 "0s" 0 0 0 65 0 0  -14 2 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1

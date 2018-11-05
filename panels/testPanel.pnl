@@ -14,12 +14,49 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-13 8
+19 16
+"radiobox"
+""
+1 81 45 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  79 43 223 82
+2
+T 
+1
+LANG:1 1 S
+
+1 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 1 D
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+1
+E E
+13 17
 "PUSH_BUTTON1"
 ""
-1 31 109 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 117 175 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-7 0 0 0 0 0
+16 0 0 0 0 0
 E E E
 8
 1
@@ -29,76 +66,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  29 77 397.0000000000001 154
+0  115 162 273 200
 
 T 
 1
 LANG:1 12 PUSH_BUTTON1
 "main(mapping event)
 {
-  
-  dyn_int ds;
-  dynAppend(ds,\"\");
-   dynAppend(ds,\"\");
-    dynAppend(ds,\"\");
-     dynAppend(ds,\"\"); 
-     DebugN(ds);
-//   dpSet(\"N1.BarGraphCounter.Voltage\",makeDynInt(\"Null\",\"Null\",1,\"Null\"));
+    this.text(radiobox.number());
 }" 0
  E E E
-27 15
-"barTrend"
-""
-1 117 249 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-14 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
-0  115 247 597.0000000000001 440.0000000000002
-2 0 4 1 0 "%H:%M" 1 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  0 0 0 1 0 1 N {0,0,0}
-0 0 10 1 0 "%H:%M" 1 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  0 1 0 1 0 1 N {0,0,0}
-1 0 0 500 1
-LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
-0  3 0 1 0 1 N {0,0,0}
-0 1 1 0 1 N {0,0,0} 2 0 0 10 0 N {255,0,0} N {255,0,0} N "Green" 0 0 1
-"main()    
-{ 
-  
-  
-  
-
-  int replyCode;
-  dyn_float xAltitude; 
-  string node=1;
-  dyn_float layerValue;
-
-  for(int i=1;i<=4;i++)
-  {
-  dpGet(\"N\"+node+\".BarGraphCounter.L\"+i+\".Voltage\",layerValue[i]);
-  }  
-
-  DebugN(layerValue);
-    shape bartrendDisplay = getShape(\"barTrend\");  
-  bartrendDisplay.data(layerValue); 
-  
-  bartrendDisplay.flush;
-  
-}   
-  
-  
- " 0
-
 0
 LAYER, 1 
 1

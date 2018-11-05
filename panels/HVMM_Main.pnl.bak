@@ -1341,7 +1341,7 @@ for(int i=1;i<=64;i++)
   types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
   elements[count+3]=makeDynString(\"\",\"\",\"\",\"isVoltageGood\");    //Edit
   types[count+3]=makeDynInt(0,0,0,DPEL_INT);                    //Edit
-  elements[count+4]=makeDynString(\"\",\"\",\"\",\"isCurrectGood\");    //Edit
+  elements[count+4]=makeDynString(\"\",\"\",\"\",\"isCurrectGood\");    //Edit Current
   types[count+4]=makeDynInt(0,0,0,DPEL_INT);                     //Edit
   count=count+5;
   
@@ -1413,13 +1413,48 @@ for(int i=1;i<=4;i++)
      elements[count+9]=makeDynString(\"\",\"Configuration\"); 
      types[count+9]=makeDynInt(0,DPEL_BOOL);  
      elements[count+10]=makeDynString(\"\",\"BarGraphCounter\",\"\"); 
-     types[count+10]=makeDynInt(0,DPEL_STRUCT);          
-     elements[count+11]=makeDynString(\"\",\"\",\"Voltage\"); 
-     types[count+11]=makeDynInt(0,0,DPEL_DYN_INT);
-     elements[count+12]=makeDynString(\"\",\"\",\"Current\"); 
-     types[count+12]=makeDynInt(0,0,DPEL_DYN_INT); 
+     types[count+10]=makeDynInt(0,DPEL_STRUCT); 
      
+     elements[count+11]=makeDynString(\"\",\"\",\"L1\",\"\"); 
+     types[count+11]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+12]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+12]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+13]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+13]=makeDynInt(0,0,0,DPEL_INT); 
  
+      elements[count+14]=makeDynString(\"\",\"\",\"L2\",\"\"); 
+     types[count+14]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+15]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+15]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+16]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+16]=makeDynInt(0,0,0,DPEL_INT);
+ 
+      elements[count+17]=makeDynString(\"\",\"\",\"L3\",\"\"); 
+     types[count+17]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+18]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+18]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+19]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+19]=makeDynInt(0,0,0,DPEL_INT);
+ 
+      elements[count+20]=makeDynString(\"\",\"\",\"L4\",\"\"); 
+     types[count+20]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+21]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+21]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+22]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+22]=makeDynInt(0,0,0,DPEL_INT);    
+     
+     elements[count+23]=makeDynString(\"\",\"Gas\",\"\"); 
+     types[count+23]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+24]=makeDynString(\"\",\"\",\"Inlet\"); 
+     types[count+24]=makeDynInt(0,0,DPEL_FLOAT);  
+     elements[count+25]=makeDynString(\"\",\"\",\"Outlet\"); 
+     types[count+25]=makeDynInt(0,0,DPEL_FLOAT);      
+     elements[count+26]=makeDynString(\"\",\"\",\"Leak\"); 
+     types[count+26]=makeDynInt(0,0,DPEL_FLOAT);   
+     elements[count+27]=makeDynString(\"\",\"\",\"Humidity\"); 
+     types[count+27]=makeDynInt(0,0,DPEL_FLOAT); 
+     elements[count+28]=makeDynString(\"\",\"\",\"Pressure\"); 
+     types[count+28]=makeDynInt(0,0,DPEL_FLOAT); 
      
 int x=dpTypeCreate(elements,types);
 
@@ -1455,7 +1490,7 @@ int x=dpTypeCreate(elements,types);
 13 47
 "hvSetup"
 ""
-1 165.2500000000001 45.99999999999997 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 165 30 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 46 0 0 0 0 0
 E E E
@@ -1467,7 +1502,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  163.0000000000001 64 286.0000000000001 98
+0  162.75 48.00000000000003 285.75 82.00000000000003
 
 T 
 1
@@ -1609,6 +1644,86 @@ int x=dpTypeCreate(elements,types);
 {
     
   if (searchDPTexistance(\"HVSetupStatus\") == 0) {
+    this.enabled = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+  }
+}
+" 0
+
+13 106
+"createHVEnvDptButton"
+""
+1 165 66 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  162.75 84.00000000000004 285.7500000000001 118
+
+T 
+1
+LANG:1 15 Create Env DPTs
+"main(mapping event)
+{
+  dyn_dyn_string elements;
+  dyn_dyn_int types;
+  
+  // Elements // 
+
+elements[1]=makeDynString(\"Arduino\",\"\");
+
+elements[2]=makeDynString(\"\",\"pressureMon\");
+elements[3]=makeDynString(\"\",\"pressureMean\");
+elements[4]=makeDynString(\"\",\"temperatureMon\");
+elements[5]=makeDynString(\"\",\"temperatureMean\");
+elements[6]=makeDynString(\"\",\"humidityMon\");
+elements[7]=makeDynString(\"\",\"humidityMean\");
+elements[8]=makeDynString(\"\",\"archiving\");
+elements[9]=makeDynString(\"\",\"samplingTime\");
+
+
+//// Types  /////
+
+types[1]=makeDynInt(DPEL_STRUCT);
+
+types[2]=makeDynInt(0,DPEL_FLOAT);
+types[3]=makeDynInt(0,DPEL_FLOAT);
+types[4]=makeDynInt(0,DPEL_FLOAT);
+types[5]=makeDynInt(0,DPEL_FLOAT);
+types[6]=makeDynInt(0,DPEL_FLOAT);
+types[7]=makeDynInt(0,DPEL_FLOAT);
+types[8]=makeDynInt(0,DPEL_BOOL);
+types[9]=makeDynInt(0,DPEL_INT);
+
+
+
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  }
+  
+dpCreate(\"BME280\",\"Arduino\");
+
+
+}" 0
+ E E "main()
+{
+    
+  if (searchDPTexistance(\"Arduino\") == 0) {
     this.enabled = \"FALSE\";
   }
   else {
