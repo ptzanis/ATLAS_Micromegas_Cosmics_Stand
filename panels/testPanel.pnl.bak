@@ -4,7 +4,31 @@ LANG:1 0
 PANEL,-1 -1 804 536 N "_3DFace" 0
 E E E E E 1 -1 -1 0  200 194
 ""0  1
-E E 3
+E "#uses \"email.ctl\"
+string alertViaSMS(string number, string sender, string subject, string mainBody) {
+//provide the receiver  (receiver) cell phone number with the digits of the country infront (e.g. 0041..)
+//provide your (sender) email address
+//provide the title of your sms (it will go in parenthesis in the begining of the sms)
+//provide the text of your mail (no more than 160 characters)
+    
+    string receiver = number + \"@mail2sms.cern.ch\";
+                 
+    dyn_string emailContent;
+    int ret; 
+    string status; 
+    string smtpServer = \"cernmx.cern.ch\";
+    string hostName = getHostname();   
+    emailContent[1] = receiver;
+    emailContent[2] = sender;
+    emailContent[3] = subject;
+    emailContent[4] = mainBody;
+  
+    emSendMail(smtpServer, hostName, emailContent, ret);
+    if (ret == 0)  status = \"Message sent\";
+    else status = \"Message sent failed\";
+    return status;
+}" 0
+ 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -14,49 +38,12 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-19 16
-"radiobox"
-""
-1 81 45 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
- E E
-15 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  79 43 223 82
-2
-T 
-1
-LANG:1 1 S
-
-1 
-1
-LANG:1 0 
-E E
-0 0 0 0 0
-T 
-1
-LANG:1 1 D
-
-0 
-1
-LANG:1 0 
-E E
-0 0 0 0 0
-1
-E E
-13 17
+13 18
 "PUSH_BUTTON1"
 ""
-1 117 175 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 213 315 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-16 0 0 0 0 0
+17 0 0 0 0 0
 E E E
 8
 1
@@ -66,14 +53,17 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  115 162 273 200
+0  211 262 490 381
 
 T 
 1
 LANG:1 12 PUSH_BUTTON1
 "main(mapping event)
 {
-    this.text(radiobox.number());
+     string resultSMS = alertViaSMS(\"00306974519202\", \"polyneikis.tzanis@cern.ch\", \"URGENT\", \"TestBeamSCS: [URGENT] Channel tripped!\");
+
+  
+
 }" 0
  E E E
 0
