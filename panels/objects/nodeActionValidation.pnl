@@ -203,9 +203,9 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
 //     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
@@ -227,9 +227,9 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
@@ -265,7 +265,7 @@ LANG:1 0
 19 32
 "stripsDriftChoose"
 ""
-1 538 470 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 538 468 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 32 0 0 0 0 0
 E E E
@@ -278,7 +278,7 @@ LANG:1 0
 "horizontal" ""
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  536 468 691 489
+0  536 466 691 487
 2
 T 
 1
@@ -330,7 +330,7 @@ LANG:1 0
 13 2
 "offButton"
 ""
-1 174 637 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 174 630 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 2 0 0 0 0 0
 E E E
@@ -342,7 +342,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  537 419.0000000000001 610.0000000000001 445
+0  537 412.0000000000001 610.0000000000001 438
 
 T 
 1
@@ -369,7 +369,7 @@ LANG:1 3 OFF
 13 3
 "onButton"
 ""
-1 166.1333841463418 638.6916666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 166.1333841463418 631.6916666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -381,7 +381,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  617 419.0000000000001 690.0000000000001 445
+0  617 412.0000000000001 690.0000000000001 438
 
 T 
 1
@@ -464,7 +464,7 @@ LANG:1 2 ON
 22 4
 "selectionComboBox"
 ""
-1 367 89 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 367 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -476,7 +476,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  538 393.0000000000001 691.0000000000001 419
+0  538 384.0000000000001 691.0000000000001 410
 5
 1
 LANG:1 6 Module
@@ -516,7 +516,7 @@ E
 22 5
 "hvSelectionCombo"
 ""
-1 742.0281690140845 -73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 742.0281690140845 -78 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 5 0 0 0 0 0
 E E E
@@ -528,7 +528,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  594 446 652 472
+0  594 441 652 467
 11
 1
 LANG:1 0 
@@ -582,7 +582,7 @@ E
 14 6
 "textField1"
 ""
-1 638.5833333333333 -75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 638.5833333333333 -80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -594,7 +594,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  538 444.5238095238095 591 472
+0  538 439.5238095238095 591 467
 3 "3s" 3 0 0 1 0 -1  E E E
 13 7
 "setButton"
@@ -676,7 +676,7 @@ LANG:1 3 Set
 2 10
 "parameterText"
 ""
-1 655 447 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 655 442 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 10 0 0 0 0 0
 E E E
@@ -689,8 +689,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 655 447 681 469
-0 2 2 "0s" 0 0 0 192 0 0  655 447 1
+E E 2 1 3 2 1 E U  0 E 655 442 681 464
+0 2 2 "0s" 0 0 0 192 0 0  655 442 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
@@ -741,7 +741,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.354166666666667 0 1.844155844155853 519.4583333333334 -733.0259740259797 0 E 10 603 131 681
+E E 2 1 3 2 1 E 1.354166666666667 0 1.935064935064936 519.4583333333334 -794.8441558441567 0 E 10 603 131 681
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1

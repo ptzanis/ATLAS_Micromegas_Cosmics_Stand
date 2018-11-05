@@ -203,9 +203,9 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
 //     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
@@ -227,9 +227,9 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\");
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
@@ -477,7 +477,7 @@ LANG:1 0
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0  538 393.0000000000001 691.0000000000001 419
-6
+5
 1
 LANG:1 6 Module
 
@@ -496,10 +496,6 @@ LANG:1 7 Layer 3
 0
 1
 LANG:1 7 Layer 4
-
-0
-1
-LANG:1 11 Combination
 
 0
 
