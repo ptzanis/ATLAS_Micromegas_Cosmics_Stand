@@ -199,13 +199,13 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-    string node=$node;
+  string node=$node;
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
-    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
-    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
+    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
+    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
 //     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
@@ -226,38 +226,46 @@ LANG:1 0
       string node=$node;
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
-    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
-    toLockEnabled =makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
+    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
+    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
     
     if (!onButton.enabled) {
-          setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
         for (int i = 1; i <= dynlen(toLockEdit); i++) {
             setValue(toLockEdit[i], \"enabled\", TRUE);
         }
         for (int i = 1; i <= dynlen(toLockEnabled); i++) {
             setValue(toLockEnabled[i], \"enabled\", TRUE);
-          }  
-      }
-      else
-        {    
+        }
+       
+        
+    }
+    else {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
         for (int i = 1; i <= dynlen(toLockEdit); i++) {
             setValue(toLockEdit[i], \"enabled\", FALSE);
         }
         for (int i = 1; i <= dynlen(toLockEnabled); i++) {
             setValue(toLockEnabled[i], \"enabled\", FALSE);
-        }  
-      }          
+        }
+  
+        
+        
+        
+    }
+
+    
+    
     
 }
 " 0
- 0 1 1 2 1 E 0.725 0 0.7341140747070307 333 -170.3966598510738 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
+ 0 1 1 2 1 E 0.725 0 0.7341140747070307 333 -166.3966598510738 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
 19 32
 "stripsDriftChoose"
 ""
-1 538 468 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 538 473 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 32 0 0 0 0 0
 E E E
@@ -269,8 +277,8 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "horizontal" ""
 1
-LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0  536 466 691 487
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  536 471 691 492
 2
 T 
 1
@@ -296,7 +304,7 @@ E E
   string node=$node;
   
   this.name(this.name()+\"_N\"+node);
-
+  this.toolTipText(this.name());
 }" 0
  E
 30 0
@@ -322,7 +330,7 @@ LANG:1 0
 13 2
 "offButton"
 ""
-1 174 630 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 174 631 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 2 0 0 0 0 0
 E E E
@@ -334,7 +342,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  537 412.0000000000001 610.0000000000001 438
+0  537 413.0000000000001 610.0000000000001 439
 
 T 
 1
@@ -349,6 +357,7 @@ LANG:1 3 OFF
  dyn_string channelSetOff;
  
  dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
+ 
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
     dpGet(\"N\"+node+\".Mapping.\"+channelSetOff[i]+\".Channel\",channel);
@@ -360,7 +369,7 @@ LANG:1 3 OFF
 13 3
 "onButton"
 ""
-1 166.1333841463418 631.6916666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 166.1333841463418 632.6916666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -372,7 +381,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  617 412.0000000000001 690.0000000000001 438
+0  617 413.0000000000001 690.0000000000001 439
 
 T 
 1
@@ -455,7 +464,7 @@ LANG:1 2 ON
 22 4
 "selectionComboBox"
 ""
-1 367 79 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 367 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -467,7 +476,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  538 383.0000000000001 691.0000000000001 409
+0  538 384.0000000000001 691.0000000000001 410
 5
 1
 LANG:1 6 Module
@@ -495,6 +504,7 @@ LANG:1 7 Layer 4
   string node=$node;
   
   this.name(this.name()+\"_N\"+node);
+  this.toolTipText(this.name());
   
   
   
@@ -506,7 +516,7 @@ E
 22 5
 "hvSelectionCombo"
 ""
-1 742.0281690140845 -78 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 742.0281690140845 -76 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 5 0 0 0 0 0
 E E E
@@ -518,7 +528,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  594 441 652 467
+0  594 443 652 469
 11
 1
 LANG:1 0 
@@ -570,9 +580,9 @@ E
 E
  0 0
 14 6
-"voltageField"
+"textField1"
 ""
-1 638.5833333333333 -80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 638.5833333333333 -78 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -584,12 +594,12 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  538 439.5238095238095 591 467
+0  538 441.5238095238095 591 469
 3 "3s" 3 0 0 1 0 -1  E E E
 13 7
 "setButton"
 ""
-1 568.9608769251514 49.18346682668799 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 568.9608769251514 53.18346682668799 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -601,7 +611,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  568.0139203259395 487.1193096598228 671.0000000000001 515.9999999999999
+0  568.0139203259395 491.1193096598228 671.0000000000001 519.9999999999999
 
 T 
 1
@@ -622,15 +632,14 @@ LANG:1 3 Set
  getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
 
  dynAppend(channelToSet,returnAliasHVChannels(node,type,sector,stripsOrDrift));
- 
-   
+     
    for(int i=1;i<=dynlen(channelToSet);i++)
   {
      dpGet(\"N\"+node+\".Mapping.\"+channelToSet[i]+\".Channel\",channel[i]); 
      dynAppend(channelSummary,channel[i]);
    
-     if (voltageField.text)
-      dpSetWait(\"CAEN/\"+channel[i]+\".settings.v0:_original.._value\", voltageField.text);   
+     if (textField1.text)
+      dpSetWait(\"CAEN/\"+channel[i]+\".settings.v0:_original.._value\", textField1.text);   
    
      if (hvSelectionCombo.text!=\"\")
       {  
@@ -652,20 +661,15 @@ LANG:1 3 Set
   }
     
     delay(2); 
-    voltageField.text = \"\";
+    textField1.text = \"\";
     hvSelectionCombo.text=\"\";    
    
 }" 0
- E E "main()
-{
-  string node=$node; 
-  this.name(this.name()+\"_N\"+node);
-}" 0
-
+ E E E
 2 10
 "parameterText"
 ""
-1 655 442 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 655 445 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 10 0 0 0 0 0
 E E E
@@ -678,8 +682,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 655 442 681 464
-0 2 2 "0s" 0 0 0 192 0 0  655 442 1
+E E 2 1 3 2 1 E U  0 E 655 445 681 467
+0 2 2 "0s" 0 0 0 192 0 0  655 445 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
@@ -710,8 +714,8 @@ LANG:1 9 Configure
      string node=$node; 
      string type=$type; 
      string sector=$sector;
-     string batchID=$batchID;
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Setup\"+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type,\"$batchID:\"+batchID));
+     
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Setup\"+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
          
 }" 0
  E E E
@@ -730,7 +734,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.354166666666667 0 1.935064935064936 519.4583333333334 -794.8441558441567 0 E 10 603 131 681
+E E 2 1 3 2 1 E 1.354166666666667 0 1.948051948051952 519.4583333333334 -803.6753246753277 0 E 10 603 131 681
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
