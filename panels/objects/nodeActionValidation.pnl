@@ -44,7 +44,7 @@ PANEL,-1 -1 704 846 N "_3DFace" 7
 }" 0
  E E E E 1 -1 -1 0  -2 -2.000000000000004
 ""0  1
-E "dyn_string returnAliasHVChannels(string node,string type,string sector,int showDrift){
+E "dyn_string returnAliasHVChannels(string node,string type,string sector,int showDrift=1){
   
   string channel;
   dyn_string stripChannels,driftChannels,channelSetOff;
@@ -199,13 +199,13 @@ LANG:1 0
 "antiAliased" "0"
 "main()
 {
-  string node=$node;
+    string node=$node;
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
-    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
-    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
+    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
+    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
     
 //     if (!onButton.enabled) {
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
@@ -226,38 +226,30 @@ LANG:1 0
       string node=$node;
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
-    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
-    toLockEnabled = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"textField1\",
-              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\",\"parameterText\");
+    toLockEdit = makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
+    toLockEnabled =makeDynString(\"selectionComboBox\"+\"_N\"+node, \"offButton\", \"onButton\", \"voltageField\",
+              \"hvSelectionCombo\", \"stripsDriftChoose\"+\"_N\"+node,\"setButton\"+\"_N\"+node,\"parameterText\");
     
     if (!onButton.enabled) {
-        setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
+          setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,unlocked.png]]\");
         for (int i = 1; i <= dynlen(toLockEdit); i++) {
             setValue(toLockEdit[i], \"enabled\", TRUE);
         }
         for (int i = 1; i <= dynlen(toLockEnabled); i++) {
             setValue(toLockEnabled[i], \"enabled\", TRUE);
-        }
-       
-        
-    }
-    else {
+          }  
+      }
+      else
+        {    
         setValue(\"lockHolder\",\"fill\",\"[pattern,[fit,png,locked.png]]\");
         for (int i = 1; i <= dynlen(toLockEdit); i++) {
             setValue(toLockEdit[i], \"enabled\", FALSE);
         }
         for (int i = 1; i <= dynlen(toLockEnabled); i++) {
             setValue(toLockEnabled[i], \"enabled\", FALSE);
-        }
-  
-        
-        
-        
-    }
-
-    
-    
+        }  
+      }          
     
 }
 " 0
@@ -277,7 +269,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "horizontal" ""
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0  536 466 691 487
 2
 T 
@@ -304,7 +296,7 @@ E E
   string node=$node;
   
   this.name(this.name()+\"_N\"+node);
-  this.toolTipText(this.name());
+
 }" 0
  E
 30 0
@@ -357,7 +349,6 @@ LANG:1 3 OFF
  dyn_string channelSetOff;
  
  dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
- 
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
     dpGet(\"N\"+node+\".Mapping.\"+channelSetOff[i]+\".Channel\",channel);
@@ -464,7 +455,7 @@ LANG:1 2 ON
 22 4
 "selectionComboBox"
 ""
-1 367 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 367 79 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -476,7 +467,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  538 384.0000000000001 691.0000000000001 410
+0  538 383.0000000000001 691.0000000000001 409
 5
 1
 LANG:1 6 Module
@@ -504,7 +495,6 @@ LANG:1 7 Layer 4
   string node=$node;
   
   this.name(this.name()+\"_N\"+node);
-  this.toolTipText(this.name());
   
   
   
@@ -580,7 +570,7 @@ E
 E
  0 0
 14 6
-"textField1"
+"voltageField"
 ""
 1 638.5833333333333 -80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
@@ -645,8 +635,8 @@ LANG:1 3 Set
      dpGet(\"N\"+node+\".Mapping.\"+channelToSet[i]+\".Channel\",channel[i]); 
      dynAppend(channelSummary,channel[i]);
    
-     if (textField1.text)
-      dpSetWait(\"CAEN/\"+channel[i]+\".settings.v0:_original.._value\", textField1.text);   
+     if (voltageField.text)
+      dpSetWait(\"CAEN/\"+channel[i]+\".settings.v0:_original.._value\", voltageField.text);   
    
      if (hvSelectionCombo.text!=\"\")
       {  
@@ -668,11 +658,16 @@ LANG:1 3 Set
   }
     
     delay(2); 
-    textField1.text = \"\";
+    voltageField.text = \"\";
     hvSelectionCombo.text=\"\";    
    
 }" 0
- E E E
+ E E "main()
+{
+  string node=$node; 
+  this.name(this.name()+\"_N\"+node);
+}" 0
+
 2 10
 "parameterText"
 ""
@@ -721,8 +716,8 @@ LANG:1 9 Configure
      string node=$node; 
      string type=$type; 
      string sector=$sector;
-     
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Setup\"+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
+     string batchID=$batchID;
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Setup\"+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type,\"$batchID:\"+batchID));
          
 }" 0
  E E E
