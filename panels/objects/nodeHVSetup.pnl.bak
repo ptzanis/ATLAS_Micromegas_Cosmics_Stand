@@ -1,8 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 558 970 N "WF_PanelBackground" 5
-"$batchID"
+PANEL,-1 -1 558 970 N "WF_PanelBackground" 4
 "$layer"
 "$mode"
 "$node"
@@ -210,7 +209,7 @@ LANG:1 0
 2 1
 "titleLayer_"
 ""
-1 218.4410850187287 2 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 145.4410850187287 2 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -229,13 +228,14 @@ LANG:1 0
      string mode=$mode;  
      string type=$type; 
      string layer=$layer;
-     string batchID=$batchID;
-     
+     string batchID;
+    
+     dpGet(\"N\"+node+\".BatchId\",batchID);
         
      this.text(\"Node \"+node+\", \"+type+\", \"+batchID);
 }" 0
- E 2 1 3 2 1 E U  0 E 218.4410850187287 2 415 24
-0 2 2 "0s" 0 0 0 192 0 0  218.4410850187287 2 1
+ E 2 1 3 2 1 E U  0 E 145.4410850187287 2 342 24
+0 2 2 "0s" 0 0 0 192 0 0  145.4410850187287 2 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1

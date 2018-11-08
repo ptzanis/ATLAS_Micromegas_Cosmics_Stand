@@ -715,7 +715,7 @@ LANG:1 9 Configure
      string type=$type; 
      string sector=$sector;
      
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Setup\"+\"_Node_\"+node, makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Node \"+node+\" (Setup) \", makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
          
 }" 0
  E E E
