@@ -4,8 +4,46 @@ LANG:1 0
 PANEL,-1 -1 374 275 N "_3DFace" 0
 "main()
 {
- addSymbol(myModuleName(), myPanelName(), \"GIFFPP.pnl\", \"extraModule\"+\"_N\"+node,
-                makeDynString(), 10, 0, 0, 1, 1); 
+  int x,y;
+   x=0;
+   y=0; 
+//   string node=$node;
+  string node=\"1\";
+ 
+ dyn_string dpe,dpeAlias,dpeUnit;
+ 
+ bool isEnvOn,isGasOn,isHumOn,isGifOn;
+ dpGet(\"ALL.ExtraMode.Env\",isEnvOn);
+ dpGet(\"ALL.ExtraMode.Gas\",isGasOn); 
+ dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
+ dpGet(\"ALL.ExtraMode.GIF\",isGifOn);  
+ 
+ dpGet(\"N1.Gas.Leak\");
+ if(isGasOn)
+ {
+   dynAppend(dpe,\"N\"+node+\".Gas.Inlet\");
+   dynAppend(dpeAlias,\"Inlet\");  
+   dynAppend(dpeUnit,\"L/h\");     
+   dynAppend(dpe,\"N\"+node+\".Gas.Outlet\");
+   dynAppend(dpeAlias,\"Outlet\");
+   dynAppend(dpeUnit,\"L/h\");        
+   dynAppend(dpe,\"N\"+node+\".Gas.Leak\");
+   dynAppend(dpeAlias,\"Leak\"); 
+   dynAppend(dpeUnit,\"L/h\");        
+   
+ }
+ 
+ for(int i=1;i<=dynlen(dpe);i++)
+ {
+  addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_pnl_Ref_\" +  dpeAlias[i],
+                          makeDynString(\"$dpe:\" +dpe[i], \"$x:\" + x, \"$y:\" + y,\"$alias:\"+dpeAlias[i],\"$unit:\"+dpeUnit[i]), x + 2, y, 0, 1, 0.9);     
+  y=y+18;
+   
+ }
+ 
+  
+  
+  
 }" 0
  E E E E 1 -1 -1 0  -1 -1
 ""0  1

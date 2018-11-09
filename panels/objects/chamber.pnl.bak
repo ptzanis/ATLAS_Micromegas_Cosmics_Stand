@@ -28,17 +28,12 @@ PANEL,-1 -1 433 236 N "WF_PanelBackground" 5
       dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",chamberMappingDrift);
 
         for (int i = 1; i <= dynlen(chamberMappingStrips); i++){ 
-//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Channel\",dpes[counterChannel]);
-//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingStrips[i]+\".Alias\",dpesAlias[counterChannel]);
-//             dpes[counterChannel] =\"N\"+i\".Mapping.\"+chamberMappingStrips[i]\".Channel\" \"CAEN/\" + chamberMappingStrips[i];
                dpes[counterChannel] =chamberMappingStrips[i];
           
               counterChannel++;        
         }
         
         for (int i = 1; i <= dynlen(chamberMappingDrift); i++){ 
-//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Channel\",dpes[counterChannel]);
-//             dpGet(\"N\"+i+\".Mapping.\"+chamberMappingDrift[i]+\".Alias\",dpesAlias[counterChannel]);
               dpes[counterChannel] =chamberMappingDrift[i];
             
               counterChannel++;        
@@ -47,8 +42,6 @@ PANEL,-1 -1 433 236 N "WF_PanelBackground" 5
         
         y = y + 20;
         for (int i = 1; i <= (dynlen(chamberMappingStrips)+dynlen(chamberMappingDrift)); i++){
-//             addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpeBare,
-//                       makeDynString(\"$alias:\"+dpesAlias[i],\"$chName:\" + chName, \"$dpe:\" +\"CAEN/\"+dpes[i], \"$x:\" + x, \"$y:\" + y), x + 2, y, 0, 1, 1);
                addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpes[i],
                           makeDynString(\"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y,\"$sector:\"+sector), x + 2, y, 0, 1, 0.9);        
             

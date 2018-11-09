@@ -335,7 +335,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
       DebugN(\"----------------------------Archive Status \"+node+\" | OFF\");
    
     
-    }   
+  }   
         
     setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
     this.foreCol(\"red\");
@@ -360,8 +360,12 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     dpSet(\"N\"+node+\".DpesToPlot\",clear);    
     dpSet(\"N\"+node+\".Archiving.Status\",0); 
     
-    
-    
+     buttonOverview.visible(TRUE);
+     buttonOverview.enabled(FALSE);
+     RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleOverview\", \"\"); 
+     delay(3);
+     RootPanelOnModule(\"objects/nodeOverviewValidationHolder.pnl\", \"Overview\", \"embModuleOverview\", makeDynString()); 
+     buttonOverview.enabled(TRUE);
 
   }"
 "main()

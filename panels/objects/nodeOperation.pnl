@@ -214,8 +214,7 @@ LANG:1 15 Hide Extra Info
     int xButton, yButton, xContainer, yContainer, xChambersBgPos, yChambersBgPos,
         xChambersBgSize, yChambersBgSize, difYPos;
     
-    difYPos = 295;
-    
+    difYPos = 295;    
     getValue(\"hideShowBrowserButton\", \"position\", xButton, yButton);
     getValue(\"hideShowButtonContainer\", \"position\", xContainer, yContainer);
     getValue(\"channelsModule\", \"position\", xChambersBgPos, yChambersBgPos);
@@ -223,17 +222,12 @@ LANG:1 15 Hide Extra Info
     
     if (hideShowBrowserButton.text == \"Hide Extra Info\") {
       
-//         removeSymbol(myModuleName(), myPanelName(), \"ebrowserRef\");
-
         hideShowBrowserButton.position(xButton, yButton + difYPos);
         hideShowButtonContainer.position(xContainer, yContainer + difYPos);
         hideShowBrowserButton.text(\"Show Extra Info\");
         
         channelsModule.size(xChambersBgSize, yChambersBgSize + difYPos);
-        //chambersBackground.size(xChambersBgSize, yChambersBgSize + difYPos);
-//         yChambersBgPos = yChambersBgPos - 22;
-        //chambersBackground.position(xChambersBgPos, yChambersBgPos);
-//         channelsModule.position(xChambersBgPos, yChambersBgPos);
+        extraModule.visible(FALSE);
       }
     else {
               
@@ -243,12 +237,8 @@ LANG:1 15 Hide Extra Info
         hideShowBrowserButton.text(\"Hide Extra Info\");
 
         channelsModule.size(xChambersBgSize, yChambersBgSize-difYPos);//yChambersBgSize - difYPos
-        //chambersBackground.size(xChambersBgSize, yChambersBgSize - difYPos);
-        //chambersBackground.position(xChambersBgPos, yChambersBgPos);
-//         channelsModule.position(xChambersBgPos, yChambersBgPos);
-      
-//         loadBrowser();  
-    }
+          extraModule.visible(TRUE);
+      }
     
 }" 0
  E E E
