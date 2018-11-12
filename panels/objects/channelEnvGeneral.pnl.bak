@@ -1,11 +1,9 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 207 20 N "white" 7
+PANEL,-1 -1 207 20 N "white" 5
 "$alias"
 "$dpe"
-"$node"
-"$sector"
 "$unit"
 "$x"
 "$y"
@@ -38,27 +36,6 @@ PANEL,-1 -1 207 20 N "white" 7
  E E E E 1 -1 -1 0  0 0
 ""0  1
 E "string dpe = $dpe;
-string node=$node;
-#uses \"email.ctl\"
-string alertViaEmail(string recipient, string sender, string subject, string mainBody) {
- 
-    dyn_string emailContent;
-    int ret; 
-    string status; 
-    string smtpServer = \"cernmx.cern.ch\";
-    string hostName = getHostname(); 
-    
-    emailContent[1] = recipient;
-    emailContent[2] = sender;
-    emailContent[3] = subject;
-    emailContent[4] = mainBody;
-  
-    emSendMail(smtpServer, hostName, emailContent, ret);
-    if (ret == 0)  status = \"Message sent\";
-    else status = \"Message sent failed\";
-    return status;
-}
-
 " 0
  3
 "CBRef" "1"
@@ -73,7 +50,7 @@ LANG:1 0
 20 4
 "checkBox"
 ""
-1 -132 -44 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 -125 -44 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -85,7 +62,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  176 2 192 18
+0  183 2 199 18
 1
 T 
 1
@@ -97,46 +74,7 @@ LANG:1 0
 E E
 0 0 0 0 0
 0
-"main()
-{    
-  
- /* 
-    string sector=$sector;    
-    dyn_string DpesToPlot;
-    dpGet(\"N\"+node+\".DpesToPlot\",DpesToPlot);      
-      if (dynContains(DpesToPlot,\"N\"+node+\".Mapping.\"+dpe) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);  
-
-    string dpeNEW;
-    dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
-    dpeNEW=\"CAEN/\"+dpeNEW;
-    if (dynContains(channelsToPlot, dpeNEW) >= 1) setValue(\"\", \"state\", 0, 1); else setValue(\"\", \"state\", 0, 0);  
-*/
-  
-    
-}
-" 0
-"#uses \"HVMMGeneral.ctl\"
-main(int button, int state)
-{
-
-//   \"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y,\"$sector:\"+sector
-//     string text;
-//     getValue(myModuleNameMain + \".\" + myPanelNameMain + \":bFieldButton\", \"text\", text); //[\"M1\"][\"TestBeam SCS\"]
-
-//     if (text == \"HV Monitor\") removeBmonitor();
-
-    string sector=$sector;
-    disableAllCheckboxes();
-    
-    if(sector==\"0\")
-    {loadPlots(node,dpe);}
-    
-    if(sector==\"1\" || sector==\"2\")
-    {loadPlotsCosmics(node,dpe,sector);}
-    
-    enableAllCheckboxes();
-}" 0
-6 2
+EE6 2
 "channelBorder"
 ""
 1 9 9 E E E 1 E 1 E N "STD_grey_light" E N "_Transparent" E E
@@ -151,7 +89,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 2 1 1 E 0.6202090592334496 0 1 -6.721254355400697 -9 1 E 293 10 6 28
+E E 0 1 2 1 1 E 0.6411149825783974 0 1 -6.846689895470385 -9 1 E 293 10 6 28
 6 3
 "onOffStatus"
 ""
@@ -171,12 +109,8 @@ E E 0 1 2 1 1 E 0.7317073170731707 0 1 0 0 1 E 123 1 0 19
 2 1
 "channelNameText"
 ""
-1 -11 -3 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
- "main()
-{
-//       ChildPanelOnCentral(\"objects/popupPlot.pnl\", dpGetAlias(dpe + \".\") + \" \" + dpe, makeDynString(\"$dpe:\" + dpe));
-}" 0
- E
+1 -11 -1 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+ E E
 1 0 0 0 0 0
 E E E
 0
@@ -197,14 +131,14 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -11 1 103 24
-0 2 2 "0s" 0 0 0 65 0 0  -11 1 2
+ E 0 1 1 2 1 E U  0 E -11 3 103 26
+0 2 2 "0s" 0 0 0 65 0 0  -11 3 2
 1
-LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
 LANG:1 8  Channel
 1
-LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 6 6

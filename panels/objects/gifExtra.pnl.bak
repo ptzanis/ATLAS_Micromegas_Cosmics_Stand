@@ -1,19 +1,16 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1622 999 N "WF_PanelBackground" 1
+PANEL,-1 -1 934 277 N "_3DFace" 2
 "$node"
-"// #uses \"fwTrending/fwTrending\"
-
-
-main()
+"$purpose"
+"main()
 {
-    string node=$node;
     int x1 =  60;
     int x2 = 137;
     int y=5;
 
-
+string node=$node;
 
     dyn_string parameters;
     parameters = makeDynString(\"$dpe:\" + \"GIFFPP.EnvParameters.Atmospheric_Pressure\", \"$format:[3.1f]\",
@@ -27,7 +24,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_R\",
-              parameters, x1,y, 0, .85, .93);
+              parameters, x1-15,y+2, 0, .90, .93);
     
     y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.EnvParameters.Humidity_Inside_Bunker\", \"$format:[3.1f]\",
@@ -41,7 +38,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);
+              parameters, x1-15, y+2, 0, .90, .93);
     
         y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.EnvParameters.Humidity_Outside_Bunker\", \"$format:[3.1f]\",
@@ -55,7 +52,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);
+              parameters, x1-15, y+2, 0, .90, .93);
     
             y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.EnvParameters.Temp_Inside_Bunker\", \"$format:[3.1f]\",
@@ -69,7 +66,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);
+              parameters, x1-15, y+2, 0, .90, .93);
     
             y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.EnvParameters.Temp_Outside_Bunker\", \"$format:[3.1f]\",
@@ -83,7 +80,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);
+              parameters, x1-15, y+2, 0, .90, .93);
     
     
   int x1 =  -20;
@@ -103,7 +100,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);    
+              parameters, x1, y, 0, .90, .93);    
     
          y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.DownStreamPos.B\", \"$format:[3.1f]\",
@@ -117,7 +114,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);   
+              parameters, x1, y, 0, .90, .93);   
     
              y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.DownStreamPos.C\", \"$format:[3.1f]\",
@@ -131,7 +128,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93); 
+              parameters, x1, y, 0, .90, .93); 
     
                  y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation\", \"$format:[3.1f]\",
@@ -145,10 +142,10 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93); 
-   
-   /* 
-    int x1 =  60;
+              parameters, x1, y, 0, .90, .93); 
+    
+    
+     int x1 =  60;
     int x2 =  137;
     
                      y=y-60;
@@ -164,7 +161,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);    
+              parameters, x1, y, 0, .90, .93);    
     
          y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.UpStreamPos.B\", \"$format:[3.1f]\",
@@ -178,7 +175,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93);   
+              parameters, x1, y, 0, .90, .93);   
     
              y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.UpStreamPos.C\", \"$format:[3.1f]\",
@@ -192,7 +189,7 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93); 
+              parameters, x1, y, 0, .90, .93); 
     
                  y=y+20;
      parameters = makeDynString(\"$dpe:\" + \"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\", \"$format:[3.1f]\",
@@ -206,12 +203,14 @@ main()
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl\",
-              parameters, x1, y, 0, .85, .93); 
-   */ 
-
-  //  int x1 = (int)$x + 280;
-  //  int x2 = (int)$x + 257;
-      dyn_string exceptionInfo;
+              parameters, x1, y, 0, .90, .93);    
+    
+   string purpose=$purpose;
+  if(purpose==\"plots\")
+   {
+     this.size(1620,1000);     
+     plotsButton.visible(FALSE);    
+     dyn_string exceptionInfo;
 
        fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"SourceON\",makeDynString(\"GIFFPP.Irradiator.SourceON\"),
          500, 0, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
@@ -235,81 +234,42 @@ main()
     fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"DownStreamPos_EffectiveAttenuation\",makeDynString(\"GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation\"),
           778, 750, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
    
-
+  
    y=y+100;
    x1=1300; 
    bool isHumOn;
  dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
- if(isHumOn)
+ if(isHumOn){
   addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_pnl_Ref_\" +  dpeAlias[i],
                           makeDynString(\"$dpe:\" +\"N\"+node+\".Gas.Humidity\", \"$x:\" + x1, \"$y:\" + y,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"), x1 + 2, y, 0, 1, 1);        
+  }
+}
+else
+{
+   y=y+50;
+   x1=40; 
+   bool isHumOn;
+ dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
+ if(isHumOn)
+  addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_pnl_Ref_\" +  \"Gas_Humidity\",
+                          makeDynString(\"$dpe:\" +\"N\"+node+\".Gas.Humidity\", \"$x:\" + x1, \"$y:\" + y,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"), x1 + 2, y, 0, 1, 1); 
     
+ 
+}
 
-}" 0
- E E E E 0.82 -1 -1 0  30 -6
+ 
+
+}  
+     
+     
+   
+   
+   
+   
+    " 0
+ E E E E 0.88 -1 -1 0  -1.000000000000004 -4.999999999999997
 ""0  1
-E "bool exportData(string valueType, dyn_string channels, string start, string end, string folderPath,string startData,string endData) {
-
-    dyn_dyn_anytype archive1,archive2,archive3,archive4,archive5,archive6,archive7,archive8,archive9,archive10;
-    string query1,query2,query3,query4,query5,query6,query7,query8,query9,query10, currentDate, filePath;;
-    
-
-    
-        query1 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query2 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query3 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query4 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[4] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query5 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[5] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query6 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[6] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query7 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[7] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query8 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[8] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query9 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[9] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        query10 = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[10] + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-
-        
-        dpQuery(query1, archive1);
-        dpQuery(query2, archive2);
-        dpQuery(query3, archive3);
-        dpQuery(query4, archive4);
-        dpQuery(query5, archive5);
-        dpQuery(query6, archive6);
-        dpQuery(query7, archive7);
-        dpQuery(query8, archive8);
-        dpQuery(query9, archive9);
-        dpQuery(query10, archive10);
-
-
-
-        
-        file export;
-        currentDate = formatTime(\"%d_%m_%y\", getCurrentTime());
-        filePath = folderPath + valueType +  \"GIFF_\" + startData+\"_TO_\"+endData+\".dat\";
-
-        
-        if (isfile(filePath)) {
-            popupMessage(\"_Ui_1\", \"File Exists\");
-            popupMessage(\"_Ui_2\", \"File Exists\");
-            popupMessage(\"_Ui_3\", \"File Exists\");
-            popupMessage(\"_Ui_4\", \"File Exists\");
-            popupMessage(\"_Ui_5\", \"File Exists\");
-            return FALSE;
-        }
-        else {
-            export = fopen(filePath, \"a\");
-        }
-
-      fprintf(export, \"%s \\n\",\"Time\"+ \"\\t\" +\"\\t\" + \"\\t\" +\"Source ON\"+ \"\\t\"+ \"A\"+\"\\t\"+\"B\"+\"\\t\"+ \"C\"+\"\\t\"+\"Effective\"+\"\\t\"+ \"Humidity IN\"+\"\\t\"+\"Humidity OUT\"+\"\\t\"+ \"Temp IN\"+\"\\t\"+\"Temp OUT\"+\"\\t\"+\"Atm. Pressure\");        
-        
-        for (int j = 3; j <= dynlen(archive1); j++) { 
-            fprintf(export, \"%s \\t %s \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %3.1f \\n\", formatTime(\"%d/%m/%Y_%H:%M:%S\", archive1[j][2]),archive1[j][3],archive2[j][3],archive3[j][3],archive4[j][3],archive5[j][3],archive6[j][3],archive7[j][3],archive8[j][3],archive9[j][3],archive10[j][3]);
-        }
-
-        fclose(export);
-    
-               DebugN(\"Data file exported!\");  
-    return TRUE;
-}" 0
- 3
+E E 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -319,7 +279,7 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-30 1
+30 0
 "FRAME1"
 ""
 1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
@@ -334,12 +294,12 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.7538461538461538 0 0.5510204081632654 -12.61538461538461 1.306122448979592 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.773076923076923 0 0.5663265306122448 -22.19230769230769 -0.6020408163265279 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 24 Environmental Parameters
-30 2
+30 1
 "FRAME2"
 ""
 1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
@@ -354,15 +314,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.3769230769230769 0 0.5714285714285714 -1.307692307692303 109.4285714285714 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.7730769230769229 0 0.5714285714285714 -22.19230769230769 109.4285714285714 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 10 Attenuator
-2 3
+2 2
 "PRIMITIVE_TEXT1"
 ""
-1 12 7 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 2.999999999999993 7 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 2 0 0 0 0 0
 E E E
@@ -375,8 +335,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 12 7 108 36
-0 2 2 "0s" 0 0 0 192 0 0  12 7 2
+E E 0 1 3 2 1 E U  0 E 2.999999999999993 7 99 36
+0 2 2 "0s" 0 0 0 192 0 0  2.999999999999993 7 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -385,10 +345,10 @@ LANG:1 16 Atmosph Pressure
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 4
+2 3
 "PRIMITIVE_TEXT2"
 ""
-1 26 28.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 17 28.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -401,8 +361,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 26 28.25 111 57
-0 2 2 "0s" 0 0 0 192 0 0  26 28.25 2
+E E 0 1 3 2 1 E U  0 E 17 28.25 102 57
+0 2 2 "0s" 0 0 0 192 0 0  17 28.25 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -411,10 +371,10 @@ LANG:1 15 Humidity Inside
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 5
+2 4
 "PRIMITIVE_TEXT3"
 ""
-1 20 49 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 11 49 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -427,8 +387,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 20 49 113 78
-0 2 2 "0s" 0 0 0 192 0 0  20 49 2
+E E 0 1 3 2 1 E U  0 E 11 49 104 78
+0 2 2 "0s" 0 0 0 192 0 0  11 49 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -437,10 +397,10 @@ LANG:1 16 Humidity Outside
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 6
+2 5
 "PRIMITIVE_TEXT4"
 ""
-1 38 68 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 29 68 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 5 0 0 0 0 0
 E E E
@@ -453,8 +413,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 38 68 104 97
-0 2 2 "0s" 0 0 0 192 0 0  38 68 2
+E E 0 1 3 2 1 E U  0 E 29 68 95 97
+0 2 2 "0s" 0 0 0 192 0 0  29 68 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -463,10 +423,10 @@ LANG:1 11 Temp Inside
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 7
+2 6
 "PRIMITIVE_TEXT5"
 ""
-1 33 86 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 24 86 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -479,8 +439,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 33 86 107 115
-0 2 2 "0s" 0 0 0 192 0 0  33 86 2
+E E 0 1 3 2 1 E U  0 E 24 86 98 115
+0 2 2 "0s" 0 0 0 192 0 0  24 86 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -489,7 +449,7 @@ LANG:1 12 Temp Outside
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 8
+2 7
 "PRIMITIVE_TEXT6"
 ""
 1 26 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
@@ -505,20 +465,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 1 0 1.306451612903226 0 -39.2258064516129 0 E 26 130 35 157
+E E 0 1 3 2 1 E 1 0 1.306451612903226 -9.000000000000004 -39.2258064516129 0 E 26 130 35 159
 0 2 2 "0s" 0 0 0 192 0 0  26 130 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 A
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 9
+2 8
 "PRIMITIVE_TEXT7"
 ""
-1 25.5 148.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 16.5 148.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 8 0 0 0 0 0
 E E E
@@ -531,20 +491,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 25.5 148.5 35 176
-0 2 2 "0s" 0 0 0 192 0 0  25.5 148.5 2
+E E 0 1 3 2 1 E U  0 E 16.5 148.5 26 178
+0 2 2 "0s" 0 0 0 192 0 0  16.5 148.5 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 B
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 10
+2 9
 "PRIMITIVE_TEXT8"
 ""
-1 25.5 168.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 16.5 168.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 9 0 0 0 0 0
 E E E
@@ -557,20 +517,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 25.5 168.5 35 196
-0 2 2 "0s" 0 0 0 192 0 0  25.5 168.5 2
+E E 0 1 3 2 1 E U  0 E 16.5 168.5 26 198
+0 2 2 "0s" 0 0 0 192 0 0  16.5 168.5 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 C
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 11
+2 10
 "PRIMITIVE_TEXT9"
 ""
-1 23.75 190.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 14.75 190.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 10 0 0 0 0 0
 E E E
@@ -583,20 +543,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 23.75 190.25 40 217
-0 2 2 "0s" 0 0 0 192 0 0  23.75 190.25 2
+E E 0 1 3 2 1 E U  0 E 14.75 190.25 32 219
+0 2 2 "0s" 0 0 0 192 0 0  14.75 190.25 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 3 Eff
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 12
+2 11
 "PRIMITIVE_TEXT10"
 ""
-1 26 130 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 26 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 11 0 0 0 0 0
 E E E
@@ -609,20 +569,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 1 0 1.306451612903226 510 -74.83870967741939 0 E 26 130 35 157
+E E 0 1 3 2 1 E 1 0 1.306451612903226 80 -39.83870967741939 0 E 26 130 35 159
 0 2 2 "0s" 0 0 0 192 0 0  26 130 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 A
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 13
+2 12
 "PRIMITIVE_TEXT11"
 ""
-1 536.5 112.8870967741935 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 106.5 147.8870967741935 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 12 0 0 0 0 0
 E E E
@@ -635,20 +595,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 536.5 112.8870967741935 546 140
-0 2 2 "0s" 0 0 0 192 0 0  536.5 112.8870967741935 2
+E E 0 1 3 2 1 E U  0 E 106.5 147.8870967741935 116 177
+0 2 2 "0s" 0 0 0 192 0 0  106.5 147.8870967741935 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 B
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 14
+2 13
 "PRIMITIVE_TEXT12"
 ""
-1 535.5 132.8870967741935 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 105.5 167.8870967741935 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 13 0 0 0 0 0
 E E E
@@ -661,20 +621,20 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 535.5 132.8870967741935 545 160
-0 2 2 "0s" 0 0 0 192 0 0  535.5 132.8870967741935 2
+E E 0 1 3 2 1 E U  0 E 105.5 167.8870967741935 115 197
+0 2 2 "0s" 0 0 0 192 0 0  105.5 167.8870967741935 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 1 C
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 15
+2 14
 "PRIMITIVE_TEXT13"
 ""
-1 533.75 154.6370967741935 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 103.75 189.6370967741935 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 14 0 0 0 0 0
 E E E
@@ -687,17 +647,17 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 533.75 154.6370967741935 550 182
-0 2 2 "0s" 0 0 0 192 0 0  533.75 154.6370967741935 2
+E E 0 1 3 2 1 E U  0 E 103.75 189.6370967741935 121 219
+0 2 2 "0s" 0 0 0 192 0 0  103.75 189.6370967741935 2
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 3 Eff
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-30 16
+30 15
 "FRAME3"
 ""
 1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
@@ -712,15 +672,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.3076923076923077 0 0.4948979591836736 10.76923076923077 118.969387755102 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.3461538461538462 0 0.4948979591836736 0.6153846153846074 117.969387755102 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 10 DownStream
-30 17
+30 16
 "FRAME4"
 ""
-1 30 -6 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
  E E
 16 0 0 0 0 0
 E E E
@@ -732,12 +692,12 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.3076923076923077 0 0.4948979591836736 523.0192307692307 82.60648452929561 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.3076923076923077 0 0.4948979591836736 93.01923076923072 117.6064845292956 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 8 Upstream
-30 18
+30 17
 "FRAME5"
 ""
 1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
@@ -752,15 +712,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.4423076923076924 0 0.5510204081632654 200.7307692307692 1.306122448979594 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.4538461538461539 0 0.5663265306122448 191.3846153846154 -0.6020408163265283 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 10 Irradiator
-2 19
+2 18
 "PRIMITIVE_TEXT14"
 ""
-1 220 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 211 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 18 0 0 0 0 0
 E E E
@@ -773,8 +733,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 220 10 305 55
-0 2 2 "0s" 0 0 0 192 0 0  220 10 3
+E E 0 1 3 2 1 E U  0 E 211 10 296 55
+0 2 2 "0s" 0 0 0 192 0 0  211 10 3
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -787,7 +747,7 @@ LANG:1 0
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 20
+2 19
 "PRIMITIVE_TEXT15"
 ""
 1 263 28 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
@@ -803,7 +763,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 1.057720239092788 0 1 -15.06643483604267 0 0 E 263 28 303 73
+E E 0 1 3 2 1 E 1.057720239092788 0 1 -24.06643483604268 0 0 E 263 28 303 73
 0 2 2 "0s" 0 0 0 192 0 0  263 28 3
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
@@ -817,10 +777,10 @@ LANG:1 0
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 21
+2 20
 "PRIMITIVE_TEXT16"
 ""
-1 272 46 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 263 46 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 20 0 0 0 0 0
 E E E
@@ -833,8 +793,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 272 46 301 91
-0 2 2 "0s" 0 0 0 192 0 0  272 46 3
+E E 0 1 3 2 1 E U  0 E 263 46 292 91
+0 2 2 "0s" 0 0 0 192 0 0  263 46 3
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -847,12 +807,12 @@ LANG:1 0
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 23
+2 21
 "PRIMITIVE_TEXT18"
 ""
-1 265 65 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 256 65 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-22 0 0 0 0 0
+21 0 0 0 0 0
 E E E
 0
 1
@@ -863,8 +823,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 265 65 302 110
-0 2 2 "0s" 0 0 0 192 0 0  265 65 3
+E E 0 1 3 2 1 E U  0 E 256 65 293 110
+0 2 2 "0s" 0 0 0 192 0 0  256 65 3
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -877,12 +837,12 @@ LANG:1 0
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 24
+2 22
 "PRIMITIVE_TEXT19"
 ""
-1 272 83 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 263 83 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-23 0 0 0 0 0
+22 0 0 0 0 0
 E E E
 0
 1
@@ -893,8 +853,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 272 83 297 128
-0 2 2 "0s" 0 0 0 192 0 0  272 83 3
+E E 0 1 3 2 1 E U  0 E 263 83 288 128
+0 2 2 "0s" 0 0 0 192 0 0  263 83 3
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
@@ -907,12 +867,12 @@ LANG:1 0
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-7 29
+7 23
 "ELLIPSE5"
 ""
 1 338 57 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-28 0 0 0 0 0
+23 0 0 0 0 0
 E E E
 0
 1
@@ -970,13 +930,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -25 -39 1 E 338 57 7 7
-7 30
+ E 0 1 3 2 1 E 1 0 1 -34 -39 1 E 338 57 7 7
+7 24
 "ELLIPSE6"
 ""
 1 338 57 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-29 0 0 0 0 0
+24 0 0 0 0 0
 E E E
 0
 1
@@ -1034,13 +994,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1.057720239092788 0 1 -44.50944081336235 -21 1 E 338 57 7 7
-7 31
+ E 0 1 3 2 1 E 1.057720239092788 0 1 -53.50944081336236 -21 1 E 338 57 7 7
+7 25
 "ELLIPSE7"
 ""
 1 338 57 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-30 0 0 0 0 0
+25 0 0 0 0 0
 E E E
 0
 1
@@ -1098,13 +1058,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -25 -3 1 E 338 57 7 7
-7 33
+ E 0 1 3 2 1 E 1 0 1 -34 -3 1 E 338 57 7 7
+7 26
 "ELLIPSE9"
 ""
 1 338 57 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-32 0 0 0 0 0
+26 0 0 0 0 0
 E E E
 0
 1
@@ -1162,13 +1122,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -25.00000000000001 16 1 E 338 57 7 7
-7 34
+ E 0 1 3 2 1 E 1 0 1 -34.00000000000001 16 1 E 338 57 7 7
+7 27
 "ELLIPSE10"
 ""
 1 338 57 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-33 0 0 0 0 0
+27 0 0 0 0 0
 E E E
 0
 1
@@ -1226,13 +1186,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -25 33.25 1 E 338 57 7 7
-30 35
+ E 0 1 3 2 1 E 1 0 1 -34 33.25 1 E 338 57 7 7
+30 28
 "FRAME6"
 ""
 1 30 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
  E E
-34 0 0 0 0 0
+28 0 0 0 0 0
 E E E
 1
 1
@@ -1242,17 +1202,17 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 0.4423076923076924 0 0.5714285714285712 99.7307692307692 109.4285714285714 0 E 30 -6 291 191
+E E 0 1 3 2 1 E 0.453846153846154 0 0.5765306122448981 191.3846153846154 108.4591836734694 0 E 30 -6 291 191
 1
-LANG:1 34 MS Shell Dlg 2,-1,8,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 6 PPE154
-2 36
+2 29
 "PRIMITIVE_TEXT20"
 ""
-1 119 120 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 214 122 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-35 0 0 0 0 0
+29 0 0 0 0 0
 E E E
 0
 1
@@ -1263,26 +1223,26 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 119 120 153 162
-0 2 2 "0s" 0 0 0 192 0 0  119 120 3
+E E 0 1 3 2 1 E U  0 E 214 122 247 167
+0 2 2 "0s" 0 0 0 192 0 0  214 122 3
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 5 KeySt
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 38
+2 30
 "PRIMITIVE_TEXT22"
 ""
-1 119 142.9375 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 214 144.9375000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-37 0 0 0 0 0
+30 0 0 0 0 0
 E E E
 0
 1
@@ -1293,26 +1253,26 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 119 142.9375 151 185
-0 2 2 "0s" 0 0 0 192 0 0  119 142.9375 3
+E E 0 1 3 2 1 E U  0 E 214 144.9375000000001 245 190
+0 2 2 "0s" 0 0 0 192 0 0  214 144.9375000000001 3
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 4 Mode
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 39
+2 31
 "PRIMITIVE_TEXT23"
 ""
 1 220 160 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-38 0 0 0 0 0
+31 0 0 0 0 0
 E E E
 0
 1
@@ -1323,60 +1283,26 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E 1 0 0.8265582655826558 -101 35.40379403794039 0 E 220 160 289 202
+E E 0 1 3 2 1 E 1 0 0.8265582655826558 -12.99999999999997 37.40379403794044 0 E 220 160 284 205
 0 2 2 "0s" 0 0 0 192 0 0  220 160 3
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 10 PPEDoorSts
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
-2 40
-"PRIMITIVE_TEXT24"
-""
-1 114 189 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-39 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 0 1 3 2 1 E U  0 E 114 189 183 246
-0 2 2 "0s" 0 0 0 192 0 0  114 189 4
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0 1
-LANG:1 10 PPXDoorSts
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0 1
-LANG:1 0 
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0 1
-LANG:1 0 
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0 1
-LANG:1 0 
-14 42
+14 32
 "TEXT_FIELD2"
 ""
-1 157 122 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 144.8030303030303 118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-41 0 0 0 0 0
+32 0 0 0 0 0
 E E E
 0
 1
@@ -1385,8 +1311,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  155 119 225 137
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  245 117 320 140
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1426,12 +1352,12 @@ void EP_textFieldInCB(string dp, string sNewValue)
 // SimpleCtrlScriptEnd {EP_textFieldIn}
 " 0
  E
-14 43
+14 33
 "TEXT_FIELD3"
 ""
-1 157 144 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 142.3636363636364 142 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-42 0 0 0 0 0
+33 0 0 0 0 0
 E E E
 0
 1
@@ -1440,8 +1366,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  155 141 225 159
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  244 141 320 164
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1481,12 +1407,12 @@ void EP_textFieldInCB(string dp, string sNewValue)
 // SimpleCtrlScriptEnd {EP_textFieldIn}
 " 0
  E
-14 44
+14 34
 "TEXT_FIELD4"
 ""
-1 178 167 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 178 166 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-43 0 0 0 0 0
+34 0 0 0 0 0
 E E E
 0
 1
@@ -1495,8 +1421,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  176 164 225 182
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  271 165 320 188
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1536,12 +1462,12 @@ void EP_textFieldInCB(string dp, string sNewValue)
 // SimpleCtrlScriptEnd {EP_textFieldIn}
 " 0
  E
-14 45
+14 35
 "TEXT_FIELD5"
 ""
-1 178 189 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 178 188 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-44 0 0 0 0 0
+35 0 0 0 0 0
 E E E
 0
 1
@@ -1550,8 +1476,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  176 186 225 204
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  271 187 320 210
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1591,12 +1517,12 @@ void EP_textFieldInCB(string dp, string sNewValue)
 // SimpleCtrlScriptEnd {EP_textFieldIn}
 " 0
  E
-13 47
+13 36
 "startArchivingButton"
 ""
-1 -152 119 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 159 84 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
-46 0 0 0 0 0
+36 0 0 0 0 0
 E E E
 0
 1
@@ -1606,7 +1532,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  236.2783409762798 129.9229525862069 319.1467620289114 159.5479525862069
+0  547.2783409762798 94.92295258620689 630.1467620289113 124.5479525862069
 
 T 
 1
@@ -1721,12 +1647,12 @@ LANG:1 5 Start
     {this.enabled(FALSE);}
 }" 0
 
-13 48
+13 37
 "stopArchivingButton"
 ""
-1 -197.7942235717814 148 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 113.2057764282186 113 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
-47 0 0 0 0 0
+37 0 0 0 0 0
 E E E
 0
 1
@@ -1736,7 +1662,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  235.6134453781513 160.875 317.9999999999999 193.875
+0  546.6134453781513 125.875 628.9999999999999 158.875
 
 T 
 1
@@ -1788,222 +1714,12 @@ LANG:1 4 Stop
     {this.enabled(TRUE);}
 }" 0
 
-14 50
-"TEXT_FIELD6"
-""
-1 123 254.4899945916712 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-49 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  121 246 254 271
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Atmospheric Pressure\");
-}" 0
- E
-14 51
-"TEXT_FIELD7"
-""
-1 500 254 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-50 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  498 245.5100054083288 631 271
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Humidity IN\");
-}" 0
- E
-14 53
-"TEXT_FIELD9"
-""
-1 908 254 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-52 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  906 245.5100054083288 1039 271
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Humidity OUT\");
-}" 0
- E
-14 54
-"TEXT_FIELD10"
-""
-1 123 506.2349918875068 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-53 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  121 497.7449972958356 254 523
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Temp IN\");
-}" 0
- E
-14 55
-"TEXT_FIELD11"
-""
-1 500 505.7449972958356 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-54 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  498 497.2550027041644 631 522
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Temp OUT\");
-}" 0
- E
-14 56
-"TEXT_FIELD12"
-""
-1 907.9999999999999 505.7449972958356 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-55 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  906 497.2550027041644 1039 522
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Attenuator A\");
-}" 0
- E
-14 57
-"TEXT_FIELD13"
-""
-1 123.0000000000001 757.2349918875067 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-56 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  121.0000000000001 748.7449972958356 254.0000000000001 774
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Attenuator B\");
-}" 0
- E
-14 58
-"TEXT_FIELD14"
-""
-1 500.0000000000001 756.7449972958356 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-57 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  498.0000000000001 748.2550027041644 631.0000000000001 773
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Attenuator C\");
-}" 0
- E
-14 59
-"TEXT_FIELD15"
-""
-1 908 756.7449972958356 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-58 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  906 748.2550027041644 1039 773
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Eff. Attenuation\");
-}" 0
- E
-14 60
-"TEXT_FIELD16"
-""
-1 618 6.421419031435491 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-59 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  616 -2.068575560235672 749 23
-2 "0s" 0 0 0 1 0 -1  E "main()
-{
-  this.text(\"Source\");
-}" 0
- E
-7 61
+7 38
 "archiveStatus"
 ""
 1 1020 290 E E E 1 E 1 E N {0,0,0} E N "White" E E
  E E
-60 0 0 0 0 0
+38 0 0 0 0 0
 E E E
 0
 1
@@ -2060,49 +1776,43 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {S7_processWentUnq}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 0.1750000000000006 0 0.1600188945336697 115.9999999999994 74.59452058523578 1 E 1020 290 20 20
-6 88
-"RECTANGLE7"
+ E 0 1 3 2 1 E 0.1750000000000006 0 0.1600188945336697 426.9999999999994 39.59452058523578 1 E 1020 290 20 20
+2 39
+"PRIMITIVE_TEXT24"
 ""
-1 130 210 E E E 1 E 1 E N "_Transparent" E N {226,226,226} E E
+1 220 160 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-67 0 0 0 0 0
+39 0 0 0 0 0
 E E E
 0
 1
 LANG:1 0 
 
-3
+4
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 3 2 1 E 2.688194444444444 0 2.080909904369039 782.5347222222223 -418.8911693980924 1 E 130 210 290 320
-30 89
-"FRAME13"
-""
-1 20 113 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-68 0 0 0 0 0
-E E E
+"transformable" "0"
+E E 0 1 3 2 1 E 1 0 0.8265582655826558 -14 57.75067750677506 0 E 220 160 284 205
+0 2 2 "0s" 0 0 0 192 0 0  220 160 3
 1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 3 2 1 E 0.8777777777777783 0 0.567265157429092 1114.151599702381 -59.04733252507943 0 E 20 113 511 541
-1
-LANG:1 35 MS Shell Dlg 2,-1,19,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 0 1
-LANG:1 6 Export
-13 90
-"PUSH_BUTTON6"
+LANG:1 10 PPXDoorSts
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+13 40
+"plotsButton"
 ""
-1 1185.52312748016 191.9253881315025 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 231 257 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-69 0 0 0 0 0
+40 0 0 0 0 0
 E E E
 8
 1
@@ -2111,204 +1821,22 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 35 MS Shell Dlg 2,-1,21,5,50,0,0,0,0,0
-0  1183.52312748016 170.9253881315025 1327 224.7550027041643
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  229 251 319 276
 
 T 
 1
-LANG:1 11 Export Data
-"main()
-{
-  
-   string start = getStartTime();
-   string end = getEndTime();  
-   string dirPath = destFolderTextField.text;
-       checkOrCreateDirectory(dirPath);
-   dyn_string allChannels;
-
-   allChannels[1]=\"GIFFPP.Irradiator.SourceON\";
-   allChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
-   allChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
-   allChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
-   allChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
-   allChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
-   allChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
-   allChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
-   allChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
-   allChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
-
- 
-
-//===========================================================
-  
-  string dirPathProject=destFolderTextField.text();
-  
-   time startTime;
-    string startDateString, startTimeString, startString;
-    
-    string startDateTextBox = \"dateSelection.startDateField\";
-    string startTimeTextBox = \"dateSelection.startTimeField\";
-    
-    getValue(startDateTextBox, \"text\", startDateString);
-    getValue(startTimeTextBox, \"text\", startTimeString);
-
-    startString = startDateString + \" \" + startTimeString;    
-    
-    if (!fwGeneral_hasCorrectFormat(startString)) {
-        DebugN(\"The starting time provided is wrong, check again and retry.\");
-        return -1;
-    }
-    
-    startTime = fwGeneral_stringToDate(startString);
-    startString = formatTime(\"%d_%m_%Y_%H_%M_%S\", startTime);
-  
-    // 
-    
-     time endTime;
-    string endDateString, endTimeString, endString;
- 
-    string endDateTextBox = \"dateSelection.endDateField\";
-    string endTimeTextBox = \"dateSelection.endTimeField\";
-    
-    getValue(endDateTextBox, \"text\", endDateString);
-    getValue(endTimeTextBox, \"text\", endTimeString);
-    
-    endString = endDateString + \" \" + endTimeString;
-    
-    if (!fwGeneral_hasCorrectFormat(endString)) {
-        DebugN(\"The ending time provided is wrong, check again and retry.\");
-        return -1;
-    }
-    
-    endTime = fwGeneral_stringToDate(endString);
-    endString = formatTime(\"%d_%m_%Y_%H_%M_%S\", endTime);
-    
-//===========================================================   
-   
-    if (!exportData(\"\", allChannels, start, end,dirPath,startString,endString)) 
-        DebugN(\"File exists in the specified directory. Please change directory or delete old files.\");    
-  
-}" 0
- E E E
-2 91
-"PRIMITIVE_TEXT25"
-""
-1 1191.828683035715 97.16348336959727 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-70 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 0 1 3 2 1 E U  0 E 1191.828683035715 97.16348336959727 1193 110
-0 2 2 "0s" 0 0 0 192 0 0  1191.828683035715 97.16348336959727 1
-1
-LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0 1
-LANG:1 0 
-2 92
-"PRIMITIVE_TEXT26"
-""
-1 1161.951698908731 48.88570559181945 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-71 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 0 1 3 2 1 E U  0 E 1161.951698908731 48.88570559181945 1255 70
-0 2 2 "0s" 0 0 0 192 0 0  1161.951698908731 48.88570559181945 1
-1
-LANG:1 35 MS Shell Dlg 2,-1,19,5,50,0,0,0,0,0
-0 1
-LANG:1 10 Directory:
-14 93
-"destFolderTextField"
-""
-1 1254.828683035715 62.16348336959788 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-72 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  1252.828683035715 50.16348336959777 1497 73
-2 "0s" 0 0 0 0 0 -1  E "main()
-{
-  string currentDate=formatTime(\"%d_%m_%y\",getCurrentTime());
-  this.text(PROJ_PATH+\"GIFF_DATA/\");
-}" 0
- E
-13 94
-"PUSH_BUTTON7"
-""
-1 1508.828683035715 54.16348336959788 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
- E E
-73 0 0 0 0 0
-E E E
-8
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  1506.828683035715 41.16348336959777 1545 79.75500270416433
-
-P 
-4294967295
-"pictures/folderNew.png"
-1
-LANG:1 0 
-"main()
-{
-   
-    string sPath;
-    string systemName;
-    int iErr;
-	
-    if(shapeExists(\"cbSystem\"))
-        systemName = cbSystem.text;
-    else
-        systemName = \"\";
-  
-    sPath = \"C:\\\\Projects\\\\TBSCS\";
-    iErr = folderSelector( sPath );
-    
-    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
-	    sPath += \"/\";
-        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
-    	strreplace(sPath, \"//\", \"/\");
-        strreplace(sPath, \"//\", \"/\");
-	    // update the widget with the directory path
-        destFolderTextField.text = sPath;
-    }
+LANG:1 5 Plots
+"main(mapping event)
+{     
+  string node=$node;
+  ChildPanelOnCentral(\"objects/gifExtra.pnl\", \"\", makeDynString(\"$node:\"+node,\"$purpose:\"+\"plots\")); 
 }" 0
  E E E
 0
 LAYER, 1 
 1
 LANG:1 0 
-1 95 0 "" 14
-0
 0
 LAYER, 2 
 1
@@ -2334,24 +1862,4 @@ LAYER, 7
 1
 LANG:1 0 
 0
-3 0 "dateSelection" -1
-"layoutAlignment" "AlignNone"
-"" ""
-"objects/dateTimeWidget.pnl" 823 588 T 66 1 0 1 327.0000000000001 -488
-9
-"$bDateAndTime""TRUE"
-"$bEnabled""TRUE"
-"$bShowTimeZone""TRUE"
-"$iTimePeriod""86400"
-"$sEndDate"""
-"$sEndTime"""
-"$sStartDate"""
-"$sStartTime"""
-"$sTimeZone""0"
-1 1 "SHAPE_GROUP3" -1
-5 0 
-12 13 14 15 17 
-
-"layoutAlignment" "AlignNone"
-"" ""
 0

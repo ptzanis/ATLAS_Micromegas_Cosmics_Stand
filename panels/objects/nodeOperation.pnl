@@ -23,7 +23,9 @@ PANEL,-1 -1 1918 1070 N "_3DFace" 4
     dpGet(\"N\"+node+\".BatchId\",batchID);
    addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionValidation.pnl\", \"nodeAction\"+node+\"_\"+type,
                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1);   
-    
+   
+   RootPanelOnModule( \"objects/extraHolder.pnl\",\"extraHolder\", \"extraModule\"+\"_N\"+node, makeDynString(\"$node:\"+node), 0, 0, 0, 1, 1); 
+   
   
      }    
      
@@ -132,15 +134,34 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.3372093023255816 0 0.3664215686274508 -128.139534883721 729.2279411764706 0 E 380 114 1241 931
+"main()
+{ 
+   bool isEnvOn,isGasOn,isHumOn,isGifOn;
+   dpGet(\"ALL.ExtraMode.Env\",isEnvOn);
+   dpGet(\"ALL.ExtraMode.Gas\",isGasOn); 
+   dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
+   dpGet(\"ALL.ExtraMode.GIF\",isGifOn); 
+ 
+   if(isEnvOn)
+   this.text(this.text()+\" EnvStation |\");  
+   if(isGasOn)
+   this.text(this.text()+\" Gas |\");    
+   if(isHumOn)
+   this.text(this.text()+\" MM Humidity |\");   
+   if(isGifOn)
+   this.text(this.text()+\" GIF++ |\");   
+  
+  
+}" 0
+ E 0 0 1 0 1 E 0.3372093023255816 0 0.3627450980392155 -128.139534883721 732.6470588235295 0 E 380 114 1241 931
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 20 Env or Gas or GIFF++
+LANG:1 1 |
 29 6
 "channelsModule"
 ""
-1 -9.089171974522309 16.05831022901737 E E E 1 E 1 E N "_3DText" E N "WF_PanelBackground" E E
+1 -8 15 E E E 1 E 1 E N "_3DText" E N "WF_PanelBackground" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -153,7 +174,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  0.9999999999999992 15 287.9999999999997 759.9999999999994
+0  2.089171974522308 13.94168977098263 289.089171974522 758.941689770982
 15 Canvas.Canvas.1
 0
 "main()
@@ -203,8 +224,8 @@ LANG:1 0
 "hoverbclr" "N {236,236,236}"
 "layoutAlignment" "AlignCenter"
 1
-LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  -9.50000000000005 760.0117187499998 284.4999999999998 775.6353400735292
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  -9.50000000000005 760.0117187499998 284.4999999999997 775.6353400735292
 
 T 
 1
@@ -730,19 +751,21 @@ E E E
 1
 LANG:1 0 
 
-2
+4
+"horizontalScrollBarPolicy" "enum 1"
+"verticalScrollBarPolicy" "enum 1"
 "sizePolicy" "Fixed Expanding"
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  0.9999999999999922 789 287.9999999999997 1066
+0  0.9999999999999921 788.9999999999999 287.9999999999997 1066
 15 Canvas.Canvas.1
 0
 "main()
 {
 
      string node=$node;     
-    this.ModuleName = \"extraModule\"+\"_N\"+node; 
+     this.ModuleName = \"extraModule\"+\"_N\"+node; 
 
 
 }" 0
