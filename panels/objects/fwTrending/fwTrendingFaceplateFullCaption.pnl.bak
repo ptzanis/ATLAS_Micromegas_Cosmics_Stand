@@ -159,53 +159,9 @@ LANG:1 0
     if(mode==\"ValidationQA\")
      {      this.text(alias);}
   }
-//       string mo=$node;  
-  
-  
-  
-    /*
-    string alias=$alias;
-    string node=$node;
-    string mode,chamber,aliasValue,aliasSubs;
-    dpGet(alias,aliasValue);
-    
-    aliasSubs=substr(alias,0,2);
 
-    dpGet(aliasSubs+\".Mode\",mode);
-    dpGet(aliasSubs+\".ChamberType\",chamber);
-
-    
-    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
-           this.text(aliasValue+\" - \"+chamber);
-    if(mode==\"ValidationQA\")
-           this.text(aliasValue);
-    
-    /*
-
-    int mdmPos = strpos(temp[1], \"MDM\");
-    if (mdmPos > 0) {
-        string mdmName = substr(temp[1], mdmPos, 4);
-        int sensorPos = strpos(temp[1], \"Sensor\");
-        string sensorName = substr(temp[1], sensorPos, 7);
-        string alias = dpGetAlias(getSystemName() + mdmName + \"_\" + sensorName + \".\");
-        if (alias == \"\")
-            this.text(mdmName + \" \" + sensorName);
-        else
-            this.text(alias);
-    }
-    else {
-        int caenPos = strpos(temp[1], \"CAEN\");
-        int boardPos = strpos(temp[1], \"board\");
-        string boardName = substr(temp[1], boardPos + 5, 2);
-        int channelPos = strpos(temp[1], \"channel\");
-        string channelName = substr(temp[1], channelPos + 7, 3);
-        string alias = dpGetAlias(getSystemName() + substr(temp[1], caenPos, channelPos + 10 - caenPos) + \".\");
-        if (alias == \"\")
-            this.text(\"Board \" + boardName + \" Channel \" + channelName);
-        else
-            this.text(alias);
-    }
-    */
+      
+      
 }" 0
  E 0 1 1 2 1 E U  0 E 2 2 512 19
 0 2 2 "0s" 0 0 0 65 0 0  52 2 1

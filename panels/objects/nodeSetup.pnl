@@ -360,6 +360,64 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     dpSet(\"N\"+node+\".DpesToPlot\",clear);    
     dpSet(\"N\"+node+\".Archiving.Status\",0); 
     
+    
+    // Extra Archive STOP 
+   bool isEnvOn,isGasOn,isHumOn,isGifOn;
+    if(envSwitch.checked())
+        isEnvOn=TRUE;
+    if(gasSwitch.checked())
+        isGasOn=TRUE;
+    if(humiditySwitch.checked())
+        isHumOn=TRUE;
+    if(gifSwitch.checked())
+        isGifOn=TRUE;
+    
+    
+    dyn_string dpesExtraToArchive;
+    if(isGasOn)
+    {
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Inlet\");
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Outlet\");      
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Leak\");
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Pressure\");              
+     }
+    if(isEnvOn)
+    {
+      dynAppend(dpesExtraToArchive,\"BME280.pressureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.temperatureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.humidityMean\");
+      dpSet(\"BME280.archiving\",0);      
+    }
+    if(isHumOn)
+    {
+      dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Humidity\");        
+    }
+    if(isGifOn)
+    {
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Atmospheric_Pressure\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\");  
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Inside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Outside_Bunker\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.A\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.B\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.C\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Irradiator.SourceON\");  
+      dpSet(\"GIFFPP.archiving\",0);            
+    }
+     
+     
+     dyn_string exceptionInfo;
+    
+    for (int z = 1; z <= dynlen(dpesExtraToArchive); z++) {
+        fwArchive_stopMultiple(dpesExtraToArchive[z], exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+      }
+         DebugN(\"----------------------------Extra Archive Status \"+node+\" | OFF\"); 
+    //
+    
+    
      buttonOverview.visible(TRUE);
      buttonOverview.enabled(FALSE);
      RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleOverview\", \"\"); 

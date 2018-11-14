@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 934 277 N "_3DFace" 2
+PANEL,-1 -1 1653 743 N "_3DFace" 2
 "$node"
 "$purpose"
 "main()
@@ -208,7 +208,9 @@ string node=$node;
    string purpose=$purpose;
   if(purpose==\"plots\")
    {
-     this.size(1620,1000);     
+     atmField.visible(TRUE);
+     this.size(1620,1010);  
+
      plotsButton.visible(FALSE);    
      dyn_string exceptionInfo;
 
@@ -225,13 +227,13 @@ string node=$node;
           22, 500, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
     fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"Temp_Outside_Bunker\",makeDynString(\"GIFFPP.EnvParameters.Temp_Outside_Bunker\"),
          400, 500, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
-    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"DownStreamPos_A\",makeDynString(\"GIFFPP.Attenuators.DownStreamPos.A\"),
+    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"UpStreamPos_A\",makeDynString(\"GIFFPP.Attenuators.UpStreamPos.A\"),
           778, 500, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
-    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"DownStreamPos_B\",makeDynString(\"GIFFPP.Attenuators.DownStreamPos.B\"),
+    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"UpStreamPos_B\",makeDynString(\"GIFFPP.Attenuators.UpStreamPos.B\"),
           22, 750, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
-    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"DownStreamPos_C\",makeDynString(\"GIFFPP.Attenuators.DownStreamPos.C\"),
+    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"UpStreamPos_C\",makeDynString(\"GIFFPP.Attenuators.UpStreamPos.C\"),
          400, 750, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
-    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"DownStreamPos_EffectiveAttenuation\",makeDynString(\"GIFFPP.Attenuators.DownStreamPos.EffectiveAttenuation\"),
+    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"UpStreamPos_EffectiveAttenuation\",makeDynString(\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\"),
           778, 750, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\");
    
   
@@ -240,8 +242,12 @@ string node=$node;
    bool isHumOn;
  dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
  if(isHumOn){
-  addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_pnl_Ref_\" +  dpeAlias[i],
-                          makeDynString(\"$dpe:\" +\"N\"+node+\".Gas.Humidity\", \"$x:\" + x1, \"$y:\" + y,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"), x1 + 2, y, 0, 1, 1);        
+  addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_Humidity_Ref_\" +  node,
+                          makeDynString(\"$dpe:\" +\"N\"+node+\".Gas.Humidity\", \"$x:\" + x1, \"$y:\" + y,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"), x1 + 2, y, 0, 1, 1);       
+ 
+    fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"N\"+node+\"_Gas_Humidity\",makeDynString(\"N\"+node+\".Gas.Humidity\"),
+          1210, 320, exceptionInfo, \"_giffppPlot\", 0.7, 0.9,\"\",\"\"); 
+   
   }
 }
 else
@@ -335,7 +341,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 2.999999999999993 7 99 36
+E E 0 1 3 2 1 E U  0 E 2.999999999999993 7 98 36
 0 2 2 "0s" 0 0 0 192 0 0  2.999999999999993 7 2
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
@@ -1422,7 +1428,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  271 165 320 188
+0  271.0000000000001 165 320 188
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1477,7 +1483,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  271 187 320 210
+0  271.0000000000001 187 320 210
 2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -1532,7 +1538,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  547.2783409762798 94.92295258620689 630.1467620289113 124.5479525862069
+0  547.2783409762798 94.92295258620689 630.1467620289114 124.5479525862069
 
 T 
 1
@@ -1662,7 +1668,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  546.6134453781513 125.875 628.9999999999999 158.875
+0  546.6134453781513 125.875 629 158.875
 
 T 
 1
@@ -1833,10 +1839,484 @@ LANG:1 5 Plots
   ChildPanelOnCentral(\"objects/gifExtra.pnl\", \"\", makeDynString(\"$node:\"+node,\"$purpose:\"+\"plots\")); 
 }" 0
  E E E
+14 41
+"atmField"
+""
+1 132 254 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  130 245.5100054083288 263 270.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Atmospheric Pressure\");
+}" 0
+ E
+14 42
+"TEXT_FIELD7"
+""
+1 509 253.5100054083288 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  507.0000000000001 245.0200108166576 640.0000000000001 270.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Humidity IN\");
+}" 0
+ E
+14 43
+"TEXT_FIELD9"
+""
+1 917 253.5100054083288 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  915.0000000000001 245.0200108166576 1048 270.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Humidity OUT\");
+}" 0
+ E
+14 44
+"TEXT_FIELD10"
+""
+1 132 505.7449972958356 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  130 497.2550027041644 263 522.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Temp IN\");
+}" 0
+ E
+14 45
+"TEXT_FIELD11"
+""
+1 509 505.2550027041644 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  507.0000000000001 496.7650081124933 640.0000000000001 521.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Temp OUT\");
+}" 0
+ E
+14 46
+"TEXT_FIELD12"
+""
+1 916.9999999999999 505.2550027041644 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  915.0000000000001 496.7650081124933 1048 521.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Attenuator A\");
+}" 0
+ E
+14 47
+"TEXT_FIELD13"
+""
+1 132.0000000000001 756.7449972958354 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  130.0000000000001 748.2550027041644 263.0000000000002 773.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Attenuator B\");
+}" 0
+ E
+14 48
+"TEXT_FIELD14"
+""
+1 509.0000000000001 756.2550027041643 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  507.0000000000002 747.7650081124933 640.0000000000002 772.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Attenuator C\");
+}" 0
+ E
+14 49
+"TEXT_FIELD15"
+""
+1 917 756.2550027041643 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  915.0000000000001 747.7650081124933 1048 772.5100054083288
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Eff. Attenuation\");
+}" 0
+ E
+14 50
+"TEXT_FIELD16"
+""
+1 627 5.931424439764285 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  625.0000000000001 -2.558570151906878 758 22.51000540832879
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Source\");
+}" 0
+ E
+14 51
+"TEXT_FIELD17"
+""
+1 1325 318 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  1323 309.5100054083288 1456 335.0000000000001
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"MM Humidity\");
+}" 0
+ E
+6 52
+"RECTANGLE7"
+""
+1 130 210 E E E 1 E 1 E N "_Transparent" E N {226,226,226} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 2.688194444444444 0 1.667034604769429 868.5347222222223 -342.672061297028 1 E 130 210 290 320
+30 53
+"FRAME13"
+""
+1 20 113 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+54 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8777777777777783 0 0.4544409373653344 1200.151599702381 -54.39810617728057 0 E 20 113 511 541
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Export
+13 54
+"PUSH_BUTTON6"
+""
+1 1301 158 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  1299 145.836430487097 1425 176.4915226718556
+
+T 
+1
+LANG:1 11 Export Data
+"main()
+{
+  
+   string start = getStartTime();
+   string end = getEndTime();  
+   string dirPath = destFolderTextField.text;
+       checkOrCreateDirectory(dirPath);
+   dyn_string allChannels;
+
+   allChannels[1]=\"GIFFPP.Irradiator.SourceON\";
+   allChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
+   allChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
+   allChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
+   allChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+   allChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+   allChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+   allChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+   allChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+   allChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+
+ 
+
+//===========================================================
+  
+  string dirPathProject=destFolderTextField.text();
+  
+   time startTime;
+    string startDateString, startTimeString, startString;
+    
+    string startDateTextBox = \"dateSelection.startDateField\";
+    string startTimeTextBox = \"dateSelection.startTimeField\";
+    
+    getValue(startDateTextBox, \"text\", startDateString);
+    getValue(startTimeTextBox, \"text\", startTimeString);
+
+    startString = startDateString + \" \" + startTimeString;    
+    
+    if (!fwGeneral_hasCorrectFormat(startString)) {
+        DebugN(\"The starting time provided is wrong, check again and retry.\");
+        return -1;
+    }
+    
+    startTime = fwGeneral_stringToDate(startString);
+    startString = formatTime(\"%d_%m_%Y_%H_%M_%S\", startTime);
+  
+    // 
+    
+     time endTime;
+    string endDateString, endTimeString, endString;
+ 
+    string endDateTextBox = \"dateSelection.endDateField\";
+    string endTimeTextBox = \"dateSelection.endTimeField\";
+    
+    getValue(endDateTextBox, \"text\", endDateString);
+    getValue(endTimeTextBox, \"text\", endTimeString);
+    
+    endString = endDateString + \" \" + endTimeString;
+    
+    if (!fwGeneral_hasCorrectFormat(endString)) {
+        DebugN(\"The ending time provided is wrong, check again and retry.\");
+        return -1;
+    }
+    
+    endTime = fwGeneral_stringToDate(endString);
+    endString = formatTime(\"%d_%m_%Y_%H_%M_%S\", endTime);
+    
+//===========================================================   
+   
+    if (!exportData(\"\", allChannels, start, end,dirPath,startString,endString)) 
+        DebugN(\"File exists in the specified directory. Please change directory or delete old files.\");    
+  
+}" 0
+ E E E
+2 55
+"PRIMITIVE_TEXT25"
+""
+1 1277.828683035715 89.06357285019153 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1277.828683035715 89.06357285019153 1279 102
+0 2 2 "0s" 0 0 0 192 0 0  1277.828683035715 89.06357285019153 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 56
+"PRIMITIVE_TEXT26"
+""
+1 1247.951698908731 40.78579507241372 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1247.951698908731 40.78579507241372 1338 63
+0 2 2 "0s" 0 0 0 192 0 0  1247.951698908731 40.78579507241372 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 10 Directory:
+14 57
+"destFolderTextField"
+""
+1 1342 54 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  1340 41.99999999999989 1584.171316964285 65.2697604831412
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"/home/bb5user/Desktop\");
+}" 0
+ E
+13 58
+"PUSH_BUTTON7"
+""
+1 1591 49 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  1589 39.68606858366047 1617 66.68606858366047
+
+P 
+4294967295
+"pictures/folderNew.png"
+1
+LANG:1 0 
+"main()
+{
+   
+    string sPath;
+    string systemName;
+    int iErr;
+	
+    if(shapeExists(\"cbSystem\"))
+        systemName = cbSystem.text;
+    else
+        systemName = \"\";
+  
+    sPath = \"C:\\\\Projects\\\\TBSCS\";
+    iErr = folderSelector( sPath );
+    
+    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
+	    sPath += \"/\";
+        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
+    	strreplace(sPath, \"//\", \"/\");
+        strreplace(sPath, \"//\", \"/\");
+	    // update the widget with the directory path
+        destFolderTextField.text = sPath;
+    }
+}" 0
+ E E E
 0
 LAYER, 1 
 1
 LANG:1 0 
+1 59 0 "" 14
+0
 0
 LAYER, 2 
 1
@@ -1862,4 +2342,18 @@ LAYER, 7
 1
 LANG:1 0 
 0
+3 0 "dateSelection" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/dateTimeWidget.pnl" 823 588 T 52 1 0 1 412.9999999999999 -507
+9
+"$bDateAndTime""TRUE"
+"$bEnabled""TRUE"
+"$bShowTimeZone""TRUE"
+"$iTimePeriod""86400"
+"$sEndDate"""
+"$sEndTime"""
+"$sStartDate"""
+"$sStartTime"""
+"$sTimeZone""0"
 0
