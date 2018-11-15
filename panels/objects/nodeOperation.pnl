@@ -24,6 +24,8 @@ PANEL,-1 -1 1918 1070 N "_3DFace" 4
    addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionValidation.pnl\", \"nodeAction\"+node+\"_\"+type,
                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1);   
    
+   RootPanelOnModule(\"empty.pnl\", \"about\", \"extraModule\"+\"_N\"+node,\"\"); 
+   delay(1);
    RootPanelOnModule( \"objects/extraHolder.pnl\",\"extraHolder\", \"extraModule\"+\"_N\"+node, makeDynString(\"$node:\"+node), 0, 0, 0, 1, 1); 
    
   

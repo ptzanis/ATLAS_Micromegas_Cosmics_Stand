@@ -242,6 +242,7 @@ string node=$node;
    bool isHumOn;
  dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
  if(isHumOn){
+   humidityFileld.visible(TRUE);
   addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"channel_Humidity_Ref_\" +  node,
                           makeDynString(\"$dpe:\" +\"N\"+node+\".Gas.Humidity\", \"$x:\" + x1, \"$y:\" + y,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"), x1 + 2, y, 0, 1, 1);       
  
@@ -2050,9 +2051,9 @@ LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 }" 0
  E
 14 51
-"TEXT_FIELD17"
+"humidityFileld"
 ""
-1 1325 318 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1325 318 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 51 0 0 0 0 0
 E E E
@@ -2257,8 +2258,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  1340 41.99999999999989 1584.171316964285 65.2697604831412
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  1340 41.99999999999989 1584.171316964285 67
 2 "0s" 0 0 0 0 0 -1  E "main()
 {
   this.text(\"/home/bb5user/Desktop\");
@@ -2345,7 +2346,7 @@ LANG:1 0
 3 0 "dateSelection" -1
 "layoutAlignment" "AlignNone"
 "" ""
-"objects/dateTimeWidget.pnl" 823 588 T 52 1 0 1 412.9999999999999 -507
+"objects/dateTimeWidget.pnl" 823 588 T 52 1 0 1 412.9999999999999 -505
 9
 "$bDateAndTime""TRUE"
 "$bEnabled""TRUE"
