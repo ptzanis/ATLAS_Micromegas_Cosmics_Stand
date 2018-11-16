@@ -34,7 +34,7 @@ if(setupMode==\"ValidationQA\")
   //Extra  ---- Start
          dyn_string extraObject;
 
-      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"gifText\",\"gifSwitch\");
+      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"gifText\",\"gifSwitch\",\"extraRectangle\");
       
       for(int i=1;i<=dynlen(extraObject);i++)
       {
@@ -272,6 +272,38 @@ DISPLAY_LAYER, 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
+6 122
+"extraRectangle"
+""
+1 190 240 E E E 1 E 0 E N {0,0,0} E N "WF_PanelBackground" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.8000000000000002 0 0.4375000000000001 488.9999999999999 622 1 E 190 240 780 400
+6 119
+"RECTANGLE1"
+""
+1 190 240 E E E 1 E 1 E N {0,0,0} E N "WF_PanelBackground" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.6745762711864408 0 0.2625 247.8305084745762 80 1 E 190 240 780 400
 2 76
 "PRIMITIVE_TEXT14"
 ""
@@ -373,7 +405,7 @@ LANG:1 10 Validation
   
       dyn_string extraObject;
 
-      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"gifText\",\"gifSwitch\");
+      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"gifText\",\"gifSwitch\",\"extraRectangle\");
       
       for(int i=1;i<=dynlen(extraObject);i++)
       {
@@ -456,7 +488,7 @@ LANG:1 7 Cosmics
    
       dyn_string extraObject;
 
-      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\");
+      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"extraRectangle\");
 
       for(int i=1;i<=dynlen(extraObject);i++)
       {

@@ -38,14 +38,14 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-29 23
-"WebView_ewo1"
+13 1
+"PUSH_BUTTON1"
 ""
-1 93 97 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 82 153 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-22 0 0 0 0 0
+0 0 0 0 0 0
 E E E
-0
+8
 1
 LANG:1 0 
 
@@ -53,10 +53,17 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  93 97 551 345
-11 WebView.ewo
+0  80 122 527 196
+
+T 
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string startTime=getCurrentTime();
+}" 0
+ E E E
 0
-E0
 LAYER, 1 
 1
 LANG:1 0 

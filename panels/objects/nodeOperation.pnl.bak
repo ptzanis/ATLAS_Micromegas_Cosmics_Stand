@@ -24,7 +24,7 @@ PANEL,-1 -1 1918 1070 N "_3DFace" 4
    addSymbol(myModuleName(), myPanelName(), \"objects/nodeActionValidation.pnl\", \"nodeAction\"+node+\"_\"+type,
                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$batchID:\"+batchID,\"$sector:\"+sector,\"$x:\"+x,\"$y:\"+y), x, y, 0, 1, 1);   
    
-   RootPanelOnModule(\"empty.pnl\", \"about\", \"extraModule\"+\"_N\"+node, \"\"); 
+   RootPanelOnModule(\"empty.pnl\", \"about\", \"extraModule\"+\"_N\"+node,\"\"); 
    delay(1);
    RootPanelOnModule( \"objects/extraHolder.pnl\",\"extraHolder\", \"extraModule\"+\"_N\"+node, makeDynString(\"$node:\"+node), 0, 0, 0, 1, 1); 
    
@@ -773,6 +773,172 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 
 
 }" 0
+30 32
+"archiveFrame"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2825581395348836 0 0.2181372549019608 184.6279069767442 867.1323529411764 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Archive
+13 33
+"startButton"
+""
+1 320 978 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+33 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  318 970 409 998
+
+T 
+1
+LANG:1 5 Start
+"main(mapping event)
+{
+  string mode=$mode;
+  string node=$node;
+  if(mode==\"ValidationQA\")
+  {
+     time startTime=getCurrentTime();
+     dpSet(\"N\"+node+\".Archiving.StartTime\",startTime); 
+     archiveTestStatus.text(\"Test under progress!\");
+     startField.text(hour(startTime)+\":\"+minute(startTime)+\" \"+day(startTime)+\"/\"+month(startTime)+\"/\"+year(startTime));
+  }
+
+    
+}" 0
+ E E E
+13 34
+"stopButton"
+""
+1 428 950 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+34 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  427 970 518 998
+
+T 
+1
+LANG:1 4 Stop
+"main(mapping event)
+{
+  string mode=$mode;
+  string node=$node;
+  if(mode==\"ValidationQA\")
+  {
+     dpSet(\"N\"+node+\".Archiving.EndTime\",getCurrentTime()); 
+    
+  }
+
+    
+}" 0
+ E E E
+14 37
+"archiveTestStatus"
+""
+1 388.3333333333332 919 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 26 Utopia,-1,8,5,75,0,0,0,0,0
+0  386.3333333333332 914 504.6666666666665 939
+3 "0s" 0 0 0 1 0 -1  E E E
+2 38
+"statusText"
+""
+1 305 916 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1.166666666666667 0 1 -32.83333333333339 0 0 E 305 916 361 934
+0 2 2 "0s" 0 0 0 192 0 0  305 916 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Status :
+14 39
+"startField"
+""
+1 360.9999999999999 945 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 26 Utopia,-1,8,5,75,0,0,0,0,0
+0  358.9999999999999 940 517 965
+3 "0s" 0 0 0 1 0 -1  E E E
+2 40
+"startText"
+""
+1 305 942 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 305 942 351 960
+0 2 2 "0s" 0 0 0 192 0 0  305 942 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Start :
 0
 LAYER, 1 
 1
