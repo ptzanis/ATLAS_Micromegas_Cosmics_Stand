@@ -32,7 +32,7 @@ if(setupMode==\"ValidationQA\")
   int x=200;
   
   //Extra  ---- Start
-         dyn_string extraObject;
+      dyn_string extraObject;
 
       extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"gifText\",\"gifSwitch\",\"extraRectangle\");
       
@@ -40,7 +40,7 @@ if(setupMode==\"ValidationQA\")
       {
         setValue(extraObject[i],\"visible\",TRUE);
       }
-  //Extra  ---- ENDSS
+  //Extra  ---- END
   
   if(frameSector1.visible())
   {
@@ -115,6 +115,17 @@ if(setupMode==\"ValidationQA\")
 if(setupMode==\"CosmicsBasic\" || setupMode==\"CosmicsExtra\")
       {
 
+    //Extra  ---- Start
+      dyn_string extraObject;
+
+      extraObject=makeDynString(\"extraFrame\",\"envText\",\"envSwitch\",\"gasText\",\"gasSwitch\",\"humidotyText\",\"humiditySwitch\",\"extraRectangle\");
+      
+      for(int i=1;i<=dynlen(extraObject);i++)
+      {
+        setValue(extraObject[i],\"visible\",TRUE);
+      }
+  //Extra  ---- END
+      
   
   cosmicsButton.enabled(FALSE);
   validationButton.enabled(TRUE);
