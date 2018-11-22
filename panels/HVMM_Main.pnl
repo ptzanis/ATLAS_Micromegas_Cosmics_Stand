@@ -784,7 +784,7 @@ LANG:1 4 Save
    setValue(\"buttonN\"+i,\"text\",\"Node \"+i+\"-\"+chamberOfNode);
    
    
-   // Archive ------------------------- START
+   // Archive ------------------------- Start
    
    dyn_string archivedDpes,archivedChannel;
    dynClear(archivedDpes);
@@ -817,6 +817,7 @@ LANG:1 4 Save
         if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);     
                
    }  
+   
    
       //Extra Archive
        bool isEnvOn,isGasOn,isHumOn,isGifOn;
@@ -905,6 +906,114 @@ LANG:1 4 Save
    RootPanelOnModule(\"objects/nodeOperation.pnl\", \"N\"+sector, \"embModuleN\"+sector, makeDynString(\"$node:\"+sector,\"$mode:\"+mode,\"$type:\"+\"\",\"$sector:\"+sector));
    setValue(\"buttonN\"+sector,\"visible\",TRUE);
    setValue(\"buttonN\"+sector,\"text\",\"Sector \"+sector);
+   
+   
+   // Archive ------------------------- Start
+   
+   dyn_string archivedDpes,archivedChannel;
+   dynClear(archivedDpes);
+   dynAppend(archivedDpes,stripsToAppend);
+   dynAppend(archivedDpes,driftToAppend);
+   
+ for (int h = 1; h<=dynlen(archivedDpes); h++) {  
+   
+        dpGet(\"N\"+i+\".Mapping.\"+archivedDpes[h]+\".Channel\",archivedChannel[h]);   
+   
+        deadband = 0.1;      // Change these settings to adjust the detail
+        timeInterval = 1;    // of vMon archiving.   
+        fwArchive_configMultiple(\"CAEN/\"+archivedChannel[h] + \".actual.vMon\", archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);   
+ 
+        deadband = 0.5;        // Change these settings to adjust the detail
+        timeInterval = 1;    // of iMon archiving.
+        
+        fwArchive_configMultiple(\"CAEN/\"+archivedChannel[h] + \".actual.iMon\", archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+             
+ }
+   
+   for (int z = 1; z <= dynlen(archivedChannel); z++) {
+        fwArchive_startMultiple(\"CAEN/\"+archivedChannel[z] + \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        fwArchive_startMultiple(\"CAEN/\"+archivedChannel[z] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);     
+               
+   }  
+   
+   
+      //Extra Archive
+       bool isEnvOn,isGasOn,isHumOn,isGifOn;
+    if(envSwitch.checked())
+        isEnvOn=TRUE;
+    if(gasSwitch.checked())
+        isGasOn=TRUE;
+    if(humiditySwitch.checked())
+        isHumOn=TRUE;
+    if(gifSwitch.checked())
+        isGifOn=TRUE;
+    
+    dyn_string dpesExtraToArchive;
+    if(isGasOn)
+    {
+       dynAppend(dpesExtraToArchive,\"N\"+i+\".Gas.Inlet\");
+       dynAppend(dpesExtraToArchive,\"N\"+i+\".Gas.Outlet\");      
+       dynAppend(dpesExtraToArchive,\"N\"+i+\".Gas.Leak\");
+       dynAppend(dpesExtraToArchive,\"N\"+i+\".Gas.Pressure\");              
+     }
+    if(isEnvOn)
+    {
+      dynAppend(dpesExtraToArchive,\"BME280.pressureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.temperatureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.humidityMean\");
+      dpSet(\"BME280.archiving\",1);      
+    }
+    if(isHumOn)
+    {
+      dynAppend(dpesExtraToArchive,\"N\"+i+\".Gas.Humidity\");        
+    }
+    if(isGifOn)
+    {
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Atmospheric_Pressure\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\");  
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Inside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Outside_Bunker\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.A\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.B\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.C\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Irradiator.SourceON\");  
+      dpSet(\"GIFFPP.archiving\",1);            
+    }
+    
+     for (int h = 1; h<=dynlen(dpesExtraToArchive); h++) { 
+        deadband = 0.1;      
+        timeInterval = 1;  
+      fwArchive_configMultiple(dpesExtraToArchive[h], archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+       }
+     
+    for (int z = 1; z <= dynlen(dpesExtraToArchive); z++) {
+        fwArchive_startMultiple(dpesExtraToArchive[z], exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);        
+    }  
+   
+   DebugN(\"*****\");
+   DebugN(\"---------------------------- Extra Archive Status \"+i+\" | ON!\");     
+   DebugN(\"*****\");
+   DebugN(\"---------------------------- HV Archive Status \"+i+\" | ON!\"); 
+   dpSet(\"N\"+i+\".Archiving.Status\",1);
+   DebugN(\"*****\");
+   
+   // Archive ------------------------- END     
+   
+   
+   
+   
+   
    }   
    
 
