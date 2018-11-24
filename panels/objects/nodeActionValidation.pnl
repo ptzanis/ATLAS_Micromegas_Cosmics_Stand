@@ -877,7 +877,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 2 18
 "PRIMITIVE_TEXT2"
 ""
-1 219.5 -7 E E E 1 E 1 E N "Black" E N "WF_Banner" E E
+1 219.5 -5 E E E 1 E 1 E N "Black" E N "WF_Banner" E E
  E E
 18 0 0 0 0 0
 E E E
@@ -900,8 +900,8 @@ LANG:1 0
   this.text(type+\" - \"+batchID);  
   
 }" 0
- E 0 1 2 1 1 E U  1 E 219.5 -7 344 15
-0 2 2 "0s" 0 0 0 192 0 0  219.5 -7 1
+ E 0 1 2 1 1 E U  1 E 219.5 -5 344 17
+0 2 2 "0s" 0 0 0 192 0 0  219.5 -5 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
