@@ -554,7 +554,7 @@ LANG:1 9 Configure
 {
      string sector=$sector;
      
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Sector \"+sector+\" (Setup) \", makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Sector \"+sector+\" (Setup) \", makeDynString(\"$sector:\"+sector));
          
 }" 0
  E E E
