@@ -257,7 +257,7 @@ LANG:1 3 OFF
 
  dyn_string channelSetOff;
  int stripsOrDrift;
- getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift,stripsOrDrift); 
+ getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift); 
  dynAppend(channelSetOff,returnAliasHVChannels(sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
@@ -296,7 +296,7 @@ LANG:1 2 ON
 
  dyn_string channelSetOff;
  int stripsOrDrift;
- getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift,stripsOrDrift); 
+ getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift); 
  dynAppend(channelSetOff,returnAliasHVChannels(sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)

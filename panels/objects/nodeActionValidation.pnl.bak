@@ -356,7 +356,7 @@ LANG:1 3 OFF
  string type=$type;
  dyn_string channelSetOff;
  int stripsOrDrift;
- getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift,stripsOrDrift); 
+ getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
  dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
  
@@ -397,7 +397,7 @@ LANG:1 2 ON
  string type=$type;
  dyn_string channelSetOff;
  int stripsOrDrift;
- getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift,stripsOrDrift); 
+ getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
  dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
  
