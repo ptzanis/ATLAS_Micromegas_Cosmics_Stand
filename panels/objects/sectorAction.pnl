@@ -232,7 +232,7 @@ E E
 13 2
 "offButton"
 ""
-1 -126 616.3333333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 -126 617.3333333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 2 0 0 0 0 0
 E E E
@@ -244,7 +244,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  178.2857332172199 14.46335527152468 250.8154178183331 42.41460666419218
+0  178.2857332172199 15.46335527152468 250.8154178183331 43.41460666419218
 
 T 
 1
@@ -256,8 +256,9 @@ LANG:1 3 OFF
  string sector=$sector;
 
  dyn_string channelSetOff;
- 
- dynAppend(channelSetOff,returnAliasHVChannels(sector));
+ int stripsOrDrift;
+ getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift,stripsOrDrift); 
+ dynAppend(channelSetOff,returnAliasHVChannels(sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
@@ -294,8 +295,9 @@ LANG:1 2 ON
  string sector=$sector;
 
  dyn_string channelSetOff;
- 
- dynAppend(channelSetOff,returnAliasHVChannels(sector));
+ int stripsOrDrift;
+ getValue(\"stripsDriftChoose\"+\"_N\"+sector,\"number\",stripsOrDrift,stripsOrDrift); 
+ dynAppend(channelSetOff,returnAliasHVChannels(sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {

@@ -26,7 +26,7 @@ PANEL,-1 -1 1606 371 N "_3DFace" 1
             makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Leak\",\"$x:\"+720,\"$y:\"+30,\"$alias:\"+\"Gas-Leak\",\"$unit:\"+\"L/h\"),720+2,30,0,1,1);
      
     addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
-            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Leak\",\"$x:\"+1240,\"$y:\"+30,\"$alias:\"+\"Pressure\",\"$unit:\"+\"mbar\"),1240+2,30,0,1,1);
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Pressure\",\"$x:\"+1240,\"$y:\"+30,\"$alias:\"+\"Pressure\",\"$unit:\"+\"mbar\"),1240+2,30,0,1,1);
     
       fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Inlet_Outlet\",makeDynString(\"N\"+node+\".Gas.Inlet\",\"N\"+node+\".Gas.Outlet\"),
           25, 70, exceptionInfo, \"_gas_inlet_outlet\", 1, 1,\"\",\"\");
