@@ -16,7 +16,7 @@ PANEL,-1 -1 207 20 N "white" 5
     string unit=$unit;
 
     dyn_string parameters;
-    parameters = makeDynString(\"$dpe:\" +dpe, \"$format:[3.2f]\",
+    parameters = makeDynString(\"$dpe:\" +dpe, \"$format:[3.3f]\",
                                         \"$parameter:\",
                                         \"$unit:\"+unit,
                                         \"$width:\",
@@ -27,7 +27,7 @@ PANEL,-1 -1 207 20 N "white" 5
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + dpe,
-              parameters, x1, y, 0, .87, 0.93);
+              parameters, x1, y, 0, .89, 0.93);
     
     
 }

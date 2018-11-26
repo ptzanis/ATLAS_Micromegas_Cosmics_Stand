@@ -16,7 +16,7 @@ PANEL,-1 -1 207 20 N "white" 5
     string unit=$unit;
 
     dyn_string parameters;
-    parameters = makeDynString(\"$dpe:\" +dpe, \"$format:[3.2f]\",
+    parameters = makeDynString(\"$dpe:\" +dpe, \"$format:[3.3f]\",
                                         \"$parameter:\",
                                         \"$unit:\"+unit,
                                         \"$width:\",
@@ -27,7 +27,7 @@ PANEL,-1 -1 207 20 N "white" 5
     
     
     addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"parameter_pnl_Ref_\" + dpe,
-              parameters, x1, y, 0, .87, 0.93);
+              parameters, x1, y, 0, .89, 0.93);
     
     
 }
@@ -47,34 +47,7 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-20 4
-"checkBox"
-""
-1 -125 -44 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
- E E
-4 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  183 2 199 18
-1
-T 
-1
-LANG:1 0 
-
-0 
-1
-LANG:1 0 
-E E
-0 0 0 0 0
-0
-EE6 2
+6 2
 "channelBorder"
 ""
 1 9 9 E E E 1 E 1 E N "STD_grey_light" E N "_Transparent" E E

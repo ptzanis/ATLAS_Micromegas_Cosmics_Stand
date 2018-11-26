@@ -2,7 +2,7 @@ V 14
 2
 LANG:1 0 
 LANG:10001 0 
-PANEL,-1 -1 435 77 N "_3DFace" 9
+PANEL,-1 -1 734 77 N "_3DFace" 9
 "$bDateAndTime"
 "$bEnabled"
 "$bShowTimeZone"
@@ -122,14 +122,14 @@ showTimeZone(string sDollarParam)
      (getDollarValue(sDollarParam) == \"FALSE\" || getDollarValue(sDollarParam) == \"false\"
       || getDollarValue(sDollarParam) == \"0\"))
   {
-    timeZoneLabel.visible($bShowTimeZone);
-    selectedTimeZone.visible($bShowTimeZone);
+    timeZoneLabel.visible(FALSE);
+    selectedTimeZone.visible(FALSE);
     timeZoneShownField.text = $bShowTimeZone;
   }
   else
   {
-    timeZoneLabel.visible(TRUE);
-    selectedTimeZone.visible(TRUE); 
+    timeZoneLabel.visible(FALSE);
+    selectedTimeZone.visible(FALSE); 
     timeZoneShownField.text = TRUE;
   }  
 }
@@ -934,7 +934,7 @@ LANG:10001 3 Now
 14 29
 "selectedTimeZone"
 ""
-1 520 40 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 520 40 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 29 0 0 0 0 0
 E E E
@@ -953,7 +953,7 @@ LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 2 30
 "timeZoneLabel"
 ""
-1 520 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 520 20 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 30 0 0 0 0 0
 E E E

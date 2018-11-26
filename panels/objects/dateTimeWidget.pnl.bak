@@ -1,8 +1,8 @@
-V 12
+V 14
 2
 LANG:1 0 
 LANG:10001 0 
-PANEL,-1 -1 435 77 N "_3DFace" 9
+PANEL,-1 -1 734 77 N "_3DFace" 9
 "$bDateAndTime"
 "$bEnabled"
 "$bShowTimeZone"
@@ -122,14 +122,14 @@ showTimeZone(string sDollarParam)
      (getDollarValue(sDollarParam) == \"FALSE\" || getDollarValue(sDollarParam) == \"false\"
       || getDollarValue(sDollarParam) == \"0\"))
   {
-    timeZoneLabel.visible($bShowTimeZone);
-    selectedTimeZone.visible($bShowTimeZone);
+    timeZoneLabel.visible(FALSE);
+    selectedTimeZone.visible(FALSE);
     timeZoneShownField.text = $bShowTimeZone;
   }
   else
   {
-    timeZoneLabel.visible(TRUE);
-    selectedTimeZone.visible(TRUE); 
+    timeZoneLabel.visible(FALSE);
+    selectedTimeZone.visible(FALSE); 
     timeZoneShownField.text = TRUE;
   }  
 }
@@ -423,9 +423,11 @@ dyn_string showDateTimeChooser(string sSelectedDate)
 
 
 " 0
- 2
+ 3
 "CBRef" "1"
 "EClose" E
+"dpi" "96"
+0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
@@ -447,12 +449,14 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-1
+3
+"layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
-E E 0 1 1 2 1 E U  0 E 10 10 45 26
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 10 10 46 25
 0 2 2 "0s" 0 0 0 192 0 0  10 10 1
 2
-LANG:1 34 Lucida Grande,10,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0 2
 LANG:1 6 Start:
@@ -469,12 +473,14 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-1
+3
+"layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
-E E 0 1 1 2 1 E U  0 E 16 40 45 56
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 16 40 46 55
 0 2 2 "0s" 0 0 0 192 0 0  16 40 1
 2
-LANG:1 34 Lucida Grande,10,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0 2
 LANG:1 4 End:
@@ -491,7 +497,8 @@ E E E
 LANG:1 19 Edit to change date
 LANG:10001 19 Edit to change date
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "textChangedCB" "main(string newText)
 {
   if(fwGeneral_hasCorrectDateFormat(newText))
@@ -505,9 +512,9 @@ LANG:10001 19 Edit to change date
 }
 "
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  48 8 151 31
+0  48 8 151 33
 3 "0s" 0 0 0 0 0 -1  E E E
 14 22
 "endDateField"
@@ -521,7 +528,8 @@ E E E
 LANG:1 19 Edit to change date
 LANG:10001 19 Edit to change date
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "textChangedCB" "main(string newText)
 {
   if(fwGeneral_hasCorrectDateFormat(newText))
@@ -535,9 +543,9 @@ LANG:10001 19 Edit to change date
 }
 "
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  48 38 151 61
+0  48 38 151 63
 3 "0s" 0 0 0 0 0 -1  E E E
 13 0
 "startDateButton"
@@ -551,10 +559,11 @@ E E E
 LANG:1 39 Tool to set Archive on System Alarm dpe
 LANG:10001 17 Choose start date
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "isToggle" ""
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  151 7 180 36
 
@@ -597,10 +606,11 @@ E E E
 LANG:1 39 Tool to set Archive on System Alarm dpe
 LANG:10001 15 Choose end date
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "isToggle" ""
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  151 36 180 65
 
@@ -643,8 +653,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-1
+3
+"layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
+"antiAliased" "0"
 E E 0 1 1 2 1 E  189 10 189 61
 21 23
 "endTimeSpin"
@@ -658,9 +670,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  285 38 318 61
 0
@@ -711,9 +724,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  285 8 318 31
 0
@@ -764,9 +778,10 @@ E E E
 LANG:1 39 Tool to set Archive on System Alarm dpe
 LANG:10001 22 Open date/time chooser
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  318 6 345 33
 
@@ -809,9 +824,10 @@ E E E
 LANG:1 39 Tool to set Archive on System Alarm dpe
 LANG:10001 22 Open date/time chooser
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  318 36 345 63
 
@@ -856,9 +872,10 @@ E E E
 LANG:1 26 Set start date/time to now
 LANG:10001 26 Set start date/time to now
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  537 4 590 32
 
@@ -890,9 +907,10 @@ E E E
 LANG:1 24 Set end date/time to now
 LANG:10001 24 Set end date/time to now
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  358 36 411 63
 
@@ -916,7 +934,7 @@ LANG:10001 3 Now
 14 29
 "selectedTimeZone"
 ""
-1 520 40 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 520 40 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 29 0 0 0 0 0
 E E E
@@ -925,16 +943,17 @@ E E E
 LANG:1 26 Current selected time zone
 LANG:10001 26 Current selected time zone
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  518 38 601 64
 2 "0s" 0 0 0 1 0 -1  E E E
 2 30
 "timeZoneLabel"
 ""
-1 520 20 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 520 20 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 30 0 0 0 0 0
 E E E
@@ -943,12 +962,14 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-1
+3
+"layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
-E E 0 1 1 2 1 E U  0 E 520 20 586 36
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 520 20 586 34
 0 2 2 "0s" 0 0 0 192 0 0  520 20 1
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0 2
 LANG:1 10 Time zone:
@@ -965,9 +986,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  618 8 644 34
 3 "0s" 0 0 0 0 0 -1  E E E
@@ -983,9 +1005,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  648 8 674 34
 3 "0s" 0 0 0 0 0 -1  E E E
@@ -1001,10 +1024,11 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-1
-"firstDayOfWeek" "enum 1"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+"firstDayOfWeek" "enum 1"
+"layoutAlignment" "AlignCenter"
+2
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  10 80 334 279
 8 Calendar
@@ -1027,7 +1051,7 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-7
+8
 "inputMethodHints" "enum 0"
 "contextMenuPolicy" "enum 1"
 "selectionMode" "enum 1"
@@ -1035,8 +1059,9 @@ LANG:10001 0
 "layoutDirection" "enum 0"
 "horizontalHeaderFormat" "enum 2"
 "firstDayOfWeek" "enum 1"
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  350 80 674 279
 8 Calendar
@@ -1059,7 +1084,8 @@ E E E
 LANG:1 19 Edit to change time
 LANG:10001 19 Edit to change time
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "textChangedCB" "main(string newText)
 {
   if(fwGeneral_hasCorrectTimeFormat(newText))
@@ -1076,9 +1102,9 @@ LANG:10001 19 Edit to change time
 
 "
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  198 38 301 61
+0  198 38 301 63
 3 "0s" 0 0 0 0 0 -1  E E E
 14 19
 "startTimeField"
@@ -1092,7 +1118,8 @@ E E E
 LANG:1 19 Edit to change time
 LANG:10001 19 Edit to change time
 
-1
+2
+"layoutAlignment" "AlignCenter"
 "textChangedCB" "main(string newText)
 {
   if(fwGeneral_hasCorrectTimeFormat(newText))
@@ -1109,9 +1136,9 @@ LANG:10001 19 Edit to change time
 
 "
 2
-LANG:1 33 Lucida Grande,8,-1,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  198 8 301 31
+0  198 8 301 33
 3 "0s" 0 0 0 0 0 -1  E E E
 13 18
 "busyBackground"
@@ -1125,9 +1152,10 @@ E E E
 LANG:1 0 
 LANG:10001 0 
 
-0
+1
+"layoutAlignment" "AlignCenter"
 2
-LANG:1 26 Arial,10,-1,5,50,0,0,0,0,0
+LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  -2 -2 16 16
 

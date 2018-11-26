@@ -108,6 +108,81 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
+20 49
+"testExtraChoice"
+""
+1 344 1058 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"layoutAlignment" "AlignNone"
+"horizontal" ""
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  292.9999999999999 1047 535 1069
+4
+T 
+1
+LANG:1 10 EnvStation
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 3 Gas
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 11 MM Humidity
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 5 GIF++
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE30 52
+"FRAME8"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2813953488372092 0 0.03676470588235305 185.0697674418605 1034.808823529412 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Extra
 30 0
 "histosFrame"
 ""
@@ -123,7 +198,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 1.065116279069768 0 1.094362745098039 -111.744186046512 -124.7573529411765 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 1.065116279069768 0 1.094362745098039 -111.7441860465118 -123.7573529411765 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -205,7 +280,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  2.089171974522308 13.94168977098263 289.089171974522 758.9416897709821
+0  2.089171974522308 13.94168977098263 289.0891719745219 758.941689770982
 15 Canvas.Canvas.1
 0
 "main()
@@ -256,7 +331,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0  -9.50000000000005 760.0117187499998 284.4999999999998 775.6353400735292
+0  -9.50000000000005 760.0117187499998 284.4999999999997 775.6353400735292
 
 T 
 1
@@ -326,7 +401,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  1362.999999999991 27.3076923076923 1402.999999999991 47.30769230769231
+0  1362.999999999991 27.3076923076923 1402.999999999991 47.3076923076923
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -747,7 +822,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  0.9999999999999922 789 287.9999999999997 1066
+0  0.9999999999999921 788.9999999999999 287.9999999999997 1066
 15 Canvas.Canvas.1
 0
 "main()
@@ -759,7 +834,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 
 }" 0
 30 32
-"archiveFrame"
+"testFrame"
 ""
 1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
  E E
@@ -773,15 +848,15 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.2825581395348836 0 0.2181372549019608 184.6279069767442 867.1323529411764 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.2825581395348836 0 0.136029411764706 184.6279069767442 876.4926470588234 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
-LANG:1 7 Archive
+LANG:1 11 Archive Run
 13 33
 "startButton"
 ""
-1 320 993 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 320 977 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 33 0 0 0 0 0
 E E E
@@ -793,7 +868,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  318 984.9999999999999 409 1013
+0  317.9999999999999 968.9999999999998 408.9999999999999 996.9999999999998
 
 T 
 1
@@ -840,7 +915,7 @@ LANG:1 5 Start
 13 34
 "stopButton"
 ""
-1 428 965 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 428 949 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 34 0 0 0 0 0
 E E E
@@ -852,7 +927,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  427 984.9999999999999 518 1013
+0  427 968.9999999999998 517.9999999999999 996.9999999999998
 
 T 
 1
@@ -911,16 +986,16 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1.0390625 0 1 20.08593749999994 4 0 E 305 916 393 934
+E E 2 1 3 2 1 E 1.0390625 0 1 23.0859375 -4 0 E 305 916 393 934
 0 2 2 "0s" 0 0 0 192 0 0  305 916 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
-LANG:1 13 Test status :
+LANG:1 12 Run status :
 14 39
 "startField"
 ""
-1 373 952 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 373 944 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 39 0 0 0 0 0
 E E E
@@ -932,12 +1007,12 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  371 947 507.0000000000001 973.9999999999999
+0  371 938.9999999999999 507.0000000000001 965.9999999999998
 2 "0s" 0 0 0 1 0 -1  E E E
 2 40
 "startText"
 ""
-1 325 950 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 325 942 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 40 0 0 0 0 0
 E E E
@@ -950,8 +1025,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 325 950 371 968
-0 2 2 "0s" 0 0 0 192 0 0  325 950 1
+E E 2 1 3 2 1 E U  0 E 325 942 371 960
+0 2 2 "0s" 0 0 0 192 0 0  325 942 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -971,7 +1046,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "1"
-E E 0 1 3 2 1 E 1 0 1 44.5 2.5 1 E 407.5 927.5 13.5 13.5
+E E 0 1 3 2 1 E 1 0 1 45.5 -5.5 1 E 407.5 927.5 13.5 13.5
 7 43
 "ELLIPSE5"
 ""
@@ -988,10 +1063,110 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "1"
 E E -1 1 3 2 1 E 1 0 1 6 0 2  1 0  "pictures/NTUA Logo/rsz_logo[80].png" 4294967295 E 1777 46 24 24
+30 44
+"FRAME5"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+44 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.4151162790697673 0 0.2181372549019608 378.2558139534884 867.1323529411765 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 15 Export Timeslot
+30 47
+"FRAME6"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2825581395348836 0 0.08455882352941176 184.6279069767442 991.3602941176471 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 10 Export Run
+13 50
+"testExportButton"
+""
+1 332.7142857142857 1022.825396825397 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  330.7142857142857 1016.761904761905 443.7142857142857 1045.142857142857
+
+T 
+1
+LANG:1 6 Export
+E E E E
+19 51
+"testDataPlotsChoice"
+""
+1 445 1015.857142857143 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  442.9999999999999 1013.857142857143 533.9999999999999 1045.857142857143
+2
+T 
+1
+LANG:1 4 Data
+
+1 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 10 Data+Plots
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+1
+E E
 0
 LAYER, 1 
 1
 LANG:1 0 
+1 53 2 "" 14
+0
 0
 LAYER, 2 
 1
@@ -1029,4 +1204,18 @@ LANG:1 0
 
 "layoutAlignment" "AlignNone"
 "" ""
+3 2 "PANEL_REF1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/dateTimeWidget.pnl" 549 926 T 53 0.9207542896117245 0 0.8438098174483882 37.12504670097821 147.6321090427925
+9
+"$bDateAndTime""TRUE"
+"$bEnabled""TRUE"
+"$bShowTimeZone""TRUE"
+"$iTimePeriod""86400"
+"$sEndDate"""
+"$sEndTime"""
+"$sStartDate"""
+"$sStartTime"""
+"$sTimeZone""0"
 0
