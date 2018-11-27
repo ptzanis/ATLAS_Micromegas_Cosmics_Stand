@@ -10,3 +10,11 @@ Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2
 Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
 Node: 3 | Mode: CosmicsBasic | Chamber: LM2 | BatchID: 33333333333333 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
 Node: 4 | Mode: CosmicsBasic | Chamber: LM1 | BatchID: 44444444444444 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 

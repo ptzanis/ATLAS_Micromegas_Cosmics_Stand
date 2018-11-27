@@ -101,7 +101,7 @@ void exportLogbook(string node)
   alarmToggle.checked(FALSE);
 }" 0
 
-"dpi" "96.1514"
+"dpi" "96"
 0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
@@ -111,7 +111,7 @@ LANG:1 0
 20 49
 "testExtraChoice"
 ""
-1 562 959 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 614 964.78125 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 49 0 0 0 0 0
 E E E
@@ -122,8 +122,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
-0  538.0008926611026 918.4375 648.8536997357467 999.5625
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  590.0008926611026 929 700.8536997357467 1000.5625
 4
 T 
 1
@@ -177,7 +177,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.136046511627907 0 0.1139705882352942 481.3023255813953 895.0073529411765 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.136046511627907 0 0.09926470588235302 533.3023255813953 908.6838235294117 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
@@ -883,7 +883,8 @@ LANG:1 5 Start
      time startTime=getCurrentTime();
      dpSet(\"N\"+node+\".Archiving.StartTime\",startTime); 
      testStatus.backCol(\"S7_stateWentUnq\");
-     startField.text(hour(startTime)+\":\"+minute(startTime)+\" \"+day(startTime)+\"/\"+month(startTime)+\"/\"+year(startTime));
+     startDateField.text(day(startTime)+\"/\"+month(startTime)+\"/\"+year(startTime));
+     startTimeField.text(hour(startTime)+\":\"+minute(startTime)+\":\"+second(startTime));
      this.enabled(FALSE);
      stopButton.enabled(TRUE);
   }
@@ -897,7 +898,8 @@ LANG:1 5 Start
      
      time startTime=getCurrentTime();
      testStatus.backCol(\"S7_stateWentUnq\");
-     startField.text(hour(startTime)+\":\"+minute(startTime)+\" \"+day(startTime)+\"/\"+month(startTime)+\"/\"+year(startTime));
+     startDateField.text(day(startTime)+\"/\"+month(startTime)+\"/\"+year(startTime));
+     startTimeField.text(hour(startTime)+\":\"+minute(startTime)+\":\"+second(startTime));     
      this.enabled(FALSE);
      stopButton.enabled(TRUE);     
      for(int i=startNodeCosmics;i<startNodeCosmics+4;i++)
@@ -914,7 +916,7 @@ LANG:1 5 Start
 13 34
 "stopButton"
 ""
-1 309 947 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 309 947.0000000000001 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 34 0 0 0 0 0
 E E E
@@ -926,7 +928,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  308 966.9999999999998 398.9999999999999 994.9999999999998
+0  308 966.9999999999999 398.9999999999999 994.9999999999999
 
 T 
 1
@@ -941,6 +943,8 @@ LANG:1 4 Stop
   if(mode==\"ValidationQA\")
   {
      dpSet(\"N\"+node+\".Archiving.EndTime\",endTime); 
+     endDateField.text(day(endTime)+\"/\"+month(endTime)+\"/\"+year(endTime));
+     endTimeField.text(hour(endTime)+\":\"+minute(endTime)+\":\"+second(endTime));
      testStatus.backCol(\"red\");
      this.enabled(FALSE);
      startButton.enabled(TRUE);
@@ -958,6 +962,8 @@ LANG:1 4 Stop
      testStatus.backCol(\"red\");
      this.enabled(FALSE);
      startButton.enabled(TRUE); 
+     endDateField.text(day(endTime)+\"/\"+month(endTime)+\"/\"+year(endTime));
+     endTimeField.text(hour(endTime)+\":\"+minute(endTime)+\":\"+second(endTime));
      
      for(int i=startNodeCosmics;i<startNodeCosmics+4;i++)
      {
@@ -991,45 +997,6 @@ E E 2 1 3 2 1 E 1.0390625 0 1 -9.9140625 -4 0 E 305 916 393 934
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
 LANG:1 12 Run status :
-14 39
-"startField"
-""
-1 366 823 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-39 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  364 817.9999999999999 500.0000000000001 844.9999999999998
-2 "0s" 0 0 0 1 0 -1  E E E
-2 40
-"startText"
-""
-1 318 821 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-40 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 318 821 364 839
-0 2 2 "0s" 0 0 0 192 0 0  318 821 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 7 Start :
 7 41
 "testStatus"
 ""
@@ -1077,7 +1044,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.266279069767442 0 0.1360294117647058 323.813953488372 876.4926470588235 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.3290697674418606 0 0.1360294117647058 298.9534883720929 876.4926470588235 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -1097,7 +1064,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.4209302325581394 0 0.08455882352941176 132.0465116279072 991.3602941176471 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 0.4802325581395347 0 0.08455882352941176 109.5116279069769 991.3602941176471 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -1105,7 +1072,7 @@ LANG:1 8 Timeslot
 13 50
 "testExportButton"
 ""
-1 432 926 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 437 942.4810405643739 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 50 0 0 0 0 0
 E E E
@@ -1117,7 +1084,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  430 918.8227513227514 524 953.8862433862435
+0  435 936 570 966.8862433862435
 
 T 
 1
@@ -1126,7 +1093,7 @@ E E E E
 19 51
 "testDataPlotsChoice"
 ""
-1 431 960 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 430.0000000000002 972 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 51 0 0 0 0 0
 E E E
@@ -1134,11 +1101,12 @@ E E E
 1
 LANG:1 0 
 
-1
+2
 "layoutAlignment" "AlignNone"
+"horizontal" ""
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  428.9999999999999 958 519.9999999999999 996
+0  428 970 584 998
 2
 T 
 1
@@ -1160,6 +1128,97 @@ E E
 0 0 0 0 0
 1
 E E
+2 97
+"PRIMITIVE_TEXT5"
+""
+1 429 906 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 429 906 455 921
+0 2 2 "0s" 0 0 0 192 0 0  429 906 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Dir:
+14 98
+"destFolderTextField"
+""
+1 456.9999999999999 909.3890288795477 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  455 906 674 924
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+
+  this.text(PROJ_PATH+\"Export_Data/\");
+}" 0
+ E
+13 99
+"PUSH_BUTTON7"
+""
+1 678 911 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+56 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  676 902.7275308539561 700.9869171626979 926.2609167805258
+
+P 
+4294967295
+"pictures/folderNew.png"
+1
+LANG:1 0 
+"main()
+{
+   
+    string sPath;
+    string systemName;
+    int iErr;
+	
+    if(shapeExists(\"cbSystem\"))
+        systemName = cbSystem.text;
+    else
+        systemName = \"\";
+  
+    sPath = \"C:\\\\Projects\\\\TBSCS\";
+    iErr = folderSelector( sPath );
+    
+    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
+	    sPath += \"/\";
+        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
+    	strreplace(sPath, \"//\", \"/\");
+        strreplace(sPath, \"//\", \"/\");
+	    // update the widget with the directory path
+        destFolderTextField.text = sPath;
+    }
+}" 0
+ E E E
 0
 LAYER, 1 
 1
