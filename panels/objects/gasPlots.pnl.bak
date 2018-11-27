@@ -232,9 +232,19 @@ LANG:1 0
   string batchID;
   string type;
   int node=$node;
+  string mode;
+  dpGet(\"N\"+node+\".Mode\",mode);  
+  
+  if(mode==\"ValidationQA\")
+  {
   dpGet(\"N\"+node+\".BatchId\",batchID);
   dpGet(\"N\"+node+\".ChamberType\",type);
   this.text(\"Gas Plots | \"+type+\" | \"+batchID);  
+  }
+  if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\" )
+  { 
+  this.text(\"Gas Plots | Sector \"+node);  
+  }
   
 }" 0
  E 0 1 2 1 1 E U  1 E 641 0 766 22
