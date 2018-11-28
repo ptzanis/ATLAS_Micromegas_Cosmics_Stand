@@ -93,7 +93,91 @@ void exportLogbook(string node)
     fclose(export);
 
 }
-" 0
+
+bool exportHVData(string valueType, dyn_string channels, string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archived;
+    string query, filePath;
+    
+    for (int i = 1; i <= dynlen(channels); i++) {
+        query = \"SELECT ALL '_original.._stime', '_original.._value' FROM 'CAEN/\" + channels[i] +
+                \".actual.\" + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(query, archived);
+        
+        file export;
+        strreplace(channels[i], \"/\", \"_\");
+        filePath = folderPath + valueType + \"_\" + channels[i] + \".dat\";
+        strreplace(filePath, \"/\", \"//\");
+   
+        if (isfile(filePath)) {
+            popupMessage(\"_Ui_1\", \"File Exists\");
+            popupMessage(\"_Ui_2\", \"File Exists\");
+            popupMessage(\"_Ui_3\", \"File Exists\");
+            popupMessage(\"_Ui_4\", \"File Exists\");
+            popupMessage(\"_Ui_5\", \"File Exists\");
+            return FALSE;
+        }
+        else {
+            export = fopen(filePath, \"a\");
+        }
+            
+        for (int j = 2; j <= dynlen(archived); j++) { 
+            fprintf(export, \"%s \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archived[j][2],\"  %04d\") + \"\\t\" + archived[j][3]);
+        }
+        fclose(export);
+    }
+    
+    return TRUE;
+}
+
+string getEndTime() {
+    
+    time endTime;
+    string endDateString, endTimeString, endString;
+ 
+    string endDateTextBox = \"dateSelection.endDateField\";
+    string endTimeTextBox = \"dateSelection.endTimeField\";
+    
+    getValue(endDateTextBox, \"text\", endDateString);
+    getValue(endTimeTextBox, \"text\", endTimeString);
+    
+    endString = endDateString + \" \" + endTimeString;
+    
+    if (!fwGeneral_hasCorrectFormat(endString)) {
+        DebugN(\"The ending time provided is wrong, check again and retry.\");
+        return;
+    }
+    
+    endTime = fwGeneral_stringToDate(endString);
+    endString = formatTime(\"%Y.%m.%d %H:%M:%S\", endTime);
+    
+    return endString;
+}
+
+string getStartTime() {
+    
+    time startTime;
+    string startDateString, startTimeString, startString;
+    
+    string startDateTextBox = \"dateSelection.startDateField\";
+    string startTimeTextBox = \"dateSelection.startTimeField\";
+    
+    getValue(startDateTextBox, \"text\", startDateString);
+    getValue(startTimeTextBox, \"text\", startTimeString);
+
+    startString = startDateString + \" \" + startTimeString;    
+    
+    if (!fwGeneral_hasCorrectFormat(startString)) {
+        DebugN(\"The starting time provided is wrong, check again and retry.\");
+        return;
+    }
+    
+    startTime = fwGeneral_stringToDate(startString);
+    startString = formatTime(\"%Y.%m.%d %H:%M:%S\", startTime);
+    
+    return startString;
+}" 0
  3
 "CBRef" "1"
 "EClose" "main()
@@ -101,7 +185,7 @@ void exportLogbook(string node)
   alarmToggle.checked(FALSE);
 }" 0
 
-"dpi" "96"
+"dpi" "96.1514"
 0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
@@ -109,7 +193,7 @@ LAYER, 0
 1
 LANG:1 0 
 20 49
-"testExtraChoice"
+"extraChoice"
 ""
 1 614 964.78125 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
@@ -1070,7 +1154,7 @@ LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
 LANG:1 8 Timeslot
 13 50
-"testExportButton"
+"exportButton"
 ""
 1 437 942.4810405643739 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
@@ -1089,9 +1173,34 @@ LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 T 
 1
 LANG:1 6 Export
-E E E E
+"main()
+{
+  /*
+    this.enabled(FALSE);    
+    string start = getStartTime();
+    string end = getEndTime();
+    string dirPath = destFolderTextField.text + \"data/\";
+    
+    checkOrCreateDirectory(dirPath);
+
+    dyn_string allChannels;  
+    allChannels = dpNames(\"*\", \"FwCaenChannel\");
+    
+    for (int i = 1; i <= dynlen(allChannels); i++) {
+        allChannels[i] = substr(allChannels[i], strpos(allChannels[i], \"CAEN\") + 5);
+    }
+    
+    if (!exportCAEN(\"iMon\", allChannels, start, end, dirPath)) DebugN(\"File exists in the specify direcotry. Please change directory or delete old files.\");
+    if (!exportCAEN(\"vMon\", allChannels, start, end, dirPath)) DebugN(\"File exists in the specify direcotry. Please change directory or delete old files.\");
+     
+    this.text(\"Export Data - Tatsuya\");
+    this.enabled(TRUE);
+    */
+}
+" 0
+ E E E
 19 51
-"testDataPlotsChoice"
+"dataPlotsChoice"
 ""
 1 430.0000000000002 972 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
@@ -1153,7 +1262,7 @@ LANG:1 4 Dir:
 14 98
 "destFolderTextField"
 ""
-1 456.9999999999999 909.9446404313669 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 456.9999999999999 909.3890288795477 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 55 0 0 0 0 0
 E E E
@@ -1164,8 +1273,8 @@ LANG:1 0
 1
 "layoutAlignment" "AlignNone"
 1
-LANG:1 26 Utopia,-1,8,5,75,0,0,0,0,0
-0  455.0000000000003 906 673.9999999999999 923.9999999999999
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  455 906 674 924
 3 "0s" 0 0 0 0 0 -1  E "main()
 {
 
@@ -1173,7 +1282,7 @@ LANG:1 26 Utopia,-1,8,5,75,0,0,0,0,0
 }" 0
  E
 13 99
-"PUSH_BUTTON7"
+"folderSelection"
 ""
 1 678 911 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
@@ -1223,7 +1332,7 @@ LANG:1 0
 LAYER, 1 
 1
 LANG:1 0 
-1 53 2 "" 14
+1 100 2 "" 14
 0
 0
 LAYER, 2 
@@ -1262,7 +1371,7 @@ LANG:1 0
 
 "layoutAlignment" "AlignNone"
 "" ""
-3 2 "PANEL_REF1" -1
+3 2 "dateSelection" -1
 "layoutAlignment" "AlignNone"
 "" ""
 "objects/dateTimeWidget.pnl" 549 926 T 53 0.9207542896117245 0 0.8594244499158612 -207.4941049968367 225.1729593779125

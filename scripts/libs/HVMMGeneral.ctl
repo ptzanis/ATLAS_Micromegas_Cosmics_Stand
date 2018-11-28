@@ -12,7 +12,16 @@ const float SIZE_OF_PLOTTABLE_AREA_Y    = 880;
 const int   X_INITIAL_OF_PLOTTABLE_AREA = 295;
 const int   Y_INITIAL_OF_PLOTTABLE_AREA = 10;
 
-
+bool checkOrCreateDirectory(string folderPath)
+{
+  
+    if(isdir(folderPath))
+    return TRUE;
+    else {    
+        mkdir(folderPath, 777);
+        return FALSE;
+    } 
+}
 
 void currentLayer(int layer){
 
