@@ -38,12 +38,12 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-13 1
-"PUSH_BUTTON1"
+13 2
+"PUSH_BUTTON2"
 ""
-1 82 153 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 139 321 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-0 0 0 0 0 0
+1 0 0 0 0 0
 E E E
 8
 1
@@ -53,14 +53,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  80 122 527 196
+0  137 294 541 361
 
 T 
 1
-LANG:1 12 PUSH_BUTTON1
+LANG:1 12 PUSH_BUTTON2
 "main(mapping event)
 {
-  string startTime=getCurrentTime();
+
+  DebugN(formatTimeUTC(\"UNIX\",getCurrentTime()));
 }" 0
  E E E
 0
