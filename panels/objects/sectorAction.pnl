@@ -555,8 +555,11 @@ LANG:1 9 Configure
 "main(mapping event)
 {
      string sector=$sector;
-     
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Sector \"+sector+\" (Setup) \", makeDynString(\"$sector:\"+sector));
+     string mode;
+     dpGet(\"N\"+sector+\".Mode\",mode);     
+         
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Sector \"+sector+\" (Setup) \", makeDynString(\"$sector:\"+sector,\"$mode:\"+\"CosmicsTotal\",\"$node:\"+sector));
+
          
 }" 0
  E E E
