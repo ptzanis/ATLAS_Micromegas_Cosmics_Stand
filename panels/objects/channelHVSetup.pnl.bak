@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 256 201 N "WF_PanelBackground" 3
+PANEL,-1 -1 254 201 N "WF_PanelBackground" 3
 "$alias"
 "$node"
 "$y"
@@ -268,7 +268,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  190.4474642478812 82.08340231787969 249.0763500666217 104.5
+0  190.4474642478812 82.08340231787967 249.0763500666217 104.5
 3 "2.2f" 5 1 0 1 0 -1  E E E
 14 3
 "textField3"
@@ -285,7 +285,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
-0  67.97265624999982 82.08340231787969 130.9726562499999 104.5
+0  67.97265624999982 82.08340231787967 130.9726562499999 104.5
 3 "3d" 3 1 0 1 0 -1  E E E
 14 4
 "textField4"
@@ -678,11 +678,7 @@ LANG:1 0
 1 131.4736842105261 67.73315789473683 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
  E E
 29 0 0 0 0 0
-E E "main(bool enter)
-{
-  textField1.text(\"\");
-}" 0
-
+E E E
 0
 1
 LANG:1 0 
@@ -739,7 +735,11 @@ LANG:1 4 +100
 0
 
 E
-E
+"main()
+{
+  textField1.text(\"\");
+}" 0
+
 E
  0 0
 13 30

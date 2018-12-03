@@ -508,7 +508,11 @@ LANG:1 4 +100
 0
 
 E
-E
+"main()
+{
+  textField1.text(\"\");
+}" 0
+
 E
  0 0
 14 64

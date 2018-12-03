@@ -946,11 +946,7 @@ LANG:1 10 Trip Time:
 1 142 259 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
  E E
 19 0 0 0 0 0
-E E "main(bool enter)
-{
-  textField1.text(\"\");
-}" 0
-
+E E E
 0
 1
 LANG:1 0 
@@ -1007,7 +1003,11 @@ LANG:1 4 +100
 0
 
 E
-E
+"main()
+{
+  textField1.text(\"\");
+}" 0
+
 E
  0 0
 30 22
