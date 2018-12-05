@@ -406,9 +406,9 @@ int runTerminal(string path)
    <properties>
     <prop name="serialId">22</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">808 400</prop>
+    <prop name="RefPoint">808 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">19</prop>
@@ -420,7 +420,7 @@ int runTerminal(string path)
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,24,5,75,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">807.9999999999998 380.9999999999999</prop>
+    <prop name="Location">807.9999999999998 337.9999999999999</prop>
     <prop name="Size">142 51</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Text">
@@ -429,51 +429,15 @@ int runTerminal(string path)
    </properties>
    <events>
     <script name="Clicked" isEscaped="1"><![CDATA[main()
+{ 
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
 {
-  
-   string archiveClassName = &quot;GTS_ARCHIVE_BB5&quot;;
-    int archiveType = DPATTR_ARCH_PROC_SIMPLESM;
-    int smoothProcedure = DPATTR_TIME_SMOOTH;
-    //    int smoothProcedure = DPATTR_TIME_AND_VALUE_SMOOTH;
-    dyn_string exceptionInfo;
-    bool checkClass = TRUE;
-    float deadband;
-    float timeInterval;
-    dyn_string archivedDpes;
-    deadband = 50.0;    
-    dpGet(&quot;BME280.samplingTime&quot;,timeInterval);
-
-     
-     archivedDpes[1]=&quot;BME280.pressureMean&quot;;
-     archivedDpes[2]=&quot;BME280.temperatureMean&quot;;
-     archivedDpes[3]=&quot;BME280.humidityMean&quot;;
-     archivedDpes[4]=&quot;HumidityInlet.humidityInMean&quot;;
-     archivedDpes[5]=&quot;HumidityOutlet.humidityInMean&quot;;
-     
-     for (int i = 1; i&lt;=dynlen(archivedDpes); i++) {
-
-     
-       fwArchive_configMultiple(archivedDpes[i], archiveClassName, archiveType, smoothProcedure,
-                          deadband, timeInterval, exceptionInfo, checkClass);
-        if (dynlen(exceptionInfo)&gt;0) DebugN(exceptionInfo);
-      }
-     
-    
-    
-    // Start archiving
-    
-      for (int i = 1; i &lt;= dynlen(archivedDpes); i++) {
-        fwArchive_startMultiple(archivedDpes[i], exceptionInfo);
-        if (dynlen(exceptionInfo) &gt; 0) DebugN(exceptionInfo);
-      }
-     
-    dpSet(&quot;BME280.archiving&quot;,TRUE);
-     
-  
-    DebugN(&quot;ArdEnvironment archiving in progress...&quot;);
-  
-  
-}]]></script>
+  ChildPanelOnCentral(&quot;objects/setSampling.pnl&quot;,&quot;Sampling&quot;,makeDynString(&quot;&quot;));
+}
+]]></script>
     <script name="Initialize" isEscaped="1"><![CDATA[// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -519,9 +483,9 @@ void EP_setEnabledCB(string dp, bool boNewValue)
    <properties>
     <prop name="serialId">24</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">980.2222222222222 400</prop>
+    <prop name="RefPoint">980.2222222222222 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">21</prop>
@@ -533,7 +497,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,24,5,75,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">980.2222222222232 380.9999999999999</prop>
+    <prop name="Location">980.2222222222232 337.9999999999999</prop>
     <prop name="Size">142 51</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Text">
@@ -542,26 +506,15 @@ void EP_setEnabledCB(string dp, bool boNewValue)
    </properties>
    <events>
     <script name="Clicked" isEscaped="1"><![CDATA[main()
+{ 
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
 {
-  dyn_string archivedDpes;
-     archivedDpes[1]=&quot;BME280.pressureMean&quot;;
-     archivedDpes[2]=&quot;BME280.temperatureMean&quot;;
-     archivedDpes[3]=&quot;BME280.humidityMean&quot;;
-     archivedDpes[4]=&quot;HumidityInlet.humidityInMean&quot;;
-     archivedDpes[5]=&quot;HumidityOutlet.humidityInMean&quot;; 
-  
-  dyn_string exceptionInfo;
-  
-  for (int i = 1; i &lt;= dynlen(archivedDpes); i++) {
-        fwArchive_stopMultiple(archivedDpes[i] , exceptionInfo);
-        if (dynlen(exceptionInfo)&gt;0) DebugN(exceptionInfo);
-        
-      }
-        
-   dpSet(&quot;BME280.archiving&quot;,FALSE);  
-   DebugN(&quot;ArdEnvironment archiving stopped!&quot;);   
-        
-}]]></script>
+  ChildPanelOnCentral(&quot;objects/setSampling.pnl&quot;,&quot;Sampling&quot;,makeDynString(&quot;&quot;));
+}
+]]></script>
     <script name="Initialize" isEscaped="1"><![CDATA[// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -803,7 +756,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[solid]</prop>
-    <prop name="Geometry">2.6875 0 0 0.4710937351903024 427.625 238.0703156100365</prop>
+    <prop name="Geometry">2.6875 0 0 0.4710937351903024 427.625 195.0703156100365</prop>
     <prop name="BorderStyle">Normal</prop>
     <prop name="Location">130 210</prop>
     <prop name="Size">161 111</prop>
@@ -831,7 +784,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[outline]</prop>
-    <prop name="Geometry">0.8775510204081635 0 0 0.1490613974355678 759.4489795918364 308.3271562557267</prop>
+    <prop name="Geometry">0.8775510204081635 0 0 0.1490613974355678 759.4489795918364 265.3271562557267</prop>
     <prop name="BorderStyle">3D</prop>
     <prop name="Text">
      <prop name="en_US.iso88591">Archive</prop>
@@ -847,9 +800,9 @@ void EP_setEnabledCB(string dp, bool boNewValue)
    <properties>
     <prop name="serialId">39</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">1073.810453869049 319.0174036639544</prop>
+    <prop name="RefPoint">1073.810453869049 276.0174036639544</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">36</prop>
@@ -861,7 +814,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,16,5,75,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">1145.23902529762 390.5174036639543</prop>
+    <prop name="Location">1145.23902529762 347.5174036639543</prop>
     <prop name="Size">51 33</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Image" SharedPixmap="1">
@@ -885,7 +838,7 @@ EP_childPanelOn()
    <properties>
     <prop name="serialId">40</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">872 351.6710478682209</prop>
+    <prop name="RefPoint">872 308.6710478682209</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_WindowText</prop>
@@ -901,7 +854,7 @@ EP_childPanelOn()
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[outline]</prop>
-    <prop name="Location">872 351.6710478682209</prop>
+    <prop name="Location">872 308.6710478682209</prop>
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,19,5,75,0,0,0,0,0</prop>
     </prop>
@@ -936,7 +889,7 @@ EP_childPanelOn()
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[solid]</prop>
-    <prop name="Geometry">1 0 0 1 19.22222222222217 72.67104786822091</prop>
+    <prop name="Geometry">1 0 0 1 19.22222222222217 29.67104786822091</prop>
     <prop name="Center">1020 290</prop>
     <prop name="X-Radius">20</prop>
     <prop name="Y-Radius">20</prop>
@@ -1011,7 +964,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[solid]</prop>
-    <prop name="Geometry">2.688194444444444 0 0 2.080909904369039 430.3032614087306 6.965591570148689</prop>
+    <prop name="Geometry">2.688194444444444 0 0 2.080909904369039 430.3032614087306 -31.03440842985131</prop>
     <prop name="BorderStyle">Normal</prop>
     <prop name="Location">130 210</prop>
     <prop name="Size">161 111</prop>
@@ -1039,7 +992,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[outline]</prop>
-    <prop name="Geometry">0.8777777777777783 0 0 0.567265157429092 762.2129836309522 366.5335759565315</prop>
+    <prop name="Geometry">0.8777777777777783 0 0 0.567265157429092 762.2129836309522 326.5335759565315</prop>
     <prop name="BorderStyle">3D</prop>
     <prop name="Text">
      <prop name="en_US.iso88591">Export</prop>
@@ -1055,7 +1008,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
    <properties>
     <prop name="serialId">44</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">833.5845114087307 617.5062966131129</prop>
+    <prop name="RefPoint">833.5845114087307 579.5062966131129</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
@@ -1069,7 +1022,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,21,5,75,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">833.5845114087308 598.5062966131129</prop>
+    <prop name="Location">833.5845114087308 560.5062966131129</prop>
     <prop name="Size">140 50</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Text">
@@ -1149,7 +1102,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
    <properties>
     <prop name="serialId">46</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">839.8900669642862 522.7443918512083</prop>
+    <prop name="RefPoint">839.8900669642862 484.7443918512083</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_WindowText</prop>
@@ -1165,7 +1118,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[outline]</prop>
-    <prop name="Location">839.8900669642862 522.7443918512083</prop>
+    <prop name="Location">839.8900669642862 484.7443918512083</prop>
     <prop name="Font">
      <prop name="en_US.iso88591">Sans Serif,-1,12,5,50,0,0,0,0,0</prop>
     </prop>
@@ -1184,7 +1137,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
    <properties>
     <prop name="serialId">92</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">818.0130828373021 472.4666140734304</prop>
+    <prop name="RefPoint">818.0130828373021 434.4666140734304</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_WindowText</prop>
@@ -1200,7 +1153,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
     <prop name="BorderZoomable">False</prop>
     <prop name="FillType">[outline]</prop>
-    <prop name="Location">818.0130828373021 472.4666140734304</prop>
+    <prop name="Location">818.0130828373021 434.4666140734304</prop>
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,19,5,75,0,0,0,0,0</prop>
     </prop>
@@ -1219,7 +1172,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
    <properties>
     <prop name="serialId">93</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">909.8900669642861 478.7443918512083</prop>
+    <prop name="RefPoint">909.8900669642861 440.7443918512083</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_WindowText</prop>
@@ -1233,7 +1186,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="Font">
      <prop name="en_US.iso88591">Sans Serif,-1,12,5,50,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">909.8900669642863 468.7443918512083</prop>
+    <prop name="Location">909.8900669642863 430.7443918512083</prop>
     <prop name="Size">241 33</prop>
     <prop name="BorderStyle">Normal</prop>
     <prop name="Editable">True</prop>
@@ -1251,7 +1204,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
    <properties>
     <prop name="serialId">95</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">1156.890066964286 479.7443918512083</prop>
+    <prop name="RefPoint">1156.890066964286 441.7443918512083</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
@@ -1265,7 +1218,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     <prop name="Font">
      <prop name="en_US.iso88591">Sans Serif,-1,12,5,50,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">1156.890066964286 468.7443918512083</prop>
+    <prop name="Location">1156.890066964286 430.7443918512083</prop>
     <prop name="Size">35 35</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Image" SharedPixmap="1">
@@ -1551,7 +1504,7 @@ PanelOff();
    <properties>
     <prop name="serialId">174</prop>
     <prop name="Type"></prop>
-    <prop name="RefPoint">1020.100725446429 617.3396299464462</prop>
+    <prop name="RefPoint">1020.100725446429 579.3396299464462</prop>
     <prop name="Enable">True</prop>
     <prop name="Visible">False</prop>
     <prop name="ForeColor">_ButtonText</prop>
@@ -1565,7 +1518,7 @@ PanelOff();
     <prop name="Font">
      <prop name="en_US.iso88591">Utopia,-1,21,5,75,0,0,0,0,0</prop>
     </prop>
-    <prop name="Location">1020.100725446429 598.3396299464463</prop>
+    <prop name="Location">1020.100725446429 560.3396299464463</prop>
     <prop name="Size">141 51</prop>
     <prop name="BorderStyle">Styled</prop>
     <prop name="Text">
@@ -1722,7 +1675,7 @@ PanelOff();
    <properties>
     <prop name="FileName">objects/dateTimeWidget.pnl</prop>
     <prop name="Location">823 588</prop>
-    <prop name="Geometry">1 0 0 1 -17.99999999999994 -61</prop>
+    <prop name="Geometry">1 0 0 1 -17.99999999999994 -99</prop>
     <prop name="TabOrder">49</prop>
     <prop name="dollarParameters">
      <prop name="dollarParameter">

@@ -408,7 +408,7 @@ int runTerminal(string path)
     <prop name="Type"></prop>
     <prop name="RefPoint">808 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">19</prop>
@@ -429,51 +429,15 @@ int runTerminal(string path)
    </properties>
    <events>
     <script name="Clicked" isEscaped="1"><![CDATA[main()
+{ 
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
 {
-  
-   string archiveClassName = &quot;GTS_ARCHIVE_BB5&quot;;
-    int archiveType = DPATTR_ARCH_PROC_SIMPLESM;
-    int smoothProcedure = DPATTR_TIME_SMOOTH;
-    //    int smoothProcedure = DPATTR_TIME_AND_VALUE_SMOOTH;
-    dyn_string exceptionInfo;
-    bool checkClass = TRUE;
-    float deadband;
-    float timeInterval;
-    dyn_string archivedDpes;
-    deadband = 50.0;    
-    dpGet(&quot;BME280.samplingTime&quot;,timeInterval);
-
-     
-     archivedDpes[1]=&quot;BME280.pressureMean&quot;;
-     archivedDpes[2]=&quot;BME280.temperatureMean&quot;;
-     archivedDpes[3]=&quot;BME280.humidityMean&quot;;
-     archivedDpes[4]=&quot;HumidityInlet.humidityInMean&quot;;
-     archivedDpes[5]=&quot;HumidityOutlet.humidityInMean&quot;;
-     
-     for (int i = 1; i&lt;=dynlen(archivedDpes); i++) {
-
-     
-       fwArchive_configMultiple(archivedDpes[i], archiveClassName, archiveType, smoothProcedure,
-                          deadband, timeInterval, exceptionInfo, checkClass);
-        if (dynlen(exceptionInfo)&gt;0) DebugN(exceptionInfo);
-      }
-     
-    
-    
-    // Start archiving
-    
-      for (int i = 1; i &lt;= dynlen(archivedDpes); i++) {
-        fwArchive_startMultiple(archivedDpes[i], exceptionInfo);
-        if (dynlen(exceptionInfo) &gt; 0) DebugN(exceptionInfo);
-      }
-     
-    dpSet(&quot;BME280.archiving&quot;,TRUE);
-     
-  
-    DebugN(&quot;ArdEnvironment archiving in progress...&quot;);
-  
-  
-}]]></script>
+  ChildPanelOnCentral(&quot;objects/setSampling.pnl&quot;,&quot;Sampling&quot;,makeDynString(&quot;&quot;));
+}
+]]></script>
     <script name="Initialize" isEscaped="1"><![CDATA[// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -521,7 +485,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Type"></prop>
     <prop name="RefPoint">980.2222222222222 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">21</prop>
@@ -542,26 +506,15 @@ void EP_setEnabledCB(string dp, bool boNewValue)
    </properties>
    <events>
     <script name="Clicked" isEscaped="1"><![CDATA[main()
+{ 
+  EP_childPanelOn();
+}
+
+EP_childPanelOn()
 {
-  dyn_string archivedDpes;
-     archivedDpes[1]=&quot;BME280.pressureMean&quot;;
-     archivedDpes[2]=&quot;BME280.temperatureMean&quot;;
-     archivedDpes[3]=&quot;BME280.humidityMean&quot;;
-     archivedDpes[4]=&quot;HumidityInlet.humidityInMean&quot;;
-     archivedDpes[5]=&quot;HumidityOutlet.humidityInMean&quot;; 
-  
-  dyn_string exceptionInfo;
-  
-  for (int i = 1; i &lt;= dynlen(archivedDpes); i++) {
-        fwArchive_stopMultiple(archivedDpes[i] , exceptionInfo);
-        if (dynlen(exceptionInfo)&gt;0) DebugN(exceptionInfo);
-        
-      }
-        
-   dpSet(&quot;BME280.archiving&quot;,FALSE);  
-   DebugN(&quot;ArdEnvironment archiving stopped!&quot;);   
-        
-}]]></script>
+  ChildPanelOnCentral(&quot;objects/setSampling.pnl&quot;,&quot;Sampling&quot;,makeDynString(&quot;&quot;));
+}
+]]></script>
     <script name="Initialize" isEscaped="1"><![CDATA[// SimpleCtrlScriptStart {valid}
 main()
 {
@@ -849,7 +802,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Type"></prop>
     <prop name="RefPoint">1073.810453869049 276.0174036639544</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">False</prop>
+    <prop name="Visible">True</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">36</prop>

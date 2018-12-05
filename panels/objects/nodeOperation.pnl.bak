@@ -106,7 +106,8 @@ bool exportHVData(string valueType, dyn_string channels ,dyn_string channelsAlia
         dpQuery(query, archived);
         
         file export;
-        filePath = folderPath + valueType + \"_\" + channelsAlias[i] + \".dat\";
+        checkOrCreateDirectory(folderPath+\"HV/\");
+        filePath = folderPath +\"HV/\"+ valueType + \"_\" + channelsAlias[i] + \".dat\";
         strreplace(filePath, \"/\", \"//\");   
         
         export = fopen(filePath, \"a\");
@@ -120,6 +121,97 @@ bool exportHVData(string valueType, dyn_string channels ,dyn_string channelsAlia
     DebugN(valueType+\" HV Data Exported!\");
     return TRUE;
 }
+
+bool exportEnvData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedPressure, archivedTemperature, archivedHumidity;
+    string queryPressure, queryTemperature, queryHumidity; 
+    string filePath;
+    
+        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryTemperature = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryHumidity = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(queryPressure, archivedPressure);
+        dpQuery(queryTemperature, archivedTemperature);
+        dpQuery(queryHumidity, archivedHumidity);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"EnvStation/\");
+        filePath = folderPath +\"EnvStation/\"+ \"envData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Pressure[mbar]\"+\"\\t\"+\"Temperature[C]\"+\"\\t\"+\"Humidity[%]\");                           
+        for (int j = 2; j <= dynlen(archivedPressure); j++) { 
+        fprintf(export, \"%s \\t %4.2f \\t %2.2f \\t \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedPressure[j][2]), archivedPressure[j][3],archivedTemperature[j][3],archivedHumidity[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"EnvStation Data Exported!\");
+    return TRUE;
+}
+/*
+bool exportGasData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedInlet, archivedOutlet, archivedPressure;
+    string queryPressure, queryTemperature, queryHumidity; 
+    string filePath;
+    
+        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryTemperature = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryHumidity = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(queryPressure, archivedPressure);
+        dpQuery(queryTemperature, archivedTemperature);
+        dpQuery(queryHumidity, archivedHumidity);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"EnvStation/\");
+        filePath = folderPath +\"EnvStation/\"+ \"envData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Pressure[mbar]\"+\"\\t\"+\"Temperature[C]\"+\"\\t\"+\"Humidity[%]\");                           
+        for (int j = 2; j <= dynlen(archivedPressure); j++) { 
+        fprintf(export, \"%s \\t %4.2f \\t %2.2f \\t \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedPressure[j][2]), archivedPressure[j][3],archivedTemperature[j][3],archivedHumidity[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"EnvStation Data Exported!\");
+    return TRUE;
+}
+*/
+bool exportHumData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedHum;
+    string queryHum; 
+    string filePath;
+    
+        queryHum = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+
+        
+        dpQuery(queryHum, archivedHum);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"MM_Humidity/\");
+        filePath = folderPath +\"MM_Humidity/\"+ \"humidityData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Humidity[%]\");                           
+        for (int j = 2; j <= dynlen(archivedHum); j++) { 
+        fprintf(export, \"%s \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedHum[j][2]), archivedHum[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"Humidity Data Exported!\");
+    return TRUE;
+}
+
 
 
 bool exportInfoFile(string node,string chamberName,string batchID,string mode,dyn_string mappingChannelsToArchive,dyn_string channelsToArchive,string startTime,string endTime,string folderPath)
@@ -214,7 +306,7 @@ LANG:1 0
 20 49
 "extraChoice"
 ""
-1 614 964.78125 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
+1 614 964.78125 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 49 0 0 0 0 0
 E E E
@@ -300,7 +392,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 1.065116279069768 0 1.098039215686274 -111.7441860465118 -127.1764705882353 0 E 380 114 1241 931
+E E 0 0 1 0 1 E 1.065116279069768 0 1.096813725490196 -111.7441860465118 -127.0367647058824 0 E 380 114 1241 931
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -1198,6 +1290,21 @@ LANG:1 6 Export
     string sector=$sector;
     string mode=$mode;
     string chamberName, dirPath, batchID;
+    dyn_string envChannels, gasChannels, humChannels, gifChannels;
+    int startNode;
+      if(sector==\"1\")
+        startNode=1;
+      if(sector==\"2\")
+        startNode=5;
+      
+//       node=\"1\";
+//       mode=\"ValidationQA\";
+      
+    bool isEnvOn, isGasOn, isHumOn,isGifOn;
+    getValue(\"extraChoice\",\"state\",0,isEnvOn);
+    getValue(\"extraChoice\",\"state\",1,isGasOn);
+    getValue(\"extraChoice\",\"state\",2,isHumOn);
+    getValue(\"extraChoice\",\"state\",3,isGifOn); 
     
     string startTime = getStartTime();
     string endTime   = getEndTime();    
@@ -1207,8 +1314,6 @@ LANG:1 6 Export
     this.enabled(FALSE);
     this.text(\"Please wait...\");
     
-    node=\"2\";
-    mode=\"ValidationQA\";
     
    if(mode==\"ValidationQA\")
     {
@@ -1239,9 +1344,119 @@ LANG:1 6 Export
       exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
       
       exportInfoFile(node, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath);
+      
+      if(isEnvOn)
+       {
+        dynAppend(envChannels,\"BME280.pressureMean\");
+        dynAppend(envChannels,\"BME280.temperatureMean\");
+        dynAppend(envChannels,\"BME280.humidityMean\");
+        exportEnvData(envChannels ,startTime, endTime, dirPath);
+       } 
+      
             
     }
-  
+    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+    {
+      
+      for(int z=startNode;z<startNode+4;z++)
+      {
+      dpGet(\"N\"+z+\".ChamberType\",chamberName);
+      dpGet(\"N\"+z+\".BatchId\",batchID);
+      dirPath = destFolderTextField.text + chamberName+\"_\"+batchID+\"_FROM_\"+startTime+\"_TO_\"+endTime+\"/\";     
+      strreplace(dirPath,\":\",\"_\");
+      strreplace(dirPath,\" \",\"_\");
+      strreplace(dirPath,\".\",\"_\");
+      checkOrCreateDirectory(dirPath);
+      
+      dynClear(stripsChannels);
+      dpGet(\"N\"+z+\".Mapping.ChannelsTotal.Strips\",stripsChannels);
+      dynClear(driftChannels);
+      dpGet(\"N\"+z+\".Mapping.ChannelsTotal.Drift\",driftChannels);
+      
+      dynClear(mappingChannelsToArchive);
+      dynAppend(mappingChannelsToArchive,stripsChannels);
+      dynAppend(mappingChannelsToArchive,driftChannels);
+      
+      for(int i=1;i<=dynlen(mappingChannelsToArchive);i++)
+      {
+      dpGet(\"N\"+z+\".Mapping.\"+mappingChannelsToArchive[i]+\".Channel\",channelsToArchive[i]);        
+      }
+      
+      
+      exportHVData(\"iMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
+      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
+      
+      exportInfoFile(z, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath); 
+
+
+      if(isEnvOn)
+       {
+        dynAppend(envChannels,\"BME280.pressureMean\");
+        dynAppend(envChannels,\"BME280.temperatureMean\");
+        dynAppend(envChannels,\"BME280.humidityMean\");
+        exportEnvData(envChannels ,startTime, endTime, dirPath);
+       }     
+      if(isGasOn)
+       {
+        if(z==1 || z==2 )
+        {
+        dynAppend(gasChannels,\"N1.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Pressure\");          
+        }
+         if(z==3 || z==4 )
+        {
+        dynAppend(gasChannels,\"N2.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N2.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N2.Gas.Pressure\");          
+        }
+        
+        if(z==5 || z==6 )
+        {
+        dynAppend(gasChannels,\"N5.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Pressure\");          
+        }
+         if(z==7 || z==8 )
+        {
+        dynAppend(gasChannels,\"N6.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N6.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N6.Gas.Pressure\");          
+        }        
+        
+
+        exportGasData(gasChannels ,startTime, endTime, dirPath);
+       }
+
+      if(isHumOn)
+       {
+       dynClear(humChannels);
+        if(z==1 || z==2 )     
+          dynAppend(humChannels,\"N1.Gas.Humidity\");          
+        if(z==3 || z==4 )
+          dynAppend(humChannels,\"N2.Gas.Humidity\");                          
+        if(z==5 || z==6 )
+          dynAppend(humChannels,\"N5.Gas.Humidity\");                   
+         if(z==7 || z==8 )
+          dynAppend(humChannels,\"N6.Gas.Humidity\");                   
+        
+        exportHumData(humChannels ,startTime, endTime, dirPath);
+       }    
+      
+      
+      
+        
+      }
+
+
+      
+      
+    }
+    
+   
+
+    
+
     
     
     this.text(\"Export Data\");
