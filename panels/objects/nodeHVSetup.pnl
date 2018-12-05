@@ -393,7 +393,7 @@ LANG:1 3 Set
    if(mode==\"CosmicsTotal\")
     {
       string sector=$sector;
-      refreshConfigurationTable(sector);
+      refreshConfigurationTableCosmics(sector);
       
     }
     
@@ -1083,7 +1083,7 @@ void colorTable(string channelDp, bool isOn) {
 }
  
     " 0
-E 1 0 1 8 1 "Alias" 3 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+E 1 0 1 8 1 "Alias" 4 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
 LANG:1 7 Section
 E
 1
