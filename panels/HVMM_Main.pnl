@@ -276,7 +276,7 @@ bool chechIfUserHasTypeBatch()
 }" 0
 
 "windowIcon" "NTUA Logo/logo[80].png"
-"dpi" "96"
+"dpi" "95.9971"
 0 1 9 9 9 9 1 6
 ""
 DISPLAY_LAYER, 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
