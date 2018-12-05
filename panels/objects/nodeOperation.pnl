@@ -1297,8 +1297,8 @@ LANG:1 6 Export
       if(sector==\"2\")
         startNode=5;
       
-//       node=\"1\";
-//       mode=\"ValidationQA\";
+//        node=\"1\";
+//        mode=\"ValidationQA\";
       
     bool isEnvOn, isGasOn, isHumOn,isGifOn;
     getValue(\"extraChoice\",\"state\",0,isEnvOn);
@@ -1353,6 +1353,13 @@ LANG:1 6 Export
         exportEnvData(envChannels ,startTime, endTime, dirPath);
        } 
       
+      if(isHumOn)
+       {
+        dynClear(humChannels);
+        dynAppend(humChannels,\"N\"+node+\".Gas.Humidity\");                            
+        
+        exportHumData(humChannels ,startTime, endTime, dirPath);
+       }   
             
     }
     if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
