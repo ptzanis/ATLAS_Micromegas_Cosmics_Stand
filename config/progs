@@ -1,0 +1,33 @@
+version 1
+
+auth "" ""
+#Manager         | Start  | SecKill | Restart# | ResetMin | Options
+WCCILpmon        | manual |      30 |        3 |        1 |
+WCCILdata        | always |      30 |        3 |        1 |
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 0
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 1
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 2
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 3
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 4
+WCCOAvalarch     | always |      30 |        3 |        1 |-num 5
+WCCILevent       | always |      30 |        3 |        1 |
+WCCILproxy       | manual |      30 |        2 |        2 |
+WCCOActrl        | always |      30 |        3 |        1 |-f pvss_scripts.lst
+WCCILsim         | always |      30 |        3 |        1 |
+WCCOAui          |   once |      30 |        3 |        1 |-m gedi
+WCCOActrl        | always |      30 |        3 |        3 |-f fwInstallationAgent.lst
+WCCOActrl        |   once |      30 |        1 |        1 |-f fwScripts.lst
+WCCOAopc         | manual |      30 |        2 |        2 |-num 6
+WCCILsim         | manual |      30 |        2 |        2 |-num 6
+WCCOActrl        | always |      30 |        3 |        5 |fwFsmSrvr
+WCCOAui          | manual |       5 |        3 |        5 |-p fwDeviceEditorNavigator/fwDeviceEditorNavigator.pnl -iconBar -menuBar
+WCCOActrl        | always |      30 |        3 |        2 |unDistributedControl.ctl
+WCCOAui          | manual |       5 |        3 |        5 |-p fwTrending/fwTrending.pnl -iconBar -menuBar
+WCCOActrl        | manual |      30 |        3 |        5 |never touch me -num 50
+WCCOAsmi         | manual |      30 |        3 |        5 |never touch me -num 10
+WCCOAui          | manual |      30 |        2 |        2 |-p HVMM_Main.pnl -iconBar -menuBar
+WCCILsim         | manual |      30 |        2 |        2 |-num 13
+WCCOAdip         | manual |      30 |        2 |        2 |-dns dipnsgpn1, dipnsgpn2
+WCCILsim         | manual |      30 |        2 |        2 |-num 6 -dbg none
+WCCOAopcua       | manual |      30 |        5 |        3 |-num 0
+WCCILsim         | manual |      30 |        5 |        3 |-num 0

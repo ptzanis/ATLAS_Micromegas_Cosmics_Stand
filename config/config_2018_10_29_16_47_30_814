@@ -1,0 +1,275 @@
+[general]
+pvss_path = "/opt/WinCC_OA/3.15"
+proj_path = "/home/bb5user/Documents/fwComponents_ATLHVMMBB5"
+#proj_path = "/localdisk/winccoa/fwComponents_TestBeamSCS"
+proj_path = "/localdisk/winccoa/fwComponents_TestBeamSCS"
+proj_path = "/home/bb5user/Documents/ATLHVMMBB5"
+proj_version = "3.15"
+## Switch off multiplexing proxy to enable connectivity with v.311 projects (CERN modification)
+mxProxy = "none"
+langs = "en_US.iso88591"
+username="root"
+password=""
+pmonPort=6999
+dataPort=6897
+eventPort=6998
+[ui]
+#begin fwFsmAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwFsmAtlas.ctl"
+LoadCtrlLibs = "fwFsmUser.ctl"
+#end fwFsmAtlas
+#begin fwAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwAtlas.ctl"
+#end fwAtlas
+#begin fwTrending
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwTrending/fwTrending.ctl"
+LoadCtrlLibs = "fwTrending/fwTrendingTree.ctl"
+#end fwTrending
+#begin unDistributedControl
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+#unicos DistributedControl component
+LoadCtrlLibs = "unDistributedControl.ctl"
+#end unDistributedControl
+#begin fwAlarmHandling
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+aesShowDistDisconnections = 0
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandling.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandlingScreen.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandlingScreenGroups.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmScreen.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmScreenGeneric.ctl"
+#end fwAlarmHandling
+#begin fwDeviceEditorNavigator
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwDeviceEditorNavigator/fwDeviceEditorNavigator.ctl"
+#end fwDeviceEditorNavigator
+#begin fwFSM
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwFsm"
+LoadCtrlLibs = "fwCU"
+LoadCtrlLibs = "fwDU"
+LoadCtrlLibs = "fwUi"
+LoadCtrlLibs = "fwTree.ctl"
+LoadCtrlLibs = "fwFsmUtil.ctl"
+LoadCtrlLibs = "fwTreeDisplay.ctl"
+LoadCtrlLibs = "fwFsmTreeDisplay.ctl"
+LoadCtrlLibs = "fwFsmUi.ctl"
+#end fwFSM
+#begin fwNode
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwNode/fwNode.ctl"
+#end fwNode
+#begin fwDevice
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwDevice/fwDevice.ctl"
+LoadCtrlLibs = "fwDevice/fwDeviceFrontEndConfigFile.ctl"
+#end fwDevice
+#begin fwConfigs
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwConfigs/fwAlertConfig.ctl"
+LoadCtrlLibs = "fwConfigs/fwArchive.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigConversion.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigs.ctl"
+LoadCtrlLibs = "fwConfigs/fwDpFunction.ctl"
+LoadCtrlLibs = "fwConfigs/fwDPELock.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddress.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressS7.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressCMW.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressBACnet.ctl"
+LoadCtrlLibs = "fwConfigs/fwOriginal.ctl"
+LoadCtrlLibs = "fwConfigs/fwPvRange.ctl"
+LoadCtrlLibs = "fwConfigs/fwSmoothing.ctl"
+LoadCtrlLibs = "fwConfigs/fwUnit.ctl"
+LoadCtrlLibs = "fwConfigs/fwFormat.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigConstants.ctl"
+#end fwConfigs
+#begin fwGeneral
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+visionResizeMode = "Zoom"
+LoadCtrlLibs = "fwGeneral/fwBusyBarButton.ctl"
+LoadCtrlLibs = "fwGeneral/fwColour.ctl"
+LoadCtrlLibs = "fwGeneral/fwColourTable.ctl"
+LoadCtrlLibs = "fwGeneral/fwException.ctl"
+LoadCtrlLibs = "fwGeneral/fwExceptionHandling.ctl"
+LoadCtrlLibs = "fwGeneral/fwListManipulation.ctl"
+LoadCtrlLibs = "fwGeneral/fwProgressBar.ctl"
+LoadCtrlLibs = "fwGeneral/fwGeneral.ctl"
+LoadCtrlLibs = "fwGeneral/fwManager.ctl"
+#end fwGeneral
+LoadCtrlLibs = "fwInstallation.ctl"
+[ctrl]
+#begin fwFsmAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwFsmAtlas.ctl"
+LoadCtrlLibs = "fwFsmUser.ctl"
+#end fwFsmAtlas
+#begin fwAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwAtlas.ctl"
+#end fwAtlas
+#begin fwTrending
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwTrending/fwTrending.ctl"
+#end fwTrending
+#begin unDistributedControl
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+#unicos DistributedControl component
+LoadCtrlLibs = "unDistributedControl.ctl"
+#end unDistributedControl
+#begin fwAlarmHandling
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandling.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandlingScreen.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmHandlingScreenGroups.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmScreen.ctl"
+LoadCtrlLibs = "fwAlarmHandling/fwAlarmScreenGeneric.ctl"
+#end fwAlarmHandling
+#begin fwFSM
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwFsm"
+LoadCtrlLibs = "fwCU"
+LoadCtrlLibs = "fwDU"
+LoadCtrlLibs = "fwUi"
+LoadCtrlLibs = "fwTree.ctl"
+LoadCtrlLibs = "fwFsmUtil.ctl"
+LoadCtrlLibs = "fwTreeDisplay.ctl"
+LoadCtrlLibs = "fwFsmTreeDisplay.ctl"
+LoadCtrlLibs = "fwFsmUi.ctl"
+#[ctrl_50]
+#distributed = 0
+#end fwFSM
+#begin fwNode
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwNode/fwNode.ctl"
+#end fwNode
+#begin fwDevice
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwDevice/fwDevice.ctl"
+LoadCtrlLibs = "fwDevice/fwDeviceFrontEndConfigFile.ctl"
+#end fwDevice
+#begin fwConfigs
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwConfigs/fwAlertConfig.ctl"
+LoadCtrlLibs = "fwConfigs/fwArchive.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigConversion.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigs.ctl"
+LoadCtrlLibs = "fwConfigs/fwDpFunction.ctl"
+LoadCtrlLibs = "fwConfigs/fwDPELock.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddress.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressS7.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressCMW.ctl"
+LoadCtrlLibs = "fwConfigs/fwPeriphAddressBACnet.ctl"
+LoadCtrlLibs = "fwConfigs/fwOriginal.ctl"
+LoadCtrlLibs = "fwConfigs/fwPvRange.ctl"
+LoadCtrlLibs = "fwConfigs/fwSmoothing.ctl"
+LoadCtrlLibs = "fwConfigs/fwUnit.ctl"
+LoadCtrlLibs = "fwConfigs/fwFormat.ctl"
+LoadCtrlLibs = "fwConfigs/fwConfigConstants.ctl"
+#end fwConfigs
+#begin fwGeneral
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwGeneral/fwException.ctl"
+LoadCtrlLibs = "fwGeneral/fwListManipulation.ctl"
+LoadCtrlLibs = "fwGeneral/fwGeneral.ctl"
+LoadCtrlLibs = "fwGeneral/fwManager.ctl"
+#end fwGeneral
+LoadCtrlLibs = "fwInstallation.ctl"
+[valarch]
+#begin fwGeneral
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+deleteNotArchivedFileSets = 0
+#end fwGeneral
+[event]
+#begin fwFSM
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+LoadCtrlLibs = "fwFsmEvent.ctl"
+#end fwFSM
+[data]
+#begin fwAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+smoothBit = "_exp_inv"
+smoothBit = "_aut_inv"
+smoothBit = "_out_range"
+smoothBit = "_out_prange"
+smoothBit = "_stime_inv"
+smoothBit = "_online_bad"
+smoothBit = "_uncertain"
+smoothBit = "_active"
+smoothBit = "_from_GI"
+smoothBit = "_from_SI"
+smoothBit = "_exp_default"
+smoothBit = "_aut_default"
+smoothBit = "_default_bad"
+smoothBit = "Userbit 1"
+smoothBit = "Userbit 2"
+smoothBit = "Userbit 3"
+smoothBit = "Userbit 4"
+smoothBit = "Userbit 5"
+smoothBit = "Userbit 6"
+smoothBit = "Userbit 7"
+smoothBit = "Userbit 8"
+smoothBit = "Userbit 9"
+smoothBit = "Userbit 10"
+smoothBit = "Userbit 11"
+smoothBit = "Userbit 12"
+smoothBit = "Userbit 13"
+smoothBit = "Userbit 14"
+smoothBit = "Userbit 15"
+smoothBit = "Userbit 16"
+smoothBit = "Userbit 17"
+smoothBit = "Userbit 18"
+smoothBit = "Userbit 19"
+smoothBit = "Userbit 20"
+smoothBit = "Userbit 21"
+smoothBit = "Userbit 22"
+smoothBit = "Userbit 23"
+smoothBit = "Userbit 24"
+smoothBit = "Userbit 25"
+smoothBit = "Userbit 26"
+smoothBit = "Userbit 27"
+smoothBit = "Userbit 28"
+smoothBit = "Userbit 29"
+smoothBit = "Userbit 30"
+smoothBit = "Userbit 31"
+smoothBit = "Userbit 32"
+dataBgName = ""
+#end fwAtlas
+[opcua]
+#begin fwAtlas
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+certificateStore = "/localdisk/winccoa/opcua/client"
+#end fwAtlas
+[opc_6]
+#begin fwCaen
+#This should not be edited manually
+#if the component is empty it means that the parametrization is already done in the section
+server = "CAENOPCServer"  "CAEN.HVOPCServer"
+#end fwCaen
