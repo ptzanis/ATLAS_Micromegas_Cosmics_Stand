@@ -9,12 +9,11 @@ PANEL,-1 -1 558 970 N "WF_PanelBackground" 5
 "$type"
 E E E E E 1 -1 -1 0  5.329070518200751e-15 -3.000000000000014
 ""0  1
-E "string node=$node; 
+E "void refreshConfigurationTable(bool nodeMode,bool layerMode) {
+string node=$node; 
 string mode=$mode;  
 string type=$type; 
 string layer=$layer;
-
-void refreshConfigurationTable(bool nodeMode,bool layerMode) {
       
    channelsTable.tableMode(TABLE_SELECT_NOTHING);
    channelsTable.font(\"Utopia\"); 
@@ -60,6 +59,12 @@ void refreshConfigurationTable(bool nodeMode,bool layerMode) {
 
 dyn_string channelsReturn(bool nodeMode,bool layerMode)
 {  
+    string node=$node; 
+    string mode=$mode;  
+    string type=$type; 
+    string layer=$layer;  
+  
+  
     dyn_string allChannels,aliasAllChannels;
     dyn_string stripChannels,driftChannels;
     string channel;
@@ -128,6 +133,11 @@ dyn_string channelsReturn(bool nodeMode,bool layerMode)
 
 dyn_string aliasAllChannelsReturn(bool nodeMode,bool layerMode)
 {  
+    string node=$node; 
+    string mode=$mode;  
+    string type=$type; 
+    string layer=$layer;   
+  
     dyn_string aliasAllChannels;
     dyn_string stripChannels,driftChannels;
 
@@ -348,6 +358,8 @@ T
 LANG:1 3 Set
 "main()
 {
+    string mode=$mode;  
+    
     dyn_int selected;
     dyn_dyn_string lines;
     
