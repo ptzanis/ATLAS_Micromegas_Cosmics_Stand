@@ -408,7 +408,7 @@ int runTerminal(string path)
     <prop name="Type"></prop>
     <prop name="RefPoint">808 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">True</prop>
+    <prop name="Visible">False</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">19</prop>
@@ -485,7 +485,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Type"></prop>
     <prop name="RefPoint">980.2222222222222 357</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">True</prop>
+    <prop name="Visible">False</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">21</prop>
@@ -802,7 +802,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
     <prop name="Type"></prop>
     <prop name="RefPoint">1073.810453869049 276.0174036639544</prop>
     <prop name="Enable">True</prop>
-    <prop name="Visible">True</prop>
+    <prop name="Visible">False</prop>
     <prop name="ForeColor">_ButtonText</prop>
     <prop name="BackColor">_Button</prop>
     <prop name="TabOrder">36</prop>
