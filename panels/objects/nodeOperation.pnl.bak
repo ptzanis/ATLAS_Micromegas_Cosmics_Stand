@@ -357,7 +357,26 @@ LANG:1 0
 E E
 0 0 0 0 0
 0
-EE30 52
+"main()
+{
+    bool isEnvOn, isGasOn, isHumOn,isGifOn;
+    dpGet(\"ALL.ExtraMode.Env\",isEnvOn);
+    dpGet(\"ALL.ExtraMode.Gas\",isGasOn);
+    dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn);
+    dpGet(\"ALL.ExtraMode.GIF\",isGifOn);
+    
+    if(!isEnvOn)
+      this.itemEnabled(0,FALSE);
+    if(!isGasOn)
+      this.itemEnabled(1,FALSE);
+    if(!isHumOn)
+      this.itemEnabled(2,FALSE);
+    if(!isGifOn)
+      this.itemEnabled(3,FALSE);
+
+    
+}" 0
+E30 52
 "FRAME8"
 ""
 1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E

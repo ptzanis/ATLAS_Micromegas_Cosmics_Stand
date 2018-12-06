@@ -9,7 +9,7 @@ PANEL,-1 -1 1606 763 N "_3DFace" 1
   
   string node=$node;  
   string mode;
-  dpGet(\"N\"+mode+\".Mode\",mode);
+  dpGet(\"N\"+node+\".Mode\",mode);
   dyn_string exceptionInfo;
   
     bool isHumOn,isGasOn;
