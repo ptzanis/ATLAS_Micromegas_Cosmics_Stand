@@ -358,7 +358,7 @@ LANG:1 3 OFF
  int stripsOrDrift;
  getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
- dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
+ dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
@@ -399,7 +399,7 @@ LANG:1 2 ON
  int stripsOrDrift;
  getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
- dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
+ dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector,stripsOrDrift));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
