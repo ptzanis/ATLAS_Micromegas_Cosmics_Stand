@@ -214,6 +214,56 @@ bool exportHumData( dyn_string channels , string start, string end, string folde
     return TRUE;
 }
 
+bool exportGIFData( dyn_string channels , string start, string end, string folderPath) {
+  
+        //DownStreamPos Or UpStreamPos
+       gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
+       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
+       gifChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
+       gifChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
+       gifChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+       gifChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+       gifChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+       gifChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+       gifChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+       gifChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+
+    dyn_dyn_anytype archivedSource,archivedAttA,archivedAttB,archivedAttC,archivedAttEff,archivedHumIn,archivedHumOut,archivedTempIn,archivedTempOut,archivedAtmPress;
+    string querySource,queryAttA,queryAttB,queryAttC,queryAttEff,queryHumIn,queryHumOut,queryTempIn,queryTempOut,queryAtmPress;
+    string filePath;
+    
+        queryHum = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+
+        
+        dpQuery(querySource, archivedSource);
+        dpQuery(queryAttA, archivedAttA);        
+        dpQuery(queryAttB, archivedAttB);        
+        dpQuery(queryAttC, archivedAttC);
+        dpQuery(queryAttEff, archivedAttEff);
+        dpQuery(queryHumIn, archivedHumIn);
+        dpQuery(queryHumOut, archivedHumOut);
+        dpQuery(queryTempIn, archivedTempIn);
+        dpQuery(queryTempOut, archivedTempOut);     
+        dpQuery(queryAtmPress, archivedAtmPress);        
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"GIF/\");
+        filePath = folderPath +\"GIF/\"+ \"gifData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+ \"\\t\" +\"\\t\" + \"\\t\" +\"Source ON\"+ \"\\t\"+ \"A\"+\"\\t\"+\"B\"+\"\\t\"+ \"C\"+\"\\t\"+\"Effective\"+\"\\t\"+ \"Humidity IN\"+\"\\t\"+\"Humidity OUT\"+\"\\t\"+ \"Temp IN\"+\"\\t\"+\"Temp OUT\"+\"\\t\"+\"Atm. Pressure\");        
+        for (int j = 2; j <= dynlen(archivedHum); j++) { 
+            fprintf(export, \"%s \\t %s \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %3.1f \\n\", formatTime(\"%d/%m/%Y_%H:%M:%S\", archivedSource[j][2])
+                    ,archivedSource[j][3],archivedAttA[j][3],archivedAttB[j][3],archivedAttC[j][3],archivedAttEff[j][3],archivedHumIn[j][3],archivedHumOut[j][3],archivedTempIn[j][3],archivedTempOut[j][3],archivedAtmPress[j][3]);
+
+        }
+        fclose(export);
+
+    DebugN(\"GIF++ Data Exported!\");
+    return TRUE;
+}
+
 
 
 bool exportInfoFile(string node,string chamberName,string batchID,string mode,dyn_string mappingChannelsToArchive,dyn_string channelsToArchive,string startTime,string endTime,string folderPath)
@@ -320,7 +370,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0  590.0008926611026 929.0000000000001 700.8536997357467 1000.5625
+0  590.0008926611026 929.0000000000001 700.8536997357468 1000.5625
 4
 T 
 1
@@ -495,7 +545,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  2.089171974522308 13.94168977098263 289.0891719745219 758.941689770982
+0  2.089171974522308 13.94168977098263 289.0891719745219 758.9416897709821
 15 Canvas.Canvas.1
 0
 "main()
@@ -546,7 +596,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0  -9.50000000000005 760.0117187499998 284.4999999999997 775.6353400735292
+0  -9.50000000000005 760.0117187499998 284.4999999999997 775.6353400735293
 
 T 
 1
@@ -616,7 +666,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  1362.999999999991 27.3076923076923 1402.999999999991 47.3076923076923
+0  1362.999999999991 27.3076923076923 1402.999999999991 47.30769230769231
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -662,7 +712,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 1345.692307692299 23.23076923076924 1361 48
+E E 2 1 3 2 1 E U  0 E 1345.692307692299 23.23076923076924 1362 48
 0 2 2 "0s" 0 0 0 192 0 0  1345.692307692299 23.23076923076924 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -684,7 +734,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 1407.999999999991 22 1417 47
+E E 2 1 3 2 1 E U  0 E 1407.999999999991 22 1418 47
 0 2 2 "0s" 0 0 0 192 0 0  1407.999999999991 22 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -797,7 +847,7 @@ LANG:1 0
   this.text(\">\"+upLimitValue);
 
 }" 0
- E 2 1 3 2 1 E U  0 E 1627.442409442401 21.26923076923078 1682 46
+ E 2 1 3 2 1 E U  0 E 1627.442409442401 21.26923076923078 1684 46
 0 2 2 "0s" 0 0 0 192 0 0  1627.442409442401 21.26923076923078 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -826,7 +876,7 @@ LANG:1 0
   this.text(\"<\"+downLimitValue);
 
 }" 0
- E 2 1 3 2 1 E U  0 E 1457.420363587023 21.01923076923078 1512 46
+ E 2 1 3 2 1 E U  0 E 1457.420363587023 21.01923076923078 1514 46
 0 2 2 "0s" 0 0 0 192 0 0  1457.420363587023 21.01923076923078 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -906,7 +956,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1 0 0.849444575253555 -3 -9.832624309039316 0 E 1813 75 1913 93
+E E 2 1 3 2 1 E 1 0 0.849444575253555 -3 -9.832624309039316 0 E 1813 75 1915 93
 0 2 2 "0s" 0 0 0 192 0 0  1813 75 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -948,7 +998,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 -76.38461538462329 -4.542410431413744 0 E 1258 26 1332 44
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 -76.38461538462329 -4.542410431413744 0 E 1258 26 1333 44
 0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -1037,7 +1087,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  0.999999999999992 788.9999999999999 287.9999999999997 1066
+0  0.999999999999992 788.9999999999999 287.9999999999998 1066
 15 Canvas.Canvas.1
 0
 "main()
@@ -1083,7 +1133,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  308.9999999999999 935.9999999999998 399.9999999999999 963.9999999999998
+0  308.9999999999999 935.9999999999999 399.9999999999999 963.9999999999999
 
 T 
 1
@@ -1144,7 +1194,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  308 966.9999999999998 398.9999999999999 995
+0  308 966.9999999999998 398.9999999999999 995.0000000000001
 
 T 
 1
@@ -1207,7 +1257,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1.0390625 0 1 -9.9140625 -4 0 E 305 916 393 934
+E E 2 1 3 2 1 E 1.0390625 0 1 -9.9140625 -4 0 E 305 916 395 934
 0 2 2 "0s" 0 0 0 192 0 0  305 916 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -1288,7 +1338,7 @@ LANG:1 8 Timeslot
 13 50
 "exportButton"
 ""
-1 437 943 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 437 940 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 50 0 0 0 0 0
 E E E
@@ -1300,7 +1350,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  435 936.5189594356261 570 967.4052028218695
+0  435.0000000000001 933.5189594356261 570 964.4052028218695
 
 T 
 1
@@ -1390,7 +1440,28 @@ LANG:1 6 Export
         dynAppend(gasChannels,\"N\"+node+\".Gas.Pressure\"); 
         
         exportGasData(gasChannels ,startTime, endTime, dirPath);
-       }         
+       }   
+
+      if(isGifOn)
+       {
+       dynClear(gifChannels);
+       //DownStreamPos Or UpStreamPos
+       gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
+       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
+       gifChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
+       gifChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
+       gifChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+       gifChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+       gifChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+       gifChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+       gifChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+       gifChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+       
+        
+        exportGIFData(gifChannels ,startTime, endTime, dirPath);
+        
+       }   
+    
       
       
             
@@ -1526,7 +1597,7 @@ LANG:1 0
 "horizontal" ""
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  428 969.9999999999999 584 998.0000000000001
+0  428 970 584.0000000000001 998.0000000000001
 2
 T 
 1
@@ -1585,7 +1656,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  455 906 674 923.9999999999999
+0  455.0000000000001 906.0000000000001 674.0000000000001 924
 3 "0s" 0 0 0 0 0 -1  E "main()
 {
 
@@ -1607,7 +1678,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  676 902.727530853956 700.9869171626979 926.2609167805258
+0  676.0000000000001 902.7275308539561 700.9869171626979 926.2609167805259
 
 P 
 4294967295
