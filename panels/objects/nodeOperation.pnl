@@ -152,38 +152,40 @@ bool exportEnvData( dyn_string channels , string start, string end, string folde
     DebugN(\"EnvStation Data Exported!\");
     return TRUE;
 }
-/*
+
 bool exportGasData( dyn_string channels , string start, string end, string folderPath) {
 
     dyn_dyn_anytype archivedInlet, archivedOutlet, archivedPressure;
-    string queryPressure, queryTemperature, queryHumidity; 
+    string queryInlet, queryOutlet, queryPressure; 
     string filePath;
+    float archivedLeak;
     
-        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        queryTemperature = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-        queryHumidity = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryInlet = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryOutlet = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
         
+        dpQuery(queryInlet, archivedInlet);
+        dpQuery(queryOutlet, archivedOutlet);
         dpQuery(queryPressure, archivedPressure);
-        dpQuery(queryTemperature, archivedTemperature);
-        dpQuery(queryHumidity, archivedHumidity);
         
         file export;
-        checkOrCreateDirectory(folderPath+\"EnvStation/\");
-        filePath = folderPath +\"EnvStation/\"+ \"envData\" + \".dat\";
+        checkOrCreateDirectory(folderPath+\"Gas/\");
+        filePath = folderPath +\"Gas/\"+ \"gasData\" + \".dat\";
         strreplace(filePath, \"/\", \"//\");   
         
         export = fopen(filePath, \"a\");
-        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Pressure[mbar]\"+\"\\t\"+\"Temperature[C]\"+\"\\t\"+\"Humidity[%]\");                           
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Inlet[L/h]\"+\"\\t\"+\"Outlet[L/h]\"+\"\\t\"+\"Leak[L/h]\"+\"\\t\"+\"Pressure[mbar]\");                           
         for (int j = 2; j <= dynlen(archivedPressure); j++) { 
-        fprintf(export, \"%s \\t %4.2f \\t %2.2f \\t \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedPressure[j][2]), archivedPressure[j][3],archivedTemperature[j][3],archivedHumidity[j][3]); 
+        archivedLeak=archivedInlet[j][3]-archivedOutlet[j][3];
+        fprintf(export, \"%s \\t %2.3f \\t %2.3f \\t %2.3f \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedInlet[j][2]), archivedInlet[j][3],archivedOutlet[j][3],archivedLeak,archivedPressure[j][3]); 
 
         }
         fclose(export);
 
-    DebugN(\"EnvStation Data Exported!\");
+    DebugN(\"Gas Data Exported!\");
     return TRUE;
 }
-*/
+
 bool exportHumData( dyn_string channels , string start, string end, string folderPath) {
 
     dyn_dyn_anytype archivedHum;
@@ -1316,8 +1318,8 @@ LANG:1 6 Export
       if(sector==\"2\")
         startNode=5;
       
-//        node=\"1\";
-//        mode=\"ValidationQA\";
+//         node=\"1\";
+//         mode=\"ValidationQA\";
       
     bool isEnvOn, isGasOn, isHumOn,isGifOn;
     getValue(\"extraChoice\",\"state\",0,isEnvOn);
@@ -1379,6 +1381,18 @@ LANG:1 6 Export
         
         exportHumData(humChannels ,startTime, endTime, dirPath);
        }   
+      
+      if(isGasOn)
+       {
+        dynClear(gasChannels);
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Inlet\");     
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Outlet\");             
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Pressure\"); 
+        
+        exportGasData(gasChannels ,startTime, endTime, dirPath);
+       }         
+      
+      
             
     }
     if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
@@ -1432,9 +1446,9 @@ LANG:1 6 Export
         }
          if(z==3 || z==4 )
         {
-        dynAppend(gasChannels,\"N2.Gas.Inlet\");          
-        dynAppend(gasChannels,\"N2.Gas.Outlet\");          
-        dynAppend(gasChannels,\"N2.Gas.Pressure\");          
+        dynAppend(gasChannels,\"N1.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Pressure\");          
         }
         
         if(z==5 || z==6 )
@@ -1445,10 +1459,11 @@ LANG:1 6 Export
         }
          if(z==7 || z==8 )
         {
-        dynAppend(gasChannels,\"N6.Gas.Inlet\");          
-        dynAppend(gasChannels,\"N6.Gas.Outlet\");          
-        dynAppend(gasChannels,\"N6.Gas.Pressure\");          
+        dynAppend(gasChannels,\"N5.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Pressure\");          
         }        
+        
         
 
         exportGasData(gasChannels ,startTime, endTime, dirPath);
