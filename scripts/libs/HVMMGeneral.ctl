@@ -1,5 +1,5 @@
 #uses "scripts/libs/fwTrending/fwTrending.ctl"
-
+#uses "email.ctl"
 
 //  global dyn_string channelsToPlot;
 
@@ -390,3 +390,52 @@ dyn_dyn_int gridToCoordinates(int Nplots, dyn_int grid) {
     
     return initialPositions;  
 }
+
+
+string alertViaEmail(string recipient, string sender, string subject, string mainBody) {
+ 
+    dyn_string emailContent;
+    int ret; 
+    string status; 
+    string smtpServer = "cernmx.cern.ch";
+    string hostName = getHostname(); 
+    
+    emailContent[1] = recipient;
+    emailContent[2] = sender;
+    emailContent[3] = subject;
+    emailContent[4] = mainBody;
+  
+    emSendMail(smtpServer, hostName, emailContent, ret);
+    if (ret == 0)  status = "Message sent";
+    else status = "Message sent failed";
+    return status;
+}
+
+/*
+
+string alertViaSMS(string number, string sender, string subject, string mainBody) {
+//provide the receiver  (receiver) cell phone number with the digits of the country infront (e.g. 0041..)
+//provide your (sender) email address
+//provide the title of your sms (it will go in parenthesis in the begining of the sms)
+//provide the text of your mail (no more than 160 characters)
+    
+    string receiver = number + "@mail2sms.cern.ch";
+                 
+    dyn_string emailContent;
+    int ret; 
+    string status; 
+    string smtp = "cernmx.cern.ch";
+    string hostName = getHostname();   
+    emailContent[1] = receiver;
+    emailContent[2] = sender;
+    emailContent[3] = subject;
+    emailContent[4] = mainBody;
+  
+    emSendMail(smtp, hostName, emailContent, ret);
+    if (ret == 0)  status = "Message sent";
+    else status = "Message sent failed";
+    return status;
+}
+  
+  
+  */

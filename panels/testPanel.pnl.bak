@@ -38,63 +38,51 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-13 2
-"PUSH_BUTTON2"
+29 6
+"enableButton"
 ""
-1 139 321 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 345 74 E E E 1 E 1 E N "white" E N "_3DFace" E E
  E E
-1 0 0 0 0 0
-E E E
-8
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  137 294 541 361
-
-T 
-1
-LANG:1 12 PUSH_BUTTON2
-"main(mapping event)
-{
-
-  DebugN(formatTimeUTC(\"UNIX\",getCurrentTime()));
-}" 0
- E E E
-22 3
-"COMBO_BOX1"
-""
-1 189 150 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-2 0 0 0 0 0
+5 0 0 0 0 0
 E E E
 0
 1
 LANG:1 0 
 
-1
+5
+"skin" "enum 2"
+"textOff" "string OFF"
+"textOn" "string ON"
+"checked" "bool FALSE"
 "layoutAlignment" "AlignNone"
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  187 141 439 172
-2
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  345 74 415 102
+16 ToggleSwitch.ewo
 1
-LANG:1 5 test1
-
-0
-1
-LANG:1 5 test2
-
-0
-
-E
-E
-E
- 1 0
-0
+0 "toggled" "(bool on)"
+"  
+//   string node=$node;  
+  string node=\"1\";
+  dyn_string totalChannels, stripChannels, driftChannels ;
+  
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels);
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels);  
+  
+  dynAppend(totalChannels,stripChannels);
+  dynAppend(totalChannels,stripChannels);
+  
+  if(on)
+  {
+    this.foreCol(\"Green\");
+       dpConnect(\"notificationSection\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\");
+  }
+  else
+  {
+    this.foreCol(\"Red\");
+       dpDisconnect(\"notificationSection\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\");
+  }"
+E0
 LAYER, 1 
 1
 LANG:1 0 

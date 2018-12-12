@@ -9,20 +9,14 @@ PANEL,-1 -1 160 198 N "_3DFace" 7
 "$type"
 "$x"
 "$y"
-"main()
-{
-  //alarmColorCosmics();
- 
-//   alarmColor(mode);
-
-}" 0
- E E E E 1 -1 -1 0  -1 21
+E E E E E 1 -1 -1 0  -1 21
 ""0  1
 E "     string node=$node; 
      string mode=$mode;  
      string type=$type; 
      string sector=$sector;
      string layer=$layer;
+     #uses \"HVMMGeneral.ctl\"
      
 // ------------------------ General
 
@@ -45,6 +39,13 @@ E "     string node=$node;
   }
   dpConnect(\"EP_setBackColorCB\", 
             \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
+   
+  // ---Notification---- start
+  
+  dpConnect(\"notificationEmail\", \"CAEN/\"+channel+\".actual.Trip:_online.._value\");
+  
+  // ---Notification---- end  
+  
  //edit 
   if(strlen(alias)==4)
   {
@@ -57,6 +58,37 @@ E "     string node=$node;
  
    
 }
+  
+  //Notification Email
+void notificationEmail(string dpSourceTrip, float fNewValueIsTrip)
+{
+  string nodeSubs,alias;
+  dyn_string recipientsEmail;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+  if(fNewValueIsTrip)
+  {
+    if(statusEmail.backCol==\"Green\")
+    {
+      dpGet(\"ALL.Notification.Email.Recipients\",recipientsEmail);
+      
+      for(int i=1;i<=dynlen(recipientsEmail);i++)
+      {
+         alertViaEmail(recipientsEmail[i], \"HVStation@cern.ch\", \"HVStation: [TRIP] N\"+node+\"|\"+type+\"|\"+alias, \"Node \"+node+\" |  Chamber \"+type+\" | Section \"+alias+\" Tripped ! \"+\"\\n\"+\" Please check!\");       
+      }
+    }
+    
+    
+  }
+
+  
+
+  
+  
+}  
+
+    
 void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2,float fNewValueVoltage,string dpSource3,bool fNewValueIsOn)
 {
   float downLimit,upLimit;
@@ -91,10 +123,6 @@ void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2
     setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
   }   
   
-//   bool isOn;
-//   string channelIsOn;
-//   dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channelIsOn);
-//   dpGet(\"CAEN/\"+channelIsOn+\".actual.isOn\",isOn);
   
     if(!fNewValueIsOn)
       setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
@@ -223,6 +251,7 @@ void hvChannelSetup(string sectionObject,int y=201){
   ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_Info_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias,\"$y:\"+y));
   
 }
+
 
 
 " 0
