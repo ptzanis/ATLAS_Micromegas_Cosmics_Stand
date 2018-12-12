@@ -440,7 +440,7 @@ LANG:1 0
 2 14
 "startTimeLabel"
 ""
-1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 9 13 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 14 0 0 0 0 0
 E E E
@@ -453,8 +453,8 @@ LANG:10001 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 10 10 46 25
-0 2 2 "0s" 0 0 0 192 0 0  10 10 1
+E E 0 1 1 2 1 E U  0 E 9 13 45 28
+0 2 2 "0s" 0 0 0 192 0 0  9 13 1
 2
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
@@ -464,7 +464,7 @@ LANG:10001 6 Start:
 2 15
 "endTimeLabel"
 ""
-1 16 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 11 43 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 15 0 0 0 0 0
 E E E
@@ -477,8 +477,8 @@ LANG:10001 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 16 40 46 55
-0 2 2 "0s" 0 0 0 192 0 0  16 40 1
+E E 0 1 1 2 1 E U  0 E 11 43 41 58
+0 2 2 "0s" 0 0 0 192 0 0  11 43 1
 2
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
@@ -512,14 +512,14 @@ LANG:10001 19 Edit to change date
 }
 "
 2
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  46 8 149 33
 3 "0s" 0 0 0 0 0 -1  E E E
 14 22
 "endDateField"
 ""
-1 50 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 48 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -543,9 +543,9 @@ LANG:10001 19 Edit to change date
 }
 "
 2
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  48 38 151 63
+0  46 38 149 63
 3 "0s" 0 0 0 0 0 -1  E E E
 13 0
 "startDateButton"
@@ -661,7 +661,7 @@ E E 0 1 1 2 1 E  189 10 189 61
 21 23
 "endTimeSpin"
 ""
-1 108 210 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+1 106 210 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
  E E
 19 0 0 0 0 0
 E E E
@@ -675,7 +675,7 @@ LANG:10001 0
 2
 LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  285 38 318 61
+0  283 38 316 61
 0
 
 E
@@ -715,7 +715,7 @@ N 0 1439 1 0 1 1
 21 20
 "startTimeSpin"
 ""
-1 201 180 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+1 199 180 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
  E E
 18 0 0 0 0 0
 E E E
@@ -729,7 +729,7 @@ LANG:10001 0
 2
 LANG:1 26 Arial,-1,13,5,50,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
-0  285 8 318 31
+0  283 8 316 31
 0
 
 E
@@ -1102,7 +1102,7 @@ LANG:10001 19 Edit to change time
 
 "
 2
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  198 38 301 63
 3 "0s" 0 0 0 0 0 -1  E E E
@@ -1136,7 +1136,7 @@ LANG:10001 19 Edit to change time
 
 "
 2
-LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  198 8 301 33
 3 "0s" 0 0 0 0 0 -1  E E E
