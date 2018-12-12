@@ -1050,7 +1050,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
   if (!boNewValue)
     setValue(\"\", \"backCol\", \"Red\");
   else
-    setValue(\"\", \"backCol\", \"green\");
+    setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
 }
 
 // SimpleCtrlScript {EP_setBackColor}
