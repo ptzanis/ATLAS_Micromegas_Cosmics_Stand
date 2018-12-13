@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1900 1100 N "_3DFace" 2
+PANEL,-1 -1 1900 1288 N "_3DFace" 2
 "$layer"
 "$node"
 "main()
@@ -129,22 +129,6 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0
 LAYER, 0 
 1
 LANG:1 7 Monitor
-6 0
-"level1Background"
-""
-1 10 150 E E E 1 E 1 E N {236,236,236} E N {236,236,236} E E
- E E
-183 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignCenter"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 0 1 2 1 E 1 0 1 5 0 1 E -5 30 1260 954
 6 1
 "histoArea"
 ""
@@ -196,7 +180,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  1 E 10 40 330 604
+E E 0 1 1 2 1 E 1 0 1 10 -15 1 E 10 40 330 604
 13 2
 "settingsButton"
 ""
@@ -286,7 +270,7 @@ E E 0 1 1 2 1 E U  2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 6
 13 450
 "hideShowBrowserButton"
 ""
-1 0 -2 E E E 1 E 1 E N "_ButtonText" E N "white" E E
+1 549 108.4253731343282 E E E 1 E 1 E N "_ButtonText" E N "white" E E
  E E
 297 0 0 0 0 0
 E E E
@@ -299,7 +283,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 34 Lucida Grande,-1,11,5,50,0,0,0,0,0
-0  9 608 330 625
+0  558 718.4253731343282 879 735.4253731343282
 
 T 
 1
@@ -362,7 +346,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 1 0 -13 1 E 10 622 330 638
+E E 2 1 3 2 1 E 1 0 1 230 64 1 E 10 622 330 638
 29 481
 "embMod1"
 ""

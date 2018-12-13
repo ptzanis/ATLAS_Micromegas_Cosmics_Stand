@@ -801,7 +801,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 1054 480.5 1073 495
+E E 0 1 1 2 1 E U  0 E 1053 480.5 1073 497
 0 2 2 "0s" 0 0 0 194 0 0  1073 480.5 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -822,7 +822,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 1054 510.5 1073 525
+E E 0 1 1 2 1 E U  0 E 1053 510.5 1073 527
 0 2 2 "0s" 0 0 0 194 0 0  1073 510.5 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -843,7 +843,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 1054 540.5 1073 555
+E E 0 1 1 2 1 E U  0 E 1053 540.5 1073 557
 0 2 2 "0s" 0 0 0 194 0 0  1073 540.5 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1477,20 +1477,6 @@ void colorTable(string channelDp, bool isOn) {
     
     dyn_string line;
     line = channelsTable.getLineN(row);
-    DebugN(\"Line is: \", line);
-    DebugN(\"row column is: \", row, column);
-    
-//     channelsTable.
-//     if (column == \"Alias\") {
-//         DebugN(\"Only now came.\");
-//     }
-      
-//     textField1.text = line[3];
-//     textField2.text = line[4];
-//     textField3.text = line[5];
-//     textField4.text = line[6];
-//     textField5.text = line[7];
-//     textField6.text = line[8];
 }
 " 0
  1 0 1 8 1 "Alias" 8 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
@@ -1636,7 +1622,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 192 797 245 811
+E E 0 1 1 2 1 E U  0 E 190 797 245 813
 0 2 2 "0s" 0 0 0 194 0 0  245 797 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1657,7 +1643,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 179 819 245 833
+E E 0 1 1 2 1 E U  0 E 177 819 245 835
 0 2 2 "0s" 0 0 0 194 0 0  245 819 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1678,7 +1664,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 334 797 375 811
+E E 0 1 1 2 1 E U  0 E 333 797 375 813
 0 2 2 "0s" 0 0 0 194 0 0  375 797 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1699,7 +1685,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 456 797 519 811
+E E 0 1 1 2 1 E U  0 E 454 797 519 813
 0 2 2 "0s" 0 0 0 194 0 0  519 797 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1720,7 +1706,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 439 819 519 833
+E E 0 1 1 2 1 E U  0 E 435 819 519 835
 0 2 2 "0s" 0 0 0 194 0 0  519 819 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -1741,7 +1727,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 313 818.5 375 833
+E E 0 1 1 2 1 E U  0 E 309 818.5 375 835
 0 2 2 "0s" 0 0 0 194 0 0  375 818.5 1
 1
 LANG:1 34 Lucida Grande,-1,13,5,50,0,0,0,0,0
@@ -2709,7 +2695,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 4 0 196 27
+E E 0 1 1 2 1 E U  0 E 2 0 198 28
 0 2 2 "0s" 0 0 0 193 0 0  100 0 1
 1
 LANG:1 34 Lucida Grande,-1,24,5,75,0,0,0,0,0

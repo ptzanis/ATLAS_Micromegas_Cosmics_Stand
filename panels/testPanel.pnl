@@ -27,6 +27,24 @@ string alertViaSMS(string number, string sender, string subject, string mainBody
     if (ret == 0)  status = \"Message sent\";
     else status = \"Message sent failed\";
     return status;
+}
+
+string alertViaEmail(string recipient, string sender, string subject, string mainBody) {
+ 
+    dyn_string emailContent;
+    int ret; 
+    string status; 
+    string smtpServer = \"cernmx.cern.ch\";
+    string hostName = getHostname();   
+    emailContent[1] = recipient;
+    emailContent[2] = sender;
+    emailContent[3] = subject;
+    emailContent[4] = mainBody;
+  
+    emSendMail(smtpServer, hostName, emailContent, ret);
+    if (ret == 0)  status = \"Message sent\";
+    else status = \"Message sent failed\";
+    return status;
 }" 0
  3
 "CBRef" "1"
@@ -82,7 +100,51 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     this.foreCol(\"Red\");
        dpDisconnect(\"notificationSection\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\");
   }"
-E0
+E13 7
+"PUSH_BUTTON1"
+""
+1 52 132 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  50 121.448275862069 191 156.448275862069
+
+T 
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+          alertViaSMS(\"+41754118145\", \"polyneikis.tzanis@cern.ch\", \"Trip message sent: URGENT to Ntekas\", \"TestBeamSCS: [URGENT] Channel tripped!\" + \" Debug info: \" + \"yes\");
+/*
+string number, message, sErrorText, SMSDP;
+int error;
+number =\"00306974519202\";
+message =\"This is a test, sending SMS messages\";
+sendSMS(number, message, error, sErrorText, SMSDP = \"_SMS_1\");
+ 
+   if (error == 0) // If the return value equals 0, the reading was
+                   // executed successfully.
+    {
+       DebugN(\"The SMS message: \"+message+\" was sent successfully to the number: \"+number);
+    }
+   else
+   {
+       DebugN(error, sErrorText);
+   }  
+  
+*/  
+  
+}" 0
+ E E E
+0
 LAYER, 1 
 1
 LANG:1 0 
