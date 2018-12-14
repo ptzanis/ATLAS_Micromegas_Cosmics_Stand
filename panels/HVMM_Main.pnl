@@ -1968,8 +1968,6 @@ T
 LANG:1 8 Settings
 "main(mapping event)
 {
-  enabledAllTabButtons();
-  this.enabled(FALSE);
   ChildPanelOnCentral(\"objects/settings.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
