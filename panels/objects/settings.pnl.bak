@@ -367,6 +367,22 @@ types[14]=makeDynInt(0,0,DPEL_BOOL);
 elements[15]=makeDynString(\"\",\"\",\"GIF\");
 types[15]=makeDynInt(0,0,DPEL_BOOL);
 
+elements[11]=makeDynString(\"\",\"Notification\",\"\");
+types[11]=makeDynInt(0,DPEL_STRUCT);
+elements[12]=makeDynString(\"\",\"\",\"Email\",\"\");
+types[12]=makeDynInt(0,0,DPEL_STRUCT);
+elements[13]=makeDynString(\"\",\"\",\"\",\"Status\");
+types[13]=makeDynInt(0,0,0,DPEL_BOOL);
+elements[14]=makeDynString(\"\",\"\",\"\",\"Recipients\");
+types[14]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+elements[15]=makeDynString(\"\",\"\",\"SMS\",\"\");
+types[15]=makeDynInt(0,0,DPEL_STRUCT);
+elements[16]=makeDynString(\"\",\"\",\"\",\"Status\");
+types[16]=makeDynInt(0,0,0,DPEL_BOOL);
+elements[17]=makeDynString(\"\",\"\",\"\",\"Recipients\");
+types[17]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+
+
 int x=dpTypeCreate(elements,types);
 
  if (x == 0){
@@ -642,7 +658,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 80.9375 219 126.9375 237
+E E 2 1 3 2 1 E U  0 E 80.9375 219 126 237
 0 2 2 "0s" 0 0 0 192 0 0  80.9375 219 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -756,7 +772,7 @@ LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
     
   
 }" 0
- 1 0 1 1 2 "Recipient" 19 1 1 "[0s,,,ALIGNMENT_CENTER]" 1
+ 1 0 1 1 2 "Recipient" 24 1 1 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 5 Email
 E
 1
@@ -1018,7 +1034,7 @@ LANG:1 5 Close
 LAYER, 1 
 1
 LANG:1 0 
-1 19 0 "" 0
+1 49 0 "" 0
 0
 0
 LAYER, 2 
