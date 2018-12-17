@@ -9,6 +9,11 @@ currentLayer(1);
 
 string setupMode;
 
+
+// Notification OPC  ---Start
+dpConnect(\"notificationEmailOPC\",\"_CAENOPCServer.Connected\",\"_ArduinoOPCServer.Connected\");
+// Notification OPC  ---End   
+
 for(int i=1;i<=8;i++)
 {
   dpGet(\"N\"+i+\".Mode\",setupMode);
@@ -194,7 +199,9 @@ if(setupMode==\"CosmicsBasic\" || setupMode==\"CosmicsExtra\")
 
   
   
-}" 0
+}
+
+" 0
  E E E E 1 -1 -1 0  0 0
 ""0  1
 E "void enabledAllTabButtons()
@@ -266,6 +273,22 @@ bool chechIfUserHasTypeBatch()
   
   
 }
+
+void notificationEmailOPC(string dpSourceCAEN, bool fNewValueCAENisOFF,string dpSourceArd, bool fNewValueArduisOFF)
+{
+      dyn_string recipientsEmail;
+      dpGet(\"ALL.Notification.Email.Recipients\",recipientsEmail);  
+     for(int i=1;i<=dynlen(recipientsEmail);i++)
+      { 
+      if(!fNewValueCAENisOFF)   
+      alertViaEmail(recipientsEmail[i], \"HVStation@cern.ch\", \"HVStation: [CAEN OPC Status]\", \" CAEN OPC Server is disconnected, please check that VM and the WinCC project inside it is running or contact polyneikis.tzanis@cern.ch !\");  
+      if(!fNewValueArduisOFF)   
+      alertViaEmail(recipientsEmail[i], \"HVStation@cern.ch\", \"HVStation: [ARDUINO OPC Status]\", \" Arduino OPC Server is disconnected, please check that VM and WinCC project inside it is running or contact polyneikis.tzanis@cern.ch !\");     
+    }
+      
+}
+
+ 
 
 " 0
  4
@@ -1380,7 +1403,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
-0  914.9444444444443 760.5606060606066 992.9444444444443 785.3383838383845
+0  914.9444444444443 760.5606060606066 992.9444444444442 785.3383838383845
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -1705,7 +1728,7 @@ LANG:1 0
 29 42
 "embModuleOverview"
 ""
-1 12.06918238993711 27 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 12.06918238993717 29 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 41 0 0 0 0 0
 E E E
@@ -1725,7 +1748,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
-0  0 27 1919 1096
+0  5.861977570020827e-14 29 1919 1098
 15 Canvas.Canvas.1
 0
 "main()
@@ -1831,7 +1854,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  437.9999999999997 -2.220446049250313e-16 541.0000000000001 25
+0  437.9999999999997 -4.440892098500626e-16 541.0000000000001 25
 
 T 
 1
@@ -1857,7 +1880,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  547.9999999999999 -2.220446049250313e-16 651.0000000000001 25
+0  547.9999999999999 -4.440892098500626e-16 651.0000000000001 25
 
 T 
 1
@@ -1883,7 +1906,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  657.9999999999999 -2.220446049250313e-16 761.0000000000001 25
+0  657.9999999999999 -4.440892098500626e-16 761.0000000000001 25
 
 T 
 1
@@ -1986,7 +2009,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1601 -2.220446049250313e-16 1714 25
+0  1601 -4.440892098500626e-16 1714 25
 
 T 
 1
