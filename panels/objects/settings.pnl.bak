@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 546 594 N "_3DFace" 0
+PANEL,-1 -1 546 604 N "_3DFace" 0
 E E E E E 1 -1 -1 0  9.026272577996897 37
 ""0  1
 E E 3
@@ -898,7 +898,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E 0.3445297785265592 0 0.5371616731799118 319.3979385927222 463.1115573889127 1 E 10 47 619 145
+E E 0 1 1 2 1 E 0.2050927044033372 0 0.7132802545503736 366.6989523701989 449.5743630901959 1 E 10 47 619 145
 30 43
 "FRAME13"
 ""
@@ -914,15 +914,15 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.3684618886194541 0 0.1567357512953371 319.2921046007166 393.1683937823832 0 E 10 554 581 941
+E E 0 0 1 0 1 E 0.2193390816019103 0 0.2081245222118407 366.5426324867359 358.6990146946403 0 E 10 554 581 941
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
-LANG:1 15 CAEN OPC Server
+LANG:1 17 OPC Server Status
 2 45
 "PRIMITIVE_TEXT3"
 ""
-1 329.2525539393251 503.6790780141842 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 375.0118537551689 497.6790780141843 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 32 0 0 0 0 0
 E E E
@@ -935,12 +935,12 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 329.2525539393251 503.6790780141842 469 522
-0 2 2 "0s" 0 0 0 192 0 0  329.2525539393251 503.6790780141842 1
+E E 2 1 3 2 1 E U  0 E 375.0118537551689 497.6790780141843 447.7592998158439 516.0000000000001
+0 2 2 "0s" 0 0 0 192 0 0  375.0118537551689 497.6790780141843 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
-LANG:1 17 Connection Status
+LANG:1 7 CAEN HV
 7 47
 "ELLIPSE2"
 ""
@@ -1004,11 +1004,11 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {S7_stateWentUnq}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 7 -7 1 E 490.25 521.25 19.25 19.25
+ E 0 1 3 2 1 E 0.6103896103896104 0 0.5844155844155844 162.5183472616624 202.0524546375609 1 E 490.25 521.25 19.25 19.25
 13 48
 "closeButton"
 ""
-1 475 569 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 475 581 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 35 0 0 0 0 0
 E E E
@@ -1020,7 +1020,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  473 559.3 535.25 585.3
+0  473 571.3 535.25 597.3
 
 T 
 1
@@ -1030,6 +1030,92 @@ LANG:1 5 Close
   PanelOff();
 }" 0
  E E E
+2 56
+"PRIMITIVE_TEXT4"
+""
+1 375.0118537551689 526.1790780141844 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 375.0118537551689 526.1790780141844 439 544
+0 2 2 "0s" 0 0 0 192 0 0  375.0118537551689 526.1790780141844 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Arduino
+7 57
+"ELLIPSE3"
+""
+1 490.25 521.25 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"_ArduinoOPCServer.Connected:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"_ArduinoOPCServer.Connected:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:_CAENOPCServer.Connected}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {Red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {S7_stateWentUnq}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.6103896103896104 0 0.5844155844155844 162.5183472616624 230.5524546375609 1 E 490.25 521.25 19.25 19.25
 0
 LAYER, 1 
 1
