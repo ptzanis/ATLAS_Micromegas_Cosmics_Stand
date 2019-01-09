@@ -144,6 +144,35 @@ sendSMS(number, message, error, sErrorText, SMSDP = \"_SMS_1\");
   
 }" 0
  E E E
+13 8
+"PUSH_BUTTON2"
+""
+1 453 307 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  451 301 632 325
+
+T 
+1
+LANG:1 12 PUSH_BUTTON2
+"main(mapping event)
+{
+    time endTime=getCurrentTime();
+    string startString = formatTime(\"%d/%m/%Y %H:%M:%S\",endTime);
+    DebugN(substr(startString,0,10));
+    DebugN(substr(startString,11,8));
+    
+}" 0
+ E E E
 0
 LAYER, 1 
 1

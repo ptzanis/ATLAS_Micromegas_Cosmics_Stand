@@ -1,24 +1,28 @@
-Node: 1 | Mode: ValidationQA | Chamber: SM1 | BatchID: 11111111111111 | Start: 2018.11.24 17:49:25.631 | End: 2018.11.24 17:49:27.975 
-Node: 2 | Mode: ValidationQA | Chamber: SM2 | BatchID: 22222222222222 | Start: 2018.11.24 17:49:41.591 | End: 2018.11.24 17:49:44.701 
-Node: 3 | Mode: ValidationQA | Chamber: LM1 | BatchID: 33333333333333 | Start: 2018.11.24 17:49:56.830 | End: 2018.11.24 17:50:01.990 
-Node: 4 | Mode: ValidationQA | Chamber: LM2 | BatchID: 44444444444444 | Start: 2018.11.24 17:50:12.281 | End: 2018.11.24 17:50:17.965 
-Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.25 17:38:31.777 | End: 2018.11.25 17:38:38.000 
-Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.25 17:38:31.777 | End: 2018.11.25 17:38:38.000 
-Node: 3 | Mode: CosmicsBasic | Chamber: LM2 | BatchID: 33333333333333 | Start: 2018.11.25 17:38:31.777 | End: 2018.11.25 17:38:38.000 
-Node: 4 | Mode: CosmicsBasic | Chamber: LM1 | BatchID: 44444444444444 | Start: 2018.11.25 17:38:31.777 | End: 2018.11.25 17:38:38.000 
-Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
-Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
-Node: 3 | Mode: CosmicsBasic | Chamber: LM2 | BatchID: 33333333333333 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
-Node: 4 | Mode: CosmicsBasic | Chamber: LM1 | BatchID: 44444444444444 | Start: 2018.11.25 17:47:01.592 | End: 2018.11.25 17:49:13.921 
-Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
-Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
-Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
-Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2018.11.27 19:32:11.837 | End: 2018.11.27 19:32:17.000 
-Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
-Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
-Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
-Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2018.11.27 19:33:45.847 | End: 2018.11.27 19:33:56.672 
-Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2018.11.30 18:56:35.745 | End: 2018.11.30 18:57:19.939 
-Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2018.11.30 18:56:35.745 | End: 2018.11.30 18:57:19.939 
-Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2018.11.30 18:56:35.745 | End: 2018.11.30 18:57:19.939 
-Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2018.11.30 18:56:35.745 | End: 2018.11.30 18:57:19.939 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:27:29.399 | End: 2019.01.09 09:27:32.669 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:27:29.399 | End: 2019.01.09 09:27:32.669 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:27:29.399 | End: 2019.01.09 09:27:32.669 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:27:29.399 | End: 2019.01.09 09:27:32.669 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:27:54.844 | End: 2019.01.09 09:27:55.478 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:27:54.844 | End: 2019.01.09 09:27:55.478 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:27:54.844 | End: 2019.01.09 09:27:55.478 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:27:54.844 | End: 2019.01.09 09:27:55.478 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:28:07.742 | End: 2019.01.09 09:28:08.758 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:28:07.742 | End: 2019.01.09 09:28:08.758 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:28:07.742 | End: 2019.01.09 09:28:08.758 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:28:07.742 | End: 2019.01.09 09:28:08.758 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:28:41.438 | End: 2019.01.09 09:28:42.550 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:28:41.438 | End: 2019.01.09 09:28:42.550 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:28:41.438 | End: 2019.01.09 09:28:42.550 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:28:41.438 | End: 2019.01.09 09:28:42.550 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:30:52.408 | End: 2019.01.09 09:30:53.013 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:30:52.408 | End: 2019.01.09 09:30:53.013 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:30:52.408 | End: 2019.01.09 09:30:53.013 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:30:52.408 | End: 2019.01.09 09:30:53.013 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 09:33:27.194 | End: 2019.01.09 11:11:01.422 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 09:33:27.194 | End: 2019.01.09 11:11:01.422 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 09:33:27.194 | End: 2019.01.09 11:11:01.422 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 09:33:27.194 | End: 2019.01.09 11:11:01.422 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2019.01.09 11:13:58.195 | End: 2019.01.09 11:14:01.666 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.01.09 11:13:58.195 | End: 2019.01.09 11:14:01.666 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.01.09 11:13:58.195 | End: 2019.01.09 11:14:01.666 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.01.09 11:13:58.195 | End: 2019.01.09 11:14:01.666 | Env/Gas/Hum/GIF TRUE/FALSE/TRUE/FALSE 

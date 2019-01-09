@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1087 788 N "_3DFace" 0
+PANEL,-1 -1 833 788 N "_3DFace" 0
 E E E E E 1 -1 -1 0  232 266
 ""0  1
 E "void searchLogbookChamber(string chamberType)
@@ -49,6 +49,53 @@ archiveTable.appendLine(\"BatchID\",batchID[i+1],\"Chamber\",chamber[i+1],\"Mode
  
 }
    
+}
+
+void searchLogbookBatch(string batch)
+{
+archiveTable.deleteAllLines();
+string fileData;
+int length, numberOfArchives;
+int standardLength=135;
+
+fileToString (PROJ_PATH+\"scripts/libs/archiveLogbook.ctl\", fileData);
+
+length=strlen(fileData);
+numberOfArchives=length/standardLength;
+
+// DebugN(numberOfArchives);
+
+string nodeLocation,modeLocation,chamberLocation,batchIdLocation ,startTimeLocation,endTimeLocation;
+dyn_string node,mode,chamber,batchID,startTime,endTime;
+
+for(int i=0;i<numberOfArchives;i++)
+{
+  
+ nodeLocation=6+i*standardLength; 
+ modeLocation=16+i*standardLength;
+ chamberLocation=40+i*standardLength;
+ batchIdLocation=55+i*standardLength;  
+ startTimeLocation=79+i*standardLength;
+ endTimeLocation=110+i*standardLength;
+
+ node[i+1]=substr(fileData,nodeLocation,1);
+ mode[i+1]=substr(fileData,modeLocation,12);
+ chamber[i+1]=substr(fileData,chamberLocation,3);
+ batchID[i+1]=substr(fileData,batchIdLocation,14);  
+ startTime[i+1]=substr(fileData,startTimeLocation,19);
+ endTime[i+1]=substr(fileData,endTimeLocation,19);
+  
+//  DebugN(node[i+1],mode[i+1],chamber[i+1],batchID[i+1],startTime[i+1],endTime[i+1]);
+
+ 
+ 
+ if(batchID[i+1]==batch) 
+ {
+archiveTable.appendLine(\"BatchID\",batchID[i+1],\"Chamber\",chamber[i+1],\"Mode\",mode[i+1],\"Node\",node[i+1],\"StartTime\",startTime[i+1],\"EndTime\",endTime[i+1]);
+  }
+ 
+}
+   
 }" 0
  3
 "CBRef" "1"
@@ -63,7 +110,7 @@ LANG:1 0
 13 0
 "SM1"
 ""
-1 50 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 114 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 0 0 0 0 0 0
 E E E
@@ -75,7 +122,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  48 97 106 124
+0  112 97 170 124
 
 T 
 1
@@ -170,7 +217,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 13 6
 "SM2"
 ""
-1 120 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 184 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -182,7 +229,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  118 97 176 124
+0  182 97 240 124
 
 T 
 1
@@ -199,7 +246,7 @@ searchLogbookChamber(this.name());
 13 7
 "LM1"
 ""
-1 189.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 253.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -211,7 +258,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  188 97 246 124
+0  252 97 310 124
 
 T 
 1
@@ -228,7 +275,7 @@ searchLogbookChamber(this.name());
 13 8
 "LM2"
 ""
-1 259.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 323.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 8 0 0 0 0 0
 E E E
@@ -240,7 +287,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  258 97 316 124
+0  322 97 380 124
 
 T 
 1
@@ -269,11 +316,155 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 1.109375 0 -15.328125 0 E 42 67 324 132
+E E 2 1 3 2 1 E 1 0 1.265625 64 -35.79687500000001 0 E 42 67 324 132
 1
-LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
 LANG:1 12 Chamber Type
+2 10
+"PRIMITIVE_TEXT1"
+""
+1 167 73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 167 73 272 90
+0 2 2 "0s" 0 0 0 192 0 0  167 73 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 15 Search by type:
+14 11
+"batchField"
+""
+1 454 103.1891891891892 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  452 93 644.25 123
+3 "14s" 14 0 0 1 0 -1  E E E
+13 12
+"searchButton"
+""
+1 651.125 101.125 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0  649.125 94.125 715.125 121.125
+
+T 
+1
+LANG:1 6 Search
+"main(mapping event)
+{
+  searchLogbookBatch(batchField.text());
+}" 0
+ E E E
+30 13
+"FRAME2"
+""
+1 42 67 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1.265625 399 -35.796875 0 E 42 67 324 132
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 BatchID
+2 14
+"PRIMITIVE_TEXT2"
+""
+1 502 73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 502 73 637 90
+0 2 2 "0s" 0 0 0 192 0 0  502 73 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 19 Search by Batch ID:
+6 15
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.519873022944977 0 1 0.2836789930942842 -27 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 16
+"PRIMITIVE_TEXT3"
+""
+1 356.4606343283583 3.3125 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 356.4606343283583 3.3125 467.5393656716418 28.6875
+0 2 2 "0s" 0 0 0 192 0 0  356.4606343283583 3.3125 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 10 Archive DB
 0
 LAYER, 1 
 1
