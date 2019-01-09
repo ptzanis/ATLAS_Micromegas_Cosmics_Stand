@@ -88,13 +88,13 @@ void exportLogbook(string node)
     dpGet(\"N\"+node+\".Archiving.StartTime\",startTime);
     dpGet(\"N\"+node+\".Archiving.EndTime\",endTime);
     
-    bool envStation, gas, humidity, gif;
+    string envStation, gas, humidity, gif;
     dpGet(\"ALL.ExtraMode.Env\",envStation);
     dpGet(\"ALL.ExtraMode.Gas\",gas);
     dpGet(\"ALL.ExtraMode.MMHumidity\",humidity);
     dpGet(\"ALL.ExtraMode.GIF\",gif);    
     
-    fprintf(export,\"%s \\n\",\"Node: \"+node+\" | Mode: \"+mode+\" | Chamber: \"+chamber+\" | BatchID: \"+batchID+\" | Start: \"+startTime+\" | End: \"+endTime+\" | Env/Gas/Hum/GIF \"+envStation+\"/\"+gas+\"/\"+humidity+\"/\"+gif);                    
+    fprintf(export,\"%s \\n\",\"Node: \"+node+\" | Mode: \"+mode+\" | Chamber: \"+chamber+\" | BatchID: \"+batchID+\" | Start: \"+startTime+\" | End: \"+endTime+\" | Env/Gas/Hum/GIF \"+substr(envStation,0,1)+\"/\"+substr(gas,0,1)+\"/\"+substr(humidity,0,1)+\"/\"+substr(gif,0,1));                    
   
     fclose(export);
 
@@ -1217,8 +1217,9 @@ LANG:1 4 Stop
   if(mode==\"ValidationQA\")
   {
      dpSet(\"N\"+node+\".Archiving.EndTime\",endTime); 
-     startDateField.text(substr(startString,0,10));
-     startTimeField.text(substr(startString,11,8));
+     string endString = formatTime(\"%d/%m/%Y %H:%M:%S\",endTime);    
+     endDateField.text(substr(endString,0,10));
+     endTimeField.text(substr(endString,11,8));
      testStatus.backCol(\"red\");
      this.enabled(FALSE);
      startButton.enabled(TRUE);
@@ -1236,9 +1237,9 @@ LANG:1 4 Stop
      testStatus.backCol(\"red\");
      this.enabled(FALSE);
      startButton.enabled(TRUE); 
-     startDateField.text(substr(startString,0,10));
-     startTimeField.text(substr(startString,11,8));
-     
+     string endString = formatTime(\"%d/%m/%Y %H:%M:%S\",endTime);    
+     endDateField.text(substr(endString,0,10));
+     endTimeField.text(substr(endString,11,8));     
      for(int i=startNodeCosmics;i<startNodeCosmics+4;i++)
      {
        dpSet(\"N\"+i+\".Archiving.EndTime\",endTime); 
@@ -1976,7 +1977,7 @@ LANG:1 0
 3 2 "PANEL_REF1" -1
 "layoutAlignment" "AlignNone"
 "" ""
-"objects/dateTimeWidget.pnl" 543.999998402974 623.0001220703124 T 71 1 0 1 -241.9999984029739 393.9998779296876
+"objects/dateTimeWidget.pnl" 543.999998402974 623.0001220703124 T 71 1 0 1 -239.9999984029739 392.9998779296876
 9
 "$bDateAndTime""TRUE"
 "$bEnabled""TRUE"
