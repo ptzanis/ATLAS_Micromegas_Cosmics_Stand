@@ -1,4 +1,4 @@
-V 14
+V 12
 1
 LANG:1 0 
 PANEL,-1 -1 987 980 N "_3DFace" 0
@@ -71,11 +71,9 @@ int movePlot(int run,string dirPath)
 return system(\"mv \"+PROJ_PATH+\"temp/test.png \"+dirPath+\"run_\"+run+\"_plot.png\");
 }
 " 0
- 3
+ 2
 "CBRef" "1"
 "EClose" E
-"dpi" "96"
-0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
@@ -92,10 +90,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  63 100 146 136
 
 T 
@@ -121,10 +118,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+LANG:1 27 Utopia,11,-1,5,75,0,0,0,0,0
 0  55 184 948 533
 "main()
 {
@@ -179,13 +175,13 @@ E
 1
 LANG:1 0 
 
-70 "StartTime" 9 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+70 "StartTime" 10 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 9 StartTime
 E
 1
 LANG:1 0 
 
-140 "EndTime" 9 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+140 "EndTime" 10 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 7 EndTime
 E
 1
@@ -200,7 +196,7 @@ LANG:1 0
 163 
 17 17 10 0
 1
-LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+LANG:1 27 Utopia,11,-1,5,75,0,0,0,0,0
 0 0 1 1 1 7
 1 0
 13 5
@@ -214,10 +210,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  163 100 247 136
 
 T 
@@ -243,10 +238,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  263 100 346 136
 
 T 
@@ -273,10 +267,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  363 100 447 136
 
 T 
@@ -304,14 +297,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 90 730 210 757
+E E 0 1 1 2 1 E U  0 E 92 730 210 756
 0 2 2 "0s" 0 0 0 194 0 0  210 730 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 11 Start Time:
 2 10
@@ -325,14 +316,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 434 730.1304936377752 544.3814205694067 757
+E E 0 1 1 2 1 E U  0 E 435 730.1304936377752 544.3814205694067 756
 0 2 2 "0s" 0 0 0 194 0 0  544.3814205694067 730.1304936377752 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 9 End Time:
 14 11
@@ -346,10 +335,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  226 726 408 758
 2 "0s" 0 0 0 0 0 -1  E E E
 14 12
@@ -363,10 +351,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  561 728 743 760
 2 "0s" 0 0 0 0 0 -1  E E E
 13 13
@@ -380,10 +367,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  346 573 559 621
 
 T 
@@ -443,14 +429,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 1 1 2 1 E U  0 E 336 830 384 852
 0 2 2 "0s" 0 0 0 193 0 0  360 830 1
 1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 5 Path:
 14 16
@@ -464,10 +448,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,50,0,0,0,0,0
 0  391 823 652 861
 2 "0s" 0 0 0 0 0 -1  E "main()
 {
@@ -487,10 +470,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+LANG:1 27 Utopia,10,-1,5,50,0,0,0,0,0
 0  652 823 690 861
 
 P 
@@ -533,10 +515,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  304 877 447 930
 
 T 
@@ -634,14 +615,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 103 634.5223255184497 211.38864134097 662
+E E 0 1 1 2 1 E U  0 E 105 634.5223255184497 211.38864134097 661
 0 2 2 "0s" 0 0 0 194 0 0  211.38864134097 634.5223255184497 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 8 Chamber:
 14 20
@@ -655,10 +634,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  228 633 318 665
 2 "0s" 0 0 0 0 0 -1  E E E
 2 21
@@ -672,14 +650,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 593 680 656 707
+E E 0 1 1 2 1 E U  0 E 594 680 656 706
 0 2 2 "0s" 0 0 0 194 0 0  656 680 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 5 Node:
 14 22
@@ -693,10 +669,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  673 678 763 710
 2 "0s" 0 0 0 0 0 -1  E E E
 2 25
@@ -710,14 +685,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 164 680 210 707
+E E 0 1 1 2 1 E U  0 E 164 680 210 706
 0 2 2 "0s" 0 0 0 194 0 0  210 680 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 4 Gas:
 14 26
@@ -731,10 +704,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  226 678 316 710
 2 "0s" 0 0 0 0 0 -1  E E E
 2 27
@@ -748,14 +720,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 711 637.4291294642857 800.797527796496 664
+E E 0 1 1 2 1 E U  0 E 712 637.4291294642857 800.797527796496 663
 0 2 2 "0s" 0 0 0 194 0 0  800.797527796496 637.4291294642857 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Method:
 14 28
@@ -769,10 +739,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  818 635 908 667
 2 "0s" 0 0 0 0 0 -1  E E E
 2 29
@@ -786,14 +755,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 357 679.5197462845296 428.3018657345013 707
+E E 0 1 1 2 1 E U  0 E 358 679.5197462845296 428.3018657345013 706
 0 2 2 "0s" 0 0 0 194 0 0  428.3018657345013 679.5197462845296 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Offset:
 14 30
@@ -807,10 +774,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  443 678 533 710
 2 "0s" 0 0 0 0 0 -1  E E E
 6 31
@@ -824,10 +790,8 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 1 1 2 1 E 18 0 0.7411764705882352 -9.628537735849243 -67.91176470588235 1 E 0 10 80 180
 2 32
 "PRIMITIVE_TEXT19"
@@ -840,14 +804,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E 1.004716981132076 0 1 40.82441364796847 14.00000000000009 0 E 331 0 495 31
+E E 0 1 1 2 1 E 1.004716981132076 0 1 40.82441364796847 14.00000000000009 0 E 332 0 494 31
 0 2 2 "0s" 0 0 0 193 0 0  413 0 1
 1
-LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+LANG:1 27 Utopia,20,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 12 Data Archive
 30 33
@@ -861,13 +823,11 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 0 1 E 0.9253343285828983 0 0.6060924369747897 -52.51858700249488 41.15336134453769 0 E 100 62 571 181
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 14 Select Chamber
 30 34
@@ -881,13 +841,11 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 0 1 E 2.044444444444444 0 0.8699776785714293 -368.8888888888889 113.7109374999998 0 E 200 42 651 491
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 12 Archive Data
 2 35
@@ -901,14 +859,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 135 167.8788366099984 249 185
+E E 0 1 1 2 1 E U  0 E 137 167.8788366099984 247 185
 0 2 2 "0s" 0 0 0 193 0 0  191.7344802897576 167.8788366099984 1
 1
-LANG:1 27 Utopia,-1,15,5,75,0,1,0,0,0
+LANG:1 27 Utopia,11,-1,5,75,0,1,0,0,0
 0 1
 LANG:1 16 Select Data Line
 30 36
@@ -922,13 +878,11 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 0 1 E 1.898414640481147 0 0.4990674953806242 -312.0609920539852 525.4569272634942 0 E 200 42 651 491
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 17 Export Parameters
 30 37
@@ -942,13 +896,11 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 0 1 E 0.9982841654137607 0 0.377469018118722 86.97820521690483 754.6145140903893 0 E 200 42 651 491
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 11 Export Data
 13 39
@@ -962,10 +914,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  818 937 922 971
 
 T 
@@ -987,10 +938,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  617 898 691 930
 2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
 main()
@@ -1042,14 +992,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 1 1 2 1 E U  0 E 635 877.3864122168375 673 899
 0 2 2 "0s" 0 0 0 193 0 0  653.6418926886797 877.3864122168375 1
 1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 3 Run
 13 42
@@ -1063,10 +1011,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  461 877 604 930
 
 T 
@@ -1151,14 +1098,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 340 637.2723255184499 495.0476499326143 664
+E E 0 1 1 2 1 E U  0 E 342 637.2723255184499 495.0476499326143 663
 0 2 2 "0s" 0 0 0 194 0 0  495.0476499326143 637.2723255184499 1
 1
-LANG:1 27 Utopia,-1,23,5,75,0,0,0,0,0
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 13 MTF Batch ID:
 14 44
@@ -1172,10 +1117,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  498 636 672 668
 2 "0s" 0 0 0 0 0 -1  E E E
 30 45
@@ -1189,13 +1133,11 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 0 1 E 0.9253343285828983 0 0.6060924369747897 407.4814129975051 41.15336134453769 0 E 100 62 571 181
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 19 Search MTF Batch ID
 14 52
@@ -1209,10 +1151,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0  639 102 838 138
 3 "14s" 14 0 0 1 0 -1  E E E
 2 53
@@ -1226,14 +1167,12 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 503 108.1361627592249 630.5238249663072 130
+E E 0 1 1 2 1 E U  0 E 505 108.1361627592249 630.5238249663072 130
 0 2 2 "0s" 0 0 0 194 0 0  630.5238249663072 108.1361627592249 1
 1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
 0 1
 LANG:1 13 MTF Batch ID:
 13 54
@@ -1247,10 +1186,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
 0  842 102 915 138
 
 T 

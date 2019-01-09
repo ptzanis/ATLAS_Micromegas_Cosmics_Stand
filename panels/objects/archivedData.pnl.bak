@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1207 788 N "_3DFace" 0
+PANEL,-1 -1 1057 802 N "_3DFace" 0
 E E E E E 1 -1 -1 0  232 266
 ""0  1
 E "void searchLogbookChamber(string chamberType)
@@ -16,7 +16,7 @@ fileToString (PROJ_PATH+\"scripts/libs/archiveLogbook.ctl\", fileData);
 length=strlen(fileData);
 numberOfArchives=length/standardLength;
 
- DebugN(numberOfArchives);
+// DebugN(numberOfArchives);
 
 string nodeLocation,modeLocation,chamberLocation,batchIdLocation ,startTimeLocation,endTimeLocation, envLocation, gasLocation, humLocation, gifLocation;
 dyn_string node,mode,chamber,batchID,startTime,endTime,env,gas,hum,gif;
@@ -114,7 +114,208 @@ for(int i=0;i<numberOfArchives;i++)
  
 }
    
-}" 0
+}
+
+
+
+bool exportHVData(string valueType, dyn_string channels ,dyn_string channelsAlias, string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archived;
+    string query, filePath;
+    
+    for (int i = 1; i <= dynlen(channels); i++) {
+        query = \"SELECT ALL '_original.._stime', '_original.._value' FROM 'CAEN/\" + channels[i] +
+                \".actual.\" + valueType + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(query, archived);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"HV/\");
+        filePath = folderPath +\"HV/\"+ valueType + \"_\" + channelsAlias[i] + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+                          
+        for (int j = 2; j <= dynlen(archived); j++) { 
+          if(valueType==\"iMon\"){ fprintf(export, \"%s \\t %2.3f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archived[j][2]), archived[j][3]); }
+          if(valueType==\"vMon\"){ fprintf(export, \"%s \\t %3.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archived[j][2]), archived[j][3]); }
+        }
+        fclose(export);
+    }
+    DebugN(valueType+\" HV Data Exported!\");
+    return TRUE;
+}
+
+bool exportEnvData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedPressure, archivedTemperature, archivedHumidity;
+    string queryPressure, queryTemperature, queryHumidity; 
+    string filePath;
+    
+        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryTemperature = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryHumidity = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(queryPressure, archivedPressure);
+        dpQuery(queryTemperature, archivedTemperature);
+        dpQuery(queryHumidity, archivedHumidity);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"EnvStation/\");
+        filePath = folderPath +\"EnvStation/\"+ \"envData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Pressure[mbar]\"+\"\\t\"+\"Temperature[C]\"+\"\\t\"+\"Humidity[%]\");                           
+        for (int j = 2; j <= dynlen(archivedPressure); j++) { 
+        fprintf(export, \"%s \\t %4.2f \\t %2.2f \\t \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedPressure[j][2]), archivedPressure[j][3],archivedTemperature[j][3],archivedHumidity[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"EnvStation Data Exported!\");
+    return TRUE;
+}
+
+bool exportGasData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedInlet, archivedOutlet, archivedPressure;
+    string queryInlet, queryOutlet, queryPressure; 
+    string filePath;
+    float archivedLeak;
+    
+        queryInlet = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryOutlet = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryPressure = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(queryInlet, archivedInlet);
+        dpQuery(queryOutlet, archivedOutlet);
+        dpQuery(queryPressure, archivedPressure);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"Gas/\");
+        filePath = folderPath +\"Gas/\"+ \"gasData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Inlet[L/h]\"+\"\\t\"+\"Outlet[L/h]\"+\"\\t\"+\"Leak[L/h]\"+\"\\t\"+\"Pressure[mbar]\");                           
+        for (int j = 2; j <= dynlen(archivedPressure); j++) { 
+        archivedLeak=archivedInlet[j][3]-archivedOutlet[j][3];
+        fprintf(export, \"%s \\t %2.3f \\t %2.3f \\t %2.3f \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedInlet[j][2]), archivedInlet[j][3],archivedOutlet[j][3],archivedLeak,archivedPressure[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"Gas Data Exported!\");
+    return TRUE;
+}
+
+bool exportHumData( dyn_string channels , string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedHum;
+    string queryHum; 
+    string filePath;
+    
+        queryHum = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+
+        
+        dpQuery(queryHum, archivedHum);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"MM_Humidity/\");
+        filePath = folderPath +\"MM_Humidity/\"+ \"humidityData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+\"\\t\"+\"Humidity[%]\");                           
+        for (int j = 2; j <= dynlen(archivedHum); j++) { 
+        fprintf(export, \"%s \\t %2.2f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedHum[j][2]), archivedHum[j][3]); 
+
+        }
+        fclose(export);
+
+    DebugN(\"Humidity Data Exported!\");
+    return TRUE;
+}
+
+bool exportGIFData( dyn_string channels , string start, string end, string folderPath) {
+  
+        //DownStreamPos Or UpStreamPos
+       gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
+       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
+       gifChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
+       gifChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
+       gifChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+       gifChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+       gifChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+       gifChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+       gifChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+       gifChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+
+    dyn_dyn_anytype archivedSource,archivedAttA,archivedAttB,archivedAttC,archivedAttEff,archivedHumIn,archivedHumOut,archivedTempIn,archivedTempOut,archivedAtmPress;
+    string querySource,queryAttA,queryAttB,queryAttC,queryAttEff,queryHumIn,queryHumOut,queryTempIn,queryTempOut,queryAtmPress;
+    string filePath;
+    
+        queryHum = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+
+        
+        dpQuery(querySource, archivedSource);
+        dpQuery(queryAttA, archivedAttA);        
+        dpQuery(queryAttB, archivedAttB);        
+        dpQuery(queryAttC, archivedAttC);
+        dpQuery(queryAttEff, archivedAttEff);
+        dpQuery(queryHumIn, archivedHumIn);
+        dpQuery(queryHumOut, archivedHumOut);
+        dpQuery(queryTempIn, archivedTempIn);
+        dpQuery(queryTempOut, archivedTempOut);     
+        dpQuery(queryAtmPress, archivedAtmPress);        
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"GIF/\");
+        filePath = folderPath +\"GIF/\"+ \"gifData\" + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+ \"\\t\" +\"\\t\" + \"\\t\" +\"Source ON\"+ \"\\t\"+ \"A\"+\"\\t\"+\"B\"+\"\\t\"+ \"C\"+\"\\t\"+\"Effective\"+\"\\t\"+ \"Humidity IN\"+\"\\t\"+\"Humidity OUT\"+\"\\t\"+ \"Temp IN\"+\"\\t\"+\"Temp OUT\"+\"\\t\"+\"Atm. Pressure\");        
+        for (int j = 2; j <= dynlen(archivedHum); j++) { 
+            fprintf(export, \"%s \\t %s \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %3.1f \\n\", formatTime(\"%d/%m/%Y_%H:%M:%S\", archivedSource[j][2])
+                    ,archivedSource[j][3],archivedAttA[j][3],archivedAttB[j][3],archivedAttC[j][3],archivedAttEff[j][3],archivedHumIn[j][3],archivedHumOut[j][3],archivedTempIn[j][3],archivedTempOut[j][3],archivedAtmPress[j][3]);
+
+        }
+        fclose(export);
+
+    DebugN(\"GIF++ Data Exported!\");
+    return TRUE;
+}
+
+
+
+bool exportInfoFile(string node,string chamberName,string batchID,string mode,dyn_string mappingChannelsToArchive,dyn_string channelsToArchive,string startTime,string endTime,string folderPath)
+{
+  
+   file export;
+   string filePath;
+   
+   filePath = folderPath +\"info\"+ \".dat\";
+   export = fopen(filePath, \"a\");
+   fprintf(export, \"%s \\n\", \"---- Info ----\");
+   fprintf(export, \"%s \\n\", \"Node      : \"+node);
+   fprintf(export, \"%s \\n\", \"Chamber   : \"+chamberName);  
+   fprintf(export, \"%s \\n\", \"BatchID   : \"+batchID);
+   fprintf(export, \"%s \\n\", \"Mode      : \"+mode);
+   fprintf(export, \"%s \\n\", \"Start Time: \"+startTime);
+   fprintf(export, \"%s \\n\", \"End Time  : \"+endTime);
+   fprintf(export, \"%s \\n\", \"---- Channel Mapping ----\"); 
+   for(int i=1;i<=dynlen(mappingChannelsToArchive);i++)
+   {
+   fprintf(export, \"%-4s \\t %s \\n\",mappingChannelsToArchive[i],channelsToArchive[i]);           
+   }
+   fclose(export);
+   DebugN(chamberName+\" \"+batchID+\" -> Info File Exported!\");
+   return TRUE;
+   
+}
+" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -128,7 +329,7 @@ LANG:1 0
 13 0
 "SM1"
 ""
-1 114 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 114 103.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 0 0 0 0 0 0
 E E E
@@ -140,7 +341,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  112 97 170 124
+0  112 92 170 119
 
 T 
 1
@@ -157,7 +358,7 @@ searchLogbookChamber(this.name());
 25 1
 "archiveTable"
 ""
-1 151.6489805625897 129.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 126.3664780655019 130 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -169,7 +370,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  49.00000000000001 137 1062 527
+0  24.35101943741028 137.0000000000001 1031 527.0000000000001
 "main()
 {
  setInputFocus(myModuleName(),myPanelName(),\"archiveTable\");
@@ -178,17 +379,20 @@ archiveTable.selectByClick(TABLE_SELECT_LINE);
 }" 0
 "main(int row, string column, string value)
 {
-  /*
+
     chamberField.text(\"\");
     nodeField.text(\"\");
-    gasField.text(\"\");
-    methodField.text(\"\");
-    offsetField.text(\"\");
+    modeField.text(\"\");
     startTimeField.text(\"\");
     endTimeField.text(\"\");
     batchIdField.text(\"\");
-    */
-  
+    
+    extraChoice.state(0,0);
+    extraChoice.state(1,0);
+    extraChoice.state(2,0);
+    extraChoice.state(3,0); 
+    
+   exportButton.enabled(FALSE);   
 }" 0
  1 0 1 10 0 "BatchID" 9 1 0 "s" 1
 LANG:1 7 BatchID
@@ -259,7 +463,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 13 6
 "SM2"
 ""
-1 184 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 184 103.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -271,7 +475,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  182 97 240 124
+0  182 92 240 119
 
 T 
 1
@@ -288,7 +492,7 @@ searchLogbookChamber(this.name());
 13 7
 "LM1"
 ""
-1 253.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 253.9999999999999 103.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -300,7 +504,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  252 97 310 124
+0  252 92 310 119
 
 T 
 1
@@ -317,7 +521,7 @@ searchLogbookChamber(this.name());
 13 8
 "LM2"
 ""
-1 323.9999999999999 108.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 323.9999999999999 103.6543209876543 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 8 0 0 0 0 0
 E E E
@@ -329,7 +533,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  322 97 380 124
+0  322 92 380 119
 
 T 
 1
@@ -358,7 +562,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 1.265625 64 -35.79687500000001 0 E 42 67 324 132
+E E 2 1 3 2 1 E 1 0 1.265625 64 -40.79687500000001 0 E 42 67 324 132
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -366,7 +570,7 @@ LANG:1 12 Chamber Type
 2 10
 "PRIMITIVE_TEXT1"
 ""
-1 167 73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 167 68 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 10 0 0 0 0 0
 E E E
@@ -379,8 +583,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 167 73 272 90
-0 2 2 "0s" 0 0 0 192 0 0  167 73 1
+E E 2 1 3 2 1 E U  0 E 167 68 272 85
+0 2 2 "0s" 0 0 0 192 0 0  167 68 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 0 1
@@ -388,7 +592,7 @@ LANG:1 15 Search by type:
 14 11
 "batchField"
 ""
-1 454 103.1891891891892 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 512 98.18918918918919 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 11 0 0 0 0 0
 E E E
@@ -400,12 +604,12 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  452 93 644.25 123
+0  510 88 702.25 118
 3 "14s" 14 0 0 1 0 -1  E E E
 13 12
 "searchButton"
 ""
-1 651.125 101.125 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 709.125 96.125 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 12 0 0 0 0 0
 E E E
@@ -417,7 +621,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
-0  649.125 94.125 715.125 121.125
+0  707.125 89.125 773.125 116.125
 
 T 
 1
@@ -442,7 +646,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1 0 1.265625 399 -35.796875 0 E 42 67 324 132
+E E 2 1 3 2 1 E 1 0 1.265625 457 -40.796875 0 E 42 67 324 132
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -450,7 +654,7 @@ LANG:1 7 BatchID
 2 14
 "PRIMITIVE_TEXT2"
 ""
-1 502 73 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 560 68 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 14 0 0 0 0 0
 E E E
@@ -463,8 +667,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 502 73 637 90
-0 2 2 "0s" 0 0 0 192 0 0  502 73 1
+E E 2 1 3 2 1 E U  0 E 560 68 695 85
+0 2 2 "0s" 0 0 0 192 0 0  560 68 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 0 1
@@ -484,11 +688,11 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 2 0 1 E 1.519873022944977 0 1 0.2836789930942842 -27 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+E E 0 1 2 0 1 E 1.637665961238583 0 1 0.4014719313878902 -27 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
 2 16
 "PRIMITIVE_TEXT3"
 ""
-1 356.4606343283583 3.3125 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+1 471.9058268828843 0.65625 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
  E E
 16 0 0 0 0 0
 E E E
@@ -501,12 +705,801 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 356.4606343283583 3.3125 468 28
-0 2 2 "0s" 0 0 0 192 0 0  356.4606343283583 3.3125 1
+E E 0 1 3 2 1 E U  0 E 471.9058268828843 0.65625 583.445192554526 25.34375
+0 2 2 "0s" 0 0 0 192 0 0  471.9058268828843 0.65625 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
 0 1
 LANG:1 10 Archive DB
+2 35
+"PRIMITIVE_TEXT6"
+""
+1 167.0119124831536 720.3899563796125 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 92.51191248315359 720.3899563796125 167.0119124831536 737.3899563796124
+0 2 2 "0s" 0 0 0 194 0 0  167.0119124831536 720.3899563796125 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Start Time:
+2 36
+"PRIMITIVE_TEXT7"
+""
+1 167.0704525482846 751.0204500173877 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 97.18903197887789 751.0204500173877 167.0704525482846 767.8899563796124
+0 2 2 "0s" 0 0 0 194 0 0  167.0704525482846 751.0204500173877 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 9 End Time:
+14 37
+"startTimeField"
+""
+1 169.3780639577558 718.8899563796124 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  167.3780639577559 712.8149563796126 349.3780639577559 744.8149563796126
+2 "0s" 0 0 0 0 0 -1  E E E
+14 38
+"endTimeField"
+""
+1 167.3780639577558 749.8899563796124 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  165.9966433883492 743.7594627418371 347.9966433883492 775.7594627418371
+2 "0s" 0 0 0 0 0 -1  E E E
+13 39
+"PUSH_BUTTON5"
+""
+1 46.17550971870514 424 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  122.1755097187051 545.2954545454551 335.1755097187051 580.2954545454552
+
+T 
+1
+LANG:1 21 Set Export Parameters
+"main()
+{
+  dyn_int selected;
+  dyn_dyn_string lines;
+  string batchID, chamber, mode, node, env, gas, hum, gif, start, end;
+
+  selected=archiveTable.getSelectedLines();
+  
+  for(int i=1; i<= dynlen(selected);i++)
+  {
+    lines[i]=archiveTable.getLineN(selected[i]);    
+  }
+
+    batchID=(lines[1][1]);
+    chamber=(lines[1][2]);
+    mode=(lines[1][3]);
+    node=(lines[1][4]);
+    env=(lines[1][5]);
+    gas=(lines[1][6]);
+    hum=(lines[1][7]);
+    gif=(lines[1][8]);
+    start=(lines[1][9]);
+    end=(lines[1][10]);
+    
+    batchIdField.text(batchID);    
+    chamberField.text(chamber);    
+    modeField.text(mode);
+    nodeField.text(node);
+    nodeField.text(node);   
+    startTimeField.text(start);
+    endTimeField.text(end);
+    
+        if(env==\"T\")
+        extraChoice.state(0,1);
+        if(gas==\"T\")
+        extraChoice.state(1,1);    
+        if(hum==\"T\")
+        extraChoice.state(2,1);
+        if(gif==\"T\")
+        extraChoice.state(3,1);
+            
+  exportButton.enabled(TRUE);
+
+
+}" 0
+ E E E
+2 40
+"PRIMITIVE_TEXT13"
+""
+1 166.6553466396958 626.9721074165118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 98.76670529872581 626.9721074165118 166.6553466396958 644.4497818980619
+0 2 2 "0s" 0 0 0 194 0 0  166.6553466396958 626.9721074165118 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 8 Chamber:
+14 41
+"chamberField"
+""
+1 168.7667052987258 625.4497818980619 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  167.3780639577558 619.8899563796124 257.3780639577558 651.8899563796124
+2 "0s" 0 0 0 0 0 -1  E E E
+2 42
+"PRIMITIVE_TEXT14"
+""
+1 167.1280639577558 686.8982990135411 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 126.6280639577558 686.8982990135411 167.1280639577558 703.898299013541
+0 2 2 "0s" 0 0 0 194 0 0  167.1280639577558 686.8982990135411 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Node:
+14 43
+"nodeField"
+""
+1 169.1280639577558 687.9357990135411 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  167.1280639577558 681.8982990135411 257.1280639577558 713.8982990135411
+2 "0s" 0 0 0 0 0 -1  E E E
+2 46
+"PRIMITIVE_TEXT17"
+""
+1 168.1755917542517 658.3732711117552 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 123.8780639577558 658.3732711117552 168.1755917542517 674.9441416474695
+0 2 2 "0s" 0 0 0 194 0 0  168.1755917542517 658.3732711117552 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Mode:
+14 47
+"modeField"
+""
+1 168.1755917542517 657.3732711117552 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  167.3780639577559 650.9066416474695 257.3780639577559 681
+2 "0s" 0 0 0 0 0 -1  E E E
+30 50
+"FRAME10"
+""
+1 200 42 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+50 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.6752845865727908 0 0.5816567810949098 -59.93498127231395 500.9881772634942 0 E 200 42 651 491
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 17 Export Parameters
+2 51
+"PRIMITIVE_TEXT21"
+""
+1 165.7738249663072 596.1100436203875 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 101.75 596.1100436203875 165.7738249663072 613.1100436203875
+0 2 2 "0s" 0 0 0 194 0 0  165.7738249663072 596.1100436203875 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 9 Batch ID:
+14 52
+"batchIdField"
+""
+1 977.999375121097 204.7441396025304 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  167 589.1100436203876 341 621.1100436203876
+2 "0s" 0 0 0 0 0 -1  E E E
+20 53
+"extraChoice"
+""
+1 284.238393229274 666.9533208237347 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0  258.1890877701968 625.7343344254084 378.9999999999999 708.1723072220609
+4
+T 
+1
+LANG:1 10 EnvStation
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 3 Gas
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 11 MM Humidity
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 5 GIF++
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE13 54
+"closeButton"
+""
+1 985 771.85 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  983 762.15 1045.25 788.15
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+30 56
+"FRAME5"
+""
+1 380 114 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+56 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.4802325581395349 0 0.1552751782531185 348.8935308920515 560.5474050483343 0 E 380 114 1241 931
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Export
+13 57
+"exportButton"
+""
+1 579.5144647391767 645.4761981918664 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+57 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0  577.5144647391766 635.1418923756942 756.7575617541019 689.1477272727273
+
+T 
+1
+LANG:1 6 Export
+"main()
+{
+    string node=nodeField.text();
+//     string sector=$sector;
+    string mode=modeField.text();;
+    string chamberName, dirPath, batchID;
+    dyn_string envChannels, gasChannels, humChannels, gifChannels;
+    int startNode;
+    /*
+      if(sector==\"1\")
+        startNode=1;
+      if(sector==\"2\")
+        startNode=5;
+        */
+      
+      
+    bool isEnvOn, isGasOn, isHumOn,isGifOn;
+    getValue(\"extraChoice\",\"state\",0,isEnvOn);
+    getValue(\"extraChoice\",\"state\",1,isGasOn);
+    getValue(\"extraChoice\",\"state\",2,isHumOn);
+    getValue(\"extraChoice\",\"state\",3,isGifOn); 
+    
+    string startTime = startTimeField.text();
+    string endTime   = endTimeField.text();    
+    
+    dyn_string stripsChannels, driftChannels;
+    dyn_string mappingChannelsToArchive, channelsToArchive;
+    this.enabled(FALSE);
+    this.text(\"Please wait...\");
+    
+    
+   if(mode==\"ValidationQA\")
+    {
+      chamberName=chamberField.text();
+      batchID=batchIdField.text();
+      dirPath = destFolderTextField.text + chamberName+\"_\"+batchID+\"_FROM_\"+startTime+\"_TO_\"+endTime+\"/\";     
+      strreplace(dirPath,\":\",\"_\");
+      strreplace(dirPath,\" \",\"_\");
+      strreplace(dirPath,\".\",\"_\");
+      checkOrCreateDirectory(dirPath);
+      
+      dynClear(stripsChannels);
+      dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripsChannels);
+      dynClear(driftChannels);
+      dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftChannels);
+      
+      dynClear(mappingChannelsToArchive);
+      dynAppend(mappingChannelsToArchive,stripsChannels);
+      dynAppend(mappingChannelsToArchive,driftChannels);
+      
+      for(int i=1;i<=dynlen(mappingChannelsToArchive);i++)
+      {
+      dpGet(\"N\"+node+\".Mapping.\"+mappingChannelsToArchive[i]+\".Channel\",channelsToArchive[i]);        
+      }
+      
+      
+      exportHVData(\"iMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
+      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
+      
+      exportInfoFile(node, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath);
+      
+      if(isEnvOn)
+       {
+        dynAppend(envChannels,\"BME280.pressureMean\");
+        dynAppend(envChannels,\"BME280.temperatureMean\");
+        dynAppend(envChannels,\"BME280.humidityMean\");
+        exportEnvData(envChannels ,startTime, endTime, dirPath);
+       } 
+      
+      if(isHumOn)
+       {
+        dynClear(humChannels);
+        dynAppend(humChannels,\"N\"+node+\".Gas.Humidity\");                            
+        
+        exportHumData(humChannels ,startTime, endTime, dirPath);
+       }   
+      
+      if(isGasOn)
+       {
+        dynClear(gasChannels);
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Inlet\");     
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Outlet\");             
+        dynAppend(gasChannels,\"N\"+node+\".Gas.Pressure\"); 
+        
+        exportGasData(gasChannels ,startTime, endTime, dirPath);
+       }   
+
+      if(isGifOn)
+       {
+       dynClear(gifChannels);
+       //DownStreamPos Or UpStreamPos
+       gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
+       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
+       gifChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
+       gifChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
+       gifChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+       gifChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+       gifChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+       gifChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+       gifChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+       gifChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+       
+        
+        exportGIFData(gifChannels ,startTime, endTime, dirPath);
+        
+       }   
+    
+      
+      
+            
+    }
+    /*
+    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+    {
+      
+      for(int z=startNode;z<startNode+4;z++)
+      {
+      dpGet(\"N\"+z+\".ChamberType\",chamberName);
+      dpGet(\"N\"+z+\".BatchId\",batchID);
+      dirPath = destFolderTextField.text + chamberName+\"_\"+batchID+\"_FROM_\"+startTime+\"_TO_\"+endTime+\"/\";     
+      strreplace(dirPath,\":\",\"_\");
+      strreplace(dirPath,\" \",\"_\");
+      strreplace(dirPath,\".\",\"_\");
+      checkOrCreateDirectory(dirPath);
+      
+      dynClear(stripsChannels);
+      dpGet(\"N\"+z+\".Mapping.ChannelsTotal.Strips\",stripsChannels);
+      dynClear(driftChannels);
+      dpGet(\"N\"+z+\".Mapping.ChannelsTotal.Drift\",driftChannels);
+      
+      dynClear(mappingChannelsToArchive);
+      dynAppend(mappingChannelsToArchive,stripsChannels);
+      dynAppend(mappingChannelsToArchive,driftChannels);
+      
+      for(int i=1;i<=dynlen(mappingChannelsToArchive);i++)
+      {
+      dpGet(\"N\"+z+\".Mapping.\"+mappingChannelsToArchive[i]+\".Channel\",channelsToArchive[i]);        
+      }
+      
+      
+      exportHVData(\"iMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
+      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
+      
+      exportInfoFile(z, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath); 
+
+
+      if(isEnvOn)
+       {
+        dynAppend(envChannels,\"BME280.pressureMean\");
+        dynAppend(envChannels,\"BME280.temperatureMean\");
+        dynAppend(envChannels,\"BME280.humidityMean\");
+        exportEnvData(envChannels ,startTime, endTime, dirPath);
+       }     
+      if(isGasOn)
+       {
+        if(z==1 || z==2 )
+        {
+        dynAppend(gasChannels,\"N1.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Pressure\");          
+        }
+         if(z==3 || z==4 )
+        {
+        dynAppend(gasChannels,\"N1.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N1.Gas.Pressure\");          
+        }
+        
+        if(z==5 || z==6 )
+        {
+        dynAppend(gasChannels,\"N5.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Pressure\");          
+        }
+         if(z==7 || z==8 )
+        {
+        dynAppend(gasChannels,\"N5.Gas.Inlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Outlet\");          
+        dynAppend(gasChannels,\"N5.Gas.Pressure\");          
+        }        
+        
+        
+
+        exportGasData(gasChannels ,startTime, endTime, dirPath);
+       }
+
+      if(isHumOn)
+       {
+       dynClear(humChannels);
+        if(z==1 || z==2 )     
+          dynAppend(humChannels,\"N1.Gas.Humidity\");          
+        if(z==3 || z==4 )
+          dynAppend(humChannels,\"N2.Gas.Humidity\");                          
+        if(z==5 || z==6 )
+          dynAppend(humChannels,\"N5.Gas.Humidity\");                   
+         if(z==7 || z==8 )
+          dynAppend(humChannels,\"N6.Gas.Humidity\");                   
+        
+        exportHumData(humChannels ,startTime, endTime, dirPath);
+       }    
+      
+      
+      
+        
+      }
+
+
+      
+      
+    }
+    
+   */
+    
+
+    
+
+    
+    
+    this.text(\"Export Data\");
+    this.enabled(TRUE);
+ 
+  
+  
+  
+  
+}
+" 0
+ E E E
+19 58
+"dataPlotsChoice"
+""
+1 784.4357276119406 632.0864608538795 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  782.4357276119404 630.0864608538791 906.3819029850747 694.2031587945426
+2
+T 
+1
+LANG:1 4 Data
+
+1 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 10 Data+Plots
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+1
+E E
+2 59
+"PRIMITIVE_TEXT5"
+""
+1 549.4682018664128 604.1688410271582 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 549.4682018664128 604.1688410271582 575.4682018664128 619.1688410271582
+0 2 2 "0s" 0 0 0 192 0 0  549.4682018664128 604.1688410271582 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Dir:
+14 60
+"destFolderTextField"
+""
+1 579.8362988813379 601.4568218102438 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0  577.8362988813381 598.067792930696 892.8362988813381 625.067792930696
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+
+  this.text(PROJ_PATH+\"Export_Data/\");
+}" 0
+ E
+13 61
+"folderSelection"
+""
+1 901.3819029850747 606.0989885937645 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+61 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  899.3819029850747 595.1077601017116 930.3819029850747 627.1077601017116
+
+P 
+4294967295
+"pictures/folderNew.png"
+1
+LANG:1 0 
+"main()
+{
+   
+    string sPath;
+    string systemName;
+    int iErr;
+	
+    if(shapeExists(\"cbSystem\"))
+        systemName = cbSystem.text;
+    else
+        systemName = \"\";
+  
+    sPath = \"C:\\\\Projects\\\\TBSCS\";
+    iErr = folderSelector( sPath );
+    
+    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
+	    sPath += \"/\";
+        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
+    	strreplace(sPath, \"//\", \"/\");
+        strreplace(sPath, \"//\", \"/\");
+	    // update the widget with the directory path
+        destFolderTextField.text = sPath;
+    }
+}" 0
+ E E E
 0
 LAYER, 1 
 1
