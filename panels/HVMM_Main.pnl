@@ -292,14 +292,10 @@ void notificationEmailOPC(string dpSourceCAEN, bool fNewValueCAENisOFF,string dp
 void splashScreen(bool enabled) {
     
     if (enabled) {    
-        addSymbol(myModuleName(), myPanelName(), \"objects/shadow.pnl\", \"shadowYea\",
-                  makeDynString(), 0, 0, 1, 1, 1); 
         ChildPanelOn(\"objects/about.pnl\", \"About\", makeDynString(\"\"), 800, 400);
         delay(4);
         
         PanelOffPanel(\"About\");
-        delay(0, 500);
-        removeSymbol(myModuleName(), myPanelName(), \"shadow\");
     }
 }
  
