@@ -1165,6 +1165,8 @@ LANG:1 5 Start
   {
      time startTime=getCurrentTime();
      dpSet(\"N\"+node+\".Archiving.StartTime\",startTime); 
+     dpSet(\"N\"+node+\".Archiving.EndTime\",\"\"); 
+        
      testStatus.backCol(\"S7_stateWentUnq\");
      string startString = formatTime(\"%d/%m/%Y %H:%M:%S\",startTime);    
      startDateField.text(substr(startString,0,10));
