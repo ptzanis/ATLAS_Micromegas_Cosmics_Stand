@@ -222,6 +222,7 @@ bool exportHumData( dyn_string channels , string start, string end, string folde
 
 bool exportGIFData( dyn_string channels , string start, string end, string folderPath) {
   
+       dyn_string gifChannels;
         //DownStreamPos Or UpStreamPos
        gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
        gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
@@ -238,9 +239,19 @@ bool exportGIFData( dyn_string channels , string start, string end, string folde
     string querySource,queryAttA,queryAttB,queryAttC,queryAttEff,queryHumIn,queryHumOut,queryTempIn,queryTempOut,queryAtmPress;
     string filePath;
     
-        queryHum = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
-
+        querySource= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[1] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryAttA= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[2] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryAttB= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[3] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryAttC= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[4] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryAttEff= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[5] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryHumIn= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[6] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryHumOut= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[7] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryTempIn= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[8] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryTempOut= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[9] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryAtmPress= \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[10] + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+       
         
+              
         dpQuery(querySource, archivedSource);
         dpQuery(queryAttA, archivedAttA);        
         dpQuery(queryAttB, archivedAttB);        
@@ -259,7 +270,7 @@ bool exportGIFData( dyn_string channels , string start, string end, string folde
         
         export = fopen(filePath, \"a\");
         fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+ \"\\t\" +\"\\t\" + \"\\t\" +\"Source ON\"+ \"\\t\"+ \"A\"+\"\\t\"+\"B\"+\"\\t\"+ \"C\"+\"\\t\"+\"Effective\"+\"\\t\"+ \"Humidity IN\"+\"\\t\"+\"Humidity OUT\"+\"\\t\"+ \"Temp IN\"+\"\\t\"+\"Temp OUT\"+\"\\t\"+\"Atm. Pressure\");        
-        for (int j = 2; j <= dynlen(archivedHum); j++) { 
+        for (int j = 2; j <= dynlen(archivedSource); j++) { 
             fprintf(export, \"%s \\t %s \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %2.2f \\t %3.1f \\n\", formatTime(\"%d/%m/%Y_%H:%M:%S\", archivedSource[j][2])
                     ,archivedSource[j][3],archivedAttA[j][3],archivedAttB[j][3],archivedAttC[j][3],archivedAttEff[j][3],archivedHumIn[j][3],archivedHumOut[j][3],archivedTempIn[j][3],archivedTempOut[j][3],archivedAtmPress[j][3]);
 

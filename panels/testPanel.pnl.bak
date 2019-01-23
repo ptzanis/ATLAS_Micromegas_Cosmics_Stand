@@ -103,7 +103,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 E13 7
 "PUSH_BUTTON1"
 ""
-1 52 132 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 466.001953125 238.0900713436385 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -115,7 +115,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  50 121.448275862069 191 156.448275862069
+0  464.001953125 212 556.658203125 303.3265086206898
 
 T 
 1
@@ -147,7 +147,7 @@ sendSMS(number, message, error, sErrorText, SMSDP = \"_SMS_1\");
 13 8
 "PUSH_BUTTON2"
 ""
-1 453 307 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 124.6875 251.6632543103449 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -159,7 +159,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  451 301 632 325
+0  122.6875 245.6632543103449 303.6875 269.6632543103449
 
 T 
 1
@@ -173,6 +173,22 @@ LANG:1 12 PUSH_BUTTON2
     
 }" 0
  E E E
+7 9
+"ELLIPSE1"
+""
+1 210.5 150.5 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 2 1 3 2 1 E 1 0 1 134.5 172.5 1 E 210.5 150.5 43.5 43.5
 0
 LAYER, 1 
 1
