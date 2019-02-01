@@ -15,8 +15,7 @@ PANEL,-1 -1 1918 1070 N "_3DFace" 4
      int x=1212;
      int y=54;//10
      string batchID;
-     
-
+        
   RootPanelOnModule(\"objects/chamberHolder.pnl\", \"channels\", \"channelsModule\"+\"_N\"+node, makeDynString(\"$node:\"+node,\"$mode:\"+mode,\"$type:\"+type,\"$sector:\"+sector));         
   if(mode==\"ValidationQA\")
      {   
@@ -1989,6 +1988,10 @@ LANG:1 0
 "" ""
 3 2 "dateSelection" -1
 "layoutAlignment" "AlignNone"
+"initCB" "main()
+{
+  this.position(304,1016);
+}"
 "" ""
 "objects/dateTimeWidget.pnl" 543.999998402974 623.0001220703124 T 71 1 0 1 -239.9999984029739 392.9998779296876
 9
