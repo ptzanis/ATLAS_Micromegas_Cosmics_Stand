@@ -1190,7 +1190,8 @@ LANG:1 5 Start
      stopButton.enabled(TRUE);     
      for(int i=startNodeCosmics;i<startNodeCosmics+4;i++)
      {
-     dpSet(\"N\"+i+\".Archiving.StartTime\",startTime);                   
+     dpSet(\"N\"+i+\".Archiving.StartTime\",startTime);  
+     dpSet(\"N\"+i+\".Archiving.EndTime\",\"\");      
      }   
   }  
   
@@ -1202,7 +1203,7 @@ LANG:1 5 Start
 13 34
 "stopButton"
 ""
-1 311 947.0000000000001 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 311 947.0000000000001 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 34 0 0 0 0 0
 E E E
@@ -1226,8 +1227,14 @@ LANG:1 4 Stop
   string sector=$sector;
   int startNodeCosmics;
   time endTime=getCurrentTime();
+  string startTime;
   if(mode==\"ValidationQA\")
   {
+     dpGet(\"N\"+node+\".Archiving.StartTime\",startTime); 
+     string startString = formatTime(\"%d/%m/%Y %H:%M:%S\",(time)startTime);    
+     startDateField.text(substr(startString,0,10));
+     startTimeField.text(substr(startString,11,8));   
+     
      dpSet(\"N\"+node+\".Archiving.EndTime\",endTime); 
      string endString = formatTime(\"%d/%m/%Y %H:%M:%S\",endTime);    
      endDateField.text(substr(endString,0,10));
@@ -1249,6 +1256,12 @@ LANG:1 4 Stop
      testStatus.backCol(\"red\");
      this.enabled(FALSE);
      startButton.enabled(TRUE); 
+ 
+     dpGet(\"N\"+startNodeCosmics+\".Archiving.StartTime\",startTime); 
+     string startString = formatTime(\"%d/%m/%Y %H:%M:%S\",(time)startTime);    
+     startDateField.text(substr(startString,0,10));
+     startTimeField.text(substr(startString,11,8));     
+     
      string endString = formatTime(\"%d/%m/%Y %H:%M:%S\",endTime);    
      endDateField.text(substr(endString,0,10));
      endTimeField.text(substr(endString,11,8));     
@@ -1299,7 +1312,22 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "1"
-E E 0 1 3 2 1 E 0.7222222222222222 0 0.7592592592592593 113.9444444444444 217.537037037037 1 E 407.5 927.5 13.5 13.5
+"main()
+{
+  string node=$node;
+  string endTime;
+  dpGet(\"N\"+node+\".Archiving.EndTime\",endTime);
+  
+  if(endTime==\"\")
+  {
+    this.backCol(\"S7_stateWentUnq\");
+    startButton.enabled(FALSE);
+    stopButton.enabled(TRUE);   
+  }
+
+  
+}" 0
+ E 0 1 3 2 1 E 0.7222222222222222 0 0.7592592592592593 113.9444444444444 217.537037037037 1 E 407.5 927.5 13.5 13.5
 7 43
 "ELLIPSE5"
 ""
