@@ -126,6 +126,43 @@ bool exportHVData(string valueType, dyn_string channels ,dyn_string channelsAlia
     DebugN(valueType+\" HV Data Exported!\");
     return TRUE;
 }
+/*
+bool exportHVCombinedData( dyn_string channels ,dyn_string channelsAlias, string start, string end, string folderPath) {
+
+    dyn_dyn_anytype archivedVoltage, archivedCurrent;
+    string queryVoltage, queryCurrent, filePath;
+    
+    for (int i = 1; i <= dynlen(channels); i++) {
+        queryVoltage = \"SELECT ALL '_original.._stime', '_original.._value' FROM 'CAEN/\" + channels[i] +
+                \".actual.\" + \"vMon\" + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        queryCurrent = \"SELECT ALL '_original.._stime', '_original.._value' FROM 'CAEN/\" + channels[i] +
+                \".actual.\" + \"iMon\" + \"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";        
+        
+        dpQuery(queryVoltage, archivedVoltage);
+        dpQuery(queryCurrent, archivedCurrent);        
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"HV/\");
+        filePath = folderPath +\"HV/\"+ channelsAlias[i] + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        
+        DebugN(\"vMon Length \",dynlen(archivedVoltage));
+        DebugN(\"iMon Length \",dynlen(archivedCurrent));
+                          
+        for (int j = 2; j <= dynlen(archivedVoltage); j++) { 
+           fprintf(export, \"%s \\t %3.2f \\t \\t %2.3f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedCurrent[j][2]), archivedVoltage[j][3],archivedCurrent[j][3]); 
+
+        }
+        fclose(export);
+    }
+    DebugN(\" HV Combined Data Exported!\");
+    return TRUE;
+}
+
+*/
+
 
 bool exportEnvData( dyn_string channels , string start, string end, string folderPath) {
 
@@ -1461,7 +1498,8 @@ LANG:1 6 Export
       
       
       exportHVData(\"iMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
-      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
+      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath); 
+//       exportHVCombinedData(channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);  
       
       exportInfoFile(node, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath);
       
@@ -1544,7 +1582,8 @@ LANG:1 6 Export
       
       
       exportHVData(\"iMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
-      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);      
+      exportHVData(\"vMon\", channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);   
+//       exportHVCombinedData(channelsToArchive, mappingChannelsToArchive, startTime, endTime, dirPath);     
       
       exportInfoFile(z, chamberName, batchID, mode, mappingChannelsToArchive, channelsToArchive, startTime, endTime, dirPath); 
 

@@ -4,7 +4,19 @@ LANG:1 0
 PANEL,-1 -1 546 604 N "_3DFace" 0
 E E E E E 1 -1 -1 0  9.026272577996897 37
 ""0  1
-E E 3
+E "int searchDPTexistance(string search){
+  
+  dyn_string test=dpTypes(search);
+  
+  if (test == \"\") {
+    DebugN(\"DPT doesn't exist!\");
+    return -1;
+  } else {
+    DebugN(\"DPT has been found!\");
+    return 0;
+  }    
+}" 0
+ 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -1181,7 +1193,7 @@ LANG:1 10 Archive DB
 LAYER, 1 
 1
 LANG:1 0 
-1 58 0 "" 0
+1 68 0 "" 0
 0
 0
 LAYER, 2 
