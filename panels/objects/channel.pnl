@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 281 21 N "white" 6
+PANEL,-1 -1 281 35 N "white" 6
 "$chName"
 "$dpe"
 "$node"
@@ -217,12 +217,20 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 //      touchChannels();
     
     bool isOn = 0;
-        string dpeNEW;
+    string dpeNEW;
+    bool autoRecoveryStatus;
+    dpGet(\"ALL.AutoRecovery\",autoRecoveryStatus);
     dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
     
-    dpGet(\"CAEN/\"+dpeNEW+  + \".actual.isOn:_original.._value\", isOn);
+    dpGet(\"CAEN/\"+dpeNEW+\".actual.isOn:_original.._value\", isOn);
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
+        
+        if(autoRecoveryStatus)
+        {
+        dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
+        DebugN(\"Node: \"+node+\" | Section: \"+dpe+\" --> Trip Auto Recovered!\");        
+        }
 
 //          string result = alertViaEmail(\"polyneikis.tzanis@cern.ch\", \"HVStationGIF@cern.ch\", \"HVStationGIF: [URGENT] Channel tripped!\", \"Channel \"+dpe+\" Tripped !!!!\");
 //         delay(10);
@@ -316,7 +324,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.68131868131869 0 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.68131868131868 0 1 E 306 18 124 2
 6 6
 "spacer"
 ""

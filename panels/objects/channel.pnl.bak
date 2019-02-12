@@ -217,12 +217,20 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 //      touchChannels();
     
     bool isOn = 0;
-        string dpeNEW;
+    string dpeNEW;
+    bool autoRecoveryStatus;
+    dpGet(\"ALL.AutoRecovery\",autoRecoveryStatus);
     dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
     
-    dpGet(\"CAEN/\"+dpeNEW+  + \".actual.isOn:_original.._value\", isOn);
+    dpGet(\"CAEN/\"+dpeNEW+\".actual.isOn:_original.._value\", isOn);
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
+        
+        if(autoRecoveryStatus)
+        {
+        dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
+        DebugN(\"Node: \"+node+\" | Section: \"+dpe+\" --> Trip Auto Recovered!\");        
+        }
 
 //          string result = alertViaEmail(\"polyneikis.tzanis@cern.ch\", \"HVStationGIF@cern.ch\", \"HVStationGIF: [URGENT] Channel tripped!\", \"Channel \"+dpe+\" Tripped !!!!\");
 //         delay(10);
@@ -249,7 +257,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 -14 -2 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 90 1 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -281,8 +289,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -14 2 99.99999999999997 25
-0 2 2 "0s" 0 0 0 65 0 0  -14 2 2
+ E 0 1 1 2 1 E U  0 E 90 5 204 28
+0 2 2 "0s" 0 0 0 65 0 0  90 5 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
@@ -316,7 +324,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.68131868131869 0 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.5054945054945055 0 1 39.31868131868132 -2 1 E 306 18 124 2
 6 6
 "spacer"
 ""

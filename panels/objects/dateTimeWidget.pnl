@@ -515,7 +515,7 @@ LANG:10001 19 Edit to change date
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  46 8 149 33
-3 "0s" 0 0 0 0 0 -1  E E E
+2 "0s" 0 0 0 0 0 -1  E E E
 14 22
 "endDateField"
 ""
@@ -546,7 +546,7 @@ LANG:10001 19 Edit to change date
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  46 38 149 63
-3 "0s" 0 0 0 0 0 -1  E E E
+2 "0s" 0 0 0 0 0 -1  E E E
 13 0
 "startDateButton"
 ""
@@ -1105,7 +1105,7 @@ LANG:10001 19 Edit to change time
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  198 38 301 63
-3 "0s" 0 0 0 0 0 -1  E E E
+2 "0s" 0 0 0 0 0 -1  E E E
 14 19
 "startTimeField"
 ""
@@ -1139,7 +1139,7 @@ LANG:10001 19 Edit to change time
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 LANG:10001 26 Arial,10,-1,5,50,0,0,0,0,0
 0  198 8 301 33
-3 "0s" 0 0 0 0 0 -1  E E E
+2 "0s" 0 0 0 0 0 -1  E E E
 13 18
 "busyBackground"
 ""
