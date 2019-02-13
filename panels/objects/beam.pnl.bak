@@ -1,14 +1,12 @@
-V 14
+V 12
 1
 LANG:1 0 
 PANEL,-1 -1 364 436 N "_3DFace" 0
 E E E E E 1 -1 -1 0  80 50
 ""0  1
-E E 3
+E E 2
 "CBRef" "1"
 "EClose" E
-"dpi" "96"
-0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
@@ -25,10 +23,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
 0  1 0 320 390
 16 Shell.Explorer.2
 0
@@ -47,10 +44,9 @@ E E E
 1
 LANG:1 0 
 
+0
 1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
 0  -1 313 322 404
 
 T 
@@ -68,10 +64,8 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 2 1 E 1 0 0.7499999999999999 0 0 1 E 0 0 320 400
 6 7
 "RECTANGLE20"
@@ -84,10 +78,8 @@ E E E
 1
 LANG:1 0 
 
-3
-"layoutAlignment" "AlignCenter"
+1
 "dashclr"N "_Transparent"
-"antiAliased" "0"
 E E 0 0 1 2 1 E 1 0 1 50 5 2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 11 46 210 245
 0
 LAYER, 1 
