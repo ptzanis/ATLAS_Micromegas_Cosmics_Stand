@@ -38,7 +38,7 @@ LANG:1 0
     
 }
 " 0
- E 0 1 2 0 1 E 1 0 1.188461538461539 -2 5.461538461538444 1 E -10 250 519 -10
+ E 0 1 2 0 1 E 1 0 1.188461538461539 10 5.461538461538444 1 E -10 250 519 -10
 6 0
 "logoShape2"
 ""
@@ -96,7 +96,7 @@ LANG:1 22 Micromegas HV Station
 2 3
 "PRIMITIVE_TEXT1"
 ""
-1 314 141 E E E 1 E 1 E N "black" E N "black" E E
+1 292 135 E E E 1 E 1 E N "black" E N "black" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -108,10 +108,10 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 267 55 343 70
-0 2 2 "0s" 0 0 0 193 0 0  305 55 1
+E E 0 1 1 2 1 E U  0 E 236 49 330 67
+0 2 2 "0s" 0 0 0 193 0 0  283 49 1
 1
-LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
 LANG:1 13 Version 2.0.0
 2 4
@@ -134,19 +134,19 @@ E E 0 1 1 2 1 E 1 0 1.127659574468085 -3 -7.595744680851068 0 E 239 85 1089 222
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
-LANG:1 38 Micromegas HV Slow Control System has 
+LANG:1 41 Micromegas HV Station has been developed 
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
-LANG:1 37 been developed for the NSW Micromegas
+LANG:1 43 for the NSW Micromegas Validation,Cosmics, 
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
-LANG:1 45 Validation,Cosmics, TestBeam and GIF++ tests 
+LANG:1 31 TestBeam and GIF++ tests by the
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
-LANG:1 47 by the National Technical University of Athens 
+LANG:1 41  National Technical University of Athens 
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1

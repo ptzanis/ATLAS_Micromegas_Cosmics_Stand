@@ -1231,7 +1231,7 @@ LANG:1 18 Trip Auto Recovery
 29 79
 "ToggleSwitch_ewo1"
 ""
-1 160 567 E E E 1 E 1 E N "white" E N "_3DFace" E E
+1 168 568 E E E 1 E 1 E N "white" E N "_3DFace" E E
  E E
 45 0 0 0 0 0
 E E E
@@ -1247,7 +1247,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  160 567 230 595
+0  168 568 238 596
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -1281,7 +1281,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 2 80
 "PRIMITIVE_TEXT5"
 ""
-1 41.93750000000001 571.15 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 49.93750000000001 572.15 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 46 0 0 0 0 0
 E E E
@@ -1294,8 +1294,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 41.93750000000001 571.15 148 589
-0 2 2 "0s" 0 0 0 192 0 0  41.93750000000001 571.15 1
+E E 2 1 3 2 1 E U  0 E 49.93750000000001 572.15 156 590
+0 2 2 "0s" 0 0 0 192 0 0  49.93750000000001 572.15 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1

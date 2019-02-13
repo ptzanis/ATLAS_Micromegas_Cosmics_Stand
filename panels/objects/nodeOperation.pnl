@@ -1814,12 +1814,12 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 479.3791208791203 56.36490939044479 0 E 1258 26 1334 41
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 510.3791208791183 53.62522799482227 0 E 1258 26 1328 41
 0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 12 Notification
+LANG:1 11 Email Alert
 30 129
 "FRAME10"
 ""
@@ -1835,11 +1835,11 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.9257804854178884 0 0.666666666666667 1262.953660207477 -441.3333333333335 0 E 556 767 701 825
+E E 2 1 3 2 1 E 0.6966193528693574 0 0.7543859649122789 1423.366452991449 -507.6140350877179 0 E 556 767 701 825
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
-LANG:1 0 
+LANG:1 4 Trip
 7 131
 "statusEmail"
 ""
@@ -1902,13 +1902,13 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 218.910681077043 14.42448979591815 1 E 1869.263736263735 87.21428571428568 7.5 7.5
-2 133
-"PRIMITIVE_TEXT6"
+ E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 246.9106810770423 18.11337982886705 1 E 1869.263736263735 87.21428571428568 7.5 7.5
+2 160
+"PRIMITIVE_TEXT7"
 ""
 1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-68 0 0 0 0 0
+73 0 0 0 0 0
 E E E
 0
 1
@@ -1919,18 +1919,18 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 570.6923076923075 51.37008707931274 0 E 1258 26 1289 38
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 510.2280219780198 68.76808513767944 0 E 1258 26 1317 41
 0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
 1
-LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 5 Email
-7 134
-"statusSMS"
+LANG:1 8 Recovery
+7 161
+"ELLIPSE7"
 ""
 1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-69 0 0 0 0 0
+74 0 0 0 0 0
 E E E
 0
 1
@@ -1950,14 +1950,14 @@ void EP_setBackColor()
 {
   dyn_errClass err;
 
-  if( !dpExists( \"ALL.Notification.SMS.Status:_online.._value\"))
+  if( !dpExists( \"ALL.AutoRecovery:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_setBackColorCB\", 
-            \"ALL.Notification.SMS.Status:_online.._value\");
+            \"ALL.AutoRecovery:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -1973,7 +1973,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 }
 
 // SimpleCtrlScript {EP_setBackColor}
-// DP {System1:ALL.Notification.StatusSMS}
+// DP {System1:ALL.Notification.StatusEmail}
 // DPConfig {:_online.._value}
 // DPType {bool}
 // AlertHdl {FALSE}
@@ -1987,29 +1987,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 218.9106810770432 28.13877551020387 1 E 1869.263736263735 87.21428571428568 7.5 7.5
-2 135
-"PRIMITIVE_TEXT7"
-""
-1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-70 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 571.3846153846142 65.51294422216993 0 E 1258 26 1283 38
-0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
-1
-LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0 1
-LANG:1 3 SMS
+ E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 246.7595821759438 33.25623697172421 1 E 1869.263736263735 87.21428571428568 7.5 7.5
 0
 LAYER, 1 
 1
