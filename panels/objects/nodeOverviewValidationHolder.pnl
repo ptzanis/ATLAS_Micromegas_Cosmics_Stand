@@ -105,7 +105,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 1728 112 1741 130
+E E 2 1 3 2 1 E U  0 E 1728 112 1742 130
 0 2 2 "0s" 0 0 0 192 0 0  1728 112 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -127,7 +127,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 1788 110 1797 132
+E E 2 1 3 2 1 E U  0 E 1788 110 1798 132
 0 2 2 "0s" 0 0 0 192 0 0  1788 110 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
@@ -237,7 +237,7 @@ E "main(mapping event)
 {
   alarmColor();
 }" 0
- 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 1592 62.00000000000003 0 E 30 50 127 68
+ 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 1592 62.00000000000003 0 E 30 50 128 68
 0 2 2 "0s" 0 0 0 192 0 0  30 50 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -266,7 +266,7 @@ LANG:1 0
   this.text(\">\"+upLimitValue);
 
 }" 0
- E 2 1 3 2 1 E U  0 E 1783.365079365079 135.5 1838 160
+ E 2 1 3 2 1 E U  0 E 1783.365079365079 135.5 1840 161
 0 2 2 "0s" 0 0 0 192 0 0  1783.365079365079 135.5 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -295,7 +295,7 @@ LANG:1 0
   this.text(\"<\"+downLimitValue);
 
 }" 0
- E 2 1 3 2 1 E U  0 E 1613.3430335097 135.25 1668 160
+ E 2 1 3 2 1 E U  0 E 1613.3430335097 135.25 1670 160
 0 2 2 "0s" 0 0 0 192 0 0  1613.3430335097 135.25 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -395,7 +395,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E 1 0 0.849444575253555 -3 -7.832624309038749 0 E 1813 75 1912.846153846154 93.46153846153842
+E E 2 1 3 2 1 E 1 0 0.849444575253555 -3 -7.832624309038749 0 E 1813 75 1915 93
 0 2 2 "0s" 0 0 0 192 0 0  1813 75 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -417,6 +417,196 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "1"
 E E -1 1 3 2 1 E 1 0 1 6 2.000000000000568 2  1 0  "pictures/NTUA Logo/rsz_logo[80].png" 4294967295 E 1777 46 24 24
+2 17
+"notificationText"
+""
+1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 265.3791208791181 37.62522799482224 0 E 1258 26 1328 41
+0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Email Alert
+30 18
+"FRAME10"
+""
+1 556 767 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.6966193528693574 0 0.7543859649122789 1178.366452991449 -523.6140350877179 0 E 556 767 701 825
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Trip
+7 19
+"statusEmail"
+""
+1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"ALL.Notification.Email.Status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"ALL.Notification.Email.Status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:ALL.Notification.StatusEmail}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {0}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 1.910681077042113 2.113379828866982 1 E 1869.263736263735 87.21428571428568 7.5 7.5
+2 20
+"PRIMITIVE_TEXT7"
+""
+1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 265.2280219780196 52.76808513767946 0 E 1258 26 1317 41
+0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Recovery
+7 21
+"ELLIPSE7"
+""
+1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"ALL.AutoRecovery:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"ALL.AutoRecovery:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:ALL.Notification.StatusEmail}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {0}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.8824175824176477 0 0.8190476190476218 1.759582175943592 17.25623697172409 1 E 1869.263736263735 87.21428571428568 7.5 7.5
 0
 LAYER, 1 
 1

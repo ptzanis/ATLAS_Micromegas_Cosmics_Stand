@@ -261,6 +261,31 @@ LANG:1 9 Env Plots
  
 }" 0
 
+13 6
+"PUSH_BUTTON1"
+""
+1 250 237 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  248 220 283 267
+
+T 
+1
+LANG:1 2 O2
+"main(mapping event)
+{
+  ChildPanelOnCentral(\"objects/oxygenPanel.pnl\", \"Oxygen Sensor\", makeDynString()); 
+}" 0
+ E E E
 0
 LAYER, 1 
 1

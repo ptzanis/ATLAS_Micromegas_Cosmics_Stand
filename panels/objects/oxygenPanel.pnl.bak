@@ -1,0 +1,158 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 536 359 N "_3DFace" 0
+"main()
+{
+  dyn_string exceptionInfo;
+        fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"IP_MM_Humidity\",makeDynString(\"sensor01.voltage\"),
+          10, -20, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+        
+        
+
+}" 0
+ E E E E 1 -1 -1 0  212 260
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+14 0
+"TEXT_FIELD1"
+""
+1 174 311 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
+0  172 293 315 332
+2 "1.3f" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sensor01.voltage:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:sensor01.voltage:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:sensor01.voltage}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 316 294 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 316 294 354 325
+0 2 2 "0s" 0 0 0 192 0 0  316 294 1
+1
+LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
+2 2
+"PRIMITIVE_TEXT2"
+""
+1 61 277 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 61 277 158 342
+0 2 2 "0s" 0 0 0 192 0 0  61 277 2
+1
+LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Oxygen
+1
+LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Sensor
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0
