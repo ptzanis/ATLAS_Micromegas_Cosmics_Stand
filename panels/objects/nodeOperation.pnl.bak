@@ -1306,7 +1306,7 @@ void pingChannels(string dpSourceRunStatus, float fNewValueIsRunRunning)
     dpGet(\"N\"+node+\".runStatus\",runStatus);
     if(runStatus)
     {
-       delay(5);
+       delay(60);
        if(mode==\"ValidationQA\")
          channelsToPing(node);    
        if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
