@@ -236,6 +236,8 @@ for(int i=1;i<=4;i++)
      types[count+27]=makeDynInt(0,0,DPEL_FLOAT); 
      elements[count+28]=makeDynString(\"\",\"\",\"Pressure\"); 
      types[count+28]=makeDynInt(0,0,DPEL_FLOAT); 
+     elements[count+29]=makeDynString(\"\",\"runStatus\"); 
+     types[count+29]=makeDynInt(0,DPEL_BOOL);
      
 int x=dpTypeCreate(elements,types);
 
