@@ -1556,20 +1556,16 @@ LANG:1 0
 "antiAliased" "1"
 "main()
 {
-  /*
   string node=$node;
-  string endTime;
-  dpGet(\"N\"+node+\".Archiving.EndTime\",endTime);
-  
-  if(endTime==\"\")
+  bool runStatus;
+  dpGet(\"N\"+node+\".runStatus\",runStatus);
+  if(runStatus)
   {
-    this.backCol(\"S7_stateWentUnq\");
-    startButton.enabled(FALSE);
-    stopButton.enabled(TRUE);   
+    dpSet(\"N\"+node+\".runStatus\",TRUE);        
+    dpConnect(\"pingChannels\",\"N\"+node+\".runStatus\");  
+    
   }
-*/
-  
-  
+    
   
   
   EP_setBackColor();
