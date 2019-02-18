@@ -1,13 +1,12 @@
 V 14
 1
 LANG:1 8 (NoName)
-PANEL,-1 -1 202 39 N "_3DFace" 8
+PANEL,-1 -1 202 39 N "_3DFace" 7
 "$bgcolor"
 "$color"
 "$dpe"
 "$format"
 "$parameter"
-"$qualityEl"
 "$unit"
 "$width"
 E E E E E 1 0 0 0  10 10
@@ -54,7 +53,7 @@ LANG:1 0
 14 2
 "Value"
 ""
-1 0 0 E E E 1 E 1 E N "_3DText" E N "FwTrendingTrendBackground" E E
+1 0 0 E E E 1 E 1 E N "_3DText" E N "FwNoAlarmOKPhysics" E E
  "main()
 {
   //if (isDollarDefined(\"$width\") && $width!=\"\") fwFsmAtlasWidget_rightMousePressed($dpe, $width);
@@ -81,8 +80,8 @@ LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
   if(isDollarDefined(\"$format\") && $format!=\"\") fwFsmAtlasWidget_initializeWidgetValue($dpe, $format);
   else fwFsmAtlasWidget_initializeWidgetValue($dpe);
   
-  if (isDollarDefined(\"$qualityEl\") && $qualityEl!=\"\") fwFsmAtlasWidget_initializeWidgetColor($dpe, $qualityEl);
-  else fwFsmAtlasWidget_initializeWidgetColor($dpe);
+//   if (isDollarDefined(\"$qualityEl\") && $qualityEl!=\"\") fwFsmAtlasWidget_initializeWidgetColor($dpe, $qualityEl);
+//   else fwFsmAtlasWidget_initializeWidgetColor($dpe);
 }
 " 0
  E
@@ -117,7 +116,7 @@ LANG:1 0
   
   fwFsmAtlasWidget_setDescriptionAsTooltip();
 }" 0
- E 0 1 1 2 1 E U  1 E 5 11 77 28
+ E 0 1 1 2 1 E U  1 E 6 11 77 28
 0 2 2 "0s" 0 0 0 194 0 0  77 11 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
