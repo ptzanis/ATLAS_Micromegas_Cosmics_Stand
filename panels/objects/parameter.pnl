@@ -1,12 +1,13 @@
 V 14
 1
 LANG:1 8 (NoName)
-PANEL,-1 -1 202 39 N "_3DFace" 7
+PANEL,-1 -1 202 39 N "_3DFace" 8
 "$bgcolor"
 "$color"
 "$dpe"
 "$format"
 "$parameter"
+"$qualityEl"
 "$unit"
 "$width"
 E E E E E 1 0 0 0  10 10
@@ -80,8 +81,8 @@ LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
   if(isDollarDefined(\"$format\") && $format!=\"\") fwFsmAtlasWidget_initializeWidgetValue($dpe, $format);
   else fwFsmAtlasWidget_initializeWidgetValue($dpe);
   
-//   if (isDollarDefined(\"$qualityEl\") && $qualityEl!=\"\") fwFsmAtlasWidget_initializeWidgetColor($dpe, $qualityEl);
-//   else fwFsmAtlasWidget_initializeWidgetColor($dpe);
+   if (isDollarDefined(\"$qualityEl\") && $qualityEl!=\"\") fwFsmAtlasWidget_initializeWidgetColor($dpe, $qualityEl);
+   else fwFsmAtlasWidget_initializeWidgetColor($dpe);
 }
 " 0
  E
