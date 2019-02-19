@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 281 45 N "white" 6
+PANEL,-1 -1 281 34 N "white" 6
 "$chName"
 "$dpe"
 "$node"
@@ -73,6 +73,13 @@ string alertViaEmail(string recipient, string sender, string subject, string mai
     return status;
 }
 
+void tripRecovery(string channel)
+{
+        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 0);  
+        delay(60);
+        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);    
+    
+}
 " 0
  3
 "CBRef" "1"
@@ -228,7 +235,10 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
         
         if(autoRecoveryStatus)
         {
-        dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
+          
+        tripRecovery(dpeNEW);  
+    //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 0);  
+    //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
         DebugN(\"Node: \"+node+\" | Section: \"+dpe+\" --> Trip Auto Recovered!\");        
         }
 
@@ -289,7 +299,7 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -14 2 99.99999999999997 25
+ E 0 1 1 2 1 E U  0 E -14 2 100 25
 0 2 2 "0s" 0 0 0 65 0 0  -14 2 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
@@ -324,7 +334,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.68131868131868 0 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.85030064275347 0 1 E 306 18 124 2
 6 6
 "spacer"
 ""
@@ -341,31 +351,6 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 E E 0 1 1 2 1 E U  1 E 0 20 -4 0
-13 7
-"PUSH_BUTTON1"
-""
-1 104 27 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
- E E
-7 0 0 0 0 0
-E E E
-8
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  102 23 178 43
-
-T 
-1
-LANG:1 12 PUSH_BUTTON1
-"main(mapping event)
-{
-  enableAllCheckboxes();
-}" 0
- E E E
 0
 LAYER, 1 
 1

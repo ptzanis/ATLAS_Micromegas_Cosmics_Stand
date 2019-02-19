@@ -315,6 +315,41 @@ bool exportInfoFile(string node,string chamberName,string batchID,string mode,dy
    return TRUE;
    
 }
+
+// v2.1.0 Export GIF Individual Data -----
+bool exportIndividualDataGIF(string valueType, string parameterValueType ,dyn_string channels , string start, string end, string folderPath)
+{
+
+    dyn_dyn_anytype archived;
+    string query, filePath;
+    
+    for (int i = 1; i <= dynlen(channels); i++) {
+        query = \"SELECT ALL '_original.._stime', '_original.._value' FROM '\" + channels[i] +\"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(query, archived);
+        
+        file export;
+        checkOrCreateDirectory(folderPath+\"GIF/\");
+        filePath = folderPath +\"GIF/\"+ valueType + \".dat\";
+        strreplace(filePath, \"/\", \"//\");   
+        
+        export = fopen(filePath, \"a\");
+        fprintf(export, \"%s \\n\",\"Time[m/d/Y_H:M:S]\"+ \"\\t\" +parameterValueType);                                  
+        for (int j = 2; j <= dynlen(archived); j++) { 
+          fprintf(export, \"%s \\t %3.1f \\n\", formatTime(\"%m/%d/%Y_%H:%M:%S\", archived[j][2]), archived[j][3]); 
+
+        }
+        fclose(export);
+    }
+    DebugN(valueType+\" Data Exported!\");
+    return TRUE;  
+  
+  
+  
+  
+  
+  
+}
 " 0
  3
 "CBRef" "1"
@@ -418,25 +453,25 @@ E
 1
 LANG:1 0 
 
-70 "EnvStation" 6 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+70 "EnvStation" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 10 EnvStation
 E
 1
 LANG:1 0 
 
-85 "Gas" 6 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+85 "Gas" 3 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 3 Gas
 E
 1
 LANG:1 0 
 
-60 "Humidity" 6 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+60 "Humidity" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 8 Humidity
 E
 1
 LANG:1 0 
 
-75 "GIF" 6 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+75 "GIF" 3 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 3 GIF
 E
 1
@@ -705,7 +740,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 471.9058268828843 0.65625 583.445192554526 25.34375
+E E 0 1 3 2 1 E U  0 E 471.9058268828843 0.65625 583 26
 0 2 2 "0s" 0 0 0 192 0 0  471.9058268828843 0.65625 1
 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
@@ -726,7 +761,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 92.51191248315359 720.3899563796125 167.0119124831536 737.3899563796124
+E E 0 1 1 2 1 E U  0 E 92 720.3899563796125 167.0119124831536 737
 0 2 2 "0s" 0 0 0 194 0 0  167.0119124831536 720.3899563796125 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -747,7 +782,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 97.18903197887789 751.0204500173877 167.0704525482846 767.8899563796124
+E E 0 1 1 2 1 E U  0 E 97 751.0204500173877 167.0704525482846 768
 0 2 2 "0s" 0 0 0 194 0 0  167.0704525482846 751.0204500173877 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -868,7 +903,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 98.76670529872581 626.9721074165118 166.6553466396958 644.4497818980619
+E E 0 1 1 2 1 E U  0 E 99 626.9721074165118 166.6553466396958 644
 0 2 2 "0s" 0 0 0 194 0 0  166.6553466396958 626.9721074165118 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -906,7 +941,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 126.6280639577558 686.8982990135411 167.1280639577558 703.898299013541
+E E 0 1 1 2 1 E U  0 E 126 686.8982990135411 167.1280639577558 704
 0 2 2 "0s" 0 0 0 194 0 0  167.1280639577558 686.8982990135411 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -944,7 +979,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 123.8780639577558 658.3732711117552 168.1755917542517 674.9441416474695
+E E 0 1 1 2 1 E U  0 E 124 658.3732711117552 168.1755917542517 675
 0 2 2 "0s" 0 0 0 194 0 0  168.1755917542517 658.3732711117552 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -1002,7 +1037,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 101.75 596.1100436203875 165.7738249663072 613.1100436203875
+E E 0 1 1 2 1 E U  0 E 102 596.1100436203875 165.7738249663072 613
 0 2 2 "0s" 0 0 0 194 0 0  165.7738249663072 596.1100436203875 1
 1
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
@@ -1236,19 +1271,27 @@ LANG:1 6 Export
        dynClear(gifChannels);
        //DownStreamPos Or UpStreamPos
        gifChannels[1]=\"GIFFPP.Irradiator.SourceON\";
-       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.A\";
-       gifChannels[3]=\"GIFFPP.Attenuators.UpStreamPos.B\";
-       gifChannels[4]=\"GIFFPP.Attenuators.UpStreamPos.C\";
-       gifChannels[5]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
-       gifChannels[6]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
-       gifChannels[7]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
-       gifChannels[8]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
-       gifChannels[9]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
-       gifChannels[10]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
+       gifChannels[2]=\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\";
+       gifChannels[3]=\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\";
+       gifChannels[4]=\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\";
+       gifChannels[5]=\"GIFFPP.EnvParameters.Temp_Inside_Bunker\";
+       gifChannels[6]=\"GIFFPP.EnvParameters.Temp_Outside_Bunker\";
+       gifChannels[7]=\"GIFFPP.EnvParameters.Atmospheric_Pressure\";
        
         
-        exportGIFData(gifChannels ,startTime, endTime, dirPath);
-        
+      //  exportGIFData(gifChannels ,startTime, endTime, dirPath);
+       
+       //Edit v2.1.0
+
+       exportIndividualDataGIF(\"Source\",\"[T/F]\",gifChannels[1],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"EffectiveAttenuation\",\"[]\",gifChannels[2],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"Humidity_Inside_Bunker\",\"[%]\",gifChannels[3],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"Humidity_Outside_Bunker\",\"[%]\",gifChannels[4],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"Temp_Inside_Bunker\",\"[C]\",gifChannels[5],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"Temp_Outside_Bunker\",\"[C]\",gifChannels[6],startTime, endTime, dirPath);
+       exportIndividualDataGIF(\"Atmospheric_Pressure\",\"[mbar]\",gifChannels[7],startTime, endTime, dirPath);
+       
+             
        }   
     
       
@@ -1375,7 +1418,7 @@ LANG:1 6 Export
 19 58
 "dataPlotsChoice"
 ""
-1 784.4357276119406 632.0864608538795 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
+1 784 633 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 58 0 0 0 0 0
 E E E
@@ -1387,7 +1430,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  782.4357276119404 630.0864608538791 906.3819029850747 694.2031587945426
+0  781.9999999999998 630.9999999999995 905.9461753731341 695.116697940663
 2
 T 
 1
@@ -1425,7 +1468,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 0 1 3 2 1 E U  0 E 549.4682018664128 604.1688410271582 575.4682018664128 619.1688410271582
+E E 0 1 3 2 1 E U  0 E 549.4682018664128 604.1688410271582 575 619
 0 2 2 "0s" 0 0 0 192 0 0  549.4682018664128 604.1688410271582 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0

@@ -1306,7 +1306,7 @@ void pingChannels(string dpSourceRunStatus, float fNewValueIsRunRunning)
     dpGet(\"N\"+node+\".runStatus\",runStatus);
     if(runStatus)
     {
-       delay(60);
+       delay(300);
        if(mode==\"ValidationQA\")
          channelsToPing(node);    
        if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
@@ -1597,20 +1597,66 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
     setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
 }
 
-// SimpleCtrlScript {EP_setBackColor}
-// DP {System1:N1.runStatus}
-// DPConfig {:_online.._value}
-// DPType {bool}
-// AlertHdl {FALSE}
-// DPEInvalid {}
-// DPEConfigInvalid {}
-// Operator1 {notequal}
-// Operant1 {0}
-// Color1 {Red}
-// Operator2 {equal}
-// Operant2 {1}
-// Color2 {S7_stateWentUnq}
-// SimpleCtrlScriptEnd {EP_setBackColor}
+void pingChannels(string dpSourceRunStatus, float fNewValueIsRunRunning)
+{
+  bool runStatus;
+  string node=$node;
+  string mode=$mode;
+  for(int i=0;i<99999;i++)
+  {
+    dpGet(\"N\"+node+\".runStatus\",runStatus);
+    if(runStatus)
+    {
+       delay(300);
+       if(mode==\"ValidationQA\")
+         channelsToPing(node);    
+       if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
+       {
+         string sector=$sector;
+         int startNodeCosmics;
+         if(sector==\"1\")
+           startNodeCosmics=1;
+         if(sector==\"2\")
+           startNodeCosmics=5;   
+         
+     for(int z=startNodeCosmics;z<startNodeCosmics+4;z++)
+     {
+         channelsToPing(z);    
+     }
+         
+       }
+                 
+     }
+    else
+      break;
+   
+  }
+  
+  
+  
+}
+
+void channelsToPing(string node)
+{
+    dyn_string channel;
+    float voltage,current;
+    dyn_string stripsToAppend,driftToAppend,archivedChannel;
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftToAppend);   // Append Drift Channels
+   dynAppend(archivedChannel,stripsToAppend);
+   dynAppend(archivedChannel,driftToAppend);
+   
+   for(int h=1;h<=dynlen(archivedChannel);h++)
+   {
+      dpGet(\"N\"+node+\".Mapping.\"+archivedChannel[h]+\".Channel\",channel[h]);
+      dpGet(\"CAEN/\"+channel[h] + \".actual.iMon:_original.._value\",voltage);  
+      dpGet(\"CAEN/\"+channel[h] + \".actual.vMon:_original.._value\",current);               
+      dpSet(\"CAEN/\"+channel[h] + \".actual.iMon:_original.._value\",voltage);  
+      dpSet(\"CAEN/\"+channel[h] + \".actual.vMon:_original.._value\",current);           
+    }         
+  
+  
+}
 " 0
  E 0 1 3 2 1 E 0.7222222222222222 0 0.7592592592592593 113.9444444444444 217.5370370370368 1 E 407.5 927.5 13.5 13.5
 7 43
