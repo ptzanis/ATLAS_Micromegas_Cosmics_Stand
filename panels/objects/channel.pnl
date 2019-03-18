@@ -75,9 +75,9 @@ string alertViaEmail(string recipient, string sender, string subject, string mai
 
 void tripRecovery(string channel)
 {
-        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 0);  
-        delay(60);
-        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);    
+
+        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);  
+        DebugTN(\" Reco  !!!!!!\");  
     
 }
 " 0
@@ -216,6 +216,8 @@ EP_setBackColor()
     err = getLastError();
     if (dynlen(err) > 0)
         setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    
+    
 }
 
 EP_setBackColorCB(string dpSource, bool boNewValue)
@@ -233,13 +235,14 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
         
+      // dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 0);  
+        
         if(autoRecoveryStatus)
         {
-          
+//         delay(30);
         tripRecovery(dpeNEW);  
     //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 0);  
     //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
-        DebugN(\"Node: \"+node+\" | Section: \"+dpe+\" --> Trip Auto Recovered!\");        
         }
 
 //          string result = alertViaEmail(\"polyneikis.tzanis@cern.ch\", \"HVStationGIF@cern.ch\", \"HVStationGIF: [URGENT] Channel tripped!\", \"Channel \"+dpe+\" Tripped !!!!\");

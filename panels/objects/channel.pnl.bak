@@ -75,9 +75,9 @@ string alertViaEmail(string recipient, string sender, string subject, string mai
 
 void tripRecovery(string channel)
 {
-        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 0);  
-        delay(60);
-        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);    
+
+        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);  
+        DebugTN(\" Reco  !!!!!!\");  
     
 }
 " 0
@@ -216,6 +216,8 @@ EP_setBackColor()
     err = getLastError();
     if (dynlen(err) > 0)
         setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    
+    
 }
 
 EP_setBackColorCB(string dpSource, bool boNewValue)
@@ -233,13 +235,14 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
     if (boNewValue) {
         setValue(\"\", \"backCol\", \"S7_toleranceCameUnq\");
         
+      // dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 0);  
+        
         if(autoRecoveryStatus)
         {
-          
+//         delay(30);
         tripRecovery(dpeNEW);  
     //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 0);  
     //    dpSet(\"CAEN/\"+dpeNEW+\".settings.onOff:_original.._value\", 1);  
-        DebugN(\"Node: \"+node+\" | Section: \"+dpe+\" --> Trip Auto Recovered!\");        
         }
 
 //          string result = alertViaEmail(\"polyneikis.tzanis@cern.ch\", \"HVStationGIF@cern.ch\", \"HVStationGIF: [URGENT] Channel tripped!\", \"Channel \"+dpe+\" Tripped !!!!\");
@@ -267,7 +270,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 -14 -2 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 6 0 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -299,8 +302,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E -14 2 100 25
-0 2 2 "0s" 0 0 0 65 0 0  -14 2 2
+ E 0 1 1 2 1 E U  0 E 6 4 120 27
+0 2 2 "0s" 0 0 0 65 0 0  6 4 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
@@ -334,7 +337,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.85030064275347 0 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.5054945054945055 0 1 29.14969935724653 1 1 E 306 18 124 2
 6 6
 "spacer"
 ""
