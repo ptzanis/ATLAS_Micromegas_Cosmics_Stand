@@ -75,9 +75,25 @@ string alertViaEmail(string recipient, string sender, string subject, string mai
 
 void tripRecovery(string channel)
 {
+        delay(15);
+        bool statusOnOff;
+        dpGet(\"CAEN/\"+channel+\".actual.isOn:_original.._value\",statusOnOff);  
+        float previousVoltage;
 
-        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);  
-        DebugTN(\" Reco  !!!!!!\");  
+        if(!statusOnOff)      
+        {
+          
+        float previousVoltage;
+        dpGet(\"CAEN/\"+channel+\".settings.v0\",previousVoltage);        
+        previousVoltage=previousVoltage-10.0;  
+
+        dpSet(\"CAEN/\"+channel+\".settings.v0\",previousVoltage);  
+        
+        dpSet(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1); 
+        
+        DebugTN(\"Channel: \"+channel+\" -> Recovered !\");  
+        
+        }
     
 }
 " 0
@@ -270,7 +286,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
 2 1
 "channelNameText"
 ""
-1 6 0 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
+1 -14 -2 E E E 1 E 1 E N "STD_grey_dark" E N "Red" E E
  E E
 1 0 0 0 0 0
 E E E
@@ -302,8 +318,8 @@ LANG:1 0
     
 }
 " 0
- E 0 1 1 2 1 E U  0 E 6 4 120 27
-0 2 2 "0s" 0 0 0 65 0 0  6 4 2
+ E 0 1 1 2 1 E U  0 E -14 2 100 25
+0 2 2 "0s" 0 0 0 65 0 0  -14 2 2
 1
 LANG:1 27 Utopia,-1,16,5,50,0,0,0,0,0
 0 1
@@ -337,7 +353,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 2 1 E 0.5054945054945055 0 1 29.14969935724653 1 1 E 306 18 124 2
+E E 0 0 1 2 1 E 0.5054945054945055 0 1 -63.85030064275347 0 1 E 306 18 124 2
 6 6
 "spacer"
 ""

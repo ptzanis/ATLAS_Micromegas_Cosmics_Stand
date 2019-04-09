@@ -350,6 +350,18 @@ bool exportIndividualDataGIF(string valueType, string parameterValueType ,dyn_st
   
   
 }
+
+
+bool checkOrCreateDirectory(string folderPath)
+{
+  
+    if(isdir(folderPath))
+    return TRUE;
+    else {    
+        mkdir(folderPath, 777);
+        return FALSE;
+    } 
+}
 " 0
  3
 "CBRef" "1"

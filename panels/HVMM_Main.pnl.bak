@@ -676,7 +676,7 @@ LANG:1 4 Save
     {chamberOfNode=\"LM2\";   } 
       
       getValue(\"mtfField\"+\"_N\"+i,\"text\",mtf);
-    
+      setValue(\"mtfField\"+\"_N\"+i,\"text\",FALSE);
 
       if(!cosmicsButton.enabled())   
       {

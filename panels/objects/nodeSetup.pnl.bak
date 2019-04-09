@@ -193,7 +193,7 @@ LANG:1 0
 "main()
 {
   string node=$node;
-  this.text(\"Module \"+node);  
+  this.text(\"Node \"+node);  
   
   
   
@@ -202,7 +202,7 @@ LANG:1 0
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
-LANG:1 7 ModuleX
+LANG:1 5 NodeX
 2 1
 "PRIMITIVE_TEXT1"
 ""
@@ -271,6 +271,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
     setValue(\"button\"+chamber+\"_N\"+node,\"enabled\",FALSE); 
     if(mtf!=\"\")  
     setValue(\"mtfField\"+\"_N\"+node,\"text\",mtf);
+    setValue(\"mtfField\"+\"_N\"+node,\"editable\",TRUE);
     if(mode!=\"\")
     {
       if(mode==\"CosmicsBasic\")
@@ -414,7 +415,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
         fwArchive_stopMultiple(dpesExtraToArchive[z], exceptionInfo);
         if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
       }
-    
+         DebugN(\"----------------------------Extra Archive Status \"+node+\" | OFF\"); 
     //
     
     
@@ -497,7 +498,7 @@ LANG:1 0
   string previousAlias=this.name();
   this.name(previousAlias+\"_N\"+node);  
 }" 0
- E 2 1 3 2 1 E U  0 E 18 61 61 78
+ E 2 1 3 2 1 E U  0 E 18 61 62 78
 0 2 2 "0s" 0 0 0 192 0 0  18 61 1
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
@@ -715,7 +716,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 18 94 59 111
+E E 2 1 3 2 1 E U  0 E 18 94 60 111
 0 2 2 "0s" 0 0 0 192 0 0  18 94 1
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
