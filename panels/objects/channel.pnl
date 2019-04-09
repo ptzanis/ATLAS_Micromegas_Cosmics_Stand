@@ -83,9 +83,11 @@ void tripRecovery(string channel)
         if(!statusOnOff)      
         {
           
-        float previousVoltage;
-        dpGet(\"CAEN/\"+channel+\".settings.v0\",previousVoltage);        
-        previousVoltage=previousVoltage-10.0;  
+        float previousVoltage,voltageSub;
+        dpGet(\"CAEN/\"+channel+\".settings.v0\",previousVoltage); 
+        string node=$node; 
+        dpGet(\"N\"+node+\".AutoRecovery.voltageSub\",voltageSub);
+        previousVoltage=previousVoltage-voltageSub;  
 
         dpSet(\"CAEN/\"+channel+\".settings.v0\",previousVoltage);  
         
@@ -244,7 +246,7 @@ EP_setBackColorCB(string dpSource, bool boNewValue)
     bool isOn = 0;
     string dpeNEW;
     bool autoRecoveryStatus;
-    dpGet(\"ALL.AutoRecovery\",autoRecoveryStatus);
+    dpGet(\"N\"+node+\".AutoRecovery.Status\",autoRecoveryStatus);
     dpGet(\"N\"+node+\".Mapping.\"+dpe+\".Channel\" ,dpeNEW);
     
     dpGet(\"CAEN/\"+dpeNEW+\".actual.isOn:_original.._value\", isOn);
