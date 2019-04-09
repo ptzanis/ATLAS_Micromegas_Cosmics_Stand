@@ -239,6 +239,13 @@ for(int i=1;i<=4;i++)
      elements[count+29]=makeDynString(\"\",\"runStatus\"); 
      types[count+29]=makeDynInt(0,DPEL_BOOL);
      
+     elements[count+30]=makeDynString(\"\",\"AutoRecovery\",\"\"); 
+     types[count+30]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+31]=makeDynString(\"\",\"\",\"Status\"); 
+     types[count+31]=makeDynInt(0,0,DPEL_BOOL);  
+     elements[count+32]=makeDynString(\"\",\"\",\"voltageSub\"); 
+     types[count+32]=makeDynInt(0,0,DPEL_FLOAT);   
+     
 int x=dpTypeCreate(elements,types);
 
  if (x == 0){
@@ -763,7 +770,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
-0  30.29735716511279 247.7388228761087 265.2973571651128 428.8363353307136
+0  30.29735716511279 247.7388228761087 265.2973571651128 428.8363353307137
 "main()
 {
   emailTable.tableMode(TABLE_SELECT_BROWSE);
@@ -802,7 +809,7 @@ LANG:1 2 #1
 LANG:1 2 #2
 10 0
 1
-LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 34 MS Shell Dlg 2,-1,7,5,50,0,0,0,0,0
 0 0 1 1 1 7
 1 0
 13 38
@@ -879,7 +886,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  94 435 203 465
+0  94 435 203 465.0000000000001
 
 T 
 1
