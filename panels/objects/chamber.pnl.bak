@@ -1,0 +1,121 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 433 236 N "WF_PanelBackground" 5
+"$chamberName"
+"$node"
+"$sector"
+"$x"
+"$y"
+"main()
+{
+  
+      string chName = $chamberName;
+      string node=$node; 
+      string sector=$sector;
+      dyn_string chamberMappingStrips,chamberMappingDrift;
+      dyn_string  dpes;
+      dyn_string  dpesAlias;
+      int y = $y;
+      int x = $x; 
+      int counterChannel=1; 
+      
+       addSymbol(myModuleName(), myPanelName(),\"objects/chamberTitle.pnl\", \"chamberTitle_pnl_Ref_\" + chName,
+              makeDynString(\"$title:\" + chName, \"$x:\" + x, \"$y:\" + y), x, y, 0, .95, 1);
+      
+      
+      dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",chamberMappingStrips);
+      dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",chamberMappingDrift);
+
+        for (int i = 1; i <= dynlen(chamberMappingStrips); i++){ 
+               dpes[counterChannel] =chamberMappingStrips[i];
+          
+              counterChannel++;        
+        }
+        
+        for (int i = 1; i <= dynlen(chamberMappingDrift); i++){ 
+              dpes[counterChannel] =chamberMappingDrift[i];
+            
+              counterChannel++;        
+        }
+        
+        
+        y = y + 20;
+        for (int i = 1; i <= (dynlen(chamberMappingStrips)+dynlen(chamberMappingDrift)); i++){
+               addSymbol(myModuleName(), myPanelName(), \"objects/channel.pnl\", \"channel_pnl_Ref_\" + chName + \"_\" + dpes[i],
+                          makeDynString(\"$node:\"+node,\"$chName:\" + chName, \"$dpe:\" +dpes[i], \"$x:\" + x, \"$y:\" + y,\"$sector:\"+sector), x + 2, y, 0, 1, 0.9);        
+            
+            y = y + 18;
+        }
+        
+        
+  
+    
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 209 216 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  207 212 283 232
+
+T 
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  enableAllCheckboxes();
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

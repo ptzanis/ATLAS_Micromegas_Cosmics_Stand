@@ -1,0 +1,113 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 364 436 N "_3DFace" 0
+E E E E E 1 -1 -1 0  80 50
+""0  1
+E E 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+29 2
+"ebrowser"
+""
+1 0 0 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  1 0 320 390
+16 Shell.Explorer.2
+0
+"main()
+{
+  this.Navigate(\"https://op-webtools.web.cern.ch/op-webtools/vistar/vistars.php\");
+}" 0
+13 5
+"PUSH_BUTTON2"
+""
+1 300 929.7236842105262 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+0
+1
+LANG:1 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  -1 313 322 404
+
+T 
+1
+LANG:1 0 
+E E E E
+6 6
+"level2Background"
+""
+1 10 150 E E E 1 E 1 E N "STD_textfield_text" E N "white" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E 1 0 0.7499999999999999 0 0 1 E 0 0 320 400
+6 7
+"RECTANGLE20"
+""
+1 980 20 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 2 1 E 1 0 1 50 5 2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 11 46 210 245
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -1,0 +1,425 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 790 191 N "_3DFace" 3
+"$layer"
+"$mode"
+"$type"
+"main()
+{
+   string type=$type;
+   string layer=$layer; 
+   string mode=$mode;
+}" 0
+ E E E E 1 -1 -1 0  7.999999999999996 -2
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+30 0
+"nodeFrame"
+""
+1 28 41 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.952615250375685 0 1 23.32677298948082 -311 0 E 28 41 421 81
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+13 2
+"node1Button"
+""
+1 95.30166270783872 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  93.30166270783872 12 157.3016627078387 36
+
+T 
+1
+LANG:1 6 Node 1
+"main(mapping event)
+{
+  this.enabled(FALSE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);  
+
+  readyToSet();  
+  
+}" 0
+ E E E
+13 3
+"node2Button"
+""
+1 165.3016627078387 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  163.3016627078387 12 227.3016627078387 36
+
+T 
+1
+LANG:1 6 Node 2
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);  
+  readyToSet();    
+}" 0
+ E E E
+13 4
+"node3Button"
+""
+1 235.3016627078387 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  233.3016627078387 12 297.3016627078387 36
+
+T 
+1
+LANG:1 6 Node 3
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);
+  readyToSet();    
+}" 0
+ E E E
+13 5
+"node4Button"
+""
+1 305.3016627078387 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  303.3016627078387 12 367.3016627078387 36
+
+T 
+1
+LANG:1 6 Node 4
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE); 
+  readyToSet();    
+}" 0
+ E E E
+30 6
+"wedge2frame"
+""
+1 28 41 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.9668367346938775 0 1 369.2302341364101 -41 0 E 28 41 421 81
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 7
+"wedge2text"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 374.1033254156772 -37 0 E 30 50 109 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 10 Wedge #2 :
+13 8
+"node5Button"
+""
+1 490.6033254156774 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  488.6033254156774 12 552.6033254156774 36
+
+T 
+1
+LANG:1 6 Node 5
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node6Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);
+  readyToSet();    
+}" 0
+ E E E
+13 9
+"node6Button"
+""
+1 560.6033254156774 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  558.6033254156774 12 622.6033254156774 36
+
+T 
+1
+LANG:1 6 Node 6
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node7Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);
+  readyToSet();    
+}" 0
+ E E E
+13 10
+"node7Button"
+""
+1 630.6033254156774 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  628.6033254156774 12 692.6033254156774 36
+
+T 
+1
+LANG:1 6 Node 7
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);  
+  node8Button.enabled(TRUE);    
+  readyToSet();    
+}" 0
+ E E E
+13 11
+"node8Button"
+""
+1 700.6033254156774 18 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  698.6033254156774 12 762.6033254156774 36
+
+T 
+1
+LANG:1 6 Node 8
+"main(mapping event)
+{
+    this.enabled(FALSE);
+  node1Button.enabled(TRUE);
+  node2Button.enabled(TRUE);
+  node3Button.enabled(TRUE);
+  node4Button.enabled(TRUE);
+  node5Button.enabled(TRUE);
+  node6Button.enabled(TRUE);  
+  node7Button.enabled(TRUE); 
+  readyToSet();    
+}" 0
+ E E E
+30 13
+"FRAME1"
+""
+1 28 41 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.952615250375685 0 1 -17.1732270105194 -41.00000000000001 0 E 28 41 421 81
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 1
+"nodeText"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12.1983372921615 -37 0 E 30 50 75 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 5 Node:
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

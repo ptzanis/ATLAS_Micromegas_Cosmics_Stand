@@ -1,0 +1,2515 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 160 198 N "_3DFace" 7
+"$layer"
+"$mode"
+"$node"
+"$sector"
+"$type"
+"$x"
+"$y"
+E E E E E 1 -1 -1 0  -1 21
+""0  1
+E "     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     #uses \"HVMMGeneral.ctl\"
+     
+// ------------------------ General
+
+  void alarmColor(string modeType)
+{
+     dyn_errClass err;
+  string alarmMode,channel;
+ 
+  
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+ 
+ dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channel);
+
+  if( !dpExists( \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\") || !dpExists( \"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  dpConnect(\"EP_setBackColorCB\", 
+            \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
+   
+  // ---Notification---- start
+  
+  dpConnect(\"notificationEmail\", \"CAEN/\"+channel+\".actual.Trip:_online.._value\");
+  
+  // ---Notification---- end  
+  
+ //edit 
+  if(strlen(alias)==4)
+  {
+   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"isOn\"+\":_online.._value\");
+   }
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");
+ 
+ 
+   
+}
+  
+  //Notification Email
+void notificationEmail(string dpSourceTrip, float fNewValueIsTrip)
+{
+  string nodeSubs,alias;
+  dyn_string recipientsEmail;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+  if(fNewValueIsTrip)
+  {
+    if(statusEmail.backCol==\"Green\")
+    {
+      dpGet(\"ALL.Notification.Email.Recipients\",recipientsEmail);
+      
+      for(int i=1;i<=dynlen(recipientsEmail);i++)
+      {
+         alertViaEmail(recipientsEmail[i], \"HVStation@cern.ch\", \"HVStation: [TRIP] N\"+node+\"|\"+type+\"|\"+alias, \"Node \"+node+\" |  Chamber \"+type+\" | Section \"+alias+\" Tripped ! \"+\"\\n\"+\" Please check!\");       
+      }
+    }
+    
+    
+  }
+
+  
+
+  
+  
+}  
+
+    
+void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2,float fNewValueVoltage,string dpSource3,bool fNewValueIsOn)
+{
+  float downLimit,upLimit;
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+  if(!alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimit);
+
+    if (fNewValueVoltage > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+   if (fNewValueVoltage > downLimit && fNewValueVoltage < upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+   if (fNewValueVoltage < downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+    
+    
+  } 
+  if(alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Current.upLimit\",upLimit);
+
+    if (fNewValueCurrent > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+   if (fNewValueCurrent > downLimit && fNewValueCurrent < upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+   if (fNewValueCurrent < downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+  }   
+  
+  
+    if(!fNewValueIsOn)
+      setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
+  
+  
+}  
+
+void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,float fNewValueCurrent,string dpSource5,bool fNewValueIsOn){
+ 
+  float voltageUpLimit,currentDownLimit;
+  string objectName=this.name();
+  string layerFromObject;
+  dyn_int matrixStart;
+  
+  dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpLimit);
+  dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownLimit);
+  
+  string sectionChamber=substr(objectName,0,4);
+  string layerNumber=substr(objectName,1,1);
+      //Voltage  
+    if(fNewValueVoltage>voltageUpLimit && fNewValueIsOn)
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",1);    
+    }
+    else
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",0);              
+    }
+      //Current
+    if(fNewValueCurrent<currentDownLimit && fNewValueIsOn)
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",1);               
+    }
+    else
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",0);                          
+    }  
+
+      dyn_string layerChannels=dpNames(\"N\"+node+\".Mapping.L\"+layerNumber+\"*{R,L}*\",\"HVSetup\");  
+
+      int resultVoltage=0;
+      int resultCurrent=0;
+      int countVoltage,countCurrent;
+      for(int i=1;i<=dynlen(layerChannels);i++)
+      {
+        resultVoltage=0;
+        resultCurrent=0;
+        dpGet(layerChannels[i]+\".isVoltageGood\",resultVoltage);
+        countVoltage=countVoltage+resultVoltage;
+        dpGet(layerChannels[i]+\".isCurrectGood\",resultCurrent);
+        countCurrent=countCurrent+resultCurrent;        
+      }
+     
+      
+      
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Voltage\",countVoltage);
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Current\",countCurrent);
+  
+          
+}
+
+
+dyn_string returnAliasAndNode(string objectName)
+{
+  
+ string nodeSubs,alias;
+//  objectName=this.name();
+ if(mode==\"ValidationQA\")
+  {
+  if(strlen(objectName)==7)
+    {
+      alias=substr(objectName,0,4); 
+      nodeSubs=substr(objectName,5,2); 
+    }
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }
+  } 
+ if(mode==\"CosmicsBasic\")
+  {
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }
+    if(strlen(objectName)==4)
+    {
+      alias=substr(objectName,0,1); 
+      nodeSubs=substr(objectName,2,2); 
+    }        
+  }
+ if(mode==\"CosmicsExtra\")
+  {
+  if(strlen(objectName)==7)
+    {
+      alias=substr(objectName,0,4); 
+      nodeSubs=substr(objectName,5,2); 
+    }
+    if(strlen(objectName)==6)
+    {
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+    }    
+  }  
+ 
+  dyn_string retNodeAlias;
+  dynAppend(retNodeAlias,nodeSubs); 
+  dynAppend(retNodeAlias,alias);   
+  
+return retNodeAlias;
+    
+}
+
+void hvChannelSetup(string sectionObject,int y=201){
+  
+    
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(sectionObject)[1];
+  alias=returnAliasAndNode(sectionObject)[2];
+
+  if(y==201)
+  ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias,\"$y:\"+y));
+  if(y==43)
+  ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_Info_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias,\"$y:\"+y));
+  
+}
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 41
+"D2Cosmics"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+      this.name(\"D\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+     this.toolTipText(this.name());
+             alarmColor(mode);
+ }" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.402132026224817 0 0.6743884742951908 -7.143911770175144 -31.80690298507464 1 E 67.5 234 306 250
+10 52
+"S2"
+""
+1 17.5 54 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+     this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+            alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4012907458352249 0 0.6853174603174605 -7.087125343877595 -34.36428571428576 1 E 5 17.5 54
+357.5 54
+306.5000000000001 234
+67.5 234
+17.5 54
+ 1
+2 78
+"S2_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+78 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+     this.name(\"L\"+layer+\"S\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+}
+
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E 1 0 1.088499358700291 18.40585882280745 34.94925676236204 0 E 35 13 65 26
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 79
+"D2_Cosmics_Text"
+""
+1 62.24807023939777 123.9888059701491 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+79 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM2\" || type==\"LM2\") 
+    this.name(\"L\"+layer+\"D\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,2,1)); 
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 62.24807023939777 123.9888059701491 92 137
+0 2 2 "0s" 0 0 0 192 0 0  62.24807023939777 123.9888059701491 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 21
+"R8"
+""
+1 410 210 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4007726921372793 0 0.6934701492537312 -28.3168037762845 -143.1332204411885 1 E 5 410 210
+240 210
+240.0000000000003 270
+393.0000000000003 270
+410 210
+ 1
+10 22
+"L8"
+""
+1 240 210 E E E 1 E 0 E N {0,0,0} E N "white" E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4007726921372793 0 0.6934701492537312 -28.3168037762845 -143.1332204411885 1 E 7 240 210
+70 210
+87.00000000000023 270
+240.0000000000003 270
+240 210
+240 210
+240 210
+ 1
+10 23
+"R7"
+""
+1 393.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4007726921372793 0 0.6934701492537312 -28.11641743021576 -143.1332204411885 1 E 5 393.0000000000003 270
+240.0000000000003 270
+239 330
+373.9999999999999 330
+393.0000000000003 270
+ 1
+10 24
+"L7"
+""
+1 240.0000000000003 270 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+  this.toolTipText(this.name());
+      alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4007726921372793 0 0.6934701492537312 -28.3168037762845 -143.1332204411885 1 E 5 240.0000000000003 270
+87.00000000000023 270
+104.0000000000001 330
+239 330
+240.0000000000003 270
+ 1
+10 25
+"R6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.4007726921372793 0 0.6934701492537312 -29.69053224361701 -143.3496383516363 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+10 26
+"L6"
+""
+1 375.9999999999999 330 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.4007726921372793 0 0.6934701492537312 164.0540884496095 -143.1332204411885 1 E 5 375.9999999999999 330
+240 330
+240 390
+360 390
+375.9999999999999 330
+ 1
+6 39
+"D2"
+""
+1 67.5 234 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+    if(type==\"SM2\" || type==\"LM2\")
+      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+    
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+   this.toolTipText(this.name());  
+          alarmColor(mode); 
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.3975334073191389 0 0.6743884742951908 -6.370721480186774 -30.41562349113769 1 E 67.5 234 306 250
+2 68
+"L8_Text"
+""
+1 34 18 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+68 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 34 18 64 31
+0 2 2 "0s" 0 0 0 192 0 0  34 18 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 69
+"PRIMITIVE_TEXT3"
+""
+1 57.00869911211595 128.0067049319456 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+69 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    if(type==\"SM2\" || type==\"LM2\")
+      this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+    
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3));  
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 57.00869911211595 128.0067049319456 87 141
+0 2 2 "0s" 0 0 0 192 0 0  57.00869911211595 128.0067049319456 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 70
+"L7_Text"
+""
+1 34 61.49551090209505 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+70 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 34 61.49551090209505 64 74
+0 2 2 "0s" 0 0 0 192 0 0  34 61.49551090209505 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 71
+"L6_Text"
+""
+1 34 97.49551090209505 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+71 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 34 97.49551090209505 64 110
+0 2 2 "0s" 0 0 0 192 0 0  34 97.49551090209505 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 72
+"R8_Text"
+""
+1 81 18 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+72 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81 18 111 31
+0 2 2 "0s" 0 0 0 192 0 0  81 18 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 73
+"R7_Text"
+""
+1 81 61.49551090209505 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+73 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81 61.49551090209505 111 74
+0 2 2 "0s" 0 0 0 192 0 0  81 61.49551090209505 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 74
+"R6_Text"
+""
+1 81 97.49551090209505 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+74 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+ if(type==\"SM2\" || type==\"LM2\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+   if(type==\"SM2\" || type==\"LM2\")   
+    {
+      this.visible(TRUE);      
+    }
+  }
+
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81 97.49551090209505 111 110
+0 2 2 "0s" 0 0 0 192 0 0  81 97.49551090209505 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 32
+"L5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5326786588350458 0 0.6305970149253731 196.8444132617724 -249.2611940298508 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 34
+"L3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 29
+"R3"
+""
+1 341.9999999999999 500 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 341.9999999999999 500
+240.4999999999999 500
+240 549.5
+334 550
+341.9999999999999 500
+ 1
+10 30
+"R2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5428812447277156 0 0.6305970149253731 -62.48599883558109 -249.2611940298508 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+10 31
+"R1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+     
+     
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5455599350799903 0 0.6305970149253731 -63.36193058077492 -249.2611940298508 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+10 27
+"R5"
+""
+1 240 400 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -58.70845017435068 -249.2611940298508 1 E 5 240 400
+240.5 450
+351 450
+360 400
+240 400
+ 1
+10 36
+"L1"
+""
+1 327.0000000000001 601 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5190415637260796 0 0.6305970149253731 193.3485376398482 -249.2611940298508 1 E 5 327.0000000000001 601
+242.0000000000001 601
+241.5 650
+319 650
+327.0000000000001 601
+ 1
+6 40
+"D1"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if(type==\"SM1\" || type==\"LM1\")
+    this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+  
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }  
+   this.toolTipText(this.name()); 
+        alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 1.860394790294382 0 0.7336753731343284 -173.6758218531913 -41.34870120551105 1 E 108.5000000000001 275 153 289
+2 55
+"L5_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E 1 0 1.088499358700291 0 -0.9734929457031996 0 E 35 13 65 26
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 56
+"R5_Text"
+""
+1 81.86836547665263 13.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81.86836547665263 13.2518656716417 111 26
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 13.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 67
+"D1_Text"
+""
+1 60.71085375325288 161.3134328358207 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+67 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if(type==\"SM1\" || type==\"LM1\")
+    this.name(\"L\"+layer+\"D\"+\"_N\"+node);
+  
+if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }  
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 60.71085375325288 161.3134328358207 90 174
+0 2 2 "0s" 0 0 0 192 0 0  60.71085375325288 161.3134328358207 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 65
+"L1_Text"
+""
+1 35.35377987569905 137.9999999999999 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+65 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 35.35377987569905 137.9999999999999 65 151
+0 2 2 "0s" 0 0 0 192 0 0  35.35377987569905 137.9999999999999 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 66
+"R1_Text"
+""
+1 82 138 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+66 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 82 138 112 151
+0 2 2 "0s" 0 0 0 192 0 0  82 138 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 64
+"R2_Text"
+""
+1 82 105 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+64 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 82 105 112 118
+0 2 2 "0s" 0 0 0 192 0 0  82 105 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 35
+"L2"
+""
+1 240 549.5 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 240 549.5
+334 550
+327.0000000000001 601
+242.0000000000001 601
+240 549.5
+ 1
+2 63
+"L2_Text"
+""
+1 34.80549989907061 104.9794776119402 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+63 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 34.80549989907061 104.9794776119402 64 118
+0 2 2 "0s" 0 0 0 192 0 0  34.80549989907061 104.9794776119402 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 61
+"L3_Text"
+""
+1 35.00869911211623 74.52425373134315 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+61 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 35.00869911211623 74.52425373134315 65 88
+0 2 2 "0s" 0 0 0 192 0 0  35.00869911211623 74.52425373134315 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 62
+"R3_Text"
+""
+1 81.86836547665263 75.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+62 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81.86836547665263 75.2518656716417 111 88
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 75.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 28
+"R4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5315712187958881 0 0.6305970149253731 -59.24002139314644 -249.2611940298508 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+2 60
+"R4_Text"
+""
+1 81.86836547665263 43.2518656716417 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 81.86836547665263 43.2518656716417 111 56
+0 2 2 "0s" 0 0 0 192 0 0  81.86836547665263 43.2518656716417 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 33
+"L4"
+""
+1 351 450 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);      
+    }
+  }
+    this.toolTipText(this.name());
+     alarmColor(mode);
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E -0.5315712187958881 0 0.6305970149253731 196.4457348476756 -249.2611940298508 1 E 5 351 450
+240.5 450
+240.4999999999999 500
+341.9999999999999 500
+351 450
+ 1
+2 59
+"L4_Text"
+""
+1 35 43 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+      hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+59 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"  main()
+{
+ if(type==\"SM1\" || type==\"LM1\")   
+  {
+  string previousName=this.name();
+  string newName=\"L\"+layer+previousName+\"_N\"+node;
+  this.name(newName); 
+  }
+  
+ if(mode==\"ValidationQA\" || mode==\"CosmicsExtra\") 
+  {
+  if(type==\"SM1\" || type==\"LM1\")
+    {
+      this.visible(TRUE);  
+    }
+  }
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,4)); 
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 35 43 65 56
+0 2 2 "0s" 0 0 0 192 0 0  35 43 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+10 51
+"S1"
+""
+1 67.50000000000011 25 E E E 1 E 0 E N {0,0,0} E N "white" E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+    if(type==\"SM1\" || type==\"LM1\")  
+        this.name(\"L\"+layer+\"S\"+\"_N\"+node);
+    
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }    
+
+  
+  
+    alarmColor(mode);
+    
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 0.5213797928899054 0 0.628 -29.60629222517983 -12.38656716417902 1 E 4 67.50000000000011 25
+307.5 25
+266.1405375139977 275
+108.5000000000001 275
+ 1
+6 42
+"D1Cosmics"
+""
+1 108.5000000000001 275 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+     if(type==\"SM1\" || type==\"LM1\") 
+        this.name(\"D\"+\"_N\"+node);
+
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  } 
+  this.toolTipText(this.name());   
+
+    alarmColor(mode);  
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 1.838247233267068 0 0.7707296849087895 -172.4908825251229 -51.64220563847428 1 E 108.5000000000001 275 153 289
+2 80
+"S1_Text"
+""
+1 35 13 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+80 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM1\" || type==\"LM1\") 
+     this.name(\"L\"+layer+\"S\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,0,3)); 
+}
+
+" 0
+ "main(mapping event)
+{
+  hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E 1 0 1.088499358700291 18.37511319038562 45.10970452355606 0 E 35 13 65 26
+0 2 2 "0s" 0 0 0 192 0 0  35 13 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+2 81
+"D1_Cosmics_Text"
+""
+1 63 159 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+81 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+   if(type==\"SM1\" || type==\"LM1\") 
+    this.name(\"L\"+layer+\"D\"+\"_Text_N\"+node);
+   
+if(mode==\"CosmicsBasic\") 
+  {
+   if(type==\"SM1\" || type==\"LM1\")   
+    {
+      this.visible(TRUE);      
+    }
+  }   
+    string textAlias=this.name();
+    this.text(substr(textAlias,2,1)); 
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 63 159 93 172
+0 2 2 "0s" 0 0 0 192 0 0  63 159 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 4 L1L1
+13 82
+"layerButton"
+""
+1 26 171 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ "main(mapping event)
+{
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer \"+layer+\" | Node \"+node+\" (Setup)\", makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type,\"$x:\"+550,\"$y:\"+30));
+}" 0
+ E
+82 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  23.99999999999999 171 112 186
+
+T 
+1
+LANG:1 12 Layer X(eta)
+"main(mapping event)
+{
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     
+       ChildPanelOnCentral(\"objects/layerHVSetup.pnl\", \"Layer \"+layer+\" | Node \"+node+\" (Display)\", makeDynString(\"$node:\"+node,\"$layer:\"+layer,\"$mode:\"+mode,\"$type:\"+type,\"$x:\"+20,\"$y:\"+30));
+}" 0
+ E E "main()
+{
+     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string inOut;
+     string sector=$sector;
+     string layer=$layer;
+     int x=$x;
+     int y=$y;
+   
+   
+   this.name(this.name()+\"_L\"+layer+\"_N\"+node);  
+  
+  
+  if(mode==\"ValidationQA\")
+  {this.visible(TRUE);}  
+  if(layer==1)
+    inOut=\"Eout\";
+  if(layer==2)
+    inOut=\"Ein\";
+  if(layer==3)
+    inOut=\"Sin\";
+  if(layer==4)
+    inOut=\"Sout\";
+  
+  this.text(\"Layer \"+layer+\"(\"+inOut+\")\");
+  
+if(type==\"SM2\" || type==\"LM2\")  
+  {
+//   this.position(x,y);
+    setValue(this.name(),\"position\",x,y);
+  }  
+  
+}" 0
+
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+1 49 "SHAPE_GROUP73" -1
+22 0 
+67 40 31 66 65 36 35 63 30 64 29 62 34 61 33 59 28 60 27 56 32 55 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 50 "SHAPE_GROUP74" -1
+14 0 
+69 39 74 25 26 71 24 70 23 73 21 72 68 22 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 51 "SHAPE_GROUP75" -1
+4 0 
+52 78 79 41 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 52 "SHAPE_GROUP76" -1
+4 0 
+80 51 81 42 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

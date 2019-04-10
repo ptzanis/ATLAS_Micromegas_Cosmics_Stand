@@ -1,0 +1,1306 @@
+V 12
+1
+LANG:1 0 
+PANEL,-1 -1 987 980 N "_3DFace" 0
+E E E E E 1 -1 -1 0  85 111
+""0  1
+E "/*
+bool exportTempPlotFRL(string valueType, dyn_string channels, string start, string end, string folderPath,string node,string chamber,string method,string gas,float offset) {
+
+    dyn_dyn_anytype archivedMassIn,archivedMassOut,archivedDiffMass,archivedPressure;
+    string queryMassIn,queryMassOut,queryDiffMass,queryPressure,currentDate, filePath;
+    float diffMass;
+  
+          queryMassIn = \"SELECT ALL '_original.._stime', '_original.._value'  FROM '\"+channels[1] +  valueType +\"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+          queryMassOut = \"SELECT ALL '_original.._stime', '_original.._value'  FROM '\"+channels[2] +  valueType +\"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+          
+          queryDiffMass = \"SELECT ALL '_original.._stime', '_original.._value'  FROM '\"+channels[3] +  valueType +\"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+          
+          queryPressure = \"SELECT ALL '_original.._stime', '_original.._value'  FROM '\"+channels[4] +  valueType +\"' TIMERANGE(\\\"\" + start + \"\\\",\\\"\" + end +\"\\\",1,0)\";
+        
+        dpQuery(queryMassIn, archivedMassIn);
+        dpQuery(queryMassOut, archivedMassOut);
+        dpQuery(queryDiffMass, archivedDiffMass);
+        dpQuery(queryPressure, archivedPressure);
+          
+          
+        file export;
+        
+        string run;
+        dpGet(\"run.\",run);
+        
+        string batchId;
+        dpGet(node+\".BatchID\",batchId);
+        
+        filePath = PROJ_PATH +\"temp/\"+valueType+\"temp\"+\".dat\";
+
+        export = fopen(filePath, \"a\");
+            
+             
+    fprintf(export,\"%s \\n\",\"Node: \"+node+\"  |   Chamber: \"+chamber+\"  |   Method :  \"+method+\"  |   Gas :  \"+gas+\"  |   Offset :  \"+offset+ \"L/h  | BatchID : \"+batchId);
+    fprintf(export,\"%s \\n\",\"\");
+    fprintf(export, \"%s \\n\",\"Time\"+ \"\\t\" +\"\\t\" + \"\\t\" +\"MF-IN(L/h)\"+ \"\\t\"+ \"MF-OUT(L/h)\"+\"\\t\"+\"QL(L/h)\"+\"\\t\"+\"\\t\"+\"Pressure(mbar)\");
+     
+   
+     
+    for (int j = 3 ;j <= dynlen(archivedDiffMass); j++) 
+    {  
+         diffMass=fabs(archivedMassOut[j][3]-archivedMassIn[j][3]-offset);
+      fprintf(export, \"%s \\t %3.5f \\t %3.5f \\t %3.5f \\t %3.5f\\n\",formatTime(\"%m/%d/%Y_%H:%M:%S\", archivedDiffMass[j][2]), archivedMassIn[j][3],archivedMassOut[j][3],diffMass,archivedPressure[j][3]);
+    }
+   fprintf(export,\"%s \\n\",\"\");   
+       
+   fclose(export);
+   
+   return TRUE;
+   
+
+   
+ } 
+*/
+
+
+int runTerminal(string path,int run,string dirPath)
+{
+return system(\"sh \"+path);  
+}
+
+int movePlot(int run,string dirPath)
+{
+return system(\"mv \"+PROJ_PATH+\"temp/test.png \"+dirPath+\"run_\"+run+\"_plot.png\");
+}
+" 0
+ 2
+"CBRef" "1"
+"EClose" E
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 3
+"PUSH_BUTTON1"
+""
+1 64.92198028975733 46.2499999999998 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  63 100 146 136
+
+T 
+1
+LANG:1 3 SM1
+"#uses \"ScriptsLib.ctl\"
+
+main()
+{
+dataArchiveListChamber(\"SM1\");
+  
+
+}" 0
+ E E E
+25 4
+"testTable"
+""
+1 145.0638266509433 178.2333229519417 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,11,-1,5,75,0,0,0,0,0
+0  55 184 948 533
+"main()
+{
+ setInputFocus(myModuleName(),myPanelName(),\"testTable\");
+testTable.tableMode(TABLE_SELECT_BROWSE);
+testTable.selectByClick(TABLE_SELECT_LINE);
+}" 0
+"main(int row, string column, string value)
+{
+    chamberField.text(\"\");
+    nodeField.text(\"\");
+    gasField.text(\"\");
+    methodField.text(\"\");
+    offsetField.text(\"\");
+    startTimeField.text(\"\");
+    endTimeField.text(\"\");
+    batchIdField.text(\"\");
+}" 0
+ 1 0 1 9 0 "Chamber" 5 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 7 Chamber
+E
+1
+LANG:1 0 
+
+80 "GasLeak" 4 1 0 "s" 1
+LANG:1 8 QL (L/h)
+E
+1
+LANG:1 0 
+
+70 "Method" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 6 Method
+E
+1
+LANG:1 0 
+
+70 "Gas" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 3 Gas
+E
+1
+LANG:1 0 
+
+70 "Node" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 Node
+E
+1
+LANG:1 0 
+
+70 "Offset" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 6 Offset
+E
+1
+LANG:1 0 
+
+70 "StartTime" 10 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 9 StartTime
+E
+1
+LANG:1 0 
+
+140 "EndTime" 10 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 7 EndTime
+E
+1
+LANG:1 0 
+
+140 "BatchID" 11 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 12 MTF Batch ID
+E
+1
+LANG:1 0 
+
+163 
+17 17 10 0
+1
+LANG:1 27 Utopia,11,-1,5,75,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 5
+"PUSH_BUTTON2"
+""
+1 164.9219802897574 117.0499999999998 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  163 100 247 136
+
+T 
+1
+LANG:1 3 SM2
+"#uses \"ScriptsLib.ctl\"
+main()
+{
+
+dataArchiveListChamber(\"SM2\");
+
+
+}" 0
+ E E E
+13 6
+"PUSH_BUTTON3"
+""
+1 264.1057997342019 117.5062499999998 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  263 100 346 136
+
+T 
+1
+LANG:1 3 LM1
+"#uses \"ScriptsLib.ctl\"
+main()
+{
+
+dataArchiveListChamber(\"LM1\");
+
+
+
+}" 0
+ E E E
+13 7
+"PUSH_BUTTON4"
+""
+1 365.0491514113506 117.0374999999998 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  363 100 447 136
+
+T 
+1
+LANG:1 3 LM2
+"#uses \"ScriptsLib.ctl\"
+main()
+{
+
+dataArchiveListChamber(\"LM2\");
+
+
+
+
+}" 0
+ E E E
+2 9
+"PRIMITIVE_TEXT1"
+""
+1 210 730 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 92 730 210 756
+0 2 2 "0s" 0 0 0 194 0 0  210 730 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Start Time:
+2 10
+"PRIMITIVE_TEXT2"
+""
+1 544.3814205694067 730.1304936377752 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 435 730.1304936377752 544.3814205694067 756
+0 2 2 "0s" 0 0 0 194 0 0  544.3814205694067 730.1304936377752 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 9 End Time:
+14 11
+"startTimeField"
+""
+1 227.9999999999999 732.0749999999998 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  226 726 408 758
+2 "0s" 0 0 0 0 0 -1  E E E
+14 12
+"endTimeField"
+""
+1 562.3814205694066 734.1304936377753 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  561 728 743 760
+2 "0s" 0 0 0 0 0 -1  E E E
+13 13
+"PUSH_BUTTON5"
+""
+1 270 400 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  346 573 559 621
+
+T 
+1
+LANG:1 21 Set Export Parameters
+"main()
+{
+  dyn_int selected;
+  dyn_dyn_string lines;
+  string startTime,endTime,node,chamber,gas,method,offset,batchID;
+
+  selected=testTable.getSelectedLines();
+  
+  for(int i=1; i<= dynlen(selected);i++)
+  {
+    lines[i]=testTable.getLineN(selected[i]);    
+  }
+
+    chamber=(lines[1][1]);
+    method=(lines[1][3]);
+    gas=(lines[1][4]);
+    node=(lines[1][5]);
+    offset=(lines[1][6]);
+    startTime=(lines[1][7]);
+    endTime=(lines[1][8]);
+    batchID=(lines[1][9]);
+
+    
+    
+    
+    methodField.text(method);
+    chamberField.text(chamber);
+    gasField.text(gas);
+    nodeField.text(node);
+    startTimeField.text(startTime);
+    endTimeField.text(endTime);
+    offsetField.text(offset);
+    batchIdField.text(batchID);
+    
+    
+  exportButton.enabled(TRUE);
+  if(method==\"FRL\")
+   {
+  exportPlotsButton.enabled(TRUE);
+  }
+
+}" 0
+ E E E
+2 15
+"PRIMITIVE_TEXT12"
+""
+1 360 830 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 336 830 384 852
+0 2 2 "0s" 0 0 0 193 0 0  360 830 1
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Path:
+14 16
+"dirLocation"
+""
+1 374.9254127358492 605.6807862963507 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,50,0,0,0,0,0
+0  391 823 652 861
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  string sPath;
+  sPath = PROJ_PATH+\"Gas_Exported_Data/\";
+  this.text(sPath);
+}" 0
+ E
+13 17
+"PUSH_BUTTON6"
+""
+1 474.6193985849059 563.7154769017982 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,10,-1,5,50,0,0,0,0,0
+0  652 823 690 861
+
+P 
+4294967295
+"pictures/openpanel.png"
+1
+LANG:1 12 PUSH_BUTTON5
+"main()
+{
+   string sPath;
+    string systemName;
+    int iErr;
+	
+    if(shapeExists(\"cbSystem\"))
+        systemName = cbSystem.text;
+    else
+        systemName = \"\";
+  
+    sPath = \"/home/gas/Desktop/Gas_Exported_Data\";
+    iErr = folderSelector( sPath );
+    
+    if(( iErr >= 1 ) && ( strlen( sPath ) > 0 )) {
+	    sPath += \"/\";
+        if (_WIN32) strreplace( sPath, \"/\", \"//\" ); 
+    	strreplace(sPath, \"//\", \"/\");
+        strreplace(sPath, \"//\", \"/\");
+	    // update the widget with the directory path
+        dirLocation.text(sPath);
+}
+  }" 0
+ E E E
+13 18
+"exportButton"
+""
+1 618.8789209905665 597.5257557951657 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  304 877 447 930
+
+T 
+1
+LANG:1 11 Export Data
+"#uses \"ScriptsLib.ctl\"
+main()
+{
+  
+  
+  string node, chamber, method, startTime, endTime,gas;
+   int run;
+  float offset;
+  
+  node=nodeField.text();
+  method=methodField.text();
+  chamber=chamberField.text();
+  startTime=startTimeField.text();
+  endTime=endTimeField.text();
+  offset=offsetField.text();
+  gas=gasField.text();
+  
+  dyn_string archivedDpes;
+  
+  
+  string dirPath=dirLocation.text;
+  
+  checkOrCreateDirectory(dirPath);
+
+
+     dpGet(\"run.\",run);
+    
+  
+  
+  
+ if(method==\"FRL\")
+  {
+      
+  archivedDpes[1]=node+\".massIn\";
+  archivedDpes[2]=node+\".massOut\";
+  archivedDpes[3]=node+\".diffMass\";
+  archivedDpes[4]=node+\".pressure\";
+    
+    if(exportPlotsButton.enabled==FALSE)
+  {
+     run--;
+     dpSet(\"run.\",run);     
+    }
+  
+    
+   if (!exportFRL(\"\", archivedDpes,startTime, endTime, dirPath,node,chamber,method,gas,offset,FALSE)) DebugN(\"File exists in the specify directory. Please change directory or delete old files.\");
+ 
+    this.text(\"Export\"+\"\\n\"+\"Completed!\");
+      delay(2);
+      this.text(\"Export Data\");       
+   
+ 
+ }
+  
+   if(method==\"PDR\")
+  {
+      
+  archivedDpes[1]=\"PDR_\"+node+\".pressure\";
+  archivedDpes[2]=\"PDR_\"+node+\".pressureRef\";
+  archivedDpes[3]=\"PDR_\"+node+\".temperatureRef\";
+
+    
+
+    
+   if (!exportPDR(\"\", archivedDpes,startTime, endTime, dirPath,node,chamber,method,gas,offset)) DebugN(\"File exists in the specify directory. Please change directory or delete old files.\");
+ 
+       this.text(\"Export\"+\"\\n\"+\"Completed!\");
+      delay(2);
+      this.text(\"Export Data\");       
+ 
+ }
+    run++;
+     dpSet(\"run.\",run);   
+    
+   
+   
+   this.enabled(FALSE);
+  
+  
+}" 0
+ E E E
+2 19
+"PRIMITIVE_TEXT13"
+""
+1 211.38864134097 634.5223255184497 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 105 634.5223255184497 211.38864134097 661
+0 2 2 "0s" 0 0 0 194 0 0  211.38864134097 634.5223255184497 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Chamber:
+14 20
+"chamberField"
+""
+1 229.38864134097 638.5598255184495 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  228 633 318 665
+2 "0s" 0 0 0 0 0 -1  E E E
+2 21
+"PRIMITIVE_TEXT14"
+""
+1 656 680 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 594 680 656 706
+0 2 2 "0s" 0 0 0 194 0 0  656 680 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Node:
+14 22
+"nodeField"
+""
+1 675 684.0375 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  673 678 763 710
+2 "0s" 0 0 0 0 0 -1  E E E
+2 25
+"PRIMITIVE_TEXT16"
+""
+1 210 680 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 164 680 210 706
+0 2 2 "0s" 0 0 0 194 0 0  210 680 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Gas:
+14 26
+"gasField"
+""
+1 227.9999999999999 684.0375 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  226 678 316 710
+2 "0s" 0 0 0 0 0 -1  E E E
+2 27
+"PRIMITIVE_TEXT17"
+""
+1 800.797527796496 637.4291294642857 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 712 637.4291294642857 800.797527796496 663
+0 2 2 "0s" 0 0 0 194 0 0  800.797527796496 637.4291294642857 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Method:
+14 28
+"methodField"
+""
+1 818.7975277964958 641.4666294642857 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  818 635 908 667
+2 "0s" 0 0 0 0 0 -1  E E E
+2 29
+"PRIMITIVE_TEXT18"
+""
+1 428.3018657345013 679.5197462845296 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 358 679.5197462845296 428.3018657345013 706
+0 2 2 "0s" 0 0 0 194 0 0  428.3018657345013 679.5197462845296 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Offset:
+14 30
+"offsetField"
+""
+1 444.3018657345013 683.5572462845295 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  443 678 533 710
+2 "0s" 0 0 0 0 0 -1  E E E
+6 31
+"menuField"
+""
+1 0 10 E E E 1 E 1 E N {0,0,0} E N {193,193,193} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 18 0 0.7411764705882352 -9.628537735849243 -67.91176470588235 1 E 0 10 80 180
+2 32
+"PRIMITIVE_TEXT19"
+""
+1 8091.323834688817 780.0000000000017 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E 1.004716981132076 0 1 40.82441364796847 14.00000000000009 0 E 332 0 494 31
+0 2 2 "0s" 0 0 0 193 0 0  413 0 1
+1
+LANG:1 27 Utopia,20,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Data Archive
+30 33
+"FRAME9"
+""
+1 100 62 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 0.9253343285828983 0 0.6060924369747897 -52.51858700249488 41.15336134453769 0 E 100 62 571 181
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 14 Select Chamber
+30 34
+"aliasFrame"
+""
+1 200 42 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 2.044444444444444 0 0.8699776785714293 -368.8888888888889 113.7109374999998 0 E 200 42 651 491
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Archive Data
+2 35
+"PRIMITIVE_TEXT5"
+""
+1 191.7344802897576 167.8788366099984 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 137 167.8788366099984 247 185
+0 2 2 "0s" 0 0 0 193 0 0  191.7344802897576 167.8788366099984 1
+1
+LANG:1 27 Utopia,11,-1,5,75,0,1,0,0,0
+0 1
+LANG:1 16 Select Data Line
+30 36
+"FRAME10"
+""
+1 200 42 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 1.898414640481147 0 0.4990674953806242 -312.0609920539852 525.4569272634942 0 E 200 42 651 491
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 17 Export Parameters
+30 37
+"FRAME11"
+""
+1 200 42 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+37 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 0.9982841654137607 0 0.377469018118722 86.97820521690483 754.6145140903893 0 E 200 42 651 491
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Export Data
+13 39
+"exitButton"
+""
+1 819.2103731469006 946.0525415094515 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  818 937 922 971
+
+T 
+1
+LANG:1 5 Close
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+14 40
+"TEXT_FIELD2"
+""
+1 622.4256764724635 904.1299652303469 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  617 898 691 930
+2 "0s" 0 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+EP_textFieldIn()
+{
+dyn_errClass err;
+
+  if( !dpExists( \"System1:run.:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:run.:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, iNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:run.}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+2 41
+"PRIMITIVE_TEXT20"
+""
+1 653.6418926886797 877.3864122168375 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 635 877.3864122168375 673 899
+0 2 2 "0s" 0 0 0 193 0 0  653.6418926886797 877.3864122168375 1
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 3 Run
+13 42
+"exportPlotsButton"
+""
+1 775.4090949292458 597.2312754548341 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  461 877 604 930
+
+T 
+1
+LANG:1 12 Export Plots
+"#uses \"ScriptsLib.ctl\"
+main()
+{
+  
+  
+  string node, chamber, method, startTime, endTime,gas;
+  
+  float offset;
+  int run;
+  
+  node=nodeField.text();
+  method=methodField.text();
+  chamber=chamberField.text();
+  startTime=startTimeField.text();
+  endTime=endTimeField.text();
+  offset=offsetField.text();
+  gas=gasField.text();
+  
+  dyn_string archivedDpes;
+  
+  
+  string dirPath=dirLocation.text;
+  
+  checkOrCreateDirectory(dirPath);
+
+
+  
+      dpGet(\"run.\",run);
+  
+  
+  if(method==\"FRL\")
+  {
+      
+  archivedDpes[1]=node+\".massIn\";
+  archivedDpes[2]=node+\".massOut\";
+  archivedDpes[3]=node+\".diffMass\";
+  archivedDpes[4]=node+\".pressure\";
+    
+    
+    
+  if (!exportTempPlotFRL(\"\", archivedDpes,startTime, endTime, dirPath,node,chamber,method,gas,offset)) DebugN(\"File exists in the specify directory. Please change directory or delete old files.\");
+  
+    if(exportButton.enabled==FALSE)
+  {
+     run--;
+     dpSet(\"run.\",run);     
+    }
+
+  
+  runTerminal(PROJ_PATH+\"scripts/test.sh\",run,dirPath);     
+  movePlot(run,dirPath); 
+  
+ }
+
+     dpGet(\"run.\",run);
+     run++;
+     dpSet(\"run.\",run);
+   
+      this.text(\"Export\"+\"\\n\"+\"Completed!\");
+      delay(2);
+      this.text(\"Export Plots\");       
+   
+  
+     this.enabled(FALSE);
+  
+  
+}" 0
+ E E E
+2 43
+"PRIMITIVE_TEXT21"
+""
+1 495.0476499326143 637.2723255184499 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 342 637.2723255184499 495.0476499326143 663
+0 2 2 "0s" 0 0 0 194 0 0  495.0476499326143 637.2723255184499 1
+1
+LANG:1 27 Utopia,17,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 13 MTF Batch ID:
+14 44
+"batchIdField"
+""
+1 1308.999375121097 251.6340959821428 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  498 636 672 668
+2 "0s" 0 0 0 0 0 -1  E E E
+30 45
+"FRAME12"
+""
+1 100 62 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+45 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 0 1 0 1 E 0.9253343285828983 0 0.6060924369747897 407.4814129975051 41.15336134453769 0 E 100 62 571 181
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 19 Search MTF Batch ID
+14 52
+"mtfIDSearch"
+""
+1 640.5238249663072 112.6111627592248 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0  639 102 838 138
+3 "14s" 14 0 0 1 0 -1  E E E
+2 53
+"PRIMITIVE_TEXT22"
+""
+1 630.5238249663072 108.1361627592249 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"dashclr"N "_Transparent"
+E E 0 1 1 2 1 E U  0 E 505 108.1361627592249 630.5238249663072 130
+0 2 2 "0s" 0 0 0 194 0 0  630.5238249663072 108.1361627592249 1
+1
+LANG:1 27 Utopia,14,-1,5,75,0,0,0,0,0
+0 1
+LANG:1 13 MTF Batch ID:
+13 54
+"PUSH_BUTTON8"
+""
+1 876 118 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+0
+1
+LANG:1 27 Utopia,12,-1,5,75,0,0,0,0,0
+0  842 102 915 138
+
+T 
+1
+LANG:1 6 Search
+"main()
+{
+  testTable.deleteAllLines();
+ 
+string fileData;
+int length;
+int numberOfExportedFiles;
+
+fileToString (\"logbook.ctl\", fileData);
+
+length=strlen(fileData);
+//DebugN(length);
+int standardLength=207;
+
+numberOfExportedFiles=length/standardLength;
+
+string nodeLocation,chamberLocation,gasLocation,methodLocation,startTimeLocation,endTimeLocation,offsetLocation,gasLeakLocation,batchIdLocation;
+
+dyn_string node,chamber,method,gas,startTime,endTime,offset,gasLeak,batchID;
+
+int lenOffset,lenOfOffsetFinal;
+
+
+for(int i=0;i<numberOfExportedFiles;i++)
+{
+  
+ nodeLocation=6+i*standardLength; 
+ chamberLocation=26+i*standardLength;
+ methodLocation=45+i*standardLength;
+ gasLocation=61+i*standardLength;
+ startTimeLocation=87+i*standardLength;
+ endTimeLocation=121+i*standardLength;
+ offsetLocation=151+i*standardLength;
+ gasLeakLocation=168+i*standardLength;
+ batchIdLocation=191+i*standardLength;
+ 
+ node[i+1]=substr(fileData,nodeLocation,5);
+ chamber[i+1]=substr(fileData,chamberLocation,3);
+ method[i+1]=substr(fileData,methodLocation,3);
+ gas[i+1]=substr(fileData,gasLocation,5);
+ startTime[i+1]=substr(fileData,startTimeLocation,17);
+ endTime[i+1]=substr(fileData,endTimeLocation,17);
+ offset[i+1]=substr(fileData,offsetLocation,5);
+ gasLeak[i+1]=substr(fileData,gasLeakLocation,6);
+ batchID[i+1]=substr(fileData,batchIdLocation,14);
+ 
+ 
+ if(batchID[i+1]==mtfIDSearch.text()) 
+ {
+testTable.appendLine(\"Chamber\",chamber[i+1],\"Method\",method[i+1],\"Gas\",gas[i+1],\"Node\",node[i+1],\"Offset\",offset[i+1],\"StartTime\",startTime[i+1],\"EndTime\",endTime[i+1],\"GasLeak\",gasLeak[i+1],\"BatchID\",batchID[i+1]);
+  }
+   
+ /*
+DebugN(chamber[i+1]);
+DebugN(method[i+1]);
+DebugN(gas[i+1]);
+DebugN(node[i+1]);
+DebugN(startTime[i+1]);
+DebugN(endTime[i+1]);
+DebugN(offset[i+1]);
+DebugN(gasLeak[i+1]);
+*/
+
+}
+
+
+    exportButton.enabled(\"FALSE\");
+    exportPlotsButton.enabled(\"FALSE\");
+    
+    chamberField.text(\"\");
+    nodeField.text(\"\");
+    gasField.text(\"\");
+    methodField.text(\"\");
+    offsetField.text(\"\");
+    startTimeField.text(\"\");
+    endTimeField.text(\"\");
+    batchIdField.text(\"\");
+  
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

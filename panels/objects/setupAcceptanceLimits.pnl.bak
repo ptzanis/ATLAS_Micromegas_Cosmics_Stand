@@ -1,0 +1,670 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 479 378 N "_3DFace" 0
+E E E E E 1 -1 -1 0  -204.4999999999999 1
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.314925373134328 0 1 -203.1850746268656 -21 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 151.5000000000001 6.5 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 151.5000000000001 6.5 331 32
+0 2 2 "0s" 0 0 0 192 0 0  151.5000000000001 6.5 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 17 Acceptance Limits
+2 2
+"PRIMITIVE_TEXT3"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -9.999999999999996 14.00000000000001 0 E 30 50 116 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 12 Set Voltage:
+2 3
+"PRIMITIVE_TEXT4"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9999999999999999 0 0.9999999999999999 -12 174 0 E 30 50 120 68
+0 2 2 "0s" 0 0 0 192 0 0  30 50 1
+1
+LANG:1 27 Utopia,-1,16,5,50,0,1,0,0,0
+0 1
+LANG:1 12 Set Current:
+30 4
+"FRAME1"
+""
+1 10 53 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.046511627906977 0 1 -0.4651162790697672 -1 0 E 10 53 441 151
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+30 5
+"FRAME2"
+""
+1 10 53 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.046511627906977 0 1 -0.4651162790697677 160 0 E 10 53 441 151
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 6
+"RECTANGLE1"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 23.99999999999999 0 1 E 18 88 150 110
+6 7
+"RECTANGLE2"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Yellow" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 156 0 1 E 18 88 150 110
+6 8
+"RECTANGLE3"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Green" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 288 0 1 E 18 88 150 110
+14 9
+"voltageDown"
+""
+1 134 118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  132 112 216 146
+3 "3d" 3 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:ALL.AcceptanceLimits.Voltage.downLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:ALL.AcceptanceLimits.Voltage.downLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", iNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ALL.AcceptanceLimits.Voltage.downLimit}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 10
+"voltageUp"
+""
+1 264 118 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  262 112 346 146
+3 "3d" 3 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:ALL.AcceptanceLimits.Voltage.upLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:ALL.AcceptanceLimits.Voltage.upLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, int iNewValue)
+{
+  setValue(\"\", \"text\", iNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ALL.AcceptanceLimits.Voltage.upLimit}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+6 11
+"RECTANGLE4"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Grey" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.2272727272727273 0 1 8.659090909090835 0 1 E 18 88 150 110
+2 12
+"PRIMITIVE_TEXT5"
+""
+1 410 113 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 410 113 440 138
+0 2 2 "0s" 0 0 0 192 0 0  410 113 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
+6 14
+"RECTANGLE6"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Green" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 25.99999999999998 160 1 E 18 88 150 110
+6 15
+"RECTANGLE7"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Yellow" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 158 160 1 E 18 88 150 110
+6 16
+"RECTANGLE8"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 290 160 1 E 18 88 150 110
+14 17
+"currentDown"
+""
+1 136 278 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  134 272 218 306
+3 "3d" 3 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:ALL.AcceptanceLimits.Current.downLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:ALL.AcceptanceLimits.Current.downLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float iNewValue)
+{
+  setValue(\"\", \"text\", iNewValue*1000);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ALL.AcceptanceLimits.Current.downLimit}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 18
+"currentUp"
+""
+1 266 278 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  264 272 348 306
+3 "3d" 3 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:ALL.AcceptanceLimits.Current.upLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:ALL.AcceptanceLimits.Current.upLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float iNewValue)
+{
+  setValue(\"\", \"text\", iNewValue*1000);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ALL.AcceptanceLimits.Current.upLimit}
+// DPConfig {:_online.._value}
+// DPType {int}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+6 19
+"RECTANGLE9"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "Grey" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.2272727272727273 0 1 10.65909090909082 160 1 E 18 88 150 110
+2 20
+"PRIMITIVE_TEXT6"
+""
+1 410 276 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 410 276 453 301
+0 2 2 "0s" 0 0 0 192 0 0  410 276 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 4 [nA]
+2 21
+"PRIMITIVE_TEXT7"
+""
+1 26.74999999999946 112 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1 0 1.03448275862069 -7 1.20689655172413 0 E 26.74999999999946 112 40 137
+0 2 2 "0s" 0 0 0 192 0 0  26.74999999999946 112 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 1 0
+2 22
+"PRIMITIVE_TEXT8"
+""
+1 22.50000000000023 275 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 22.50000000000023 275 36 300
+0 2 2 "0s" 0 0 0 192 0 0  22.50000000000023 275 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 1 0
+13 23
+"setButton"
+""
+1 181.9563539192398 338.7 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  179.9563539192398 329 304.45635391924 355
+
+T 
+1
+LANG:1 3 Set
+"main(mapping event)
+{
+  
+  double voltageDownValue,voltageUpValue,currentDownValue,currentUpValue;
+  
+getValue(\"voltageDown\",\"text\",voltageDownValue);  
+getValue(\"voltageUp\",\"text\",voltageUpValue);  
+getValue(\"currentDown\",\"text\",currentDownValue);  
+getValue(\"currentUp\",\"text\",currentUpValue); 
+  
+dpSet(\"ALL.AcceptanceLimits.Voltage.downLimit\",voltageDownValue); 
+dpSet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpValue); 
+
+dpSet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownValue*0.001); 
+dpSet(\"ALL.AcceptanceLimits.Current.upLimit\",currentUpValue*0.001);
+  
+
+PanelOff();
+
+}" 0
+ E E E
+13 24
+"closeButton"
+""
+1 410 360.7 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+24 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  408 351 470.25 377
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -1,0 +1,433 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1606 763 N "_3DFace" 1
+"$node"
+"main()
+{
+  
+  
+  string node=$node;  
+  string mode;
+  dpGet(\"N\"+node+\".Mode\",mode);
+  dyn_string exceptionInfo;
+  
+    bool isHumOn,isGasOn;
+  dpGet(\"ALL.ExtraMode.MMHumidity\",isHumOn); 
+  dpGet(\"ALL.ExtraMode.Gas\",isGasOn); 
+  
+  
+  if(isGasOn)
+  {
+    addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Inlet\",\"$x:\"+200,\"$y:\"+30,\"$alias:\"+\"Gas-Inlet\",\"$unit:\"+\"L/h\"),200+2,30,0,1,1); 
+    
+    addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Outlet\",\"$x:\"+200,\"$y:\"+49,\"$alias:\"+\"Gas-Outlet\",\"$unit:\"+\"L/h\"),200+2,48,0,1,1);
+     
+    addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Leak\",\"$x:\"+720,\"$y:\"+30,\"$alias:\"+\"Gas-Leak\",\"$unit:\"+\"L/h\"),720+2,30,0,1,1);
+     
+    addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Pressure\",\"$x:\"+1240,\"$y:\"+30,\"$alias:\"+\"Pressure\",\"$unit:\"+\"mbar\"),1240+2,30,0,1,1);
+    
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Inlet_Outlet\",makeDynString(\"N\"+node+\".Gas.Inlet\",\"N\"+node+\".Gas.Outlet\"),
+          25, 70, exceptionInfo, \"_gas_inlet_outlet\", 1, 1,\"\",\"\");
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Leak\",makeDynString(\"N\"+node+\".Gas.Leak\"),
+          550, 70, exceptionInfo, \"_giffppPlot\", 1, 1,\"\",\"\");  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Pressure\",makeDynString(\"N\"+node+\".Gas.Pressure\"),
+          1075, 70, exceptionInfo, \"_giffppPlot\", 1, 1,\"\",\"\");   
+    
+
+    }  
+
+  if(isHumOn && isGasOn)
+  {
+    if(mode==\"ValidationQA\")
+      {  
+    this.size(1606,745);
+    humidityFrame.visible(TRUE);
+    humidityTitle.visible(TRUE);
+    
+  addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Humidity\",\"$x:\"+700,\"$y:\"+400,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"),700+2,400,0,1,1);   
+  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Humidity\",makeDynString(\"N\"+node+\".Gas.Humidity\"),
+          550, 440, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+    }
+     else
+      {
+       this.size(1606,745);
+       ipFrame.visible(TRUE);
+       ipTitle.visible(TRUE);
+       hoFrame.visible(TRUE);
+       hoTitle.visible(TRUE);
+       ipTitle.text(\"Humidity-IP [%]\");
+       hoTitle.text(\"Humidity-HO [%]\");
+         addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N1.Gas.Humidity\",\"$x:\"+400,\"$y:\"+400,\"$alias:\"+\"Humidity-IP\",\"$unit:\"+\"%\"),400+2,400,0,1,1);   
+  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"IP_MM_Humidity\",makeDynString(\"N1.Gas.Humidity\"),
+          220, 440, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+      
+        addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N2.Gas.Humidity\",\"$x:\"+1040,\"$y:\"+400,\"$alias:\"+\"Humidity-HO\",\"$unit:\"+\"%\"),1040+2,400,0,1,1);   
+  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"HO_MM_Humidity\",makeDynString(\"N2.Gas.Humidity\"),
+          860, 440, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+      
+      
+    }
+      
+      
+      
+  }
+  
+    if(isHumOn && !isGasOn)
+  {
+          if(mode==\"ValidationQA\")
+      {  
+          this.size(600,371);
+          FRAME1.size(580,354);
+          chamberText.position(180,0);
+      textField.text(\"Humidity-In\");
+     addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N\"+node+\".Gas.Humidity\",\"$x:\"+200,\"$y:\"+30,\"$alias:\"+\"Humidity-In\",\"$unit:\"+\"%\"),200+2,30,0,1,1);      
+       fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"MM_Humidity\",makeDynString(\"N\"+node+\".Gas.Humidity\"),
+          25, 70, exceptionInfo, \"_giffppPlot\", 1, 1,\"\",\"\"); 
+     }
+  else
+      {
+       
+       this.size(1606,400);
+        FRAME1.visible(FALSE);
+       ipFrame.visible(TRUE);
+       ipTitle.visible(TRUE);
+       ipFrame.position(162,20);
+       ipTitle.position(400,70);
+       hoFrame.position(802,20);
+       hoTitle.position(1046,70);       
+       hoFrame.visible(TRUE);
+       hoTitle.visible(TRUE);
+       textField.visible(FALSE);
+       TEXT_FIELD3.visible(FALSE);
+       TEXT_FIELD4.visible(FALSE);
+       ipTitle.text(\"Humidity-IP [%]\");
+       hoTitle.text(\"Humidity-HO [%]\");
+       
+         addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N1.Gas.Humidity\",\"$x:\"+400,\"$y:\"+40,\"$alias:\"+\"Humidity-IP\",\"$unit:\"+\"%\"),400+2,40,0,1,1);   
+  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"IP_MM_Humidity\",makeDynString(\"N1.Gas.Humidity\"),
+          220, 70, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+      
+        addSymbol(myModuleName(),myPanelName(),\"objects/channelEnvGeneral.pnl\",\"MainPanel\",
+            makeDynString(\"$dpe:\"+\"N2.Gas.Humidity\",\"$x:\"+1040,\"$y:\"+40,\"$alias:\"+\"Humidity-HO\",\"$unit:\"+\"%\"),1040+2,40,0,1,1);   
+  
+      fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"HO_MM_Humidity\",makeDynString(\"N2.Gas.Humidity\"),
+          860, 70, exceptionInfo, \"_giffppPlot\",1, 1,\"\",\"\");
+       
+       
+   
+      }    
+  }
+  
+    
+  
+    
+    
+    
+ 
+}" 0
+ E E E E 1 -1 -1 0  106 41
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+14 1
+"textField"
+""
+1 195 70.8 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  193 66 374 91
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Inlet-Outlet [L/h]\");
+}" 0
+ E
+14 2
+"TEXT_FIELD3"
+""
+1 720 71 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  718 66.2 898.9999999999999 91.19999999999999
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Leak [L/h]\");
+}" 0
+ E
+14 3
+"TEXT_FIELD4"
+""
+1 1245 70.99999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  1243 66.19999999999999 1424 91.19999999999999
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Pressure [mbar]\");
+}" 0
+ E
+30 4
+"FRAME1"
+""
+1 158 8 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.605210420841683 0 1.342205323193916 -252.6232464929859 4.262357414448673 0 E 158 8 1157 272
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 6 MM Gas
+30 5
+"humidityFrame"
+""
+1 158 8 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.6342685370741482 0 1.376425855513308 375.7855711422846 357.9885931558935 0 E 158 8 1157 272
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 11 MM Humidity
+14 6
+"humidityTitle"
+""
+1 720 441 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  718 436.1999999999999 898.9999999999999 461.2
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"MM Humidity [%]\");
+}" 0
+ E
+2 7
+"chamberText"
+""
+1 641 0 E E E 1 E 1 E N "Black" E N "WF_Banner" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+6
+"hoverfclr" "N \"Black\""
+"hoverbclr" "N \"WF_Banner\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string batchID;
+  string type;
+  int node=$node;
+  string mode;
+  dpGet(\"N\"+node+\".Mode\",mode);  
+  
+  if(mode==\"ValidationQA\")
+  {
+  dpGet(\"N\"+node+\".BatchId\",batchID);
+  dpGet(\"N\"+node+\".ChamberType\",type);
+  this.text(\"Gas Plots | \"+type+\" | \"+batchID);  
+  }
+  if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\" )
+  { 
+  this.text(\"Gas Plots | Sector \"+node);  
+  }
+  
+}" 0
+ E 0 1 2 1 1 E U  1 E 641 0 766 22
+0 2 2 "0s" 0 0 0 192 0 0  641 0 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 12 XMX, BatchID
+30 8
+"ipFrame"
+""
+1 158 8 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.6342685370741482 0 1.376425855513308 61.78557114228458 357.9885931558935 0 E 158 8 1157 272
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 17 IP Wedge Humidity
+14 9
+"ipTitle"
+""
+1 406 441 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  404 436.1999999999999 584.9999999999999 461.2
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"MM Humidity [%]\");
+}" 0
+ E
+30 10
+"hoFrame"
+""
+1 158 8 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.6342685370741482 0 1.376425855513308 701.7855711422847 357.9885931558935 0 E 158 8 1157 272
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 17 HO Wedge Humidity
+14 11
+"hoTitle"
+""
+1 1046 441 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  1044 436.1999999999999 1225 461.2
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"MM Humidity [%]\");
+}" 0
+ E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

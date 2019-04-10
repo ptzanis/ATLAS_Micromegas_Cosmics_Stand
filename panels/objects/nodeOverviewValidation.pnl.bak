@@ -1,8 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 704 846 N "_3DFace" 7
-"$batchID"
+PANEL,-1 -1 1491 264 N "_3DFace" 6
 "$mode"
 "$node"
 "$sector"
@@ -11,40 +10,31 @@ PANEL,-1 -1 704 846 N "_3DFace" 7
 "$y"
 "main()
 {
-     string mode=$mode;  
+     int xLayerButton,yLayerButton;
+        
+      x=x+50;
+      y=y+10;
+      
+     xLayerButton=x+30;
+     yLayerButton=y+200;
+      
+       for(int i=1;i<=4;i++)
+       {    
+             addSymbol(myModuleName(), myPanelName(), \"objects/chamberRetrieve.pnl\", \"chamberRetrieve\"+node+\"_\"+type,
+                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$sector:\"+sector,\"$layer:\"+i,\"$x:\"+xLayerButton,\"$y:\"+yLayerButton), x, y+45, 0, 1.2, 1.2);
+              xLayerButton=xLayerButton+200;
+              x=x+200;            
+       }
+}" 0
+ E E E E 1 -1 -1 0  2 0
+""0  1
+E "     string mode=$mode;  
      string node=$node; 
      string type=$type; 
      string sector=$sector;
      int x=$x;
      int y=$y;
-     int xLayerButton,yLayerButton;
-     
-     x=x+80;
-     y=y+5;
-//              addSymbol(myModuleName(), myPanelName(), \"objects/chamberRetrieve.pnl\", \"chamberRetrieve\"+node+\"_\"+type,
-//                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$sector:\"+sector,\"$layer:\"+layer), 0, 5, 0, 1, 1);
-     
-       for(int i=1;i<=4;i++)
-       {    
-       if(i==3)
-         {
-         y=y+290;
-         x=$x;
-         x=x+80;
-         }
-           xLayerButton=x+45;
-           yLayerButton=y+235;
-             addSymbol(myModuleName(), myPanelName(), \"objects/chamberRetrieve.pnl\", \"chamberRetrieve\"+node+\"_\"+type,
-                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$sector:\"+sector,\"$layer:\"+i,\"$x:\"+xLayerButton,\"$y:\"+yLayerButton), x, y+45, 0, 1.5, 1.5);
-             x=x+250;
-             
-       }
-     
-     
-}" 0
- E E E E 1 -1 -1 0  -2 -2.000000000000004
-""0  1
-E "dyn_string returnAliasHVChannels(string node,string type,string sector,int showDrift=1){
+     dyn_string returnAliasHVChannels(string node,string type,string sector,int showDrift=1){
   
   string channel;
   dyn_string stripChannels,driftChannels,channelSetOff;
@@ -182,12 +172,66 @@ DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
 LAYER, 0 
 1
 LANG:1 0 
-6 33
+30 0
+"FRAME1"
+""
+1 2 0 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 3.839378238341969 0 0.1837455830388693 -5.678756476683937 0 0 E 2 0 389 1416
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 1
+"PRIMITIVE_TEXT2"
+""
+1 34 3 E E E 1 E 1 E N "Black" E N "WF_Banner" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+6
+"hoverfclr" "N \"Black\""
+"hoverbclr" "N \"WF_Banner\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+     
+     string batchID;
+     
+     dpGet(\"N\"+node+\".BatchId\",batchID);
+     this.text(type+\" - \"+batchID);  
+  
+}" 0
+ E 0 1 2 1 1 E 1 0 0.9230769230769231 5 -4.769230769230769 1 E 34 3 161 25
+0 2 2 "0s" 0 0 0 192 0 0  34 3 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 12 XMX, BatchID
+6 2
 "lockHolder"
 ""
 1 280 900 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
  E E
-33 0 0 0 0 0
+2 0 0 0 0 0
 E E E
 0
 1
@@ -261,13 +305,13 @@ LANG:1 0
     
 }
 " 0
- 0 1 1 2 1 E 0.725 0 0.7341140747070307 333 -166.3966598510738 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
-19 32
+ 0 1 1 2 1 E 0.725 0 0.7341140747070307 651 -504.7026672363277 2  1 0  "pictures/unlocked.png" 4294967295 E 280 895 320 935
+19 3
 "stripsDriftChoose"
 ""
-1 538 473 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 856 134.6939926147461 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
-32 0 0 0 0 0
+3 0 0 0 0 0
 E E E
 0
 1
@@ -278,7 +322,7 @@ LANG:1 0
 "horizontal" ""
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  536 471 691 492
+0  854 132.6939926147461 1009 153.6939926147461
 2
 T 
 1
@@ -307,32 +351,12 @@ E E
   this.toolTipText(this.name());
 }" 0
  E
-30 0
-"frameTitle"
-""
-1 0 -7 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-0 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1.002857142857143 0 2.490272373540856 0 -29.56809338521401 0 E 0 -7 701 251
-1
-LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0 1
-LANG:1 0 
-13 2
+13 4
 "offButton"
 ""
-1 174 631 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 492 292.6939926147461 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-2 0 0 0 0 0
+4 0 0 0 0 0
 E E E
 8
 1
@@ -342,7 +366,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  537 413.0000000000001 610.0000000000001 439
+0  855.0000000000001 74.69399261474621 928.0000000000001 100.6939926147461
 
 T 
 1
@@ -358,7 +382,7 @@ LANG:1 3 OFF
  int stripsOrDrift;
  getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
- dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector,stripsOrDrift));
+ dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
@@ -368,12 +392,12 @@ LANG:1 3 OFF
     
 }" 0
  E E E
-13 3
+13 5
 "onButton"
 ""
-1 166.1333841463418 632.6916666666666 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 484.1333841463418 294.3856592814127 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-3 0 0 0 0 0
+5 0 0 0 0 0
 E E E
 8
 1
@@ -383,7 +407,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  617 413.0000000000001 690.0000000000001 439
+0  935.0000000000001 74.69399261474621 1008 100.6939926147461
 
 T 
 1
@@ -399,7 +423,7 @@ LANG:1 2 ON
  int stripsOrDrift;
  getValue(\"stripsDriftChoose\"+\"_N\"+node,\"number\",stripsOrDrift); 
  
- dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector,stripsOrDrift));
+ dynAppend(channelSetOff,returnAliasHVChannels(node,type,sector));
  
   for(int i=1;i<=dynlen(channelSetOff);i++)
   {
@@ -409,12 +433,12 @@ LANG:1 2 ON
     
 }" 0
  E E E
-22 4
+22 6
 "selectionComboBox"
 ""
-1 367 80 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 685 -258.3060073852539 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-4 0 0 0 0 0
+6 0 0 0 0 0
 E E E
 0
 1
@@ -424,7 +448,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  538 384.0000000000001 691.0000000000001 410
+0  856.0000000000001 45.69399261474621 1009 71.69399261474609
 5
 1
 LANG:1 6 Module
@@ -461,12 +485,12 @@ LANG:1 7 Layer 4
 E
 E
  0 0
-22 5
+22 7
 "hvSelectionCombo"
 ""
-1 742.0281690140845 -76 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1060.028169014085 -414.3060073852539 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-5 0 0 0 0 0
+7 0 0 0 0 0
 E E E
 0
 1
@@ -476,7 +500,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  594 443 652 469
+0  912.0000000000001 104.6939926147461 970.0000000000001 130.6939926147461
 11
 1
 LANG:1 0 
@@ -531,12 +555,12 @@ E
 
 E
  0 0
-14 6
+14 8
 "textField1"
 ""
-1 638.5833333333333 -78 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 956.5833333333333 -416.3060073852539 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-6 0 0 0 0 0
+8 0 0 0 0 0
 E E E
 0
 1
@@ -546,14 +570,14 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  538 441.5238095238095 591 469
+0  856.0000000000001 103.2178021385556 909.0000000000001 130.6939926147461
 3 "3s" 3 0 0 1 0 -1  E E E
-13 7
+13 9
 "setButton"
 ""
-1 568.9608769251514 53.18346682668799 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 886.9608769251514 -285.1225405585659 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
-7 0 0 0 0 0
+9 0 0 0 0 0
 E E E
 8
 1
@@ -563,7 +587,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  568.0139203259395 491.1193096598228 671.0000000000001 519.9999999999999
+0  886.0139203259395 152.8133022745689 989.0000000000001 181.693992614746
 
 T 
 1
@@ -621,7 +645,7 @@ LANG:1 3 Set
 2 10
 "parameterText"
 ""
-1 655 445 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 973 106.6939926147456 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 10 0 0 0 0 0
 E E E
@@ -634,18 +658,38 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 655 445 682 467
-0 2 2 "0s" 0 0 0 192 0 0  655 445 1
+E E 2 1 3 2 1 E U  0 E 973 106.6939926147456 1000 129
+0 2 2 "0s" 0 0 0 192 0 0  973 106.6939926147456 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
 LANG:1 3 [V]
-13 11
-"PUSH_BUTTON4"
+30 11
+"FRAME3"
 ""
-1 547 563 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 10 603 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
  E E
 11 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.354166666666667 0 1.948051948051952 837.4583333333334 -1141.675324675327 0 E 10 603 131 681
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 11 Set Voltage
+13 12
+"PUSH_BUTTON4"
+""
+1 865 233 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
 E E E
 8
 1
@@ -655,7 +699,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  545 556 683 585.0000000000001
+0  863 226 1001 255.0000000000001
 
 T 
 1
@@ -667,30 +711,10 @@ LANG:1 9 Configure
      string type=$type; 
      string sector=$sector;
      
-     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Node \"+node+\" (Setup) \",makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type),0,0);
+     ChildPanelOnCentral(\"objects/nodeHVSetup.pnl\", \"Node \"+node+\" (Setup) \", makeDynString(\"$node:\"+node,\"$layer:\"+\"\",\"$mode:\"+mode,\"$type:\"+type));
          
 }" 0
  E E E
-30 12
-"FRAME3"
-""
-1 10 603 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
- E E
-12 0 0 0 0 0
-E E E
-1
-1
-LANG:1 0 
-
-3
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-E E 2 1 3 2 1 E 1.354166666666667 0 1.948051948051952 519.4583333333334 -803.6753246753277 0 E 10 603 131 681
-1
-LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0 1
-LANG:1 11 Set Voltage
 30 13
 "FRAME4"
 ""
@@ -706,7 +730,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.354166666666667 0 0.8571428571428573 519.4583333333334 4.142857142856968 0 E 10 603 131 681
+E E 2 1 3 2 1 E 1.354166666666667 0 0.9740259740259744 837.4583333333334 -405.3376623376626 0 E 10 603 131 681
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
@@ -714,7 +738,7 @@ LANG:1 13 Configuration
 2 14
 "PRIMITIVE_TEXT1"
 ""
-1 537 535 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 855 205 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 14 0 0 0 0 0
 E E E
@@ -727,18 +751,18 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 537 535 581 550
-0 2 2 "0s" 0 0 0 192 0 0  537 535 1
+E E 2 1 3 2 1 E U  0 E 855 205 899 220
+0 2 2 "0s" 0 0 0 192 0 0  855 205 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Status:
-14 16
+14 15
 "configurationStatusField"
 ""
-1 582.9999999999999 537 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 900.9999999999999 207 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-16 0 0 0 0 0
+15 0 0 0 0 0
 E E E
 0
 1
@@ -748,19 +772,19 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  581 533 669.0000000000001 554
+0  899 203 987.0000000000001 224
 2 "0s" 0 0 0 1 0 -1  E "main()
 {
   string node=$node;
   this.name(this.name()+\"_N\"+node);
 }" 0
  E
-7 17
+7 16
 "configurationStatusLED"
 ""
 1 681.5 534.5 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
-17 0 0 0 0 0
+16 0 0 0 0 0
 E E E
 0
 1
@@ -825,11 +849,31 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -1.5 9.5 1 E 681.5 534.5 9.5 9.5
-2 18
-"PRIMITIVE_TEXT2"
+ E 0 1 3 2 1 E 1 0 1 316.5 -320.5 1 E 681.5 534.5 9.5 9.5
+30 17
+"FRAME5"
 ""
-1 219.5 -5 E E E 1 E 1 E N "Black" E N "WF_Banner" E E
+1 556 767 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.5702160493827166 0 0.4385964912280699 533.8487654320985 -332.4035087719296 0 E 556 767 701 825
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 18
+"PRIMITIVE_TEXT4"
+""
+1 853.3333333333336 11.88888888888889 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 18 0 0 0 0 0
 E E E
@@ -837,33 +881,88 @@ E E E
 1
 LANG:1 0 
 
-6
-"hoverfclr" "N \"Black\""
-"hoverbclr" "N \"WF_Banner\""
+4
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-"main()
-{
-  string batchID=$batchID;
-  string type=$type;
-  int node=$node;
-  this.text(type+\" - \"+batchID);  
-  
-}" 0
- E 0 1 2 1 1 E U  1 E 219.5 -5 346 17
-0 2 2 "0s" 0 0 0 192 0 0  219.5 -5 1
+E E 2 1 3 2 1 E U  0 E 853.3333333333336 11.88888888888889 915 27
+0 2 2 "0s" 0 0 0 192 0 0  853.3333333333336 11.88888888888889 1
 1
-LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 12 XMX, BatchID
-27 19
-"barTrendVoltage"
+LANG:1 9 Archiving
+7 19
+"ELLIPSE3"
 ""
-1 106 643 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
  E E
 19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+  string node=$node;
+
+  if( !dpExists( \"System1:N\"+node+\".Archiving.Status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:N\"+node+\".Archiving.Status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:N1.Archiving.Status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {Red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {S7_stateWentUnq}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 1 0 1 -27.44444444444423 -3.111111111111114 1 E 949.0000000000002 23 7 6.5
+27 22
+"barTrendVoltage"
+""
+1 1019 61 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+22 0 0 0 0 0
 E E E
 0
 1
@@ -873,7 +972,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
-0  104 596.0973451327434 455 836.0973451327435
+0  1017 14.09734513274338 1368 254.0973451327435
 2 1 3.99 1 0 "%H:%M" 1 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
 0  0 0 0 1 0 1 N {0,0,0}
@@ -928,12 +1027,12 @@ void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNew
   
  " 0
 
-27 20
+27 23
 "barTrendTotalVoltage"
 ""
-1 106 647.1363061717043 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1019 65.13630617170429 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
-20 0 0 0 0 0
+23 0 0 0 0 0
 E E E
 0
 1
@@ -943,7 +1042,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 33 MS Shell Dlg,-1,11,5,50,0,0,0,0,0
-0  453 596.0973451327434 566 836.0973451327434
+0  1366 14.09734513274338 1479 254.0973451327434
 2 1 1 1 0 "%H:%M" 1 1
 LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
 0  0 0 0 1 0 1 N {0,0,0}
@@ -999,77 +1098,10 @@ void changeHisto(string dpSource1, float fNewValue1,string dpSource2, float fNew
   
  " 0
 
-14 21
+14 24
 "layerTextField"
 ""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-21 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  135 794.0973451327434 217 818.0973451327434
-3 "0s" 0 0 0 1 0 -1  E "main()
-{
-this.text(\"Layer 1\");
-}" 0
- E
-14 22
-"layerCounterL1"
-""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-22 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  135 813.0973451327434 217 837.0973451327434
-3 "0s" 0 0 0 1 0 -1  E "main()
-{
-
-  layerFieldCounter(\"L1\");
-
-}
-
-" 0
- E
-14 23
-"TEXT_FIELD1"
-""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-23 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  214 794.0973451327434 296 818.0973451327434
-3 "0s" 0 0 0 1 0 -1  E "main()
-{
-this.text(\"Layer 2\");
-}" 0
- E
-14 24
-"TEXT_FIELD2"
-""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 24 0 0 0 0 0
 E E E
@@ -1081,16 +1113,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  293 794.0973451327434 375 818.0973451327434
+0  1048 212.0973451327434 1130 236.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-this.text(\"Layer 3\");
+this.text(\"Layer 1\");
 }" 0
  E
 14 25
-"TEXT_FIELD3"
+"layerCounterL1"
 ""
-1 133 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 25 0 0 0 0 0
 E E E
@@ -1102,16 +1134,20 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  372 794.0973451327434 454 818.0973451327434
+0  1048 231.0973451327434 1130 255.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-this.text(\"Layer 4\");
-}" 0
+
+  layerFieldCounter(\"L1\");
+
+}
+
+" 0
  E
 14 26
-"layerCounterL2"
+"TEXT_FIELD1"
 ""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 26 0 0 0 0 0
 E E E
@@ -1123,20 +1159,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  214 813.0973451327434 296 837.0973451327434
+0  1127 212.0973451327434 1209 236.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-
-  layerFieldCounter(\"L2\");
-
-}
-
-" 0
+this.text(\"Layer 2\");
+}" 0
  E
 14 27
-"layerCounterL3"
+"TEXT_FIELD2"
 ""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 27 0 0 0 0 0
 E E E
@@ -1148,20 +1180,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  293 813.0973451327434 375 837.0973451327434
+0  1206 212.0973451327434 1288 236.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-
-  layerFieldCounter(\"L3\");
-
-}
-
-" 0
+this.text(\"Layer 3\");
+}" 0
  E
 14 28
-"layerCounterL4"
+"TEXT_FIELD3"
 ""
-1 133 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1046 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 28 0 0 0 0 0
 E E E
@@ -1173,20 +1201,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  372 813.0973451327434 454 837.0973451327434
+0  1285 212.0973451327434 1367 236.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-
-  layerFieldCounter(\"L4\");
-
-}
-
-" 0
+this.text(\"Layer 4\");
+}" 0
  E
 14 29
-"TEXT_FIELD4"
+"layerCounterL2"
 ""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 29 0 0 0 0 0
 E E E
@@ -1198,16 +1222,20 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  484 794.0973451327434 565 818.0973451327434
+0  1127 231.0973451327434 1209 255.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
-this.text(\"Total\");
-}" 0
+
+  layerFieldCounter(\"L2\");
+
+}
+
+" 0
  E
 14 30
-"layerCounterTotal"
+"layerCounterL3"
 ""
-1 132 784.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 30 0 0 0 0 0
 E E E
@@ -1219,7 +1247,78 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  484 813.0973451327434 565 837.0973451327434
+0  1206 231.0973451327434 1288 255.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L3\");
+
+}
+
+" 0
+ E
+14 31
+"layerCounterL4"
+""
+1 1046 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  1285 231.0973451327434 1367 255.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+
+  layerFieldCounter(\"L4\");
+
+}
+
+" 0
+ E
+14 32
+"TEXT_FIELD4"
+""
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  1397 212.0973451327434 1478 236.0973451327434
+3 "0s" 0 0 0 1 0 -1  E "main()
+{
+this.text(\"Total\");
+}" 0
+ E
+14 33
+"layerCounterTotal"
+""
+1 1045 202.0973451327434 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  1397 231.0973451327434 1478 255.0973451327434
 3 "0s" 0 0 0 1 0 -1  E "main()
 {
 
@@ -1229,12 +1328,12 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 
 " 0
  E
-30 31
-"FRAME5"
+30 34
+"FRAME10"
 ""
-1 1239 628 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+1 556 767 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
  E E
-31 0 0 0 0 0
+34 0 0 0 0 0
 E E E
 1
 1
@@ -1244,11 +1343,119 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.84251968503937 0 2.356039251363436 -2282.881889763779 -892.5926498562382 0 E 1239 628 1621 736
+E E 2 1 3 2 1 E 0.5354938271604943 0 0.4385964912280683 638.2654320987651 -332.4035087719284 0 E 556 767 701 825
 1
-LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
+2 35
+"PRIMITIVE_TEXT7"
+""
+1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 -367.5497557997577 -16.45413708454268 0 E 1258 26 1317 41
+0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Recovery
+7 36
+"ELLIPSE7"
+""
+1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+  string node=$node;
+  
+
+  if( !dpExists( \"N\"+node+\".AutoRecovery.Status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"N\"+node+\".AutoRecovery.Status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:ALL.Notification.StatusEmail}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {0}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 1 0 0.919128603822487 8.333333333333371 2.536703471584018 1 E 994.9108377275938 19.13219954648518 7.0891623 7
+13 37
+"PUSH_BUTTON5"
+""
+1 9 238 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+37 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  7 232 77 256
+
+T 
+1
+LANG:1 12 PUSH_BUTTON5
+E E E E
 0
 LAYER, 1 
 1
@@ -1278,4 +1485,10 @@ LAYER, 7
 1
 LANG:1 0 
 0
+1 0 "SHAPE_GROUP1" -1
+12 0 
+22 23 24 25 26 27 28 29 30 31 32 33 
+
+"layoutAlignment" "AlignNone"
+"" ""
 0

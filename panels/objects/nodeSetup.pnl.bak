@@ -1,0 +1,902 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 282 157 N "_3DFace" 2
+"$mode"
+"$node"
+E E E E E 1 -1 -1 0  10 3
+""0  1
+E "void enableCurrentNodeAndDisableOther(string node)
+{
+  setValue(\"buttonSM1\"+\"_N\"+node,\"enabled\",TRUE);
+  setValue(\"buttonSM2\"+\"_N\"+node,\"enabled\",TRUE);
+  setValue(\"buttonLM1\"+\"_N\"+node,\"enabled\",TRUE);
+  setValue(\"buttonLM2\"+\"_N\"+node,\"enabled\",TRUE);
+
+  
+  setValue(\"button\"+this.text()+\"_N\"+node,\"enabled\",FALSE);
+    
+}
+
+void swapLayerSectorMode(string node)
+{
+  
+ setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",TRUE); 
+ setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",TRUE); 
+ 
+ this.enabled(FALSE);  
+  
+}
+
+bool chechIfUserHasSelectChamberType()
+{
+   int counterNodes;
+  if(!validationButton.enabled())  
+  {
+    counterNodes=4;
+  }
+  if(!cosmicsButton.enabled())  
+  {
+    counterNodes=8;
+  }  
+  
+  bool isNodeOn,isSM1,isSM2,isLM1,isLM2;
+  int  countEnabledNodes=0;
+  int  countNodesHaveType=0;
+  for(int i=1;i<=counterNodes;i++) // chech nodes
+  {
+  getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
+  if(isNodeOn) 
+  {
+       countEnabledNodes++;
+       getValue(\"buttonSM1\"+\"_N\"+i,\"enabled\",isSM1); 
+       getValue(\"buttonSM2\"+\"_N\"+i,\"enabled\",isSM2);  
+       getValue(\"buttonLM1\"+\"_N\"+i,\"enabled\",isLM1);
+       getValue(\"buttonLM2\"+\"_N\"+i,\"enabled\",isLM2);  
+       
+       if(!isSM1 || !isSM2 || !isLM1 || !isLM2)
+       {
+        countNodesHaveType++;
+         continue;      
+       }
+       else
+       {
+          saveButton.enabled(FALSE);  
+   
+      setValue(\"typeText\"+\"_N\"+i,\"foreCol\",\"red\");
+       delay(0,200);
+      setValue(\"typeText\"+\"_N\"+i,\"foreCol\",\"_WindowText\");
+         continue;
+         
+       }
+    
+    
+  }
+  
+}
+  
+  if(countEnabledNodes==countNodesHaveType && countEnabledNodes>0)
+  { 
+//   saveButton.enabled(TRUE); 
+   return TRUE;
+  } 
+  else
+  {  
+   saveButton.enabled(FALSE);  
+   return FALSE;
+ }
+  
+  
+}
+
+bool chechIfUserHasSelectCosmicsMode()
+{
+   int counterNodes;
+  if(!validationButton.enabled())  
+  {
+    counterNodes=4;
+  }
+  if(!cosmicsButton.enabled())  
+  {
+    counterNodes=8;
+  }  
+  
+  bool isNodeOn,isbuttonLayerMode,isbuttonSectorMode;
+  int  countEnabledNodes=0;
+  int  countNodesHaveMode=0;
+  for(int i=1;i<=counterNodes;i++) // chech nodes
+  {
+  getValue(\"enableButton\"+\"_N\"+i,\"checked\",isNodeOn);  // check enabled nodes
+  if(isNodeOn) 
+  {
+       countEnabledNodes++;
+
+       getValue(\"buttonLayerMode\"+\"_N\"+i,\"enabled\",isbuttonLayerMode); 
+       getValue(\"buttonSectorMode\"+\"_N\"+i,\"enabled\",isbuttonSectorMode);    
+       
+       if(!isbuttonLayerMode || !isbuttonSectorMode)
+       {
+        countNodesHaveMode++;
+         continue;      
+       }
+       else
+       {
+         saveButton.enabled(FALSE);  
+
+      setValue(\"modeText\"+\"_N\"+i,\"foreCol\",\"red\");
+       delay(0,200);
+      setValue(\"modeText\"+\"_N\"+i,\"foreCol\",\"_WindowText\");
+         continue;
+         
+       }
+    
+    
+  }
+  
+}
+  
+  if(countEnabledNodes==countNodesHaveMode && countEnabledNodes>0)
+  { 
+//   saveButton.enabled(TRUE); 
+   return TRUE;
+  } 
+  else
+  {   
+   saveButton.enabled(FALSE);  
+   return FALSE;
+   }
+  
+  
+}
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 34
+"RECTANGLE1"
+""
+1 190 240 E E E 1 E 1 E N {0,0,0} E N "WF_PanelBackground" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.4694915254237289 0 0.9222917537625414 -88.20338983050848 -211.9167015050165 1 E 190 240 780 400
+30 0
+"moduleFrame"
+""
+1 10 3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string node=$node;
+  this.text(\"Node \"+node);  
+  
+  
+  
+}" 0
+ E 2 1 3 2 1 E 0.823529411764706 0 0.5540069686411149 -7.235294117647058 -3.662020905923345 0 E 10 3 351 291
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 NodeX
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 75 23 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 75 23 133 40
+0 2 2 "0s" 0 0 0 192 0 0  75 23 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Enable :
+29 18
+"enableButton"
+""
+1 135 21 E E E 1 E 1 E N "white" E N "_3DFace" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+5
+"skin" "enum 2"
+"textOff" "string OFF"
+"textOn" "string ON"
+"checked" "bool FALSE"
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  135 21 205 49
+16 ToggleSwitch.ewo
+1
+0 "toggled" "(bool on)"
+"  string node=$node;
+  if(on)
+  {
+    this.foreCol(\"green\");
+    setValue(\"buttonSM1\"+\"_N\"+node,\"enabled\",TRUE);
+    setValue(\"buttonSM2\"+\"_N\"+node,\"enabled\",TRUE);    
+    setValue(\"buttonLM1\"+\"_N\"+node,\"enabled\",TRUE); 
+    setValue(\"buttonLM2\"+\"_N\"+node,\"enabled\",TRUE);
+       
+    setValue(\"mtfField\"+\"_N\"+node,\"enabled\",TRUE); 
+    
+    setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",TRUE); 
+    setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",TRUE); 
+    
+    string chamber,mtf,mode;
+    dpGet(\"N\"+node+\".ChamberType\",chamber);
+    dpGet(\"N\"+node+\".BatchId\",mtf);
+    dpGet(\"N\"+node+\".Mode\",mode);
+
+    if(chamber!=\"\")  
+    setValue(\"button\"+chamber+\"_N\"+node,\"enabled\",FALSE); 
+    if(mtf!=\"\")  
+    {
+    setValue(\"mtfField\"+\"_N\"+node,\"text\",mtf);
+    setValue(\"mtfField\"+\"_N\"+node,\"editable\",FALSE);
+     }
+    if(mode!=\"\")
+    {
+      if(mode==\"CosmicsBasic\")
+        setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",FALSE); 
+      if(mode==\"CosmicsExtra\")
+        setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",FALSE); 
+    }      
+    
+     
+ 
+    saveButton.enabled(FALSE); 
+    chechIfUserHasSelectChamberType();
+    if(!cosmicsButton.enabled())
+    chechIfUserHasSelectCosmicsMode();
+  }
+  else
+  {
+    
+    if(!cosmicsButton.enabled())
+    {
+      if(chechIfUserHasSelectCosmicsMode() && chechIfUserHasSelectChamberType())
+      {      saveButton.enabled(TRUE);}
+    if(node<5)
+      {   
+        setValue(\"buttonN\"+\"1\",\"visible\",FALSE);
+        RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+\"1\", \"\"); 
+      }
+    if(node>4)
+      {   
+        setValue(\"buttonN\"+\"2\",\"visible\",FALSE);
+        RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+\"2\", \"\"); 
+      }
+    
+    }
+    
+   if(!validationButton.enabled())
+    {
+   if(chechIfUserHasSelectChamberType())
+        saveButton.enabled(TRUE);
+   
+    setValue(\"buttonN\"+node,\"visible\",FALSE);
+    RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleN\"+node, \"\");
+   
+   
+   dyn_string stripsToAppend,driftToAppend;
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
+   dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",driftToAppend); 
+   dyn_string archivedDpes,archivedChannel;
+   dynClear(archivedDpes);
+   dynAppend(archivedDpes,stripsToAppend);
+   dynAppend(archivedDpes,driftToAppend);
+   dyn_string exceptionInfo;
+  
+   for (int i = 1; i <= dynlen(archivedDpes); i++) {
+        dpGet(\"N\"+node+\".Mapping.\"+archivedDpes[i]+\".Channel\",archivedChannel[i]); 
+        fwArchive_stopMultiple(\"CAEN/\"+archivedChannel[i]+ \".actual.vMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+        fwArchive_stopMultiple(\"CAEN/\"+archivedChannel[i] + \".actual.iMon\", exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);     
+     
+   } 
+      DebugN(\"----------------------------Archive Status \"+node+\" | OFF\");
+   
+    
+  }   
+        
+    setValue(\"mtfField\"+\"_N\"+node,\"text\",\"\");
+    setValue(\"mtfField\"+\"_N\"+node,\"editable\",TRUE);
+    
+    this.foreCol(\"red\");
+    setValue(\"buttonSM1\"+\"_N\"+node,\"enabled\",FALSE);
+    setValue(\"buttonSM2\"+\"_N\"+node,\"enabled\",FALSE);    
+    setValue(\"buttonLM1\"+\"_N\"+node,\"enabled\",FALSE); 
+    setValue(\"buttonLM2\"+\"_N\"+node,\"enabled\",FALSE); 
+    setValue(\"mtfField\"+\"_N\"+node,\"enabled\",FALSE); 
+    setValue(\"buttonLayerMode\"+\"_N\"+node,\"enabled\",FALSE); 
+    setValue(\"buttonSectorMode\"+\"_N\"+node,\"enabled\",FALSE);  
+    
+    dyn_string clear;
+    dynClear(clear) ;   
+    
+    dpSet(\"N\"+node+\".Enabled\",FALSE); 
+    
+    dpSet(\"N\"+node+\".ChamberType\",\"\");
+    dpSet(\"N\"+node+\".BatchId\",\"\");
+    dpSet(\"N\"+node+\".Mode\",\"\");
+    dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",\"\"); 
+    dpSet(\"N\"+node+\".Mapping.ChannelsTotal.Drift\",\"\"); 
+    dpSet(\"N\"+node+\".DpesToPlot\",clear);    
+    dpSet(\"N\"+node+\".Archiving.Status\",0); 
+    
+    
+    // Extra Archive STOP 
+   bool isEnvOn,isGasOn,isHumOn,isGifOn;
+    if(envSwitch.checked())
+        isEnvOn=TRUE;
+    if(gasSwitch.checked())
+        isGasOn=TRUE;
+    if(humiditySwitch.checked())
+        isHumOn=TRUE;
+    if(gifSwitch.checked())
+        isGifOn=TRUE;
+    
+    
+    dyn_string dpesExtraToArchive;
+    if(isGasOn)
+    {
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Inlet\");
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Outlet\");      
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Leak\");
+       dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Pressure\");              
+     }
+    if(isEnvOn)
+    {
+      dynAppend(dpesExtraToArchive,\"BME280.pressureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.temperatureMean\");       
+      dynAppend(dpesExtraToArchive,\"BME280.humidityMean\");
+      dpSet(\"BME280.archiving\",0);      
+    }
+    if(isHumOn)
+    {
+      dynAppend(dpesExtraToArchive,\"N\"+node+\".Gas.Humidity\");        
+    }
+    if(isGifOn)
+    {
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Atmospheric_Pressure\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Inside_Bunker\");  
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Humidity_Outside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Inside_Bunker\");              
+      dynAppend(dpesExtraToArchive,\"GIFFPP.EnvParameters.Temp_Outside_Bunker\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.A\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.B\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.C\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Attenuators.UpStreamPos.EffectiveAttenuation\"); 
+      dynAppend(dpesExtraToArchive,\"GIFFPP.Irradiator.SourceON\");  
+      dpSet(\"GIFFPP.archiving\",0);            
+    }
+     
+     
+     dyn_string exceptionInfo;
+    
+    for (int z = 1; z <= dynlen(dpesExtraToArchive); z++) {
+        fwArchive_stopMultiple(dpesExtraToArchive[z], exceptionInfo);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+      }
+         DebugN(\"----------------------------Extra Archive Status \"+node+\" | OFF\"); 
+    //
+    
+    
+     buttonOverview.visible(TRUE);
+     buttonOverview.enabled(FALSE);
+     RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleOverview\", \"\"); 
+     delay(3);
+     RootPanelOnModule(\"objects/nodeOverviewValidationHolder.pnl\", \"Overview\", \"embModuleOverview\", makeDynString()); 
+     buttonOverview.enabled(TRUE);
+
+  }"
+"main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+  
+  if(this.checked())
+    this.foreCol(\"green\");
+  else
+    this.foreCol(\"red\"); 
+  
+  
+  
+  
+  EP_setEnabled(node);
+}
+void EP_setEnabled(string node)
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:N\"+node+\".Enabled:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:N\"+node+\".Enabled:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"checked\", boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:N1.Enabled}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+2 20
+"typeText"
+""
+1 18 61 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+}" 0
+ E 2 1 3 2 1 E U  0 E 18 61 62 78
+0 2 2 "0s" 0 0 0 192 0 0  18 61 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Type :
+13 21
+"buttonSM1"
+""
+1 63 63 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  61 57 111 82
+
+T 
+1
+LANG:1 3 SM1
+"main(mapping event)
+{
+  string node=$node;
+  enableCurrentNodeAndDisableOther(node);
+  
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
+  
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+
+  
+}" 0
+
+13 22
+"buttonSM2"
+""
+1 116 63 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  114 57 164 82
+
+T 
+1
+LANG:1 3 SM2
+"main(mapping event)
+{
+  string node=$node;
+  enableCurrentNodeAndDisableOther(node);
+  
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
+  
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+
+  
+}" 0
+
+13 27
+"buttonLM1"
+""
+1 169 63 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  167 57 217 82
+
+T 
+1
+LANG:1 3 LM1
+"main(mapping event)
+{
+  string node=$node;
+  enableCurrentNodeAndDisableOther(node);
+  
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
+  
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+
+  
+}" 0
+
+13 28
+"buttonLM2"
+""
+1 222 63 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+16 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  220 57 270 82
+
+T 
+1
+LANG:1 3 LM2
+"main(mapping event)
+{
+  string node=$node;
+  enableCurrentNodeAndDisableOther(node);
+  
+  if(!cosmicsButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+    { saveButton.enabled(TRUE);}
+  }
+  
+   if(!validationButton.enabled())
+  {
+    if(chechIfUserHasSelectChamberType())
+    {  saveButton.enabled(TRUE);}
+  }
+  
+  
+  
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+
+  
+}" 0
+
+2 29
+"PRIMITIVE_TEXT4"
+""
+1 18 94 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 18 94 60 111
+0 2 2 "0s" 0 0 0 192 0 0  18 94 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 5 MTF :
+14 30
+"mtfField"
+""
+1 61.00000000000001 94 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  59.00000000000001 88 272 118
+3 "14s" 14 0 0 1 0 -1  E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+  
+  
+}" 0
+ E
+2 31
+"modeText"
+""
+1 10 123.5 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+  
+    string mode=$mode;
+    
+    if(mode==\"Cosmics\")
+      this.visible(TRUE);
+  
+}" 0
+ E 2 1 3 2 1 E U  0 E 10 123.5 59 141
+0 2 2 "0s" 0 0 0 192 0 0  10 123.5 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Mode :
+13 32
+"buttonLayerMode"
+""
+1 60.99999999999999 126 E E E 0 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  58.99999999999999 120 156 145
+
+T 
+1
+LANG:1 8 Ch/Layer
+"main(mapping event)
+{
+  string node=$node;
+swapLayerSectorMode(node);
+
+if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+  saveButton.enabled(TRUE);
+
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node); 
+ 
+    string mode=$mode;
+    
+    if(mode==\"Cosmics\")
+      this.visible(TRUE);
+  
+  
+}" 0
+
+13 33
+"buttonSectorMode"
+""
+1 176 126 E E E 0 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  174 120 271 145
+
+T 
+1
+LANG:1 9 Ch/Sector
+"main(mapping event)
+{
+  string node=$node;
+swapLayerSectorMode(node);
+
+if(chechIfUserHasSelectChamberType()&&chechIfUserHasSelectCosmicsMode())
+  saveButton.enabled(TRUE);
+
+}" 0
+ E E "main()
+{
+  string node=$node;
+  string previousAlias=this.name();
+  this.name(previousAlias+\"_N\"+node);  
+  
+    string mode=$mode;
+    
+    if(mode==\"Cosmics\")
+      this.visible(TRUE);
+  
+}" 0
+
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

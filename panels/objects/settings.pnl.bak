@@ -1,0 +1,1240 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 546 599 N "_3DFace" 0
+E E E E E 1 -1 -1 0  9.026272577996897 37
+""0  1
+E "int searchDPTexistance(string search){
+  
+  dyn_string test=dpTypes(search);
+  
+  if (test == \"\") {
+    DebugN(\"DPT doesn't exist!\");
+    return -1;
+  } else {
+    DebugN(\"DPT has been found!\");
+    return 0;
+  }    
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"setupBackground"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2495463504466389 0 1.377551020408163 353.2994087052184 -8.755102040816329 1 E 10 47 619 145
+13 1
+"createHVSetupDptButton"
+""
+1 373.7948722096847 53.98979591836729 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  371.5448722096847 71.98979591836734 494.5448722096849 105.9897959183673
+
+T 
+1
+LANG:1 14 Create HV DPTs
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"HVSetup\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"Mapping\",\"\");
+types[2]=makeDynInt(0,DPEL_STRUCT);
+elements[3]=makeDynString(\"\",\"\",\"ChannelsTotal\",\"\");
+types[3]=makeDynInt(0,0,DPEL_STRUCT);
+elements[4]=makeDynString(\"\",\"\",\"\",\"Strips\");
+types[4]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+elements[5]=makeDynString(\"\",\"\",\"\",\"Drift\");
+types[5]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+
+int countGeneral=1;
+
+string layer=\"L\";
+int countLayer=1;
+string leftRight=\"L\";
+int countSector=1;
+
+int count=6;
+
+// Strips Validation MM
+
+for(int i=1;i<=64;i++)
+  {
+  
+  if(countGeneral==33)  
+  {
+    leftRight=\"R\";
+    countLayer=1;
+    countSector=1;
+  }
+  
+  
+   if(countLayer==5)
+  {
+   countLayer=1;
+   countSector++;
+   
+  } 
+  
+  elements[count]=makeDynString(\"\",\"\",layer+countLayer+leftRight+countSector,\"\");
+  types[count]=makeDynInt(0,0,DPEL_STRUCT);
+  
+  countLayer++;
+  
+  elements[count+1]=makeDynString(\"\",\"\",\"\",\"Channel\");
+  types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
+  elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
+  types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
+  elements[count+3]=makeDynString(\"\",\"\",\"\",\"isVoltageGood\");    //Edit
+  types[count+3]=makeDynInt(0,0,0,DPEL_INT);                    //Edit
+  elements[count+4]=makeDynString(\"\",\"\",\"\",\"isCurrectGood\");    //Edit Current
+  types[count+4]=makeDynInt(0,0,0,DPEL_INT);                     //Edit
+  count=count+5;
+  
+  countGeneral++;
+  }
+
+string layer=\"L\";
+int countLayer=1;
+
+// Drift Validation MM
+
+for(int i=1;i<=4;i++)
+{
+   elements[count]=makeDynString(\"\",\"\",layer+countLayer+\"D\",\"\");
+   types[count]=makeDynInt(0,0,DPEL_STRUCT);
+   elements[count+1]=makeDynString(\"\",\"\",\"\",\"Channel\");
+   types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
+   elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
+   types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
+   count=count+3;
+   countLayer++;  
+}
+
+string layer=\"L\";
+int countLayer=1;
+ // Strips Cosmics MM
+for(int i=1;i<=4;i++)
+{
+   elements[count]=makeDynString(\"\",\"\",layer+countLayer+\"S\",\"\");
+   types[count]=makeDynInt(0,0,DPEL_STRUCT);
+   elements[count+1]=makeDynString(\"\",\"\",\"\",\"Channel\");
+   types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
+   elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
+   types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
+   count=count+3;
+   countLayer++; 
+}
+
+ // Drift Cosmics MM
+
+     elements[count]=makeDynString(\"\",\"\",\"D\",\"\"); 
+     types[count]=makeDynInt(0,0,DPEL_STRUCT);
+     elements[count+1]=makeDynString(\"\",\"\",\"\",\"Channel\");
+     types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
+     elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
+     types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
+     
+      count=count+3;  
+   
+   
+     elements[count]=makeDynString(\"\",\"Mode\"); 
+     types[count]=makeDynInt(0,DPEL_STRING);
+     elements[count+1]=makeDynString(\"\",\"Enabled\"); 
+     types[count+1]=makeDynInt(0,DPEL_BOOL);
+     elements[count+2]=makeDynString(\"\",\"ChamberType\"); 
+     types[count+2]=makeDynInt(0,DPEL_STRING);   
+     elements[count+3]=makeDynString(\"\",\"BatchId\"); 
+     types[count+3]=makeDynInt(0,DPEL_STRING);  
+     elements[count+4]=makeDynString(\"\",\"Archiving\",\"\"); 
+     types[count+4]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+5]=makeDynString(\"\",\"\",\"Status\"); 
+     types[count+5]=makeDynInt(0,0,DPEL_BOOL);
+     elements[count+6]=makeDynString(\"\",\"\",\"StartTime\"); 
+     types[count+6]=makeDynInt(0,0,DPEL_STRING);
+     elements[count+7]=makeDynString(\"\",\"\",\"EndTime\"); 
+     types[count+7]=makeDynInt(0,0,DPEL_STRING);
+     elements[count+8]=makeDynString(\"\",\"DpesToPlot\"); 
+     types[count+8]=makeDynInt(0,DPEL_DYN_STRING);
+     elements[count+9]=makeDynString(\"\",\"Configuration\"); 
+     types[count+9]=makeDynInt(0,DPEL_BOOL);  
+     elements[count+10]=makeDynString(\"\",\"BarGraphCounter\",\"\"); 
+     types[count+10]=makeDynInt(0,DPEL_STRUCT); 
+     
+     elements[count+11]=makeDynString(\"\",\"\",\"L1\",\"\"); 
+     types[count+11]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+12]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+12]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+13]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+13]=makeDynInt(0,0,0,DPEL_INT); 
+ 
+      elements[count+14]=makeDynString(\"\",\"\",\"L2\",\"\"); 
+     types[count+14]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+15]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+15]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+16]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+16]=makeDynInt(0,0,0,DPEL_INT);
+ 
+      elements[count+17]=makeDynString(\"\",\"\",\"L3\",\"\"); 
+     types[count+17]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+18]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+18]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+19]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+19]=makeDynInt(0,0,0,DPEL_INT);
+ 
+      elements[count+20]=makeDynString(\"\",\"\",\"L4\",\"\"); 
+     types[count+20]=makeDynInt(0,0,DPEL_STRUCT);     
+     elements[count+21]=makeDynString(\"\",\"\",\"\",\"Voltage\"); 
+     types[count+21]=makeDynInt(0,0,0,DPEL_INT);
+     elements[count+22]=makeDynString(\"\",\"\",\"\",\"Current\"); 
+     types[count+22]=makeDynInt(0,0,0,DPEL_INT);    
+     
+     elements[count+23]=makeDynString(\"\",\"Gas\",\"\"); 
+     types[count+23]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+24]=makeDynString(\"\",\"\",\"Inlet\"); 
+     types[count+24]=makeDynInt(0,0,DPEL_FLOAT);  
+     elements[count+25]=makeDynString(\"\",\"\",\"Outlet\"); 
+     types[count+25]=makeDynInt(0,0,DPEL_FLOAT);      
+     elements[count+26]=makeDynString(\"\",\"\",\"Leak\"); 
+     types[count+26]=makeDynInt(0,0,DPEL_FLOAT);   
+     elements[count+27]=makeDynString(\"\",\"\",\"Humidity\"); 
+     types[count+27]=makeDynInt(0,0,DPEL_FLOAT); 
+     elements[count+28]=makeDynString(\"\",\"\",\"Pressure\"); 
+     types[count+28]=makeDynInt(0,0,DPEL_FLOAT); 
+     elements[count+29]=makeDynString(\"\",\"runStatus\"); 
+     types[count+29]=makeDynInt(0,DPEL_BOOL);
+     
+     elements[count+30]=makeDynString(\"\",\"AutoRecovery\",\"\"); 
+     types[count+30]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+31]=makeDynString(\"\",\"\",\"Status\"); 
+     types[count+31]=makeDynInt(0,0,DPEL_BOOL);  
+     elements[count+32]=makeDynString(\"\",\"\",\"voltageSub\"); 
+     types[count+32]=makeDynInt(0,0,DPEL_FLOAT);   
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+    for(int i=1;i<=8;i++)
+  {
+  dpCreate(\"N\"+i,\"HVSetup\");
+
+  }    
+      
+
+
+}" 0
+ E E "main()
+{
+    
+  if (searchDPTexistance(\"HVSetup\") == 0) {
+    this.enabled = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+  }
+}
+" 0
+
+13 2
+"hvSetup"
+""
+1 82 62 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  79.75 80.00000000000003 202.75 114
+
+T 
+1
+LANG:1 8 Setup HV
+"main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/setupHV.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+13 3
+"acceptanceButton"
+""
+1 361.1523109243699 -101.3384353741497 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  79.875 127.9948979591837 202.875 161.9948979591837
+
+T 
+1
+LANG:1 12 Alarm Limits
+"main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/setupAcceptanceLimits.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+13 4
+"createHVSetupPlusDptButton"
+""
+1 373.6698722096847 88.98979591836731 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  371.4198722096847 106.9897959183673 494.4198722096849 140.9897959183673
+
+T 
+1
+LANG:1 15 Create HV+ DPTs
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"HVSetupStatus\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"Mode\");
+types[2]=makeDynInt(0,DPEL_STRING);
+elements[3]=makeDynString(\"\",\"Archiving\");
+types[3]=makeDynInt(0,DPEL_BOOL);
+elements[4]=makeDynString(\"\",\"AcceptanceLimits\",\"\");
+types[4]=makeDynInt(0,DPEL_STRUCT);
+elements[5]=makeDynString(\"\",\"\",\"Voltage\");
+types[5]=makeDynInt(0,0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"\",\"downLimit\");
+types[6]=makeDynInt(0,0,0,DPEL_FLOAT);
+elements[7]=makeDynString(\"\",\"\",\"\",\"upLimit\");
+types[7]=makeDynInt(0,0,0,DPEL_FLOAT);
+elements[8]=makeDynString(\"\",\"\",\"Current\");
+types[8]=makeDynInt(0,0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"\",\"downLimit\");
+types[9]=makeDynInt(0,0,0,DPEL_FLOAT);
+elements[10]=makeDynString(\"\",\"\",\"\",\"upLimit\");
+types[10]=makeDynInt(0,0,0,DPEL_FLOAT);
+
+elements[11]=makeDynString(\"\",\"ExtraMode\",\"\");
+types[11]=makeDynInt(0,DPEL_STRUCT);
+elements[12]=makeDynString(\"\",\"\",\"Env\");
+types[12]=makeDynInt(0,0,DPEL_BOOL);
+elements[13]=makeDynString(\"\",\"\",\"Gas\");
+types[13]=makeDynInt(0,0,DPEL_BOOL);
+elements[14]=makeDynString(\"\",\"\",\"MMHumidity\");
+types[14]=makeDynInt(0,0,DPEL_BOOL);
+elements[15]=makeDynString(\"\",\"\",\"GIF\");
+types[15]=makeDynInt(0,0,DPEL_BOOL);
+
+elements[11]=makeDynString(\"\",\"Notification\",\"\");
+types[11]=makeDynInt(0,DPEL_STRUCT);
+elements[12]=makeDynString(\"\",\"\",\"Email\",\"\");
+types[12]=makeDynInt(0,0,DPEL_STRUCT);
+elements[13]=makeDynString(\"\",\"\",\"\",\"Status\");
+types[13]=makeDynInt(0,0,0,DPEL_BOOL);
+elements[14]=makeDynString(\"\",\"\",\"\",\"Recipients\");
+types[14]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+elements[15]=makeDynString(\"\",\"\",\"SMS\",\"\");
+types[15]=makeDynInt(0,0,DPEL_STRUCT);
+elements[16]=makeDynString(\"\",\"\",\"\",\"Status\");
+types[16]=makeDynInt(0,0,0,DPEL_BOOL);
+elements[17]=makeDynString(\"\",\"\",\"\",\"Recipients\");
+types[17]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+
+elements[18]=makeDynString(\"\",\"AutoRecovery\");
+types[18]=makeDynInt(0,DPEL_BOOL);
+
+
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"ALL\",\"HVSetupStatus\");
+   
+      
+
+
+}" 0
+ E E "main()
+{
+    
+  if (searchDPTexistance(\"HVSetupStatus\") == 0) {
+    this.enabled = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+  }
+}
+" 0
+
+13 5
+"createHVEnvDptButton"
+""
+1 372.7685996316878 124.9897959183673 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  370.5185996316878 142.9897959183674 493.5185996316879 176.9897959183673
+
+T 
+1
+LANG:1 15 Create Env DPTs
+"main(mapping event)
+{
+  dyn_dyn_string elements;
+  dyn_dyn_int types;
+  
+  // Elements // 
+
+elements[1]=makeDynString(\"Arduino\",\"\");
+
+elements[2]=makeDynString(\"\",\"pressureMon\");
+elements[3]=makeDynString(\"\",\"pressureMean\");
+elements[4]=makeDynString(\"\",\"temperatureMon\");
+elements[5]=makeDynString(\"\",\"temperatureMean\");
+elements[6]=makeDynString(\"\",\"humidityMon\");
+elements[7]=makeDynString(\"\",\"humidityMean\");
+elements[8]=makeDynString(\"\",\"archiving\");
+elements[9]=makeDynString(\"\",\"samplingTime\");
+
+
+//// Types  /////
+
+types[1]=makeDynInt(DPEL_STRUCT);
+
+types[2]=makeDynInt(0,DPEL_FLOAT);
+types[3]=makeDynInt(0,DPEL_FLOAT);
+types[4]=makeDynInt(0,DPEL_FLOAT);
+types[5]=makeDynInt(0,DPEL_FLOAT);
+types[6]=makeDynInt(0,DPEL_FLOAT);
+types[7]=makeDynInt(0,DPEL_FLOAT);
+types[8]=makeDynInt(0,DPEL_BOOL);
+types[9]=makeDynInt(0,DPEL_INT);
+
+
+
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  }
+  
+dpCreate(\"BME280\",\"Arduino\");
+
+
+}" 0
+ E E "main()
+{
+    
+  if (searchDPTexistance(\"Arduino\") == 0) {
+    this.enabled = \"FALSE\";
+  }
+  else {
+    this.enabled = \"TRUE\";  
+  }
+}
+" 0
+
+30 6
+"FRAME9"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2701754385964913 0 0.3652849740932642 354.0668452457229 -150.378079729301 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 4 DPTs
+6 7
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.519873022944977 0 1 0.2049476498106486 -21 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 8
+"PRIMITIVE_TEXT1"
+""
+1 233.8425373134328 6.25 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 233.8425373134328 6.25 314 31
+0 2 2 "0s" 0 0 0 192 0 0  233.8425373134328 6.25 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Settings
+30 16
+"FRAME10"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.3701754385964913 0 0.7124352331606219 319.2982456140351 -195.6891191709845 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Disk Space
+6 17
+"RECTANGLE19"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4046063804101386 0 1.377551020408163 18.74627596372762 -8.76530612244898 1 E 10 47 619 145
+30 18
+"FRAME11"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.4327115981410253 0 0.3652849740932642 20.02727307820535 -150.3882838109337 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 2 HV
+6 26
+"RECTANGLE20"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4046063804101386 0 2.76964124278753 20.54865052612422 72.40201979580826 1 E 10 47 619 145
+30 27
+"FRAME12"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.4327115981410253 0 0.7280850163899759 20.02727307820535 -210.3999154065773 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 5 Alert
+2 28
+"emailText"
+""
+1 80.9375 219 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 80.9375 219 126 237
+0 2 2 "0s" 0 0 0 192 0 0  80.9375 219 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Email
+29 29
+"emailButton"
+""
+1 130 214 E E E 1 E 1 E N "white" E N "_3DFace" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+5
+"skin" "enum 2"
+"textOff" "string OFF"
+"textOn" "string ON"
+"checked" "bool FALSE"
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  130 214 200 242
+16 ToggleSwitch.ewo
+1
+0 "toggled" "(bool on)"
+"  if(on)
+  {
+    this.foreCol(\"Green\");
+    dpSet(\"ALL.Notification.Email.Status\",1);
+    emailTable.enabled(1);
+    addButton.enabled(1);
+    removeButton.enabled(1);
+    setButton.enabled(1);
+    
+  }
+  else
+  {
+    this.foreCol(\"Red\");
+    dpSet(\"ALL.Notification.Email.Status\",0);
+    emailTable.enabled(0);
+    addButton.enabled(0);
+    removeButton.enabled(0);
+    setButton.enabled(0);    
+  }"
+"main()
+{
+  bool emailStatus;
+  dpGet(\"ALL.Notification.Email.Status\",emailStatus);
+  
+  if(emailStatus)
+  {
+    this.foreCol(\"Green\");
+    this.checked(1);
+    emailTable.enabled(1);
+    addButton.enabled(1);
+    removeButton.enabled(1);
+    setButton.enabled(1);
+  }
+  else
+  {
+    this.foreCol(\"Red\");
+    this.checked(0);  
+    emailTable.enabled(0);
+    addButton.enabled(0);
+    removeButton.enabled(0);
+    setButton.enabled(0);    
+  } 
+      
+}" 0
+25 37
+"emailTable"
+""
+1 335.1640238317794 15.64440986140107 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  30.29735716511279 247.7388228761087 265.2973571651128 428.8363353307137
+"main()
+{
+  emailTable.tableMode(TABLE_SELECT_BROWSE);
+  emailTable.selectByClick(TABLE_SELECT_LINE); //Selects lines
+  
+  
+  dyn_string recipients;
+  dpGet(\"ALL.Notification.Email.Recipients\",recipients);
+  
+  
+  for(int i=1;i<=dynlen(recipients);i++)
+  {
+    emailTable.appendLine(\"Recipient\",recipients[i]);     
+  }
+
+}" 0
+"main(int row, string column, string value)
+{
+    
+    dyn_string line;
+    line = emailTable.getLineN(row);
+    
+    
+  
+}" 0
+ 1 0 1 1 2 "Recipient" 24 1 1 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 5 Email
+E
+1
+LANG:1 0 
+
+228 
+20 20 "" 1 1
+LANG:1 2 #1
+"" 1 1
+LANG:1 2 #2
+10 0
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+13 38
+"addButton"
+""
+1 99 453 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0  223 248 245 270
+
+T 
+1
+LANG:1 1 +
+"main(mapping event)
+{
+    emailTable.appendLine(\"Recipient\",\"Please insert email\");
+}" 0
+ E E E
+13 39
+"removeButton"
+""
+1 99 453 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 32 DejaVu Sans,-1,16,5,75,0,0,0,0,0
+0  242 248 264 270
+
+T 
+1
+LANG:1 1 -
+"main(mapping event)
+{  
+    dyn_int selected;
+    selected=emailTable.getSelectedLines();   
+    
+    for(int i=1;i<=dynlen(selected);i++)
+    {
+      emailTable.deleteLineN(selected[i]);   
+    }
+
+
+    
+}" 0
+ E E E
+13 41
+"setButton"
+""
+1 96 444 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+28 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  94 435 203 465.0000000000001
+
+T 
+1
+LANG:1 3 Set
+"main(mapping event)
+{
+  int numberOfLines;
+  dyn_string lines;
+  numberOfLines=emailTable.lineCount(); 
+  
+  for(int i=1;i<=numberOfLines;i++)
+  {
+     lines[i]=emailTable.getLineN(i-1);
+
+  }
+  
+  dpSet(\"ALL.Notification.Email.Recipients\",lines);
+    
+}" 0
+ E E E
+6 42
+"RECTANGLE21"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.2050927044033372 0 0.7132802545503736 366.6989523701989 449.5743630901959 1 E 10 47 619 145
+30 43
+"FRAME13"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.2193390816019103 0 0.2081245222118407 366.5426324867359 358.6990146946403 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 17 OPC Server Status
+2 45
+"PRIMITIVE_TEXT3"
+""
+1 375.0118537551689 497.6790780141843 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 375.0118537551689 497.6790780141843 448 516
+0 2 2 "0s" 0 0 0 192 0 0  375.0118537551689 497.6790780141843 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 CAEN HV
+7 47
+"ELLIPSE2"
+""
+1 490.25 521.25 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"_CAENOPCServer.Connected:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"_CAENOPCServer.Connected:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:_CAENOPCServer.Connected}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {Red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {S7_stateWentUnq}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.6103896103896104 0 0.5844155844155844 162.5183472616624 202.0524546375609 1 E 490.25 521.25 19.25 19.25
+13 48
+"closeButton"
+""
+1 475 581 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+35 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  473 571.3 535.25 597.3
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+2 56
+"PRIMITIVE_TEXT4"
+""
+1 375.0118537551689 526.1790780141844 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 375.0118537551689 526.1790780141844 439 544
+0 2 2 "0s" 0 0 0 192 0 0  375.0118537551689 526.1790780141844 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Arduino
+7 57
+"ELLIPSE3"
+""
+1 490.25 521.25 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"_ArduinoOPCServer.Connected:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"_ArduinoOPCServer.Connected:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:_CAENOPCServer.Connected}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {Red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {S7_stateWentUnq}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.6103896103896104 0 0.5844155844155844 162.5183472616624 230.5524546375609 1 E 490.25 521.25 19.25 19.25
+6 65
+"RECTANGLE22"
+""
+1 660 100 E E E 1 E 1 E N "_Transparent" E N {227,227,227} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.4046063804101386 0 0.6471993052540154 21.25129336101143 447.1561007381678 1 E 10 47 619 145
+30 66
+"FRAME14"
+""
+1 10 554 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 0 1 0 1 E 0.4327115981410253 0 0.1735751295336784 22.53229047548918 377.8393782383422 0 E 10 554 581 941
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Archive DB
+13 67
+"PUSH_BUTTON1"
+""
+1 89.25000000000003 474.2872340425532 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  87.00000000000003 492.2872340425532 210 526.2872340425532
+
+T 
+1
+LANG:1 10 Archive DB
+"main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/archivedData.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+1 81 0 "" 0
+0
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+3 0 "PANEL_REF2" -1
+"layoutAlignment" "AlignCenter"
+"" ""
+"objects/hddMonitor.pnl" 661 69 T 9 1 0 1 -318 162
+0
+0

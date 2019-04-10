@@ -1,0 +1,238 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 250 254 N "_3DFace" 0
+"main()
+{
+    dpConnect(\"showMeTheSpace\", TRUE, getSystemName() + \"_ArchivDisk.AvailPerc\");
+}
+
+showMeTheSpace(string dp, int value) {
+
+    if (value < 15) {
+        setValue(\"hdFill\", \"backCol\", \"{255,57,43}\");
+        setValue(\"hdDown\", \"backCol\", \"{255,57,43}\");
+        setValue(\"hdUp\", \"backCol\", \"{255,57,43}\");
+    }
+    else if (value < 40) {
+        setValue(\"hdFill\", \"backCol\", \"yellow\");
+        setValue(\"hdDown\", \"backCol\", \"yellow\");
+        setValue(\"hdUp\", \"backCol\", \"yellow\");
+    }
+    else if (value > 40 ) {
+        setValue(\"hdFill\", \"backCol\", \"green\");
+        setValue(\"hdDown\", \"backCol\", \"green\");
+        setValue(\"hdUp\", \"backCol\", \"green\");
+    }
+    
+    percText.text(value + \"% Available\");
+    
+    int x, y, newY, posx, posy, newposy, used, free, topx, topy;
+    
+    getValue(\"top\", \"position\", topx, topy);    
+    
+    getValue(\"hdFill\", \"size\", x, y);
+    newY = ceil(179 * (100 - value) /100);
+    setValue(\"hdFill\", \"size\", x, newY);
+    
+    getValue(\"hdFill\", \"position\", posx, posy);
+    
+    newposy = - newY + topy + 180;
+    setValue(\"hdFill\", \"position\", posx, newposy);    
+    getValue(\"hdUp\", \"position\", posx, posy);
+    setValue(\"hdUp\", \"position\", posx, newposy);
+    
+    dpGet(getSystemName() + \"_ArchivDisk.UsedKB\", used);
+    dpGet(getSystemName() + \"_ArchivDisk.FreeKB\", free);
+    float usedGB = used / 1024 / 1024;
+    float freeGB = free / 1024 / 1024;
+    spaceAvail.text(\"Used/Free: \" + usedGB + \"GB / \" + freeGB + \"GB\");
+    /*
+    if (value < 10) {
+        int leftover = 100 - value;
+        string result = alertViaEmail(\"talexopo@cern.ch\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: [URGENT] Hard drive is \" + leftover + \"% full!!!\",
+                                     leftover + \"% of the hard drive space is already filled! Clean up the hard drive as soon as possible in order \" +
+                                     \"not to lose data...!!! For support contact paris.moschovakos@cern.ch\");
+        DebugN(\"Alert via mail: \", result);
+        string resultSMS = alertViaSMS(\"+417541116441\", \"TestbeamSCS\", \"URGENT\", leftover + \"% of the hard drive space is already filled! \"+
+                                       \"Clean up the hard drive as soon as possible in order not to lose data...!!! For support contact paris.moschovakos@cern.ch\");
+        DebugN(\"Alert via SMS: \", resultSMS);
+        alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"HDD e-mail and SMS sent to Theo\", \"TestBeamSCS: [URGENT] HDD leftover:\" + leftover +
+                    \". Debug info e-mail: \" + result, \". Debug info SMS: \" + resultSMS);
+    }
+    else if (value < 20) {
+        int leftover = 100 - value;
+        string result = alertViaEmail(\"talexopo@cern.ch\", \"TestbeamSCS@cern.ch\", \"TestBeamSCS: Hard drive is \" + leftover + \"% full!\",
+                                     leftover + \"% of the hard drive space is already filled! Clean up the hard drive as soon as possible in order \" +
+                                     \"not to lose data...!!! For support contact paris.moschovakos@cern.ch\");
+        DebugN(\"Alert via mail: \", result);
+        alertViaSMS(\"+41754111516\", \"TestbeamSCS\", \"HDD e-mail sent to Theo\", \"TestBeamSCS: [URGENT] HDD leftover:\" + leftover +
+                    \". Debug info e-mail: \" + result);
+    }
+  */  
+}
+" 0
+ E E E E 1 -1 -1 0  40 22
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+0
+LAYER, 1 
+1
+LANG:1 0 
+6 0
+"RECTANGLE18"
+""
+1 650 90 E E E 1 E 1 E N {0,0,0} E N {228,228,228} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -606 -58 1 E 650 90 810 268
+2 6
+"spaceAvail"
+""
+1 88.57447027003185 230 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9236947791164658 0 1 10.00000000000001 0 0 E 2 230 247 251
+0 2 2 "0s" 0 0 0 65 0 0  2 230 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 14 availableSpace
+6 4
+"hdFill"
+""
+1 650 179 E E E 1 E 1 E N {0,0,0} E N {68,255,62} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -606 -58 1 E 650 179 810 268
+7 1
+"hdDown"
+""
+1 730 90 E E E 1 E 1 E N {0,0,0} E N {68,255,62} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -606 120 1 E 730 90 80 10
+7 3
+"hdUp"
+""
+1 730 90 E E E 1 E 1 E N {0,0,0} E N {68,255,62} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -606 31 1 E 730 90 80 10
+2 5
+"percText"
+""
+1 104.1577028126402 105 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 0.9236947791164658 0 1 11.84738955823294 0 0 E 0 105 245 126
+0 2 2 "0s" 0 0 0 65 0 0  0 105 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 15 percentageSpace
+7 2
+"top"
+""
+1 730 90 E E E 1 E 1 E N {0,0,0} E N {166,166,166} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E 1 0 1 -606 -58 1 E 730 90 80 10
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0
