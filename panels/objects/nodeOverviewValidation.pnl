@@ -220,7 +220,7 @@ LANG:1 0
      this.text(type+\" - \"+batchID);  
   
 }" 0
- E 0 1 2 1 1 E 1 0 0.9230769230769231 5 -4.769230769230769 1 E 34 3 159 25
+ E 0 1 2 1 1 E 1 0 0.9230769230769231 5 -4.769230769230769 1 E 34 3 161 25
 0 2 2 "0s" 0 0 0 192 0 0  34 3 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
@@ -366,7 +366,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  855 74.69399261474621 928.0000000000001 100.6939926147461
+0  855.0000000000001 74.69399261474621 928.0000000000001 100.6939926147461
 
 T 
 1
@@ -407,7 +407,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  935 74.69399261474621 1008 100.6939926147461
+0  935.0000000000001 74.69399261474621 1008 100.6939926147461
 
 T 
 1
@@ -448,7 +448,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  856 45.69399261474621 1009 71.69399261474609
+0  856.0000000000001 45.69399261474621 1009 71.69399261474609
 5
 1
 LANG:1 6 Module
@@ -500,7 +500,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  912 104.6939926147461 970 130.6939926147461
+0  912.0000000000001 104.6939926147461 970.0000000000001 130.6939926147461
 11
 1
 LANG:1 0 
@@ -570,7 +570,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  856 103.2178021385556 909 130.6939926147461
+0  856.0000000000001 103.2178021385556 909.0000000000001 130.6939926147461
 3 "3s" 3 0 0 1 0 -1  E E E
 13 9
 "setButton"
@@ -658,7 +658,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 973 106.6939926147456 999 129
+E E 2 1 3 2 1 E U  0 E 973 106.6939926147456 1000 129
 0 2 2 "0s" 0 0 0 192 0 0  973 106.6939926147456 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
@@ -679,7 +679,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.354166666666667 0 1.948051948051952 837.4583333333335 -1141.981332060582 0 E 10 603 131 681
+E E 2 1 3 2 1 E 1.354166666666667 0 1.948051948051952 837.4583333333334 -1141.675324675327 0 E 10 603 131 681
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
@@ -865,7 +865,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.6914918745275785 0 0.5087719298245605 502.5305177626662 -385.2280701754379 0 E 556 767 701 825
+E E 2 1 3 2 1 E 0.5702160493827166 0 0.4385964912280699 533.8487654320985 -332.4035087719296 0 E 556 767 701 825
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0 1
@@ -873,7 +873,7 @@ LANG:1 0
 2 18
 "PRIMITIVE_TEXT4"
 ""
-1 889.0000000000002 13 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 853.3333333333336 11.88888888888889 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 18 0 0 0 0 0
 E E E
@@ -886,10 +886,10 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 889.0000000000002 13 963 31
-0 2 2 "0s" 0 0 0 192 0 0  889.0000000000002 13 1
+E E 2 1 3 2 1 E U  0 E 853.3333333333336 11.88888888888889 915 27
+0 2 2 "0s" 0 0 0 192 0 0  853.3333333333336 11.88888888888889 1
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
 LANG:1 9 Archiving
 7 19
@@ -956,7 +956,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {S7_stateWentUnq}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -927.9999999999998 -138 1 E 1901 161 9 9
+ E 0 1 3 2 1 E 1 0 1 -27.44444444444423 -3.111111111111114 1 E 949.0000000000002 23 7 6.5
 27 22
 "barTrendVoltage"
 ""
@@ -1328,6 +1328,113 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 
 " 0
  E
+30 34
+"FRAME10"
+""
+1 556 767 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.5354938271604943 0 0.4385964912280683 638.2654320987651 -332.4035087719284 0 E 556 767 701 825
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 35
+"PRIMITIVE_TEXT7"
+""
+1 1258 26 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1.038461538461539 0 1.080033537302895 -367.5497557997577 -16.45413708454268 0 E 1258 26 1317 41
+0 2 2 "0s" 0 0 0 192 0 0  1258 26 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Recovery
+7 36
+"ELLIPSE7"
+""
+1 1901 161 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+  string node=$node;
+  
+
+  if( !dpExists( \"N\"+node+\".AutoRecovery.Status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"N\"+node+\".AutoRecovery.Status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (!boNewValue)
+    setValue(\"\", \"backCol\", \"Red\");
+  else
+    setValue(\"\", \"backCol\", \"Green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:ALL.Notification.StatusEmail}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {0}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {Green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 1 0 0.919128603822487 8.333333333333371 2.536703471584018 1 E 994.9108377275938 19.13219954648518 7.0891623 7
 0
 LAYER, 1 
 1

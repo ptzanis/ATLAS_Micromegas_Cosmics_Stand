@@ -2532,7 +2532,7 @@ LANG:1 2 50
    
    if(mode==\"ValidationQA\")     
      {  
-      dpGet(\"N\"+node+\".AutoRecovery.voltageSub\",voltageSub);
+      dpSet(\"N\"+node+\".AutoRecovery.voltageSub\",voltageSub);
     }
    
   
@@ -2545,7 +2545,7 @@ LANG:1 2 50
     if(sector==\"2\")
         nodeStart=5; 
     
-      dpGet(\"N\"+nodeStart+\".AutoRecovery.voltageSub\",voltageSub);
+      dpSet(\"N\"+nodeStart+\".AutoRecovery.voltageSub\",voltageSub);
                   
    }
         
