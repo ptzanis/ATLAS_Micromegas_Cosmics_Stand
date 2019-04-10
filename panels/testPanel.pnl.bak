@@ -241,6 +241,105 @@ LANG:1 12 PUSH_BUTTON3
   testCheck.state(0,TRUE);
 }" 0
  E E E
+22 12
+"COMBO_BOX1"
+""
+1 330 430 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  328 424 452 449
+2
+1
+LANG:1 1 5
+
+0
+1
+LANG:1 2 10
+
+0
+
+E
+E
+E
+ 1 0
+17 14
+"SELECTION_LIST1"
+""
+1 180 400 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  178 398 302 522
+0
+
+E
+E
+E
+
+0 0
+22 15
+"COMBO_BOX2"
+""
+1 458 303 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  456 292 520 326
+6
+1
+LANG:1 1 5
+
+0
+1
+LANG:1 2 10
+
+0
+1
+LANG:1 2 15
+
+0
+1
+LANG:1 2 20
+
+0
+1
+LANG:1 2 30
+
+0
+1
+LANG:1 2 50
+
+0
+
+E
+E
+E
+ 0 0
 0
 LAYER, 1 
 1
