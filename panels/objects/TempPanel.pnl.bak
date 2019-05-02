@@ -1,0 +1,3024 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1197 686 N "_3DFace" 0
+E E E E E 1 -1 -1 0  60 40
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 90 60 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 90 60 92 74
+0 2 2 "0s" 0 0 0 192 0 0  90 60 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+14 3
+"TEXT_FIELD1"
+""
+1 337.4768179117092 86.27083333333313 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  335.4768179117092 78.9374999999998 385.5204547837857 102.9374999999998
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPLU1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 5
+"TEXT_FIELD2"
+""
+1 377.4272077763189 142.9374999999998 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  503.4272077763189 78.9374999999998 553.4272077763189 102.9374999999998
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPRU1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+30 7
+"FRAME1"
+""
+1 380 14 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 4 2 1 1 E 4.356435643564358 0 7.627118644067797 -1440.445544554456 -76.77966101694915 0 E 380 14 482 74
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 7 IP SIDE
+14 11
+"TEXT_FIELD3"
+""
+1 327 189.7395833333334 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  418 125.9062500000001 468 149.9062500000001
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPUM\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 14
+"TEXT_FIELD4"
+""
+1 372.4768179117092 175.2083333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  370.4768179117092 167.875 420.5204547837857 191.875
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPLU2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 15
+"TEXT_FIELD5"
+""
+1 336.9986363477475 232 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  462.9986363477475 168 512.9986363477475 192
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPRU2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 17
+"TEXT_FIELD6"
+""
+1 360.4768179117093 215 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  358.4768179117093 207.6666666666667 408.5204547837857 231.6666666666667
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPLD1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 19
+"TEXT_FIELD7"
+""
+1 352.4931817387379 271.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  478.4931817387379 207.5 528.4931817387378 231.5
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPRD1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 25))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 25
+"TEXT_FIELD8"
+""
+1 291.9918180864856 352.1875 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  417.9918180864856 288.1875 467.9918180864856 312.1875
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPLD2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 26
+"TEXT_FIELD9"
+""
+1 292 438.875 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  418 374.875 468 398.875
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPRD2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+30 27
+"FRAME2"
+""
+1 380 14 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "WF_BtnBottomPanelFore"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 4.158415841584159 0 7.627118644067797 -925.1980198019803 -76.77966101694915 0 E 380 14 482 74
+1
+LANG:1 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 1
+LANG:1 7 HO SIDE
+14 37
+"TEXT_FIELD10"
+""
+1 754.9972726954953 86.33333333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  752.9972726954953 79 803.0409095675718 103
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOLU1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 38
+"TEXT_FIELD11"
+""
+1 917.9781815639617 86.54166666666666 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  915.9781815639617 79.20833333333333 966.0218184360382 103.2083333333333
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HORU1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 39
+"TEXT_FIELD12"
+""
+1 707 189.9374999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  833 125.9374999999999 883 149.9374999999999
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOUM\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 40
+"TEXT_FIELD13"
+""
+1 789.9672723459425 175.3333333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  787.9672723459425 168 838.010909218019 192
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOLU2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 41
+"TEXT_FIELD14"
+""
+1 751.8571428571431 232 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  877.8571428571431 168 927.8571428571431 192
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HORU2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 42
+"TEXT_FIELD15"
+""
+1 776.8135059850667 215.0833333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  774.8135059850667 207.75 824.8571428571431 231.75
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOLD1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 43
+"TEXT_FIELD16"
+""
+1 772 271.75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  898 207.75 948 231.75
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HORD1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 44
+"TEXT_FIELD17"
+""
+1 710.9959090432428 352.1875 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  836.9959090432428 288.1875 886.9959090432428 312.1875
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOLD2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 45
+"TEXT_FIELD18"
+""
+1 711 439.03125 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  837 375.03125 887 399.03125
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HORD2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+6 46
+"RECTANGLE2"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 -36.7047353580449 59.90625 1 E 380 40 430 90
+6 47
+"RECTANGLE3"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 -28.42993508082395 162.1875 1 E 380 40 430 90
+6 48
+"RECTANGLE4"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 280 59.90625 1 E 380 40 430 90
+6 49
+"RECTANGLE5"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 263 162.1875 1 E 380 40 430 90
+6 50
+"RECTANGLE6"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 380.0020454783786 59.90625 1 E 380 40 430 90
+6 51
+"RECTANGLE7"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 696 59.90625 1 E 380 40 430 90
+6 52
+"RECTANGLE8"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 681 162 1 E 380 40 430 90
+6 53
+"RECTANGLE9"
+""
+1 380 40 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 2 1 E 0.8 0 0.2 392.9959090432428 162.1875 1 E 380 40 430 90
+14 54
+"TEXT_FIELD19"
+""
+1 255.2625369878977 91.3020833333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  253.2625369878977 83.9687499999999 303.3061738599742 107.9687499999999
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPCL2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 55
+"TEXT_FIELD20"
+""
+1 262.9836361729713 195.8229166666667 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  260.9836361729713 188.4895833333334 311.0272730450478 212.4895833333334
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPCL1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 56
+"TEXT_FIELD21"
+""
+1 462 147.9062500000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  588 83.90625 638 107.90625
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPCR2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 57
+"TEXT_FIELD22"
+""
+1 447 251.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  573 187.5 623 211.5
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"IPCR1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 58
+"TEXT_FIELD23"
+""
+1 669.996590869369 91.1770833333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  667.996590869369 83.84375 718.0402277414455 107.8437499999999
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOCL2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 60
+"TEXT_FIELD25"
+""
+1 880 147.9374999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  1006 83.93749999999982 1056 107.9374999999998
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOCR2\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 61
+"TEXT_FIELD26"
+""
+1 684.9740906072047 195.3489583333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  682.9740906072047 188.015625 733.0177274792813 212.015625
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOCL1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+14 62
+"TEXT_FIELD27"
+""
+1 863 252 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  989 188 1039 212
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  dyn_string alias;    
+  dyn_string allChannels,channelname,channels;
+   dyn_string node;
+  dyn_dyn_float value;
+   
+   dyn_dyn_float  mdeg;
+   bool isOn;
+ allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
+  for(int i =1; i<=dynlen(allChannels); i++){
+   
+       dpGet(allChannels[i] +\".value\",mdeg[i]);
+       
+       dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
+       DebugN(value);
+      
+     }
+ 
+}
+  
+void SearchAlias(string Channeldp,float newValue){ 
+   float x;
+ string alias = dpGetAlias(Channeldp);
+   if (alias == \"HOCR1\"){
+       this.text(newValue/1000);
+       x = newValue/1000;
+       if (( x >= 15)&&(x <= 35))
+         setValue(\"\",\"backCol\",\"Green\");
+       else 
+         setValue(\"\",\"backCol\",\"Red\");
+     }
+ }
+
+
+
+
+
+" 0
+ E
+13 63
+"PUSH_BUTTON1"
+""
+1 993 522.1818181818182 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+63 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  991 514 1115 552
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+7 64
+"ELLIPSE1"
+""
+1 0 0 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E U  2  1 0  "pictures/NTUA Logo/ntua_logo_eng.png" 4294967295 E 170 555 72.5 72.5
+10 72
+"POLYGON61"
+""
+1 774 179.9999999999999 E E E 1 E 1 E N {0,0,0} E N "WF_Head" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1.857142857142858 0 2.00110294117647 -706.428571428572 -292.2922794117645 1 E 4 774 179.9999999999999
+914 179.9999999999999
+880 350
+810 350
+ 1
+4 76
+"LINE4"
+""
+1 743 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  743 120 981 120
+4 78
+"LINE6"
+""
+1 750 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  750 160 974 160
+4 79
+"LINE7"
+""
+1 757.0000000000001 200 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  757.0000000000001 200 965.0000000000001 200
+4 81
+"LINE9"
+""
+1 764.4285714285717 238 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  764.4285714285717 238 959.4285714285717 238
+4 82
+"LINE10"
+""
+1 773 280 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+82 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  773 280 951 280
+4 83
+"LINE11"
+""
+1 783 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  783 320 943 320
+4 84
+"LINE12"
+""
+1 790 360 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  790 360 938 360
+10 85
+"POLYGON62"
+""
+1 774 179.9999999999999 E E E 1 E 1 E N {0,0,0} E N "WF_Head" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1.857142857142858 0 2.00110294117647 -1121.858506509396 -292.2922794117645 1 E 4 774 179.9999999999999
+914 179.9999999999999
+880 350
+810 350
+ 1
+4 86
+"LINE13"
+""
+1 326.570064919176 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  326.570064919176 120 564.570064919176 120
+4 87
+"LINE14"
+""
+1 333.570064919176 160 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  333.570064919176 160 557.570064919176 160
+4 88
+"LINE15"
+""
+1 341.5700649191761 200 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  341.5700649191761 200 549.570064919176 200
+4 89
+"LINE16"
+""
+1 348.9986363477475 238 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  348.9986363477475 238 543.9986363477475 238
+4 90
+"LINE17"
+""
+1 357.4986363477475 280 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  357.4986363477475 280 535.4986363477475 280
+4 91
+"LINE18"
+""
+1 366.4986363477475 320 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  366.4986363477475 320 526.4986363477475 320
+4 92
+"LINE19"
+""
+1 372.4986363477475 360 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+92 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 1 1 3 2 1 E  372.4986363477475 360 520.4986363477475 360
+7 93
+"ELLIPSE2"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 16.5 -61 1 E 620 133 9.5 9.5
+2 103
+"PRIMITIVE_TEXT3"
+""
+1 631.4999999999995 59.6475013433637 E E E 1 E 1 E N "_WindowText" E N "WF_BtnBottomPanelFore" E E
+ E E
+103 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 631.4999999999995 59.6475013433637 644.9999999999995 81.6475013433637
+0 2 2 "0s" 0 0 0 192 0 0  631.4999999999995 59.6475013433637 1
+1
+LANG:1 31 Sans Serif,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 1 x
+7 105
+"ELLIPSE7"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 1 43.5 1 E 620 133 9.5 9.5
+7 106
+"ELLIPSE8"
+""
+1 589 159.6875 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 6 3 2 1 E 1 0 1 32 16 1 E 589 159.6875 1 1
+7 109
+"ELLIPSE9"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+109 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 418.5 42 1 E 620 133 9.5 9.5
+7 110
+"ELLIPSE10"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 4 4 1 E 1048.5 68 10 9.5
+2 111
+"PRIMITIVE_TEXT6"
+""
+1 1047 59.38551980198002 E E E 1 E 1 E N "_WindowText" E N "WF_BtnBottomPanelFore" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1047 59.38551980198002 1060.5 81.38551980198002
+0 2 2 "0s" 0 0 0 192 0 0  1047 59.38551980198002 1
+1
+LANG:1 31 Sans Serif,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 1 x
+2 114
+"PRIMITIVE_TEXT8"
+""
+1 1000 107.8437499999998 E E E 1 E 1 E N "STD_windows_available" E N "_Window" E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1 0 0.6732939279957023 -1.5 33.96531561068484 0 E 1000 107.8437499999998 1064 162
+0 2 2 "0s" 0 0 0 192 0 0  1000 107.8437499999998 3
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Flow Input
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 115
+"RECTANGLE10"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 0.8557692307692307 6.5 21.15475057121079 0 E 990 40 1059 144
+2 116
+"PRIMITIVE_TEXT9"
+""
+1 582 108 E E E 1 E 1 E N "STD_windows_available" E N "_Window" E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1 0 0.7119828049435762 0 30.52982267598092 0 E 582 108 646 162
+0 2 2 "0s" 0 0 0 192 0 0  582 108 3
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Flow Input
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 117
+"RECTANGLE11"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 0.8594677015139116 -410.5000000000001 20.62129193944353 0 E 990 40 1059 144
+2 118
+"PRIMITIVE_TEXT10"
+""
+1 980 211.8437499999998 E E E 1 E 1 E N "STD_used" E N "_Window" E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E U  0 E 980 211.8437499999998 1054 285
+0 2 2 "0s" 0 0 0 192 0 0  980 211.8437499999998 4
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Flow Output
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 119
+"RECTANGLE12"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.101449275362319 0 0.875 -111.4347826086957 124.5 0 E 990 40 1059 144
+6 120
+"RECTANGLE13"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+120 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.101449275362319 0 0.8739483173076934 -527.4347826086957 124.7295673076923 0 E 990 40 1059 144
+2 121
+"PRIMITIVE_TEXT11"
+""
+1 565 214 E E E 1 E 1 E N "STD_used" E N "_Window" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E U  0 E 565 214 639 287
+0 2 2 "0s" 0 0 0 192 0 0  565 214 4
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Flow Output
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+7 122
+"ELLIPSE12"
+""
+1 589 159.6875 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 6 3 2 1 E 1 0 1 449.5 14.3125 1 E 589 159.6875 1 1
+30 123
+"FRAME4"
+""
+1 50 3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+123 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+4
+"hoverfclr" "N \"STD_windows_available\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "WF_Text"
+"antiAliased" "0"
+E E 1 7 3 2 1 E 0.8916666666666667 0 1 35.41666666666661 2 0 E 50 3 1251 641
+1
+LANG:1 31 Sans Serif,-1,24,5,50,0,0,0,0,0
+0 1
+LANG:1 19 Temperature Monitor
+4 128
+"LINE29"
+""
+1 602 259.6108284883722 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+128 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  602 259.6108284883722 600 379
+4 130
+"LINE31"
+""
+1 525 380 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  525 380 599 379
+4 131
+"LINE32"
+""
+1 649.5 160.373695889552 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  649.5 160.373695889552 651 399
+4 135
+"LINE36"
+""
+1 525 380 E E E 1 E 1 E N "STD_value_default" E N {255,255,255} E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  525 380 525 400
+4 136
+"LINE37"
+""
+1 525 400 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+136 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  525 400 650 400
+4 137
+"LINE38"
+""
+1 1065.5 160.38551980198 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+137 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  1065.5 160.38551980198 1067 399.0118239124281
+4 138
+"LINE39"
+""
+1 942 400.0118239124281 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+138 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  942 400.0118239124281 1067 400.0118239124281
+4 139
+"LINE40"
+""
+1 1019 260.6108284883722 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+139 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  1019 260.6108284883722 1017 380
+4 140
+"LINE41"
+""
+1 943 380 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+140 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  943 380 1017 379
+4 141
+"LINE42"
+""
+1 941 380 E E E 1 E 1 E N "STD_value_default" E N {255,255,255} E E
+ E E
+141 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  941 380 941 400
+7 142
+"ELLIPSE13"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 -356.929935080824 42.1875 1 E 620 133 9.5 9.5
+7 143
+"ELLIPSE14"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 -364.2047353580449 -60.09375 1 E 620 133 9.5 9.5
+6 144
+"RECTANGLE14"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+144 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 0.8594677015139116 -747.6938261400257 20.89772146072004 0 E 990 40 1059 144
+2 145
+"PRIMITIVE_TEXT12"
+""
+1 250.0452646419551 59.90625 E E E 1 E 1 E N "_WindowText" E N "WF_BtnBottomPanelFore" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 250.0452646419551 59.90625 263.5452646419551 81.90625
+0 2 2 "0s" 0 0 0 192 0 0  250.0452646419551 59.90625 1
+1
+LANG:1 31 Sans Serif,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 1 x
+7 146
+"ELLIPSE15"
+""
+1 589 159.6875 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 6 3 2 1 E 1 0 1 -325.929935080824 16.5 1 E 589 159.6875 1 1
+6 147
+"RECTANGLE15"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.101449275362319 0 0.8739483173076934 -844.407509563648 125.0863381410256 0 E 990 40 1059 144
+2 148
+"PRIMITIVE_TEXT13"
+""
+1 582 108 E E E 1 E 1 E N "STD_windows_available" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1 0 0.7119828049435762 -334.6938261400257 31.49857267598082 0 E 582 108 646 162
+0 2 2 "0s" 0 0 0 192 0 0  582 108 3
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Flow Input
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 149
+"PRIMITIVE_TEXT14"
+""
+1 249.0272730450478 214.4348958333335 E E E 1 E 1 E N "STD_used" E N "_Window" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E U  0 E 249.0272730450478 214.4348958333335 323.0272730450478 287.4348958333335
+0 2 2 "0s" 0 0 0 192 0 0  249.0272730450478 214.4348958333335 4
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Flow Output
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+4 150
+"LINE43"
+""
+1 240.8061738599743 160.2637526867273 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  240.8061738599743 160.2637526867273 242.3061738599743 398.8900567971754
+4 151
+"LINE44"
+""
+1 242.3061738599743 398.8900567971754 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  242.3061738599743 398.8900567971754 367.3061738599743 398.8900567971754
+4 152
+"LINE45"
+""
+1 367.3061738599743 378.8900567971754 E E E 1 E 1 E N "STD_value_default" E N {255,255,255} E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  367.3061738599743 378.8900567971754 367.3061738599743 398.8900567971754
+4 153
+"LINE46"
+""
+1 293.3061738599743 379.8900567971754 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  293.3061738599743 379.8900567971754 367.3061738599743 378.8900567971754
+4 154
+"LINE47"
+""
+1 293.3061738599743 260.6108284883722 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  293.3061738599743 260.6108284883722 291.3061738599743 380
+2 155
+"PRIMITIVE_TEXT15"
+""
+1 664.7520454783786 61.90625 E E E 1 E 1 E N "_WindowText" E N "WF_BtnBottomPanelFore" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 664.7520454783786 61.90625 678.2520454783786 83.90625
+0 2 2 "0s" 0 0 0 192 0 0  664.7520454783786 61.90625 1
+1
+LANG:1 31 Sans Serif,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 1 x
+7 157
+"ELLIPSE17"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 63.49590904324282 42.1875 1 E 620 133 9.5 9.5
+7 158
+"ELLIPSE18"
+""
+1 615 135 E E E 1 E 1 E N {0,0,0} E N "WF_BtnBottomPanelFore" E E
+ E E
+158 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1 0 1 51.50204547837859 -60.09375 1 E 620 133 9.5 9.5
+6 159
+"RECTANGLE16"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 0.8594677015139116 -330.4798861292772 20.85084646072008 0 E 990 40 1059 144
+2 160
+"PRIMITIVE_TEXT16"
+""
+1 665.7520454783786 59.90625 E E E 1 E 1 E N "_WindowText" E N "WF_BtnBottomPanelFore" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 665.7520454783786 59.90625 679.2520454783786 81.90625
+0 2 2 "0s" 0 0 0 192 0 0  665.7520454783786 59.90625 1
+1
+LANG:1 31 Sans Serif,-1,19,5,50,0,0,0,0,0
+0 1
+LANG:1 1 x
+2 161
+"PRIMITIVE_TEXT17"
+""
+1 582 108 E E E 1 E 1 E N "STD_windows_available" E N "_Window" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1 0 0.7119828049435762 80.52011387072275 29.84901546797683 0 E 582 108 646 162
+0 2 2 "0s" 0 0 0 192 0 0  582 108 3
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 10 Flow Input
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+7 162
+"ELLIPSE19"
+""
+1 589 159.6875 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 6 3 2 1 E 1 0 1 93.49590904324282 15.5 1 E 589 159.6875 1 1
+6 163
+"RECTANGLE17"
+""
+1 990 40 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.101449275362319 0 0.8739483173076934 -422.4259188690551 124.6045673076922 0 E 990 40 1059 144
+2 164
+"PRIMITIVE_TEXT18"
+""
+1 671.0088637396407 212.9531250000001 E E E 1 E 1 E N "STD_used" E N "_Window" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E U  0 E 671.0088637396407 212.9531250000001 745.0088637396407 285.9531250000001
+0 2 2 "0s" 0 0 0 192 0 0  671.0088637396407 212.9531250000001 4
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Flow Output
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 8  Channel
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 29 Overpass,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+4 165
+"LINE48"
+""
+1 663.0088637396407 159.5624999999999 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  663.0088637396407 159.5624999999999 664.5088637396407 398.188804110448
+4 166
+"LINE49"
+""
+1 665.4521782929627 400.188804110448 E E E 1 E 1 E N "STD_windows_available" E N {255,255,255} E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  665.4521782929627 400.188804110448 776.010050832794 400.188804110448
+4 167
+"LINE50"
+""
+1 704.0069247965941 261.1108284883722 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  704.0069247965941 261.1108284883722 702.0069247965941 380.5
+4 168
+"LINE51"
+""
+1 702.0069247965941 380.5 E E E 1 E 1 E N "STD_used" E N {255,255,255} E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  702.0069247965941 380.5 776.0102486989596 379.5
+4 169
+"LINE52"
+""
+1 778.0088637396407 379.5 E E E 1 E 1 E N "STD_value_default" E N {255,255,255} E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  778.0088637396407 379.5 778.0088637396407 399.5
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -2095,7 +2095,7 @@ T
 LANG:1 8 Settings
 "main(mapping event)
 {
-  ChildPanelOnCentral(\"objects/settings.pnl\", \"\", makeDynString(\"\")); 
+  ChildPanelOnCentral(\"objects/settings.pnl\", \"Settings\", makeDynString(\"\")); 
 }" 0
  E E E
 13 36
@@ -2147,6 +2147,31 @@ LANG:1 5 Setup
 {
   enabledAllTabButtons();
   currentLayer(1);
+}" 0
+ E E E
+13 135
+"PUSH_BUTTON1"
+""
+1 1081 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+134 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  1151 -6.661338147750939e-16 1264 25
+
+T 
+1
+LANG:1 4 ELMB
+"main(mapping event)
+{
+  ChildPanelOnCentral(\"objects/TempPanel.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
 0

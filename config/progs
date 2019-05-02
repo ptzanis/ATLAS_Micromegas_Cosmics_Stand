@@ -19,7 +19,7 @@ WCCOActrl        | always |      30 |        3 |        3 |-f fwInstallationAgen
 WCCOActrl        |   once |      30 |        1 |        1 |-f fwScripts.lst
 WCCOAopc         | manual |      30 |        2 |        2 |-num 6
 WCCILsim         | manual |      30 |        2 |        2 |-num 6
-WCCOActrl        | always |      30 |        3 |        5 |fwFsmSrvr
+WCCOActrl        | manual |      30 |        3 |        5 |fwFsmSrvr
 WCCOAui          | manual |       5 |        3 |        5 |-p fwDeviceEditorNavigator/fwDeviceEditorNavigator.pnl -iconBar -menuBar
 WCCOActrl        | always |      30 |        3 |        2 |unDistributedControl.ctl
 WCCOAui          | manual |       5 |        3 |        5 |-p fwTrending/fwTrending.pnl -iconBar -menuBar
@@ -29,5 +29,8 @@ WCCOAui          | manual |      30 |        2 |        2 |-p HVMM_Main.pnl -ico
 WCCILsim         | manual |      30 |        2 |        2 |-num 13
 WCCOAdip         | manual |      30 |        2 |        2 |-dns dipnsgpn1, dipnsgpn2
 WCCILsim         | manual |      30 |        2 |        2 |-num 6 -dbg none
-WCCOAopcua       | manual |      30 |        5 |        3 |-num 0
+WCCOAopcua       | manual |      30 |        5 |        3 |-num 9
 WCCILsim         | manual |      30 |        5 |        3 |-num 0
+WCCILsim         | manual |      30 |        2 |        2 |-num 9
+WCCOActrl        | always |      30 |        2 |        1 |fwElmb/fwElmbCheckInvalid.ctl -num 70
+WCCOAopcua       | manual |      30 |        2 |        2 |-num 15

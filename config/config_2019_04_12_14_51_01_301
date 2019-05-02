@@ -15,15 +15,6 @@ pmonPort=6999
 dataPort=6897
 eventPort=6998
 [ui]
-#begin fwElmb
-#This should not be edited manually
-#if the component is empty it means that the parametrization is already done in the section
-LoadCtrlLibs = "fwElmb/fwElmb.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbConstants.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbUser.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbMonitorLib.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbMonitorConstants.ctl"
-#end fwElmb
 #begin fwTrending
 #This should not be edited manually
 #if the component is empty it means that the parametrization is already done in the section
@@ -127,15 +118,6 @@ LoadCtrlLibs = "fwGeneral/fwManager.ctl"
 #end fwGeneral
 LoadCtrlLibs = "fwInstallation.ctl"
 [ctrl]
-#begin fwElmb
-#This should not be edited manually
-#if the component is empty it means that the parametrization is already done in the section
-LoadCtrlLibs = "fwElmb/fwElmb.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbConstants.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbUser.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbMonitorLib.ctl"
-LoadCtrlLibs = "fwElmb/fwElmbMonitorConstants.ctl"
-#end fwElmb
 #begin fwTrending
 #This should not be edited manually
 #if the component is empty it means that the parametrization is already done in the section
@@ -312,17 +294,3 @@ DipConfig = "DIPConfig_1"
 LoadCtrlLibs = "email.ctl"
 [valarch]
 queryMaxValues= 0
-[opcua_9]
-#begin fwElmb
-#This should not be edited manually
-#if the component is empty it means that the parametrization is already done in the section
-server = "OPCUACANOPENSERVER"
-#end fwElmb
-[ctrl_70]
-#begin fwElmb
-#This should not be edited manually
-#if the component is empty it means that the parametrization is already done in the section
-distributed = 0
-#end fwElmb
-[opcua_15]
-server = "OpcUaScaServer"
