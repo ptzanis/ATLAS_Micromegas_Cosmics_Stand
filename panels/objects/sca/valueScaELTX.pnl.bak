@@ -1,0 +1,215 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 149 48 N "_3DFace" 6
+"$IPorHO"
+"$PCB"
+"$UpDown"
+"$layer"
+"$rightOrLeft"
+"$sector"
+"main()
+{
+ 
+  
+  string valueToChoose;
+  string mode;
+  if(modeSlider.value()==0)
+    mode=\"Type\";
+  if(modeSlider.value()==1)
+    mode=\"Voltage\";
+  if(modeSlider.value()==2)
+    mode=\"Temperature\";  
+  
+  
+  string dpeBoardPlace=\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown;
+  
+  if(rightOrLeft==\"Left\")   
+  { 
+     statusLEFT.visible(TRUE);
+     statusLEFT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);    
+     statusLEFT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+
+   }
+   
+  if(rightOrLeft==\"Right\")  
+  {
+     statusRIGHT.visible(TRUE);
+     statusRIGHT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);  
+     statusRIGHT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+
+
+   }
+  
+  value.toolTipText(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+  value.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+    
+  
+  string channel,type, visibility;
+   dpGet(\"MMG-S1.\"+dpeBoardPlace+\".Channel\",channel);
+   dpGet(\"MMG-S1.\"+dpeBoardPlace+\".Type\",type); 
+   dpGet(\"MMG-S1.\"+dpeBoardPlace+\".Visibility\",visibility);    
+   
+   
+  shape value=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+  shape status=getShape(\"Stats_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+  
+  if(visibility)
+  {
+ 
+ string voltageParameter, temperatureParameter; 
+ dpGet(\"MMG-S1-Settings.\"+type+\".Voltage\",voltageParameter);
+ dpConnect(\"updateStatus\",channel+\".online\",channel+voltageParameter+\".value\"); 
+  
+  if(mode==\"Type\")
+    value.text(type);
+  
+  if(mode==\"Voltage\")
+  {
+    dpGet(\"MMG-S1-Settings.\"+type+\".Voltage\",voltageParameter);
+    dpConnect(\"updateValue\",channel+voltageParameter+\".value\");
+   
+//    DebugN(\"Test------->\",dpeBoardPlace,channel+voltageParameter);
+  
+  }
+  
+  if(mode==\"Temperature\") 
+  {
+    dpGet(\"MMG-S1-Settings.\"+type+\".Temperature\",temperatureParameter);    
+  }
+    
+}
+  else
+  {
+  value.visible(0);
+  status.visible(0);
+  }
+
+  
+  
+ 
+  }
+    
+    
+void updateValue(string dpSource, float fNewValue)
+{
+  shape value=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+  value.text(fNewValue);
+}
+void updateStatus(string dpSource, bool fNewValue,string dpSource2, float fNewValue2)
+{
+  shape status=getShape(\"Stats_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+  if(fNewValue)
+  status.backCol(\"Green\");
+  if(!fNewValue)
+  status.backCol(\"Red\");  
+  
+  
+  
+}
+
+" 0
+ E E E E 1 -1 -1 0  4.507998142363585 5.950920047862082
+""0  1
+E "  string rightOrLeft=$rightOrLeft;
+  int layer=$layer;
+  int sector=$sector;
+  int PCB=$PCB;
+  string side=$IPorHO;
+  string UpDown=$UpDown;" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"statusLEFT"
+""
+1 438 135 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.8756052803999685 -0.1503702247285274 0.1332431319078741 0.7359711105209331 -396.5029356227492 -24.49394148923096 1 E 438 135 455 169
+14 1
+"value"
+""
+1 38 11.83333333333326 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  36 6 102 35
+2 "0.3f" 4 0 0 1 0 -1  E "main()
+{
+  
+ // this.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+//  this.toolTipText(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+
+}" 0
+ E
+6 2
+"statusRIGHT"
+""
+1 438 135 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 1 1 E 0.8756052803999689 0.1503702247285257 -0.1332431319078724 0.7359711105209333 -247.5272900076236 -159.2182583514203 1 E 438 135 455 169
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

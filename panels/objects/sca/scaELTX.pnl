@@ -141,9 +141,9 @@ LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
 0 1
 LANG:1 23 ELTX SCA-GBT Monitoring
 13 21
-"createHVSetupDptButton"
+"createSettingsDPT"
 ""
-1 489 -11 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 383 -7 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 21 0 0 0 0 0
 E E E
@@ -155,11 +155,11 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  486.75 7.000000000000039 609.7500000000003 41.00000000000001
+0  380.75 11.00000000000004 503.7500000000003 45.00000000000001
 
 T 
 1
-LANG:1 14 Create HV DPTs
+LANG:1 16 SCA Settings DPT
 "main(mapping event)
 {
   
@@ -168,17 +168,27 @@ dyn_dyn_int types;
 
 // elements
 
-elements[1]=makeDynString(\"HVSetup\",\"\");
+elements[1]=makeDynString(\"SCAELTXSettings_MMG\",\"\");
 types[1]=makeDynInt(DPEL_STRUCT);
 
-elements[2]=makeDynString(\"\",\"Mapping\",\"\");
+elements[2]=makeDynString(\"\",\"ADDC\",\"\");
 types[2]=makeDynInt(0,DPEL_STRUCT);
-elements[3]=makeDynString(\"\",\"\",\"ChannelsTotal\",\"\");
-types[3]=makeDynInt(0,0,DPEL_STRUCT);
-elements[4]=makeDynString(\"\",\"\",\"\",\"Strips\");
-types[4]=makeDynInt(0,0,0,DPEL_DYN_STRING);
-elements[5]=makeDynString(\"\",\"\",\"\",\"Drift\");
-types[5]=makeDynInt(0,0,0,DPEL_DYN_STRING);
+elements[3]=makeDynString(\"\",\"\",\"Voltage\");
+types[3]=makeDynInt(0,0,DPEL_STRING);
+elements[4]=makeDynString(\"\",\"\",\"Temperature\");
+types[4]=makeDynInt(0,0,DPEL_STRING);
+elements[5]=makeDynString(\"\",\"L1DDC\",\"\");
+types[5]=makeDynInt(0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"Voltage\");
+types[6]=makeDynInt(0,0,DPEL_STRING);
+elements[7]=makeDynString(\"\",\"\",\"Temperature\");
+types[7]=makeDynInt(0,0,DPEL_STRING);
+elements[8]=makeDynString(\"\",\"MMFE8\",\"\");
+types[8]=makeDynInt(0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"Voltage\");
+types[9]=makeDynInt(0,0,DPEL_STRING);
+elements[10]=makeDynString(\"\",\"\",\"Temperature\");
+types[10]=makeDynInt(0,0,DPEL_STRING);
 
      
 int x=dpTypeCreate(elements,types);
@@ -191,31 +201,18 @@ int x=dpTypeCreate(elements,types);
     DebugN (\"Datapoint type creation returned an error!\");
   } 
 
-    for(int i=1;i<=8;i++)
-  {
-  dpCreate(\"N\"+i,\"HVSetup\");
 
-  }    
+  dpCreate(\"MMG-S1\",\"SCAELTXSettings_MMG\");
+  
       
 
 
 }" 0
- E E "main()
-{
-    
-  if (searchDPTexistance(\"HVSetup\") == 0) {
-    this.enabled = \"FALSE\";
-  }
-  else {
-    this.enabled = \"TRUE\";  
-  }
-}
-" 0
-
+ E E E
 29 23
-"SLIDER1"
+"modeSlider"
 ""
-1 200 -12 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 200 -10 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
  E E
 23 0 0 0 0 0
 E E E
@@ -226,13 +223,13 @@ LANG:1 0
 6
 "orientation" "enum 0"
 "maxValue" "int 2"
-"value" "int 2"
+"value" "int 1"
 "invertedAppearance" "bool FALSE"
 "tickPosition" "enum 1"
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  769.9952000000001 27.62489458593359 976.5152 51.9365828976219
+0  769.9952 29.62489458593358 976.5152 53.9365828976219
 12 SliderWidget
 0
 E2 25
@@ -260,7 +257,7 @@ LANG:1 4 Mode
 2 26
 "PRIMITIVE_TEXT4"
 ""
-1 757 7 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 759 7 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 26 0 0 0 0 0
 E E E
@@ -273,8 +270,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 757 7 797 25
-0 2 2 "0s" 0 0 0 192 0 0  757 7 1
+E E 2 1 3 2 1 E U  0 E 759 7 799 25
+0 2 2 "0s" 0 0 0 192 0 0  759 7 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -540,6 +537,172 @@ LANG:1 2 HO
     }
 
   
+}" 0
+ E E E
+13 151
+"PUSH_BUTTON1"
+""
+1 504.9564075630252 -7 E E E 0 E 0 E N "_ButtonText" E N {236,236,236} E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  502.7499999999999 11.00000000000004 604.9999999999999 45.00000000000001
+
+T 
+1
+LANG:1 7 MMG DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+int count=1;
+
+elements[count]=makeDynString(\"SCAELTX_MMG\",\"\");
+types[count]=makeDynInt(DPEL_STRUCT);
+
+string leftRight,side,upDownValue;
+  
+ for(int sector=0;sector<=1;sector++)
+ {
+        if(sector==0)
+          side=\"IP\";
+        if(sector==1)
+          side=\"HO\";  
+  
+  for(int pcb=1;pcb<=8;pcb++)
+  {
+    for(int layer=1;layer<=4;layer++)
+    {
+      for(int leftOrRight=0;leftOrRight<=1;leftOrRight++)
+      {
+        if(leftOrRight==0)
+          leftRight=\"Left\";
+        if(leftOrRight==1)
+          leftRight=\"Right\";
+        
+        for(int upDown=0;upDown<=1;upDown++)
+          {
+        if(upDown==0)
+          upDownValue=\"Up\";
+        if(upDown==1)
+          upDownValue=\"Down\";  
+                 
+     count++;   
+     elements[count]=makeDynString(\"\",\"Side\"+side+\"PCB\"+pcb+\"Layer\"+layer+leftRight+upDownValue);
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+    
+
+       }
+     }
+    }
+  }
+}
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"MMG-S1\",\"SCAELTX_MMG\");
+  
+
+}" 0
+ E E E
+13 152
+"PUSH_BUTTON2"
+""
+1 605 -7 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  602.7935924369748 11.00000000000004 705.0435924369748 45.00000000000001
+
+T 
+1
+LANG:1 7 STG DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"SCAELTXSettings_MMG\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"ADDC\",\"\");
+types[2]=makeDynInt(0,DPEL_STRUCT);
+elements[3]=makeDynString(\"\",\"\",\"Voltage\");
+types[3]=makeDynInt(0,0,DPEL_STRING);
+elements[4]=makeDynString(\"\",\"\",\"Temperature\");
+types[4]=makeDynInt(0,0,DPEL_STRING);
+elements[5]=makeDynString(\"\",\"L1DDC\",\"\");
+types[5]=makeDynInt(0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"Voltage\");
+types[6]=makeDynInt(0,0,DPEL_STRING);
+elements[7]=makeDynString(\"\",\"\",\"Temperature\");
+types[7]=makeDynInt(0,0,DPEL_STRING);
+elements[8]=makeDynString(\"\",\"MMFE8\",\"\");
+types[8]=makeDynInt(0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"Voltage\");
+types[9]=makeDynInt(0,0,DPEL_STRING);
+elements[10]=makeDynString(\"\",\"\",\"Temperature\");
+types[10]=makeDynInt(0,0,DPEL_STRING);
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"MMG-S1\",\"SCAELTXSettings_MMG\");
+  
+      
+
+
 }" 0
  E E E
 0

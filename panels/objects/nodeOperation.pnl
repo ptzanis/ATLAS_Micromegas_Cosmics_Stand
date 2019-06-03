@@ -2338,6 +2338,11 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 1
 0 "toggled" "(bool on)"
 "  string node=$node;
+  string mode=$mode;
+  string sector=$sector;
+  
+     if(mode==\"ValidationQA\")     
+  {
   if(on)
   {
     this.foreCol(\"Green\");
@@ -2347,11 +2352,45 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
   {
     this.foreCol(\"Red\");
     dpSet(\"N\"+node+\".AutoRecovery.Status\",0);    
-  }"
+  }
+    
+    
+  }
+  
+   if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")     
+  {
+    
+       int nodeStart;
+    if(sector==\"1\")
+        nodeStart=1;
+    if(sector==\"2\")
+        nodeStart=5; 
+    
+  if(on)
+  {
+    this.foreCol(\"Green\");
+    for(int i=nodeStart;i<4+nodeStart;i++)
+    {
+    dpSet(\"N\"+i+\".AutoRecovery.Status\",1);    
+    }
+  }
+  else
+  {
+    this.foreCol(\"Red\");
+    for(int i=nodeStart;i<4+nodeStart;i++)
+    {
+    dpSet(\"N\"+i+\".AutoRecovery.Status\",1);    
+    }
+  }
+    
+    
+  } 
+"
 "main()
 {
    string mode=$mode;
    string node=$node;
+   string sector=$sector;
    bool autoRecovery;
    
    if(mode==\"ValidationQA\")     
@@ -2373,7 +2412,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
   
    if(mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")     
      {  
-      
+
     int nodeStart;
     if(sector==\"1\")
         nodeStart=1;
@@ -2381,6 +2420,7 @@ LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
         nodeStart=5; 
     
        dpGet(\"N\"+nodeStart+\".AutoRecovery.Status\",autoRecovery);   
+       
        if(autoRecovery)
       {
         this.foreCol(\"Green\");
@@ -2496,6 +2536,7 @@ LANG:1 2 50
 {
    string mode=$mode;
    string node=$node;
+   string sector=$sector;
    float voltageSub;
    
    if(mode==\"ValidationQA\")     
@@ -2528,6 +2569,7 @@ LANG:1 2 50
 {
    string mode=$mode;
    string node=$node;
+   string sector=$sector;
    float voltageSub=this.text();
    
    if(mode==\"ValidationQA\")     
@@ -2545,7 +2587,12 @@ LANG:1 2 50
     if(sector==\"2\")
         nodeStart=5; 
     
-      dpSet(\"N\"+nodeStart+\".AutoRecovery.voltageSub\",voltageSub);
+    for(int i=nodeStart;i<4+nodeStart;i++)
+    {
+      dpSet(\"N\"+i+\".AutoRecovery.voltageSub\",voltageSub);
+    }
+    
+
                   
    }
         

@@ -42,3 +42,11 @@ Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 11111111111111 | Start: 2
 Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 22222222222222 | Start: 2019.02.19 09:57:37.507 | End: 2019.02.19 11:03:25.751 | Env/Gas/Hum/GIF T/F/T/F 
 Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 33333333333333 | Start: 2019.02.19 09:57:37.507 | End: 2019.02.19 11:03:25.751 | Env/Gas/Hum/GIF T/F/T/F 
 Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 44444444444444 | Start: 2019.02.19 09:57:37.507 | End: 2019.02.19 11:03:25.751 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 20MNMMMS200007 | Start: 2019.05.23 17:16:18.023 | End: 2019.05.23 18:34:30.697 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 20MNMMMS100007 | Start: 2019.05.23 17:16:18.023 | End: 2019.05.23 18:34:30.697 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 20MNMMMS200006 | Start: 2019.05.23 17:16:18.023 | End: 2019.05.23 18:34:30.697 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 20MNMMMS100008 | Start: 2019.05.23 17:16:18.023 | End: 2019.05.23 18:34:30.697 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 1 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 20MNMMMS200007 | Start: 2019.05.24 12:08:40.520 | End: 2019.05.24 14:44:40.145 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 2 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 20MNMMMS100007 | Start: 2019.05.24 12:08:40.520 | End: 2019.05.24 14:44:40.145 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 3 | Mode: CosmicsBasic | Chamber: SM2 | BatchID: 20MNMMMS200006 | Start: 2019.05.24 12:08:40.520 | End: 2019.05.24 14:44:40.145 | Env/Gas/Hum/GIF T/F/T/F 
+Node: 4 | Mode: CosmicsBasic | Chamber: SM1 | BatchID: 20MNMMMS100008 | Start: 2019.05.24 12:08:40.520 | End: 2019.05.24 14:44:40.145 | Env/Gas/Hum/GIF T/F/T/F 

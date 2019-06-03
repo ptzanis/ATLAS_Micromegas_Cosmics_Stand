@@ -29,8 +29,8 @@ WCCOAui          | manual |      30 |        2 |        2 |-p HVMM_Main.pnl -ico
 WCCILsim         | manual |      30 |        2 |        2 |-num 13
 WCCOAdip         | manual |      30 |        2 |        2 |-dns dipnsgpn1, dipnsgpn2
 WCCILsim         | manual |      30 |        2 |        2 |-num 6 -dbg none
-WCCOAopcua       | manual |      30 |        5 |        3 |-num 9
+WCCOAopcua       | always |      30 |        5 |        3 |-num 9
 WCCILsim         | manual |      30 |        5 |        3 |-num 0
 WCCILsim         | manual |      30 |        2 |        2 |-num 9
 WCCOActrl        | always |      30 |        2 |        1 |fwElmb/fwElmbCheckInvalid.ctl -num 70
-WCCOAopcua       | manual |      30 |        2 |        2 |-num 15
+WCCOAopcua       | always |      30 |        2 |        2 |-num 15
