@@ -30,6 +30,19 @@ PANEL,-1 -1 706 204 N "_3DFace" 7
              x=x+142;
        }
      
+      x=x+60;
+      y=y+10;
+     
+     bool isHospitalLineEnabled;
+     dpGet(\"N\"+node+\".HospitalLine.Enabled\",isHospitalLineEnabled);
+     
+     if(isHospitalLineEnabled)
+     {
+               addSymbol(myModuleName(), myPanelName(), \"objects/hospitalLineObject.pnl\", \"hospitalLine\"+node+\"_\"+type,
+                makeDynString(\"$node:\"+node,\"$type:\"+type,\"$mode:\"+mode,\"$sector:\"+sector,\"$layer:\"+5), x, y+40, 0, 1, 1);  
+      }
+     
+     
      
 }" 0
  E E E E 1 -1 -1 0  0 -7
@@ -164,7 +177,7 @@ LANG:1 0
   this.text(type+\"-\"+side+\" - \"+batchID);   
   
 }" 0
- E 0 1 2 1 1 E U  1 E 7 -9 113 9
+ E 0 1 2 1 1 E U  1 E 7 -9 114 9
 0 2 2 "0s" 0 0 0 192 0 0  7 -9 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0

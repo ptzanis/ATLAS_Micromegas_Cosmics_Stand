@@ -62,7 +62,10 @@ PANEL,-1 -1 149 48 N "_3DFace" 6
  dpConnect(\"updateStatus\",channel+\".online\",channel+voltageParameter+\".value\"); 
   
   if(mode==\"Type\")
+ {
     value.text(type);
+    DebugN(type);
+  }
   
   if(mode==\"Voltage\")
   {
@@ -75,7 +78,8 @@ PANEL,-1 -1 149 48 N "_3DFace" 6
   
   if(mode==\"Temperature\") 
   {
-    dpGet(\"MMG-S1-Settings.\"+type+\".Temperature\",temperatureParameter);    
+    dpGet(\"MMG-S1-Settings.\"+type+\".Temperature\",temperatureParameter);  
+    dpConnect(\"updateValue\",channel+temperatureParameter+\".value\");
   }
     
 }
@@ -159,7 +163,7 @@ LANG:1 0
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 0  36 6 102 35
-2 "0.3f" 4 0 0 1 0 -1  E "main()
+2 "5s" 5 0 0 1 0 -1  E "main()
 {
   
  // this.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);

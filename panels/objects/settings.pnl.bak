@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 546 599 N "_3DFace" 0
+PANEL,-1 -1 546 618 N "_3DFace" 0
 E E E E E 1 -1 -1 0  9.026272577996897 37
 ""0  1
 E "int searchDPTexistance(string search){
@@ -170,6 +170,18 @@ for(int i=1;i<=4;i++)
      elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
      types[count+2]=makeDynInt(0,0,0,DPEL_STRING);
      
+     count=count+3;  
+     
+ // HOL Cosmics MM
+
+   
+     elements[count]=makeDynString(\"\",\"\",\"HOL\",\"\"); 
+     types[count]=makeDynInt(0,0,DPEL_STRUCT);
+     elements[count+1]=makeDynString(\"\",\"\",\"\",\"Channel\");
+     types[count+1]=makeDynInt(0,0,0,DPEL_STRING);
+     elements[count+2]=makeDynString(\"\",\"\",\"\",\"Alias\");
+     types[count+2]=makeDynInt(0,0,0,DPEL_STRING);  
+     
       count=count+3;  
    
    
@@ -244,7 +256,14 @@ for(int i=1;i<=4;i++)
      elements[count+31]=makeDynString(\"\",\"\",\"Status\"); 
      types[count+31]=makeDynInt(0,0,DPEL_BOOL);  
      elements[count+32]=makeDynString(\"\",\"\",\"voltageSub\"); 
-     types[count+32]=makeDynInt(0,0,DPEL_FLOAT);   
+     types[count+32]=makeDynInt(0,0,DPEL_FLOAT);  
+    
+     elements[count+33]=makeDynString(\"\",\"HospitalLine\",\"\"); 
+     types[count+33]=makeDynInt(0,DPEL_STRUCT);      
+     elements[count+34]=makeDynString(\"\",\"\",\"Enabled\"); 
+     types[count+34]=makeDynInt(0,0,DPEL_BOOL);  
+     elements[count+35]=makeDynString(\"\",\"\",\"Sections\"); 
+     types[count+35]=makeDynInt(0,0,DPEL_FLOAT); 
      
 int x=dpTypeCreate(elements,types);
 
@@ -1205,7 +1224,7 @@ LANG:1 10 Archive DB
 LAYER, 1 
 1
 LANG:1 0 
-1 81 0 "" 0
+1 68 0 "" 0
 0
 0
 LAYER, 2 

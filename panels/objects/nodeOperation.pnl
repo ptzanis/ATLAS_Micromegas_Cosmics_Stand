@@ -379,6 +379,18 @@ bool exportInfoFile(string node,string chamberName,string batchID,string mode,dy
    {
    fprintf(export, \"%-4s \\t %s \\n\",mappingChannelsToArchive[i],channelsToArchive[i]);           
    }
+   if(mode==\"CosmicsBasic\")
+   {
+   fprintf(export, \"%s \\n\", \"---- Hospital Line Sections ----\"); 
+   dyn_string sections;
+   dpGet(\"N\"+node+\".HospitalLine.Sections\",sections);
+   for(int i=1;i<=dynlen(sections);i++)
+   {
+   fprintf(export,\"%s \\n\",sections[i]);           
+   }   
+   }   
+   
+   
    fclose(export);
    DebugN(chamberName+\" \"+batchID+\" -> Info File Exported!\");
    return TRUE;

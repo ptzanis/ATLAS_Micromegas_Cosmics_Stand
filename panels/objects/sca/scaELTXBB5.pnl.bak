@@ -92,7 +92,7 @@ LANG:1 2 IP
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXBB5.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -567,7 +567,7 @@ LANG:1 2 HO
   
     for(int layer=1;layer<=4;layer++)
     {
-      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXBB5.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
     x=x+460;          
     }
 

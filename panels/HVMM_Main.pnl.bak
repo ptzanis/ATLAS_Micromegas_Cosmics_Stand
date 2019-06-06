@@ -585,7 +585,7 @@ LANG:1 9 Sector #2
 13 82
 "saveButton"
 ""
-1 775.9999999999998 890.5416666666665 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+1 775.9999999999998 890.5416666666664 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 81 0 0 0 0 0
 E E E
@@ -597,7 +597,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,29,5,75,0,0,0,0,0
-0  773.9999999999994 867.9999999999993 967.9999999999997 920.333333333333
+0  773.9999999999994 867.9999999999991 967.9999999999997 920.3333333333328
 
 T 
 1
@@ -787,10 +787,22 @@ LANG:1 4 Save
      
      countLayer++; 
     }
- // Drift Cosmics MM
+ // Hospital Line Cosmics MM
+    bool isHospitalLineOn;
+    getValue(\"HOL_RadioBox_N\"+node,\"number\",isHospitalLineOn);
+    
+    if(isHospitalLineOn)
+    {
+     stripsToAppend[5]=\"HOL\";  
+     dpSet(\"N\"+i+\".HospitalLine.Enabled\",TRUE); 
+    }
+    else
+     dpSet(\"N\"+i+\".HospitalLine.Enabled\",FALSE); 
 
-   
+   // Drift Cosmics MM 
     driftToAppend[1]=\"D\";
+    
+    
 
  
    

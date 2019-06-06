@@ -1,0 +1,364 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 152 45 N "_3DFace" 5
+"$layer"
+"$mode"
+"$node"
+"$sector"
+"$type"
+E E E E E 1 -1 -1 0  68 -10
+""0  1
+E "     string node=$node; 
+     string mode=$mode;  
+     string type=$type; 
+     string sector=$sector;
+     string layer=$layer;
+     #uses \"HVMMGeneral.ctl\"
+     
+// ------------------------ General
+
+  void alarmColor(string modeType)
+{
+     dyn_errClass err;
+  string alarmMode,channel;
+ 
+  
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+ 
+ dpGet(nodeSubs+\".Mapping.\"+alias+\".Channel\",channel);
+
+  if( !dpExists( \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\") || !dpExists( \"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+  dpConnect(\"EP_setBackColorCB\", 
+            \"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\", \"CAEN/\"+channel+\".actual.isOn:_online.._value\");
+   
+  // ---Notification---- start
+  
+  dpConnect(\"notificationEmail\", \"CAEN/\"+channel+\".actual.Trip:_online.._value\");
+  
+  // ---Notification---- end  
+  
+ //edit 
+  if(strlen(alias)==4)
+  {
+   dpConnect(\"barGraphFill\",\"CAEN/\"+channel+\".actual.\"+\"vMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"iMon\"+\":_online.._value\",\"CAEN/\"+channel+\".actual.\"+\"isOn\"+\":_online.._value\");
+   }
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(alias+\"_\"+nodeSubs, \"color\", \"_dpdoesnotexist\");
+ 
+ 
+   
+}
+  
+  //Notification Email
+void notificationEmail(string dpSourceTrip, float fNewValueIsTrip)
+{
+  string nodeSubs,alias;
+  dyn_string recipientsEmail;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+  if(fNewValueIsTrip)
+  {
+    if(statusEmail.backCol==\"Green\")
+    {
+      dpGet(\"ALL.Notification.Email.Recipients\",recipientsEmail);
+      
+      for(int i=1;i<=dynlen(recipientsEmail);i++)
+      {
+         alertViaEmail(recipientsEmail[i], \"HVStation@cern.ch\", \"HVStation: [TRIP] N\"+node+\"|\"+type+\"|\"+alias, \"Node \"+node+\" |  Chamber \"+type+\" | Section \"+alias+\" Tripped ! \"+\"\\n\"+\" Please check!\");       
+      }
+    }
+    
+    
+  }
+
+  
+
+  
+  
+}  
+
+    
+void EP_setBackColorCB(string dpSource1, float fNewValueCurrent,string dpSource2,float fNewValueVoltage,string dpSource3,bool fNewValueIsOn)
+{
+  float downLimit,upLimit;
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(this.name())[1];
+  alias=returnAliasAndNode(this.name())[2];
+  
+  if(!alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Voltage.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",upLimit);
+
+    if (fNewValueVoltage > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+   if (fNewValueVoltage > downLimit && fNewValueVoltage < upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+   if (fNewValueVoltage < downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+    
+    
+  } 
+  if(alarmToggle.checked()) 
+  {
+    dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",downLimit);
+    dpGet(\"ALL.AcceptanceLimits.Current.upLimit\",upLimit);
+
+    if (fNewValueCurrent > upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Red\");
+   if (fNewValueCurrent > downLimit && fNewValueCurrent < upLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Yellow\");
+   if (fNewValueCurrent < downLimit)
+    setValue(alias+\"_\"+nodeSubs, \"backCol\", \"Green\");
+  }   
+  
+  
+    if(!fNewValueIsOn)
+      setValue(alias+\"_\"+nodeSubs, \"backCol\", \"grey\");
+  
+  
+}  
+
+void barGraphFill(string dpSource3, float fNewValueVoltage,string dpSource4,float fNewValueCurrent,string dpSource5,bool fNewValueIsOn){
+ 
+  float voltageUpLimit,currentDownLimit;
+  string objectName=this.name();
+  string layerFromObject;
+  dyn_int matrixStart;
+  
+  dpGet(\"ALL.AcceptanceLimits.Voltage.upLimit\",voltageUpLimit);
+  dpGet(\"ALL.AcceptanceLimits.Current.downLimit\",currentDownLimit);
+  
+  string sectionChamber=substr(objectName,0,4);
+  string layerNumber=substr(objectName,1,1);
+      //Voltage  
+    if(fNewValueVoltage>voltageUpLimit && fNewValueIsOn)
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",1);    
+    }
+    else
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isVoltageGood\",0);              
+    }
+      //Current
+    if(fNewValueCurrent<currentDownLimit && fNewValueIsOn)
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",1);               
+    }
+    else
+    {
+     dpSet(\"N\"+node+\".Mapping.\"+sectionChamber+\".isCurrectGood\",0);                          
+    }  
+
+      dyn_string layerChannels=dpNames(\"N\"+node+\".Mapping.L\"+layerNumber+\"*{R,L}*\",\"HVSetup\");  
+
+      int resultVoltage=0;
+      int resultCurrent=0;
+      int countVoltage,countCurrent;
+      for(int i=1;i<=dynlen(layerChannels);i++)
+      {
+        resultVoltage=0;
+        resultCurrent=0;
+        dpGet(layerChannels[i]+\".isVoltageGood\",resultVoltage);
+        countVoltage=countVoltage+resultVoltage;
+        dpGet(layerChannels[i]+\".isCurrectGood\",resultCurrent);
+        countCurrent=countCurrent+resultCurrent;        
+      }
+     
+      
+      
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Voltage\",countVoltage);
+      dpSet(\"N\"+node+\".BarGraphCounter.L\"+layerNumber+\".Current\",countCurrent);
+  
+          
+}
+
+
+dyn_string returnAliasAndNode(string objectName)
+{
+  
+ string nodeSubs,alias;
+//  objectName=this.name();
+ 
+      alias=substr(objectName,0,3); 
+      nodeSubs=substr(objectName,4,2); 
+
+
+ 
+  dyn_string retNodeAlias;
+  dynAppend(retNodeAlias,nodeSubs); 
+  dynAppend(retNodeAlias,alias);   
+  
+return retNodeAlias;
+    
+}
+
+void hvChannelSetup(string sectionObject,int y=201){
+  
+    
+  string nodeSubs,alias;
+  nodeSubs=returnAliasAndNode(sectionObject)[1];
+  alias=returnAliasAndNode(sectionObject)[2];
+
+  if(y==201)
+  ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias,\"$y:\"+y));
+  if(y==43)
+  ChildPanelOnCentral(\"objects/channelHVSetup.pnl\", \"Channel_Info_\"+alias+\"_\"+nodeSubs, makeDynString(\"$node:\"+nodeSubs,\"$alias:\"+alias,\"$y:\"+y));
+  
+}
+
+
+
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 1
+"D1Cosmics"
+""
+1 108.5000000000001 275 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ "main(mapping event)
+{
+  hvChannelSetup(this.name());
+}" 0
+ E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+   this.name(\"HOL\"+\"_N\"+node);
+
+  this.toolTipText(this.name());   
+
+  alarmColor(mode);  
+}" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.name(),43);
+}" 0
+ 0 2 2 1 1 E 1.838247233267068 0 1.488462650964718 -175.4498248094771 -398.3272290152973 1 E 108.5000000000001 275 153 289
+2 3
+"HOL"
+""
+1 53.41617090603147 15.00000000000003 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node);
+}" 0
+ E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+    this.name(\"HOL_Text_N\"+node);
+   
+
+}
+" 0
+ "main(mapping event)
+{
+    hvChannelSetup(this.text()+\"_N\"+node,43);
+}" 0
+ 2 1 3 2 1 E U  0 E 53.41617090603147 15.00000000000003 82 28
+0 2 2 "0s" 0 0 0 192 0 0  53.41617090603147 15.00000000000003 1
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 3 HOL
+13 4
+"PUSH_BUTTON4"
+""
+1 116 14 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  114 7.599999999999994 143.0000000000001 33.60000000000011
+
+P 
+4294967295
+"pictures/gear.png"
+1
+LANG:1 9 Configure
+"main(mapping event)
+{
+
+     string node=$node; 
+     string type=$type; 
+
+     
+     ChildPanelOnCentral(\"objects/hospitalLineList.pnl\", \"Hospital Line \"+node+\" (Setup) \", makeDynString(\"$node:\"+node,\"$type:\"+type));
+         
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0
