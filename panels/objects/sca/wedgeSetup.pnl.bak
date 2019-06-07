@@ -1,0 +1,311 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 676 680 N "_3DFace" 0
+E E E E E 1 -1 -1 0  138 112
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 0
+"IP"
+""
+1 107 59 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  105 50.33333333333331 191 89.33333333333331
+
+T 
+1
+LANG:1 2 IP
+"main(mapping event)
+{
+this.enabled(0);
+HO.enabled(1);
+}" 0
+ E E E
+13 2
+"layer1"
+""
+1 107 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  105 98 148 130
+
+T 
+1
+LANG:1 1 1
+"main(mapping event)
+{
+  this.enabled(0);
+  layer2.enabled(1);
+  layer3.enabled(1);
+  layer4.enabled(1);
+}" 0
+ E E E
+13 3
+"layer2"
+""
+1 150 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  148 98 191 130
+
+T 
+1
+LANG:1 1 2
+"main(mapping event)
+{
+  this.enabled(0);
+  layer1.enabled(1);
+  layer3.enabled(1);
+  layer4.enabled(1);
+}" 0
+ E E E
+13 4
+"layer3"
+""
+1 194 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  192 98 235 130
+
+T 
+1
+LANG:1 1 3
+"main(mapping event)
+{
+  this.enabled(0);
+  layer1.enabled(1);
+  layer2.enabled(1);
+  layer4.enabled(1);
+}" 0
+ E E E
+13 5
+"layer4"
+""
+1 237 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  235 98 278 130
+
+T 
+1
+LANG:1 1 4
+"main(mapping event)
+{
+  this.enabled(0);
+  layer1.enabled(1);
+  layer2.enabled(1);
+  layer3.enabled(1);
+}" 0
+ E E E
+13 6
+"HO"
+""
+1 194 59 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  192 50.33333333333331 278 89.33333333333331
+
+T 
+1
+LANG:1 2 HO
+"main(mapping event)
+{
+this.enabled(0);
+IP.enabled(1);
+}" 0
+ E E E
+13 7
+"MMG"
+""
+1 107 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  105 8.333333333333314 191 47.33333333333331
+
+T 
+1
+LANG:1 3 MMG
+"main(mapping event)
+{
+this.enabled(0);
+STG.enabled(1);
+}" 0
+ E E E
+13 8
+"STG"
+""
+1 194 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  192 8.333333333333314 278 47.33333333333331
+
+T 
+1
+LANG:1 3 STG
+"main(mapping event)
+{
+this.enabled(0);
+MMG.enabled(1);
+}" 0
+ E E E
+13 9
+"setButton"
+""
+1 336 67.92857142857144 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  334 57.00000000000001 441 86
+
+T 
+1
+LANG:1 3 Set
+"main(mapping event)
+{
+    string IPorHO,layer,detector;
+    
+    
+    if(!MMG.enabled())
+      detector=\"MMG\";
+    if(!STG.enabled())
+      detector=\"STG\";  
+    
+    if(!IP.enabled())
+      IPorHO=\"IP\";
+    if(!HO.enabled())
+      IPorHO=\"HO\";  
+    
+    if(!layer1.enabled())
+      layer=\"1\";
+    if(!layer2.enabled())
+      layer=\"2\";    
+    if(!layer3.enabled())
+      layer=\"3\";    
+    if(!layer4.enabled())
+      layer=\"4s\";  
+    
+     
+  
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX\"+detector+\".pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+50,\"$y:\"+150,\"$detector:\"+detector,\"$configurationMode:\"+TRUE),50,150,0,1,1); 
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

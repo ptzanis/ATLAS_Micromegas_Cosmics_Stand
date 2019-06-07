@@ -1,0 +1,428 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 533 446 N "_3DFace" 7
+"$IPorHO"
+"$configurationMode"
+"$detector"
+"$layer"
+"$sector"
+"$x"
+"$y"
+"main()
+{
+    
+//   int layer=1;
+//   int sector=1;
+//   string IPorHO=\"IP\";  
+  
+ // int layer=1;
+  
+  int xPrevious=$x; //55
+  int yPrevious=$y;  //10 
+  
+  int x=xPrevious+20;
+  int y=yPrevious+35;
+  
+  int pcbNumber=3;
+  
+  string UpDown;
+  
+  for(int pcb=1;pcb<=6;pcb++)
+  {
+    if(pcb%2==1)
+      UpDown=\"Up\";
+    else
+      UpDown=\"Down\";  
+  if(pcb==1)  
+    {
+    addSymbol(myModuleName(),myPanelName(),\"objects/sca/valueScaELTX.pnl\",\"L1Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+detector,makeDynString(\"$rightOrLeft:\"+\"Left\",\"$layer:\"+layer,\"$sector:\"+sector,\"$IPorHO:\"+IPorHO,\"$PCB:\"+pcbNumber,\"$UpDown:\"+UpDown,\"$detector:\"+detector,\"$L1Exception:\"+\"On\",\"$configurationMode:\"+configurationMode),x,yPrevious,0,1,1); 
+    } 
+  
+  addSymbol(myModuleName(),myPanelName(),\"objects/sca/valueScaELTX.pnl\",\"Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+detector,makeDynString(\"$rightOrLeft:\"+\"Left\",\"$layer:\"+layer,\"$sector:\"+sector,\"$IPorHO:\"+IPorHO,\"$PCB:\"+pcbNumber,\"$UpDown:\"+UpDown,\"$detector:\"+detector,\"$L1Exception:\"+\"\",\"$configurationMode:\"+configurationMode),x,y,0,1,1);
+  x=x+13;
+   y=y+36;
+ if(pcb==2)
+   y=y+10;
+  if(pcb==3)
+   y=y+8;
+ 
+  if(pcb==4)
+  {
+   y=y+30;
+   x=x+10;
+ }
+   
+    if(pcb%2==0)
+      pcbNumber--;       
+  }
+  
+  int x=xPrevious+255; //350
+  int y=yPrevious+35;  //10
+  int pcbNumber=3;
+  
+  string UpDown;
+  
+  for(int pcb=1;pcb<=6;pcb++)
+  {
+    if(pcb%2==1)
+      UpDown=\"Up\";
+    else
+      UpDown=\"Down\"; 
+    
+    if(pcb==1)  
+    {  
+    addSymbol(myModuleName(),myPanelName(),\"objects/sca/valueScaELTX.pnl\",\"L1Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+detector,makeDynString(\"$rightOrLeft:\"+\"Right\",\"$layer:\"+layer,\"$sector:\"+sector,\"$IPorHO:\"+IPorHO,\"$PCB:\"+pcbNumber,\"$UpDown:\"+UpDown,\"$detector:\"+detector,\"$L1Exception:\"+\"On\",\"$configurationMode:\"+configurationMode),x,yPrevious,0,1,1);  
+     }
+    
+  addSymbol(myModuleName(),myPanelName(),\"objects/sca/valueScaELTX.pnl\",\"Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+detector,makeDynString(\"$rightOrLeft:\"+\"Right\",\"$layer:\"+layer,\"$sector:\"+sector,\"$IPorHO:\"+IPorHO,\"$PCB:\"+pcbNumber,\"$UpDown:\"+UpDown,\"$detector:\"+detector,\"$L1Exception:\"+\"\",\"$configurationMode:\"+configurationMode),x,y,0,1,1);
+  x=x-13;
+   y=y+36;
+ if(pcb==2)
+   y=y+10;
+  if(pcb==3)
+   y=y+8;
+ 
+  if(pcb==4)
+  {
+   y=y+30;
+   x=x-10;
+ }
+   
+    if(pcb%2==0)
+      pcbNumber--;       
+  }
+  
+
+
+  
+  
+
+  
+}" 0
+ E E E E 1 -1 -1 0  48 15
+""0  1
+E "int sector=$sector;
+int layer=$layer;
+string IPorHO=$IPorHO;
+string detector=$detector;
+bool configurationMode=$configurationMode;" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+10 0
+"POLYGON62"
+""
+1 774 179.9999999999999 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 2.914285714285714 0 1.888235294117645 -2209.657142857142 -332.882352941176 1 E 4 774 179.9999999999999
+914 179.9999999999999
+880 350
+810 350
+ 1
+4 3
+"LINE15"
+""
+1 85.85714285714282 120.3621621621622 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 7 3 2 1 E  85.85714285714279 120.3621621621622 416.1428571428571 120.3621621621622
+14 68
+"TEXT_FIELD2"
+""
+1 366 419 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  364 404 586.6000000000004 447
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+
+//this.text(\"Sector: \"+sector+\" | Layer: \"+layer+\" | Side: \"+IPorHO);  
+  
+}" 0
+ E
+2 69
+"PRIMITIVE_TEXT8"
+""
+1 235 568 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(\"Layer \"+layer);
+}" 0
+ E 2 1 3 2 1 E 1 0 1.102342211709233 0 -272.1303762508443 0 E 235 568 322 595
+0 2 2 "0s" 0 0 0 192 0 0  235 568 1
+1
+LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Layer X
+4 70
+"LINE20"
+""
+1 122.8639455782313 228.5189189189189 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 7 3 2 1 E  122.8639455782313 228.5189189189189 383.7619047619047 228.5189189189189
+6 71
+"RECTANGLE1"
+""
+1 450 156 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1 -10 -153 1 E 450 156 491 204
+6 72
+"RECTANGLE2"
+""
+1 450 156 E E E 1 E 1 E N {0,0,0} E N "_3DFace" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1 -430 -151 1 E 450 156 491 204
+4 73
+"LINE21"
+""
+1 62 6.999999999999972 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  62 6.999999999999972 61 52.99999999999997
+4 74
+"LINE22"
+""
+1 441 7 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  441 7 440 53
+7 75
+"PCB1_status"
+""
+1 450 506 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -197 -238 1 E 450 506 13 13
+2 76
+"PCB1_value"
+""
+1 247 255 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 247 255 261 280
+0 2 2 "0s" 0 0 0 192 0 0  247 255 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 1 1
+7 77
+"PCB2_status"
+""
+1 450 506 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -197 -335 1 E 450 506 13 13
+2 78
+"PRIMITIVE_TEXT1"
+""
+1 247 158 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 247 158 261 183
+0 2 2 "0s" 0 0 0 192 0 0  247 158 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 1 2
+7 79
+"PCB3_status"
+""
+1 450 506 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -197 -446 1 E 450 506 13 13
+2 80
+"PRIMITIVE_TEXT2"
+""
+1 247 47 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 247 47 261 72
+0 2 2 "0s" 0 0 0 192 0 0  247 47 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 1 3
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

@@ -92,7 +92,7 @@ LANG:1 2 IP
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXBB5.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -261,7 +261,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -567,7 +567,7 @@ LANG:1 2 HO
   
     for(int layer=1;layer<=4;layer++)
     {
-      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXBB5.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -668,75 +668,6 @@ int x=dpTypeCreate(elements,types);
 
   dpCreate(\"MMG-S1\",\"SCAELTX_MMG\");
   
-
-}" 0
- E E E
-13 152
-"PUSH_BUTTON2"
-""
-1 605 -7 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
- E E
-152 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignCenter"
-1
-LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  602.7935924369748 11.00000000000004 705.0435924369748 45.00000000000001
-
-T 
-1
-LANG:1 7 STG DPT
-"main(mapping event)
-{
-  
-dyn_dyn_string elements;
-dyn_dyn_int types; 
-
-// elements
-
-elements[1]=makeDynString(\"SCAELTXSettings_MMG\",\"\");
-types[1]=makeDynInt(DPEL_STRUCT);
-
-elements[2]=makeDynString(\"\",\"ADDC\",\"\");
-types[2]=makeDynInt(0,DPEL_STRUCT);
-elements[3]=makeDynString(\"\",\"\",\"Voltage\");
-types[3]=makeDynInt(0,0,DPEL_STRING);
-elements[4]=makeDynString(\"\",\"\",\"Temperature\");
-types[4]=makeDynInt(0,0,DPEL_STRING);
-elements[5]=makeDynString(\"\",\"L1DDC\",\"\");
-types[5]=makeDynInt(0,DPEL_STRUCT);
-elements[6]=makeDynString(\"\",\"\",\"Voltage\");
-types[6]=makeDynInt(0,0,DPEL_STRING);
-elements[7]=makeDynString(\"\",\"\",\"Temperature\");
-types[7]=makeDynInt(0,0,DPEL_STRING);
-elements[8]=makeDynString(\"\",\"MMFE8\",\"\");
-types[8]=makeDynInt(0,DPEL_STRUCT);
-elements[9]=makeDynString(\"\",\"\",\"Voltage\");
-types[9]=makeDynInt(0,0,DPEL_STRING);
-elements[10]=makeDynString(\"\",\"\",\"Temperature\");
-types[10]=makeDynInt(0,0,DPEL_STRING);
-
-     
-int x=dpTypeCreate(elements,types);
-
- if (x == 0){
-    DebugN(\"Datapoint type creation succeeded!\");
-    this.enabled(FALSE);
-  }
-  else {
-    DebugN (\"Datapoint type creation returned an error!\");
-  } 
-
-
-  dpCreate(\"MMG-S1\",\"SCAELTXSettings_MMG\");
-  
-      
-
 
 }" 0
  E E E

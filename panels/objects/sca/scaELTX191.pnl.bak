@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1845 728 N "_3DFace" 0
+PANEL,-1 -1 1838 1114 N "_3DFace" 0
 "main()
 {
   /*
@@ -79,11 +79,20 @@ LANG:1 2 IP
     {
         for(int pcb=1;pcb<=16;pcb++)
    {
-    removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"HO\"+\"EtaSide\"+\"L\");
-    removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"HO\"+\"EtaSide\"+\"R\");
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"MMG\");   
+    
+  //  removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"HO\"+\"EtaSide\"+\"R\"+\"MMG\");
+    
+      if(pcb<=6)
+    {
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"STG\");          
+    }
    }
-       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layer);
-                
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layer+\"MMG\");
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layer+\"STG\");                
   }
 
  }
@@ -92,7 +101,16 @@ LANG:1 2 IP
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXSTG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"STG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
+    x=x+460;          
+    }
+ 
+ x=10;
+ y=y+400;
+ 
+     for(int layer=1;layer<=4;layer++)
+    {
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -114,7 +132,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 2.926868044515104 0 1.172473867595819 -59.46422893481716 34.75783972125434 0 E 21 13 651 588
+E E 2 1 3 2 1 E 2.910969793322734 0 1.834494773519164 -59.1303656597774 26.15156794425086 0 E 21 13 651 588
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
@@ -141,9 +159,9 @@ LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
 0 1
 LANG:1 23 ELTX SCA-GBT Monitoring
 13 21
-"createSettingsDPT"
+"createSettingsDPTMMG"
 ""
-1 383 -7 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 1162 -8 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 21 0 0 0 0 0
 E E E
@@ -155,11 +173,11 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  380.75 11.00000000000004 503.7500000000003 45.00000000000001
+0  1159.75 4.000000000000017 1282.75 28.99999999999998
 
 T 
 1
-LANG:1 16 SCA Settings DPT
+LANG:1 16 MMG Settings DPT
 "main(mapping event)
 {
   
@@ -202,7 +220,7 @@ int x=dpTypeCreate(elements,types);
   } 
 
 
-  dpCreate(\"MMG-S1\",\"SCAELTXSettings_MMG\");
+  dpCreate(\"MMG-S1-Settings\",\"SCAELTXSettings_MMG\");
   
       
 
@@ -223,7 +241,7 @@ LANG:1 0
 6
 "orientation" "enum 0"
 "maxValue" "int 2"
-"value" "int 0"
+"value" "int 1"
 "invertedAppearance" "bool FALSE"
 "tickPosition" "enum 1"
 "layoutAlignment" "AlignNone"
@@ -261,7 +279,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXSTG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -554,11 +572,20 @@ LANG:1 2 HO
     {
         for(int pcb=1;pcb<=16;pcb++)
    {
-    removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"IP\"+\"EtaSide\"+\"L\");
-    removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"IP\"+\"EtaSide\"+\"R\");
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"MMG\");   
+    
+  //  removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"HO\"+\"EtaSide\"+\"R\"+\"MMG\");
+    
+      if(pcb<=6)
+    {
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"STG\");          
+    }
    }
-      removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layer);
-                
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layer+\"MMG\");
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layer+\"STG\");                
   }
 
  }
@@ -567,7 +594,16 @@ LANG:1 2 HO
   
     for(int layer=1;layer<=4;layer++)
     {
-      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXSTG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"STG\"),x,y,0,1,1); 
+    x=x+460;          
+    }
+ 
+ x=10;
+ y=y+400;
+ 
+     for(int layer=1;layer<=4;layer++)
+    {
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -575,9 +611,9 @@ LANG:1 2 HO
 }" 0
  E E E
 13 151
-"PUSH_BUTTON1"
+"mmgDPT"
 ""
-1 504.9564075630252 -7 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 1302.956407563025 -7 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 151 0 0 0 0 0
 E E E
@@ -589,7 +625,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  502.7499999999999 11.00000000000004 604.9999999999999 45.00000000000001
+0  1300.75 11.00000000000004 1403 45.00000000000001
 
 T 
 1
@@ -667,6 +703,191 @@ int x=dpTypeCreate(elements,types);
 
 
   dpCreate(\"MMG-S1\",\"SCAELTX_MMG\");
+  
+
+}" 0
+ E E E
+13 152
+"createSettingsDPTSTG"
+""
+1 1391 -11 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  1160 31 1283 56
+
+T 
+1
+LANG:1 16 STG Settigns DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"SCAELTXSettings_STG\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"sFEB\",\"\");
+types[2]=makeDynInt(0,DPEL_STRUCT);
+elements[3]=makeDynString(\"\",\"\",\"Voltage\");
+types[3]=makeDynInt(0,0,DPEL_STRING);
+elements[4]=makeDynString(\"\",\"\",\"Temperature\");
+types[4]=makeDynInt(0,0,DPEL_STRING);
+elements[5]=makeDynString(\"\",\"pFEB\",\"\");
+types[5]=makeDynInt(0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"Voltage\");
+types[6]=makeDynInt(0,0,DPEL_STRING);
+elements[7]=makeDynString(\"\",\"\",\"Temperature\");
+types[7]=makeDynInt(0,0,DPEL_STRING);
+elements[8]=makeDynString(\"\",\"L1DDC\",\"\");
+types[8]=makeDynInt(0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"Voltage\");
+types[9]=makeDynInt(0,0,DPEL_STRING);
+elements[10]=makeDynString(\"\",\"\",\"Temperature\");
+types[10]=makeDynInt(0,0,DPEL_STRING);
+
+
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"STG-S1-Settings\",\"SCAELTXSettings_STG\");
+  
+      
+
+
+}" 0
+ E E E
+13 153
+"stgDPT"
+""
+1 1408 -7 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  1405.793592436975 11.00000000000004 1508.043592436975 45.00000000000001
+
+T 
+1
+LANG:1 7 STG DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+int count=1;
+
+elements[count]=makeDynString(\"SCAELTX_STG\",\"\");
+types[count]=makeDynInt(DPEL_STRUCT);
+
+string leftRight,side,upDownValue;
+  
+ for(int sector=0;sector<=1;sector++)
+ {
+        if(sector==0)
+          side=\"IP\";
+        if(sector==1)
+          side=\"HO\";  
+  
+  for(int pcb=1;pcb<=3;pcb++)
+  {
+    for(int layer=1;layer<=4;layer++)
+    {
+      for(int leftOrRight=0;leftOrRight<=1;leftOrRight++)
+      {
+        if(leftOrRight==0)
+          leftRight=\"Left\";
+        if(leftOrRight==1)
+          leftRight=\"Right\";
+        
+        for(int upDown=0;upDown<=1;upDown++)
+          {
+        if(upDown==0)
+          upDownValue=\"Up\";
+        if(upDown==1)
+          upDownValue=\"Down\";  
+                 
+     count++;   
+     elements[count]=makeDynString(\"\",\"Side\"+side+\"PCB\"+pcb+\"Layer\"+layer+leftRight+upDownValue);
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+    
+       }
+      
+      if(pcb==3)
+        {
+     count++;   
+     elements[count]=makeDynString(\"\",\"L1\"+\"Side\"+side+\"PCB\"+pcb+\"Layer\"+layer+leftRight);
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+   
+        }  
+        
+     }
+    }
+  }
+}
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"STG-S1\",\"SCAELTX_STG\");
   
 
 }" 0
