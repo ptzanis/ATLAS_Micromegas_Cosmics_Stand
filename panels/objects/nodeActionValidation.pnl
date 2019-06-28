@@ -1295,7 +1295,7 @@ void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValu
 {
   
   
-  if(voltValue<480 && effValue >100.0)
+  if(voltValue<480 || effValue >100.0)
   {
   setValue(\"\", \"text\", \"0\");    
   setValue(\"\", \"enabled\", 0);          
@@ -1385,7 +1385,7 @@ void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValu
 {
   
   
-  if(voltValue<480 && effValue >100.0)
+  if(voltValue<480 || effValue >100.0)
   {
   setValue(\"\", \"text\", \"0\");    
   setValue(\"\", \"enabled\", 0);          
@@ -1475,7 +1475,7 @@ void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValu
 {
   
   
-  if(voltValue<480 && effValue >100.0)
+  if(voltValue<480 || effValue >100.0)
   {
   setValue(\"\", \"text\", \"0\");    
   setValue(\"\", \"enabled\", 0);          
@@ -1565,7 +1565,7 @@ void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValu
 {
   
   
-  if(voltValue<480 && effValue >100.0)
+  if(voltValue<480 || effValue >100.0)
   {
   setValue(\"\", \"text\", \"0\");    
   setValue(\"\", \"enabled\", 0);          
@@ -1613,7 +1613,7 @@ LANG:1 8 Layer 4:
 14 42
 "TEXT_FIELD10"
 ""
-1 577 775.5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 578 775 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 42 0 0 0 0 0
 E E E
@@ -1625,7 +1625,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  575 760.5 659 791
+0  576 760 660 790.5
 3 "3.1f" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
 main()
 {
@@ -1655,7 +1655,7 @@ void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValu
 {
   
   
-  if(voltValue<480 && effValue >100.0)
+  if(voltValue<480 || effValue >100.0)
   {
   setValue(\"\", \"text\", \"0\");    
   setValue(\"\", \"enabled\", 0);          
