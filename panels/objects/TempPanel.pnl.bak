@@ -1,13 +1,15 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1197 686 N "_3DFace" 0
+PANEL,-1 -1 1197 686 N "_3DFace" 2
+"$plotName"
+"$temp"
 E E E E E 1 -1 -1 0  60 40
 ""0  1
 E E 3
 "CBRef" "1"
 "EClose" E
-"dpi" "96"
+"dpi" "96.1259"
 0 0 0
 ""
 DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
@@ -435,7 +437,7 @@ void SearchAlias(string Channeldp,float newValue){
    if (alias == \"IPRD1\"){
        this.text(newValue/1000);
        x = newValue/1000;
-       if (( x >= 15)&&(x <= 25))
+       if (( x >= 15)&&(x <= 35))
          setValue(\"\",\"backCol\",\"Green\");
        else 
          setValue(\"\",\"backCol\",\"Red\");
@@ -1216,7 +1218,31 @@ E E 0 2 1 2 1 E 0.8 0 0.2 392.9959090432428 162.1875 1 E 380 40 430 90
 "TEXT_FIELD19"
 ""
 1 255.2625369878977 91.3020833333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
+ "main(mapping event)
+{
+  dyn_int temp;
+  temp = $temp;
+  dyn_string dpesForPlot;
+  dpesForPlot = \"System1:ELMB/EIL4_A/MDM_66/AI/NTC_4.value\";
+  dyn_string channelType;
+      
+      channelType = \"Cooling channels\";
+  // ChildPanelOn(\"/objects/fsmAtlas/quick_trend.pnl\",+cooling,\"$temp:\"+temp,100,1000);              
+//, chamber +\":\" + ChannelBox.selectedText()+ dpeType + channelVal,
+//makeDynString(\"$plotName:\"+chamber , \"$dpe:\" +
+  //            SystemName + mdtPs_removeSystemName(dp) + dpeType + channelVal), 100, 100);
+//ChildPanelOn(\"/objects/fsmAtlas/quick_trend.pnl\",\"\",\"System1:ELMB/EIL4_A/MDM_66/AI/NTC_4.value\" , 100, 100);
+fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), channelType , dpesForPlot, 20, y + 20, exceptionInfo,\"_FwTrendingQuickPlotDefaults\", 1, 0.8); 
+
+
+
+}
+
+
+
+
+" 0
+ E
 54 0 0 0 0 0
 E E E
 0
@@ -1237,24 +1263,28 @@ LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
    
    dyn_dyn_float  mdeg;
    bool isOn;
+   
+  
+   
  allChannels = dpNames(\"*MDM_*\",\"FwElmbAi\");
   for(int i =1; i<=dynlen(allChannels); i++){
    
        dpGet(allChannels[i] +\".value\",mdeg[i]);
-       
+       mdeg[i]=$temp;
        dpConnect(\"SearchAlias\",allChannels[i] + \".value\");
-       DebugN(value);
+       //DebugN(value);
       
      }
  
 }
   
 void SearchAlias(string Channeldp,float newValue){ 
-   float x;
+   float x,temp;
  string alias = dpGetAlias(Channeldp);
    if (alias == \"IPCL2\"){
        this.text(newValue/1000);
        x = newValue/1000;
+       temp = x; 
        if (( x >= 15)&&(x <= 35))
          setValue(\"\",\"backCol\",\"Green\");
        else 
@@ -2992,6 +3022,14 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "1"
 E E 0 2 3 2 1 E  778.0088637396407 379.5 778.0088637396407 399.5
+1 170 4 "" 2
+0
+1 171 5 "" 2
+0
+1 172 6 "" 2
+0
+1 173 7 "" 2
+0
 0
 LAYER, 1 
 1
@@ -3021,4 +3059,65 @@ LAYER, 7
 1
 LANG:1 0 
 0
+3 0 "PANEL_REF1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fsmAtlas/quick_trend.pnl" 170 84 T 170 U 
+2
+"$dpe""System1:MDM1.ntc.ntc00.value:_original"
+"$plotName""$plotName"
+3 1 "PANEL_REF5" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fsmAtlas/quick_trend.pnl" 130 84 T 175 U 
+2
+"$dpe""System1:ELMB/EIL4_A/MDM_66/AI/NTC_3.value"
+"$plotName""$plotName"
+3 2 "PANEL_REF8" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fsmAtlas/quick_trend.pnl" 125 310.09375 T 178 U 
+2
+"$dpe""System1:ELMB/EIL4_A/MDM_66/AI/NTC_4.value"
+"$plotName""$plotName"
+3 3 "PANEL_REF9" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fsmAtlas/quick_trend.pnl" 97.5 125.9666941353596 T 179 U 
+2
+"$dpe""System1:ELMB/EIL4_A/MDM_66/AI/NTC_4.value"
+"$plotName""$plotName"
+3 4 "PANEL_REF10" -1
+"minimumSize" "10000 20000"
+"maximumSize" "10000 30000"
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwGeneral/fwTrendingQuickPlotButton.pnl" 120 83.99002302453873 T 179 0.58 0 0.5800000000000001 270.4 321.2857866457675
+1
+"$sDpesToPlot""System1:ELMB/EIL4_A/MDM_66/AI/NTC_3.value;System1:ELMB/EIL4_A/MDM_66/AI/NTC_4.value;;;;;;;"
+3 5 "PANEL_REF11" -1
+"minimumSize" "10000 20000"
+"maximumSize" "10000 30000"
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwGeneral/fwTrendingQuickPlotButton.pnl" 120 83.99002302453873 T 179 0.58 0 0.5800000000000001 453.4 322.2857866457675
+1
+"$sDpesToPlot""System1:ELMB/EIL4_A/MDM_66/AI/NTC_2.value;System1:ELMB/EIL4_A/MDM_66/AI/NTC_1.value;;;;;;;"
+3 6 "PANEL_REF12" -1
+"minimumSize" "10000 20000"
+"maximumSize" "10000 30000"
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwGeneral/fwTrendingQuickPlotButton.pnl" 120 83.99002302453873 T 179 0.58 0 0.5800000000000001 686.4 323.2857866457675
+1
+"$sDpesToPlot""System1:ELMB/EIL4_A/MDM_15/AI/NTC_2.value;System1:ELMB/EIL4_A/MDM_15/AI/NTC_1.value;;;;;;;"
+3 7 "PANEL_REF13" -1
+"minimumSize" "10000 20000"
+"maximumSize" "10000 30000"
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwGeneral/fwTrendingQuickPlotButton.pnl" 120 83.99002302453873 T 180 0.58 0 0.5800000000000001 869.4 323.2857866457675
+1
+"$sDpesToPlot""System1:ELMB/EIL4_A/MDM_15/AI/NTC_3.value;System1:ELMB/EIL4_A/MDM_15/AI/NTC_4.value;;;;;;;"
 0

@@ -1,0 +1,89 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 519 281 N "_3DFace" 2
+"$channelDPE"
+"$channelName"
+"main()
+{
+   
+    dyn_string exceptionInfo;
+    string channelName=$channelName;
+    string channelDPE=$channelDPE;
+
+    
+    
+       
+    fwTrending_addQuickFaceplate(myModuleName(), myPanelName(), \"plotPopup_\" + channelName,makeDynString(channelDPE), 0, 0, exceptionInfo, \"_FwTrendingQuickPlotDefaults\", 1, 1,channelName,\"\");
+    if (dynlen(exceptionInfo) > 0)
+        DebugN(exceptionInfo);
+        
+        
+    
+    
+    
+}" 0
+ E E E E 1 -1 -1 0  180 5
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+14 0
+"TEXT_FIELD1"
+""
+1 167 5 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  165 0 346.0000000000001 25
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  string channelName=$channelName;
+  this.text(channelName);
+}" 0
+ E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

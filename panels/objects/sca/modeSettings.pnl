@@ -1,0 +1,801 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 396 424 N "_3DFace" 1
+"$detector"
+"main()
+{
+
+  dyn_string MMGshapes=makeDynString(\"frame_MMG\",\"typeText_MMG\",\"typeBox_MMG\",\"tempText_MMG\",\"tempBox_MMG\",\"voltText_MMG\",\"voltBox_MMG\");
+  dyn_string STGshapes=makeDynString(\"frame_STG\",\"typeText_STG\",\"typeBox_STG\",\"tempText_STG\",\"tempBox_STG\",\"voltText_STG\",\"voltBox_STG\");
+  
+  
+  if(detector==\"MMG\" || detector==\"both\")
+  {
+  for(int i=1;i<=dynlen(MMGshapes);i++)
+  {   
+    setValue(MMGshapes[i],\"visible\",1);    
+  }   
+    
+  typeBox_MMG.appendItem(\"\");   
+  typeBox_MMG.appendItem(\"MMFE8\");
+  typeBox_MMG.appendItem(\"L1DDC\");    
+  typeBox_MMG.appendItem(\"ADDC\");   
+    
+  }
+  
+  if(detector==\"STG\" || detector==\"both\")
+  {
+  for(int i=1;i<=dynlen(STGshapes);i++)
+  {   
+    setValue(STGshapes[i],\"visible\",1);    
+  }   
+  
+  
+  typeBox_STG.appendItem(\"\");   
+  typeBox_STG.appendItem(\"sFEB\");
+  typeBox_STG.appendItem(\"pFEB\");    
+  typeBox_STG.appendItem(\"L1DDC\");   
+  
+  
+  
+  }  
+    
+    
+}" 0
+ E E E E 1 -1 -1 0  -232.3149253731343 -1
+""0  1
+E " string detector=$detector;
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.314925373134328 0 1 -231 -21 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 92 6.25 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 92 6.25 294 31
+0 2 2 "0s" 0 0 0 192 0 0  92 6.25 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 18 Mode Configuration
+30 2
+"frame_MMG"
+""
+1 15 46 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.9902283235616569 0 1.046153846153846 0.8402688402688394 -2.12307692307691 0 E 15 46 394 177
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 MMG
+2 3
+"tempText_MMG"
+""
+1 26 145 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 26 145 132 163
+0 2 2 "0s" 0 0 0 192 0 0  26 145 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Temperature:
+22 4
+"tempBox_MMG"
+""
+1 136.9763513513514 147.9090909090909 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  134.9763513513514 140 369.4864864864866 170
+0
+
+E
+E
+E
+ 0 0
+2 6
+"voltText_MMG"
+""
+1 25 106 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 25 106 88 124
+0 2 2 "0s" 0 0 0 192 0 0  25 106 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Voltage:
+22 7
+"voltBox_MMG"
+""
+1 136.7567567567567 110 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  134.7567567567567 102.0909090909091 369.2668918918919 132.0909090909091
+0
+
+E
+E
+E
+ 0 0
+30 8
+"frame_STG"
+""
+1 15 46 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.9902283235616569 0 1.046153846153846 -0.8534248534248494 138.8769230769231 0 E 15 46 394 177
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 STG
+2 9
+"tempText_STG"
+""
+1 26 287 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 26 287 132 305
+0 2 2 "0s" 0 0 0 192 0 0  26 287 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Temperature:
+22 10
+"tempBox_STG"
+""
+1 137.4898648648648 289.9090909090909 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  135.4898648648648 282 370 312
+0
+
+E
+E
+E
+ 0 0
+2 11
+"voltText_STG"
+""
+1 25 250 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 25 250 88 268
+0 2 2 "0s" 0 0 0 192 0 0  25 250 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Voltage:
+22 12
+"voltBox_STG"
+""
+1 137.2432432432432 252.9090909090909 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  135.2432432432432 245 369.7533783783784 275
+0
+
+E
+E
+E
+ 0 0
+13 13
+"setButton"
+""
+1 144.1574626865672 356 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  142.1574626865672 344 243.1574626865672 380
+
+T 
+1
+LANG:1 3 Set
+"main(mapping event)
+{
+  
+    string typeMMG,typeSTG,temperatureMMG,temperatureSTG,voltageMMG,voltageSTG;
+    
+  if(detector==\"both\")
+  {
+
+   typeMMG=typeBox_MMG.text();   
+   temperatureMMG=tempBox_MMG.text();
+   voltageMMG=voltBox_MMG.text();
+    
+   typeSTG=typeBox_STG.text();
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+   
+   dpSet(\"MMG-S1-Settings.\"+typeMMG+\".Temperature\",temperatureMMG);     
+   dpSet(\"MMG-S1-Settings.\"+typeMMG+\".Voltage\",voltageMMG);
+   
+  
+   typeSTG=typeBox_STG.text();   
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+    
+   typeSTG=typeBox_STG.text();
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+   
+   dpSet(\"STG-S1-Settings.\"+typeSTG+\".Temperature\",temperatureSTG);     
+   dpSet(\"STG-S1-Settings.\"+typeSTG+\".Voltage\",voltageSTG);  
+   
+ 
+  }  
+  
+    
+    if(detector==\"MMG\")
+    {
+   
+   typeMMG=typeBox_MMG.text();   
+   temperatureMMG=tempBox_MMG.text();
+   voltageMMG=voltBox_MMG.text();
+    
+   typeSTG=typeBox_STG.text();
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+   
+   dpSet(\"MMG-S1-Settings.\"+typeMMG+\".Temperature\",temperatureMMG);     
+   dpSet(\"MMG-S1-Settings.\"+typeMMG+\".Voltage\",voltageMMG); 
+   
+   
+   
+    }
+  
+  if(detector==\"STG\")
+    {
+   
+   typeSTG=typeBox_STG.text();   
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+    
+   typeSTG=typeBox_STG.text();
+   temperatureSTG=tempBox_STG.text();
+   voltageSTG=voltBox_STG.text();
+   
+   dpSet(\"STG-S1-Settings.\"+typeSTG+\".Temperature\",temperatureSTG);     
+   dpSet(\"STG-S1-Settings.\"+typeSTG+\".Voltage\",voltageSTG);     
+   
+   
+   
+   
+    }
+  
+  
+  
+  
+}" 0
+ E E E
+2 14
+"typeText_MMG"
+""
+1 25 69 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 25 69 68 87
+0 2 2 "0s" 0 0 0 192 0 0  25 69 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Type:
+22 15
+"typeBox_MMG"
+""
+1 136.9763513513514 71.90909090909091 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  134.9763513513514 64 369.4864864864866 94
+0
+
+E
+"main()
+{
+  
+  if(this.text()!=\"\")
+  {  
+
+  
+  string voltage;
+  dpGet(\"MMG-S1-Settings.\"+this.text()+\".Voltage\",voltage);
+  voltBox_MMG.deleteAllItems();
+  voltBox_MMG.appendItem(voltage);  
+  voltBox_MMG.appendItem(\"\");  
+    
+  
+  string temperature;
+  dpGet(\"MMG-S1-Settings.\"+this.text()+\".Temperature\",temperature);
+  tempBox_MMG.deleteAllItems();
+  tempBox_MMG.appendItem(temperature);
+  tempBox_MMG.appendItem(\"\");  
+  
+  
+  dyn_string aiItems,aiItemCorrected;
+  int position;  
+
+  
+  aiItems=dpNames(\"*/ai/*\",\"OpcUaScaServerAnalogInput\");
+   
+  if(this.text()==\"MMFE8\")
+  {  
+      
+  voltBox_MMG.appendItem(\"/ai/vmmPdo0\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo1\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo2\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo3\"); 
+  voltBox_MMG.appendItem(\"/ai/vmmPdo4\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo5\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo6\");
+  voltBox_MMG.appendItem(\"/ai/vmmPdo7\");  
+  voltBox_MMG.appendItem(\"/ai/0V65for1V3A\");
+  voltBox_MMG.appendItem(\"/ai/0V65for1V3E\");
+  voltBox_MMG.appendItem(\"/ai/0V6for1V2D\");
+  voltBox_MMG.appendItem(\"/ai/internalTemperature\");
+  voltBox_MMG.appendItem(\"/ai/pTat1V2D\"); 
+  voltBox_MMG.appendItem(\"/ai/pTat1V3A\");  
+  voltBox_MMG.appendItem(\"/ai/pTat1V3AE\");   
+  voltBox_MMG.appendItem(\"/ai/vTempOut1\");     
+  voltBox_MMG.appendItem(\"/ai/vTempOut2\");   
+       
+  tempBox_MMG.appendItem(\"/ai/vmmPdo0\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo1\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo2\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo3\"); 
+  tempBox_MMG.appendItem(\"/ai/vmmPdo4\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo5\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo6\");
+  tempBox_MMG.appendItem(\"/ai/vmmPdo7\");  
+  tempBox_MMG.appendItem(\"/ai/0V65for1V3A\");
+  tempBox_MMG.appendItem(\"/ai/0V65for1V3E\");
+  tempBox_MMG.appendItem(\"/ai/0V6for1V2D\");
+  tempBox_MMG.appendItem(\"/ai/internalTemperature\");
+  tempBox_MMG.appendItem(\"/ai/pTat1V2D\"); 
+  tempBox_MMG.appendItem(\"/ai/pTat1V3A\");  
+  tempBox_MMG.appendItem(\"/ai/pTat1V3AE\");   
+  tempBox_MMG.appendItem(\"/ai/vTempOut1\");     
+  tempBox_MMG.appendItem(\"/ai/vTempOut2\");   
+  
+  
+  }
+  
+    if(this.text()==\"L1DDC\")
+  {  
+  voltBox_MMG.appendItem(\"/ai/1V5_PTAT\");
+  voltBox_MMG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_MMG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_MMG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_MMG.appendItem(\"/ai/GBTX3_TEMP\"); 
+  voltBox_MMG.appendItem(\"/ai/P1V5_SCA\");  
+  voltBox_MMG.appendItem(\"/ai/P2V5_SCA\");   
+  voltBox_MMG.appendItem(\"/ai/VTRX1_RSSI\");     
+  voltBox_MMG.appendItem(\"/ai/internalTemperature\");   
+  
+  tempBox_MMG.appendItem(\"/ai/1V5_PTAT\");
+  tempBox_MMG.appendItem(\"/ai/2V5_PTAT\");
+  tempBox_MMG.appendItem(\"/ai/GBTX1_TEMP\");
+  tempBox_MMG.appendItem(\"/ai/GBTX2_TEMP\");
+  tempBox_MMG.appendItem(\"/ai/GBTX3_TEMP\"); 
+  tempBox_MMG.appendItem(\"/ai/P1V5_SCA\");  
+  tempBox_MMG.appendItem(\"/ai/P2V5_SCA\");   
+  tempBox_MMG.appendItem(\"/ai/VTRX1_RSSI\");     
+  tempBox_MMG.appendItem(\"/ai/internalTemperature\");   
+  
+  }
+    
+     if(this.text()==\"ADDC\")
+  {  
+  voltBox_MMG.appendItem(\"/ai/1v5TP1\");
+  voltBox_MMG.appendItem(\"/ai/1v5TP2\");
+  voltBox_MMG.appendItem(\"/ai/2v5TP0\");
+  voltBox_MMG.appendItem(\"/ai/2v5TP1\");
+  voltBox_MMG.appendItem(\"/ai/boardTemp\"); 
+  voltBox_MMG.appendItem(\"/ai/feastTemp1v5\");  
+  voltBox_MMG.appendItem(\"/ai/feastTemp2v5\");   
+  voltBox_MMG.appendItem(\"/ai/gbtx0NTC\");    
+  voltBox_MMG.appendItem(\"/ai/gbtx1NTC\");     
+  voltBox_MMG.appendItem(\"/ai/internalTemperature\"); 
+  
+  
+  tempBox_MMG.appendItem(\"/ai/1v5TP1\");
+  tempBox_MMG.appendItem(\"/ai/1v5TP2\");
+  tempBox_MMG.appendItem(\"/ai/2v5TP0\");
+  tempBox_MMG.appendItem(\"/ai/2v5TP1\");
+  tempBox_MMG.appendItem(\"/ai/boardTemp\"); 
+  tempBox_MMG.appendItem(\"/ai/feastTemp1v5\");  
+  tempBox_MMG.appendItem(\"/ai/feastTemp2v5\");   
+  tempBox_MMG.appendItem(\"/ai/gbtx0NTC\");    
+  tempBox_MMG.appendItem(\"/ai/gbtx1NTC\");     
+  tempBox_MMG.appendItem(\"/ai/internalTemperature\"); 
+  
+  
+  }
+    
+  /*
+  for(int i=1;i<=dynlen(aiItems);i++)
+  {
+   
+  position=strpos(aiItems[i],\"/\");
+  aiItemCorrected[i]=substr(aiItems[i],position);
+  voltBox_MMG.appendItem(aiItemCorrected[i]);
+  tempBox_MMG.appendItem(aiItemCorrected[i]);
+  }
+  */
+    
+    
+  
+  
+  voltBox_MMG.enabled(1);  
+  tempBox_MMG.enabled(1);
+
+
+
+  
+  } 
+  else
+  {
+  voltBox_MMG.enabled(0);
+  tempBox_MMG.enabled(0);    
+ } 
+  
+  
+}" 0
+
+E
+ 0 0
+2 16
+"typeText_STG"
+""
+1 26 212 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 26 212 69 230
+0 2 2 "0s" 0 0 0 192 0 0  26 212 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Type:
+22 17
+"typeBox_STG"
+""
+1 137.4898648648648 214.9090909090909 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  135.4898648648648 207 370 237
+0
+
+E
+"main()
+{
+  
+  if(this.text()!=\"\")
+  {  
+
+  
+  string voltage;
+  dpGet(\"STG-S1-Settings.\"+this.text()+\".Voltage\",voltage);
+  voltBox_STG.deleteAllItems();
+  voltBox_STG.appendItem(voltage);  
+  voltBox_STG.appendItem(\"\");  
+    
+  
+  string temperature;
+  dpGet(\"STG-S1-Settings.\"+this.text()+\".Temperature\",temperature);
+  tempBox_STG.deleteAllItems();
+  tempBox_STG.appendItem(temperature);
+  tempBox_STG.appendItem(\"\");  
+  
+  
+  dyn_string aiItems,aiItemCorrected;
+  int position;  
+  
+  aiItems=dpNames(\"*/ai/*\",\"OpcUaScaServerAnalogInput\");
+  
+  if(this.text()==\"sFEB\")
+  {
+  voltBox_STG.appendItem(\"/ai/vmmPdo0\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo1\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo2\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo3\"); 
+  voltBox_STG.appendItem(\"/ai/vmmPdo4\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo5\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo6\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo7\");  
+  voltBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  voltBox_STG.appendItem(\"/ai/ntcTemperature2\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+
+  tempBox_STG.appendItem(\"/ai/vmmPdo0\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo1\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo2\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo3\"); 
+  tempBox_STG.appendItem(\"/ai/vmmPdo4\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo5\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo6\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo7\");  
+  tempBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  tempBox_STG.appendItem(\"/ai/ntcTemperature2\");
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+     
+  } 
+  
+  if(this.text()==\"pFEB\")
+  {
+    
+  voltBox_STG.appendItem(\"/ai/vmmPdo0\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo1\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo2\"); 
+  voltBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+
+  tempBox_STG.appendItem(\"/ai/vmmPdo0\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo1\");
+  tempBox_STG.appendItem(\"/ai/vmmPdo2\");
+  tempBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  } 
+
+   if(this.text()==\"L1DDC\")
+  {
+    
+  voltBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  voltBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  voltBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  tempBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  tempBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  tempBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  tempBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  tempBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  tempBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  }  
+  
+  
+  /*
+  for(int i=1;i<=dynlen(aiItems);i++)
+  {
+   
+  position=strpos(aiItems[i],\"/\");
+  aiItemCorrected[i]=substr(aiItems[i],position);
+  voltBox_STG.appendItem(aiItemCorrected[i]);
+  tempBox_STG.appendItem(aiItemCorrected[i]);
+  }
+  
+  */
+  voltBox_STG.enabled(1);  
+  tempBox_STG.enabled(1);
+  
+
+
+  
+  } 
+  else
+  {
+  voltBox_STG.enabled(0);
+  tempBox_STG.enabled(0);    
+ } 
+  
+  
+}" 0
+
+E
+ 0 0
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

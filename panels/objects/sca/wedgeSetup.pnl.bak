@@ -1,10 +1,85 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 676 680 N "_3DFace" 0
+PANEL,-1 -1 810 754 N "_3DFace" 0
 E E E E E 1 -1 -1 0  138 112
 ""0  1
-E E 3
+E "void showButton()
+{  
+string IPorHO,layer,detector;
+   
+    
+    
+    if(!MMG.enabled())
+      detector=\"MMG\";
+    if(!STG.enabled())
+      detector=\"STG\";  
+    
+    if(!IP.enabled())
+      IPorHO=\"IP\";
+    if(!HO.enabled())
+      IPorHO=\"HO\"; 
+
+    
+    if(!layer1.enabled())
+      layer=\"1\";
+    if(!layer2.enabled())
+      layer=\"2\";    
+    if(!layer3.enabled())
+      layer=\"3\";    
+    if(!layer4.enabled())
+      layer=\"4\";  
+    
+    detectorText.text(detector);
+    sideText.text(IPorHO);
+    layerText.text(layer);
+     
+  for(int layerLoop=1;layerLoop<=4;layerLoop++)
+    {
+  
+
+        for(int pcb=1;pcb<=16;pcb++)
+   {
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"MMG\"); 
+
+    
+  //  removeSymbol(myModuleName(),myPanelName(),\"Sector\"+sector+\"PCB\"+pcb+\"Layer\"+layer+\"Side\"+\"HO\"+\"EtaSide\"+\"R\"+\"MMG\");
+        if(pcb==1)
+    {
+    removeSymbol(myModuleName(),myPanelName(),\"L1Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"L1Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"L1Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"L1Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"STG\");     
+    }
+    
+      if(pcb<=6)
+    {
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Left\"+\"STG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layerLoop+\"Right\"+\"STG\");     
+    }
+    
+    
+    
+    
+   }
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layerLoop+\"MMG\");
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layerLoop+\"STG\");                
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layerLoop+\"MMG\");
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layerLoop+\"STG\");  
+  }
+  
+  
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX\"+detector+\".pnl\",\"eltx\"+IPorHO+\"L\"+layer+detector,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+170,\"$y:\"+200,\"$detector:\"+detector,\"$configurationMode:\"+TRUE),170,200,0,1,1); 
+
+ 
+ }" 0
+ 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -17,7 +92,7 @@ LANG:1 0
 13 0
 "IP"
 ""
-1 107 59 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 58 110 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 0 0 0 0 0 0
 E E E
@@ -29,7 +104,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  105 50.33333333333331 191 89.33333333333331
+0  80 101 166 129
 
 T 
 1
@@ -43,7 +118,7 @@ HO.enabled(1);
 13 2
 "layer1"
 ""
-1 107 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 82 143 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 2 0 0 0 0 0
 E E E
@@ -55,7 +130,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  105 98 148 130
+0  80 133 123 165
 
 T 
 1
@@ -71,7 +146,7 @@ LANG:1 1 1
 13 3
 "layer2"
 ""
-1 150 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 125 143 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -83,7 +158,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  148 98 191 130
+0  123 133 166 165
 
 T 
 1
@@ -99,7 +174,7 @@ LANG:1 1 2
 13 4
 "layer3"
 ""
-1 194 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 169 143 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -111,7 +186,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  192 98 235 130
+0  167 133 210 165
 
 T 
 1
@@ -127,7 +202,7 @@ LANG:1 1 3
 13 5
 "layer4"
 ""
-1 237 108 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 212 143 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 5 0 0 0 0 0
 E E E
@@ -139,7 +214,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  235 98 278 130
+0  210 133 253 165
 
 T 
 1
@@ -155,7 +230,7 @@ LANG:1 1 4
 13 6
 "HO"
 ""
-1 194 59 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 145 110 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -167,7 +242,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  192 50.33333333333331 278 89.33333333333331
+0  167 101 253 129
 
 T 
 1
@@ -181,7 +256,7 @@ IP.enabled(1);
 13 7
 "MMG"
 ""
-1 107 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 58 75 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -193,7 +268,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  105 8.333333333333314 191 47.33333333333331
+0  80 66 166 94
 
 T 
 1
@@ -207,7 +282,7 @@ STG.enabled(1);
 13 8
 "STG"
 ""
-1 194 17 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 146 75 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 8 0 0 0 0 0
 E E E
@@ -219,7 +294,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  192 8.333333333333314 278 47.33333333333331
+0  168 66 254 94
 
 T 
 1
@@ -231,9 +306,9 @@ MMG.enabled(1);
 }" 0
  E E E
 13 9
-"setButton"
+"showButton"
 ""
-1 336 67.92857142857144 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 268 111 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 9 0 0 0 0 0
 E E E
@@ -245,38 +320,703 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
-0  334 57.00000000000001 441 86
+0  266 100.0714285714286 373 129.0714285714286
+
+T 
+1
+LANG:1 4 Show
+"main(mapping event)
+{
+  showButton();
+ 
+ }" 0
+ E E E
+14 10
+"channelSetupField"
+""
+1 466.0000000000001 71 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  464.0000000000001 59 678.4941176470589 84
+2 "0s" 0 0 0 0 0 -1  E E E
+22 12
+"channelListCombo"
+""
+1 465.9999999999998 140 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  463.9999999999998 129 679.6518987341772 164
+0
+
+"main()
+{
+  /*
+  dyn_string scaList=dpNames(\"MMG-S1.*\",\"SCAELTX_MMG\");
+  string channel;
+  
+  for(int i=1;i<=dynlen(scaList);i++)
+  {
+    channel=strltrim(scaList[i],getSystemName());  
+    DebugN(i,channel);
+ }
+  
+ 
+  */
+  
+  
+  
+  
+}" 0
+
+E
+E
+ 0 0
+13 13
+"setButton"
+""
+1 688 99.80000000000001 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  686 87 794 136
 
 T 
 1
 LANG:1 3 Set
 "main(mapping event)
 {
-    string IPorHO,layer,detector;
-    
-    
-    if(!MMG.enabled())
-      detector=\"MMG\";
-    if(!STG.enabled())
-      detector=\"STG\";  
-    
-    if(!IP.enabled())
-      IPorHO=\"IP\";
-    if(!HO.enabled())
-      IPorHO=\"HO\";  
-    
-    if(!layer1.enabled())
-      layer=\"1\";
-    if(!layer2.enabled())
-      layer=\"2\";    
-    if(!layer3.enabled())
-      layer=\"3\";    
-    if(!layer4.enabled())
-      layer=\"4s\";  
-    
-     
   
-   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTX\"+detector+\".pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+50,\"$y:\"+150,\"$detector:\"+detector,\"$configurationMode:\"+TRUE),50,150,0,1,1); 
+   string channelPositionDPE,channel,type,detector;
+ 
+   channelPositionDPE=channelSetupField.text();  
+   channel=channelListCombo.text(); 
+   type=typeBox.text();
+   
+   if(!MMG.enabled())
+      detector=\"MMG\";
+   if(!STG.enabled())
+      detector=\"STG\";  
+  
+   dpSet(detector+\"-S1.\"+channelPositionDPE+\".Channel\",channel);  
+   dpSet(detector+\"-S1.\"+channelPositionDPE+\".Type\",type);     
+   
+   if(channel!=\"\")
+   {dpSet(detector+\"-S1.\"+channelPositionDPE+\".Visibility\",1);}  
+   if(channel==\"\")
+   {dpSet(detector+\"-S1.\"+channelPositionDPE+\".Visibility\",0); }    
+   
+   
+   showButton();
+   
+
+  
+}" 0
+ E E E
+22 15
+"typeBox"
+""
+1 467.3481012658227 100 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  465.3481012658227 89 681 124
+0
+
+E
+"main()
+{
+  
+  /*
+  if(this.text()==\"MMFE8\")
+  {  
+      
+  channelListCombo.appendItem(\"/ai/vmmPdo0\");
+  channelListCombo.appendItem(\"/ai/vmmPdo1\");
+  channelListCombo.appendItem(\"/ai/vmmPdo2\");
+  channelListCombo.appendItem(\"/ai/vmmPdo3\"); 
+  channelListCombo.appendItem(\"/ai/vmmPdo4\");
+  channelListCombo.appendItem(\"/ai/vmmPdo5\");
+  channelListCombo.appendItem(\"/ai/vmmPdo6\");
+  channelListCombo.appendItem(\"/ai/vmmPdo7\");  
+  channelListCombo.appendItem(\"/ai/0V65for1V3A\");
+  channelListCombo.appendItem(\"/ai/0V65for1V3E\");
+  channelListCombo.appendItem(\"/ai/0V6for1V2D\");
+  channelListCombo.appendItem(\"/ai/internalTemperature\");
+  channelListCombo.appendItem(\"/ai/pTat1V2D\"); 
+  channelListCombo.appendItem(\"/ai/pTat1V3A\");  
+  channelListCombo.appendItem(\"/ai/pTat1V3AE\");   
+  channelListCombo.appendItem(\"/ai/vTempOut1\");     
+  channelListCombo.appendItem(\"/ai/vTempOut2\"); 
+ }
+  
+  if(this.text()==\"L1DDC\" && !MMG.enabled())
+  {  
+  voltBox_MMG.appendItem(\"/ai/1V5_PTAT\");
+  voltBox_MMG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_MMG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_MMG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_MMG.appendItem(\"/ai/GBTX3_TEMP\"); 
+  voltBox_MMG.appendItem(\"/ai/P1V5_SCA\");  
+  voltBox_MMG.appendItem(\"/ai/P2V5_SCA\");   
+  voltBox_MMG.appendItem(\"/ai/VTRX1_RSSI\");     
+  voltBox_MMG.appendItem(\"/ai/internalTemperature\");     
+  }
+  
+     if(this.text()==\"ADDC\")
+  {  
+  voltBox_MMG.appendItem(\"/ai/1v5TP1\");
+  voltBox_MMG.appendItem(\"/ai/1v5TP2\");
+  voltBox_MMG.appendItem(\"/ai/2v5TP0\");
+  voltBox_MMG.appendItem(\"/ai/2v5TP1\");
+  voltBox_MMG.appendItem(\"/ai/boardTemp\"); 
+  voltBox_MMG.appendItem(\"/ai/feastTemp1v5\");  
+  voltBox_MMG.appendItem(\"/ai/feastTemp2v5\");   
+  voltBox_MMG.appendItem(\"/ai/gbtx0NTC\");    
+  voltBox_MMG.appendItem(\"/ai/gbtx1NTC\");     
+  voltBox_MMG.appendItem(\"/ai/internalTemperature\"); 
+
+  }  
+  
+   if(this.text()==\"sFEB\")
+  {
+  voltBox_STG.appendItem(\"/ai/vmmPdo0\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo1\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo2\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo3\"); 
+  voltBox_STG.appendItem(\"/ai/vmmPdo4\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo5\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo6\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo7\");  
+  voltBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  voltBox_STG.appendItem(\"/ai/ntcTemperature2\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+
+} 
+  
+   if(this.text()==\"pFEB\")
+  {
+    
+  voltBox_STG.appendItem(\"/ai/vmmPdo0\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo1\");
+  voltBox_STG.appendItem(\"/ai/vmmPdo2\"); 
+  voltBox_STG.appendItem(\"/ai/ntcTemperature1\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+
+}
+ 
+  if(this.text()==\"L1DDC\" && !STG.enabled())
+  {
+    
+  voltBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  voltBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  voltBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+}  
+  
+ */ 
+  
+  
+}" 0
+
+E
+ 0 0
+2 16
+"PRIMITIVE_TEXT1"
+""
+1 391 62 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 391 62 460 80
+0 2 2 "0s" 0 0 0 192 0 0  391 62 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 9 Selected:
+2 17
+"PRIMITIVE_TEXT2"
+""
+1 391 137 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 391 137 461 155
+0 2 2 "0s" 0 0 0 192 0 0  391 137 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 8 Channel:
+2 18
+"PRIMITIVE_TEXT3"
+""
+1 391 95 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 391 95 434 113
+0 2 2 "0s" 0 0 0 192 0 0  391 95 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Type:
+30 19
+"FRAME1"
+""
+1 2 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.069767441860465 0 0.9142857142857143 10.8604651162791 46.74285714285713 0 E 2 -3 347 138
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 18 Load Configuration
+30 20
+"FRAME2"
+""
+1 2 -3 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.218023255813953 0 0.9142857142857143 380.5639534883721 46.74285714285713 0 E 2 -3 347 138
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 17 Set Configuration
+2 23
+"PRIMITIVE_TEXT4"
+""
+1 19 74 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 19 74 78 89
+0 2 2 "0s" 0 0 0 192 0 0  19 74 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 9 Detector:
+2 24
+"PRIMITIVE_TEXT5"
+""
+1 19 110 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 19 110 51 125
+0 2 2 "0s" 0 0 0 192 0 0  19 110 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Side:
+2 25
+"PRIMITIVE_TEXT6"
+""
+1 19 144 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 19 144 59 159
+0 2 2 "0s" 0 0 0 192 0 0  19 144 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Layer:
+6 26
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.314925373134328 0 1 -13 -20 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 27
+"PRIMITIVE_TEXT7"
+""
+1 310 7.25 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 310 7.25 513 32
+0 2 2 "0s" 0 0 0 192 0 0  310 7.25 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 19 Setup Configuration
+2 28
+"PRIMITIVE_TEXT8"
+""
+1 23 180 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 23 180 73 193
+0 2 2 "0s" 0 0 0 192 0 0  23 180 1
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 9 Detector:
+2 29
+"PRIMITIVE_TEXT9"
+""
+1 23 202 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 23 202 51 215
+0 2 2 "0s" 0 0 0 192 0 0  23 202 1
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 5 Side:
+2 30
+"PRIMITIVE_TEXT10"
+""
+1 23 223 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 23 223 57 236
+0 2 2 "0s" 0 0 0 192 0 0  23 223 1
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Layer:
+14 31
+"detectorText"
+""
+1 73 181 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  71 177 124 200
+2 "0s" 0 0 0 1 0 -1  E E E
+14 32
+"sideText"
+""
+1 73 202 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  71 198 124 221
+2 "0s" 0 0 0 1 0 -1  E E E
+14 33
+"layerText"
+""
+1 73 223 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,11,5,75,0,0,0,0,0
+0  71 219 124 242
+2 "0s" 0 0 0 1 0 -1  E E E
+30 34
+"FRAME3"
+""
+1 7 169 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 6.000000000000001 -1 0 E 7 169 132 247
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+13 35
+"PUSH_BUTTON1"
+""
+1 14 696 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+35 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  12 679 128 726
+
+T 
+1
+LANG:1 8 Auto Set
+"main(mapping event)
+{
+  dyn_string detectorAllChannels,detectorAllChannelsTrim,mmfe8Channels;
+  int mmfe8Counter=1;
+  string detector=\"MMG\";
+  
+  detectorAllChannels=dpNames(\"*\",\"OpcUaScaServerSCA\");
+  
+  
+  
+  for(int i=1;i<=dynlen(detectorAllChannels);i++)
+  {  
+   detectorAllChannelsTrim[i]=strltrim(detectorAllChannels[i],getSystemName());   
+   if(strlen(detectorAllChannelsTrim[i])==9)   
+   {
+     mmfe8Channels[mmfe8Counter++]=detectorAllChannelsTrim[i];
+   }
+  }
+
+  
+  string layerPosition,pcbPosition,sidePosition,leftRightPosition;
+  string upDown;
+  
+     for(int i=1;i<=dynlen(mmfe8Channels);i++)
+  {
+        layerPosition=substr(mmfe8Channels[i],2,1);
+        pcbPosition=substr(mmfe8Channels[i],4,1);
+        sidePosition=substr(mmfe8Channels[i],6,2);
+        leftRightPosition=substr(mmfe8Channels[i],8,1);
+        if(leftRightPosition==\"L\")
+          leftRightPosition=\"Left\";
+        if(leftRightPosition==\"R\")
+          leftRightPosition=\"Right\";        
+        
+        
+        if(layerPosition==\"1\" && leftRightPosition==\"Right\" && sidePosition==\"IP\")
+           upDown=\"Up\";
+        if(layerPosition==\"1\" && leftRightPosition==\"Left\" && sidePosition==\"IP\")
+           upDown=\"Down\"; 
+        
+        if(layerPosition==\"2\" && leftRightPosition==\"Right\" && sidePosition==\"IP\")
+           upDown=\"Down\";
+        if(layerPosition==\"2\" && leftRightPosition==\"Left\" && sidePosition==\"IP\")
+           upDown=\"Up\"; 
+        
+        if(layerPosition==\"3\" && leftRightPosition==\"Right\" && sidePosition==\"IP\")
+           upDown=\"Up\";
+        if(layerPosition==\"3\" && leftRightPosition==\"Left\" && sidePosition==\"IP\")
+           upDown=\"Down\"; 
+        
+        if(layerPosition==\"4\" && leftRightPosition==\"Right\" && sidePosition==\"IP\")
+           upDown=\"Down\";
+        if(layerPosition==\"4\" && leftRightPosition==\"Left\" && sidePosition==\"IP\")
+           upDown=\"Up\";  
+
+//------------------------------------------------------------------        
+        
+        if(layerPosition==\"1\" && leftRightPosition==\"Right\" && sidePosition==\"HO\")
+           upDown=\"Down\";
+        if(layerPosition==\"1\" && leftRightPosition==\"Left\" && sidePosition==\"HO\")
+           upDown=\"Up\"; 
+        
+        if(layerPosition==\"2\" && leftRightPosition==\"Right\" && sidePosition==\"HO\")
+           upDown=\"Up\";
+        if(layerPosition==\"2\" && leftRightPosition==\"Left\" && sidePosition==\"HO\")
+           upDown=\"Down\"; 
+        
+        if(layerPosition==\"3\" && leftRightPosition==\"Right\" && sidePosition==\"HO\")
+           upDown=\"Down\";
+        if(layerPosition==\"3\" && leftRightPosition==\"Left\" && sidePosition==\"HO\")
+           upDown=\"Up\"; 
+        
+        if(layerPosition==\"4\" && leftRightPosition==\"Right\" && sidePosition==\"HO\")
+           upDown=\"Up\";
+        if(layerPosition==\"4\" && leftRightPosition==\"Left\" && sidePosition==\"HO\")
+           upDown=\"Down\";             
+        
+        
+        
+        
+  dpSet(detector+\"-S1.Side\"+sidePosition+\"PCB\"+pcbPosition+\"Layer\"+layerPosition+leftRightPosition+upDown+\".Channel\",mmfe8Channels[i]);
+  dpSet(detector+\"-S1.Side\"+sidePosition+\"PCB\"+pcbPosition+\"Layer\"+layerPosition+leftRightPosition+upDown+\".Type\",\"MMFE8\");  
+  dpSet(detector+\"-S1.Side\"+sidePosition+\"PCB\"+pcbPosition+\"Layer\"+layerPosition+leftRightPosition+upDown+\".Visibility\",1);   
+
+  } 
+
+  DebugTN(\"Set ready!\");
+  
+   
+  
 }" 0
  E E E
 0

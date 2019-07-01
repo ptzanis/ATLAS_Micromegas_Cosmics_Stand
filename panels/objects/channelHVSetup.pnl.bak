@@ -347,6 +347,9 @@ LANG:1 2 ON
  
 dpSetWait(returnHVChannel() + \".settings.onOff:_original.._value\", 1);
 
+
+    dpSet(\"ALL.safetyAlarmLight\",0);    
+
 }
 " 0
  E E E

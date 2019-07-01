@@ -662,7 +662,9 @@ LANG:1 2 ON
       
    delay(2);
    channelsTable.deleteAllLines;
-   refreshConfigurationTable(FALSE,TRUE);               
+   refreshConfigurationTable(FALSE,TRUE);   
+
+   dpSet(\"ALL.safetyAlarmLight\",0);       
 
 }
 " 0

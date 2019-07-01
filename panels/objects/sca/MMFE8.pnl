@@ -1,0 +1,1761 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 560 257 N "_3DFace" 2
+"$boardPlace"
+"$detector"
+E E E E E 1 -1 -1 0  14 20
+""0  1
+E "string boardPlace=$boardPlace;
+string detector=$detector;
+
+  
+  
+string returnValue()
+{
+  
+  string channel;
+  dpGet(detector+\"-S1.\"+boardPlace+\".Channel\",channel);
+  
+  return channel;
+   
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+14 41
+"TEXT_FIELD4"
+""
+1 151 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  149 139.1666666666667 204 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo2.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo2.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+6 0
+"RECTANGLE1"
+""
+1 14 20 E E E 1 E 1 E N {0,0,0} E N "WF_Info" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 3 2 1 E 1.022988505747126 0 1.639175257731958 -7.321839080459768 -4.783505154639172 1 E 14 20 536 117
+6 1
+"RECTANGLE2"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 -13 -74.8181818181818 1 E 31 180 89 235
+6 2
+"RECTANGLE3"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 52 -74.81818181818181 1 E 31 180 89 235
+6 3
+"RECTANGLE4"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 117 -74.8181818181818 1 E 31 180 89 235
+6 4
+"RECTANGLE5"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 182 -74.81818181818181 1 E 31 180 89 235
+6 5
+"RECTANGLE6"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 247 -74.8181818181818 1 E 31 180 89 235
+6 6
+"RECTANGLE7"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 312 -74.81818181818181 1 E 31 180 89 235
+6 7
+"RECTANGLE8"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 377 -74.8181818181818 1 E 31 180 89 235
+6 8
+"RECTANGLE9"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.054545454545454 442 -74.81818181818181 1 E 31 180 89 235
+6 9
+"sca"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "WF_Head" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.379310344827586 0 0.9818181818181819 155.2413793103449 -136.7272727272727 1 E 31 180 89 235
+6 10
+"1V3E"
+""
+1 24 97 E E E 1 E 1 E N {0,0,0} E N "STD_value_default" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.702702702702704 -6.999999999999998 -121.1621621621623 1 E 24 97 99 134
+6 11
+"1V2D"
+""
+1 24 97 E E E 1 E 1 E N {0,0,0} E N "STD_value_default" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.702702702702702 80 -121.1621621621622 1 E 24 97 99 134
+6 12
+"1V3A"
+""
+1 24 97 E E E 1 E 1 E N {0,0,0} E N "STD_value_default" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1.702702702702702 419 -121.1621621621622 1 E 24 97 99 134
+6 13
+"roc"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "WF_ParamIncorrect" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.9310344827586207 0 0.9818181818181819 282.1379310344827 -141.7272727272727 1 E 31 180 89 235
+6 16
+"RECTANGLE10"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "FwAtlasBg" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.4545454545454547 79 124.1818181818181 1 E 31 180 89 235
+2 17
+"PRIMITIVE_TEXT3"
+""
+1 118 209 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 118 209 160 227
+0 2 2 "0s" 0 0 0 192 0 0  118 209 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 3 VMM
+30 18
+"FRAME1"
+""
+1 8 190 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1.19047619047619 -1 -36.19047619047619 0 E 8 190 543 233
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 4 Info
+6 19
+"RECTANGLE11"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "STD_value_default" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.4545454545454547 157 124.1818181818181 1 E 31 180 89 235
+2 20
+"PRIMITIVE_TEXT4"
+""
+1 194 210 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 194 210 245 228
+0 2 2 "0s" 0 0 0 192 0 0  194 210 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 5 FEAST
+6 21
+"RECTANGLE12"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "WF_Head" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.4545454545454547 234 124.1818181818182 1 E 31 180 89 235
+2 22
+"PRIMITIVE_TEXT5"
+""
+1 278 210 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 278 210 312 228
+0 2 2 "0s" 0 0 0 192 0 0  278 210 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 3 SCA
+6 23
+"RECTANGLE13"
+""
+1 31 180 E E E 1 E 1 E N {0,0,0} E N "WF_ParamIncorrect" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.4545454545454547 311 124.1818181818181 1 E 31 180 89 235
+2 24
+"PRIMITIVE_TEXT6"
+""
+1 354 210 E E E 1 E 1 E N "White" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 354 210 391 228
+0 2 2 "0s" 0 0 0 192 0 0  354 210 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 3 ROC
+2 25
+"PRIMITIVE_TEXT7"
+""
+1 59 45 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 59 45 93 60
+0 2 2 "0s" 0 0 0 192 0 0  59 45 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 4 1V3E
+2 26
+"PRIMITIVE_TEXT8"
+""
+1 144 45 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 144 45 179 60
+0 2 2 "0s" 0 0 0 192 0 0  144 45 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 4 1V2D
+2 27
+"PRIMITIVE_TEXT9"
+""
+1 484 45 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 484 45 519 60
+0 2 2 "0s" 0 0 0 192 0 0  484 45 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 4 1V3A
+2 29
+"PRIMITIVE_TEXT11"
+""
+1 63 117 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 63 117 74 135
+0 2 2 "0s" 0 0 0 192 0 0  63 117 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 0
+2 30
+"PRIMITIVE_TEXT12"
+""
+1 126 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 126 118 137 136
+0 2 2 "0s" 0 0 0 192 0 0  126 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 1
+2 31
+"PRIMITIVE_TEXT13"
+""
+1 192 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 192 118 203 136
+0 2 2 "0s" 0 0 0 192 0 0  192 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 2
+2 32
+"PRIMITIVE_TEXT14"
+""
+1 258 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 258 118 269 136
+0 2 2 "0s" 0 0 0 192 0 0  258 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 3
+2 33
+"PRIMITIVE_TEXT15"
+""
+1 322 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 322 118 333 136
+0 2 2 "0s" 0 0 0 192 0 0  322 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 4
+2 34
+"PRIMITIVE_TEXT16"
+""
+1 389 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 389 118 400 136
+0 2 2 "0s" 0 0 0 192 0 0  389 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 5
+2 35
+"PRIMITIVE_TEXT17"
+""
+1 453 118 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 453 118 464 136
+0 2 2 "0s" 0 0 0 192 0 0  453 118 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 6
+2 36
+"PRIMITIVE_TEXT18"
+""
+1 518 117 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 518 117 529 135
+0 2 2 "0s" 0 0 0 192 0 0  518 117 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 1 7
+14 39
+"TEXT_FIELD2"
+""
+1 22 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  20 139.1666666666667 75.00000000000001 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo0.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo0.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 40
+"TEXT_FIELD3"
+""
+1 86 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  84 139.1666666666667 139 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo1.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo1.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 42
+"TEXT_FIELD5"
+""
+1 216 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  214 139.1666666666667 269 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo3.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo3.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 43
+"TEXT_FIELD6"
+""
+1 282 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  280 139.1666666666667 335 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo4.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo4.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 44
+"TEXT_FIELD7"
+""
+1 347 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  345 139.1666666666667 400 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo5.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo5.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 45
+"TEXT_FIELD8"
+""
+1 412 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  410 139.1666666666667 465 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo6.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo6.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 46
+"TEXT_FIELD9"
+""
+1 476 145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  474 139.1666666666667 529 168.1666666666667
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/vmmPdo7.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/vmmPdo7.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 47
+"TEXT_FIELD10"
+""
+1 22 62.36111111111111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  20 57.16666666666674 75.00000000000001 82
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/0V65for1V3E.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/0V65for1V3E.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", 2.0*fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 48
+"TEXT_FIELD11"
+""
+1 109 62.36111111111111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  107 57.16666666666674 162 82
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/0V6for1V2D.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/0V6for1V2D.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\",  2.0*fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 49
+"TEXT_FIELD12"
+""
+1 448 62.36111111111111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  446 57.16666666666674 501 82
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/0V65for1V3A.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/0V65for1V3A.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\",  2.0*fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 50
+"TEXT_FIELD13"
+""
+1 203 68.99999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  201 63.16666666666673 254 92.16666666666673
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/internalTemperature.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/internalTemperature.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  float temp_1=-40; 
+  float adc_val_1=0.790;
+  float temp_2=80; 
+  float adc_val_2=0.570;  
+  
+  setValue(\"\", \"text\",  ((adc_val_1-fNewValue)*(temp_2-temp_1)/(adc_val_1-adc_val_2)+temp_1));
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+2 51
+"typeText"
+""
+1 244 0 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string type;
+  dpGet(detector+\"-S1.\"+boardPlace+\".Type\",type);
+  
+  this.text(type);
+}" 0
+ E 2 1 3 2 1 E U  0 E 244 0 290 47
+0 2 2 "0s" 0 0 0 192 0 0  244 0 2
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Type
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+14 52
+"TEXT_FIELD14"
+""
+1 22 85 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  20 79.80555555555563 75.00000000000001 104.6388888888889
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/pTat1V3AE.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/pTat1V3AE.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 53
+"TEXT_FIELD15"
+""
+1 109 85 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  107 79.80555555555563 162 104.6388888888889
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/pTat1V2D.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/pTat1V2D.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\",  fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+14 54
+"TEXT_FIELD16"
+""
+1 448 85 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  446 79.80555555555563 501 104.6388888888889
+2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists(returnValue()+\"/ai/pTat1V3A.value:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            returnValue()+\"/ai/pTat1V3A.value:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\",  fNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:ML1P1_IPR/ai/0V65for1V3A.value}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+2 56
+"PRIMITIVE_TEXT21"
+""
+1 75 61 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 75 61 95 76
+0 2 2 "0s" 0 0 0 192 0 0  75 61 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
+2 57
+"PRIMITIVE_TEXT22"
+""
+1 75 84 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 75 84 95 99
+0 2 2 "0s" 0 0 0 192 0 0  75 84 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [C]
+2 58
+"PRIMITIVE_TEXT23"
+""
+1 161 62 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 161 62 181 77
+0 2 2 "0s" 0 0 0 192 0 0  161 62 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
+2 59
+"PRIMITIVE_TEXT24"
+""
+1 161 85 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 161 85 181 100
+0 2 2 "0s" 0 0 0 192 0 0  161 85 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [C]
+2 60
+"PRIMITIVE_TEXT25"
+""
+1 501 61 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 501 61 521 76
+0 2 2 "0s" 0 0 0 192 0 0  501 61 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [V]
+2 61
+"PRIMITIVE_TEXT26"
+""
+1 501 84 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 501 84 521 99
+0 2 2 "0s" 0 0 0 192 0 0  501 84 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [C]
+2 62
+"PRIMITIVE_TEXT27"
+""
+1 217 42 E E E 1 E 1 E N "Black" E N "Black" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 217 42 251 60
+0 2 2 "0s" 0 0 0 192 0 0  217 42 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 3 SCA
+2 63
+"PRIMITIVE_TEXT28"
+""
+1 321 39 E E E 1 E 1 E N "Black" E N "Black" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 321 39 358 57
+0 2 2 "0s" 0 0 0 192 0 0  321 39 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 3 ROC
+2 64
+"PRIMITIVE_TEXT29"
+""
+1 256 70 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 256 70 276 85
+0 2 2 "0s" 0 0 0 192 0 0  256 70 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [C]
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

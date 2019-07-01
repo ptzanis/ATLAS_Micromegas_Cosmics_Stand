@@ -304,7 +304,10 @@ LANG:1 2 ON
     dpGet(channelSetOff[i]+\".Channel\",channel);
     dpSetWait(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);    
   }
-    
+   
+
+    dpSet(\"ALL.safetyAlarmLight\",0);    
+ 
 }" 0
  E E E
 22 4

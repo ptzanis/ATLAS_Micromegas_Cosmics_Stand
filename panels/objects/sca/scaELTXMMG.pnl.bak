@@ -1,0 +1,1139 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1838 701 N "_3DFace" 0
+"main()
+{
+  /*
+  string IPorHO;
+  int x=10;
+  int y=100;
+  for(int side=1;side<=1;side++)
+  {
+     if(side==1)
+       IPorHO=\"IP\";
+     if(side==2)      
+       IPorHO=\"HO\"; 
+     
+  int x=10;
+
+  
+    for(int layer=1;layer<=4;layer++)
+    {
+      addSymbol(myModuleName(),myPanelName(),\"objects/layerOfSectorELTX.pnl\",\"eltx\"+side+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
+    x=x+460;          
+    }
+    y=y+500;
+  } 
+  */
+  
+  
+}" 0
+ E E E E 1 -1 -1 0  -2 65
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 149
+"ipButton"
+""
+1 34 52 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+149 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  32 42 114 74
+
+T 
+1
+LANG:1 2 IP
+"main(mapping event)
+{
+  
+  string IPorHO;
+  int sector=1;
+  int x=10;
+  int y=100;
+
+  IPorHO=\"IP\";  
+  
+ this.enabled(FALSE); 
+ if(!hoButton.enabled())
+ {
+   
+    for(int layer=1;layer<=4;layer++)
+    {
+        for(int pcb=1;pcb<=16;pcb++)
+   {
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"HO\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"MMG\");   
+   }
+    
+    removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"HO\"+\"L\"+layer+\"MMG\");
+  }
+
+ }
+ hoButton.enabled(TRUE); 
+ 
+ 
+     for(int layer=1;layer<=4;layer++)
+    {
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
+    x=x+460;          
+    }
+
+  
+}
+ 
+" 0
+ E E E
+30 18
+"FRAME1"
+""
+1 21 13 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 2.910969793322734 0 1.127177700348432 -59.1303656597774 35.34668989547038 0 E 21 13 651 588
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 20
+"TitleTBSCS"
+""
+1 191 98 E E E 1 E 1 E N "FwAtlasBg" E N "FwAtlasBg" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 30 12 334 39
+0 2 2 "0s" 0 0 0 193 0 0  182 12 1
+1
+LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
+0 1
+LANG:1 23 ELTX SCA-GBT Monitoring
+13 21
+"createSettingsDPTMMG"
+""
+1 1710 -8 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  1707.75 4.000000000000017 1830.75 28.99999999999998
+
+T 
+1
+LANG:1 16 MMG Settings DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+elements[1]=makeDynString(\"SCAELTXSettings_MMG\",\"\");
+types[1]=makeDynInt(DPEL_STRUCT);
+
+elements[2]=makeDynString(\"\",\"ADDC\",\"\");
+types[2]=makeDynInt(0,DPEL_STRUCT);
+elements[3]=makeDynString(\"\",\"\",\"Voltage\");
+types[3]=makeDynInt(0,0,DPEL_STRING);
+elements[4]=makeDynString(\"\",\"\",\"Temperature\");
+types[4]=makeDynInt(0,0,DPEL_STRING);
+elements[5]=makeDynString(\"\",\"L1DDC\",\"\");
+types[5]=makeDynInt(0,DPEL_STRUCT);
+elements[6]=makeDynString(\"\",\"\",\"Voltage\");
+types[6]=makeDynInt(0,0,DPEL_STRING);
+elements[7]=makeDynString(\"\",\"\",\"Temperature\");
+types[7]=makeDynInt(0,0,DPEL_STRING);
+elements[8]=makeDynString(\"\",\"MMFE8\",\"\");
+types[8]=makeDynInt(0,DPEL_STRUCT);
+elements[9]=makeDynString(\"\",\"\",\"Voltage\");
+types[9]=makeDynInt(0,0,DPEL_STRING);
+elements[10]=makeDynString(\"\",\"\",\"Temperature\");
+types[10]=makeDynInt(0,0,DPEL_STRING);
+elements[11]=makeDynString(\"\",\"Archiving\",\"\");
+types[11]=makeDynInt(0,DPEL_BOOL);
+
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"MMG-S1-Settings\",\"SCAELTXSettings_MMG\");
+  
+      
+
+
+}" 0
+ E E E
+29 23
+"modeSlider"
+""
+1 240 -11 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+10
+"orientation" "enum 0"
+"maxValue" "int 2"
+"value" "int 2"
+"invertedAppearance" "bool FALSE"
+"tickPosition" "enum 1"
+"pageStep" "int 10"
+"sliderPosition" "int 0"
+"tickInterval" "int 0"
+"invertedControls" "bool FALSE"
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  810 29 1017 53
+12 SliderWidget
+1
+0 "Change" "(int value)"
+"
+   
+  string IPorHO;
+  
+  if(!ipButton.enabled())
+    IPorHO=\"IP\";  
+  if(!hoButton.enabled())
+    IPorHO=\"HO\"; 
+  
+  
+  int sector=1;
+  int x=10;
+  int y=100;
+
+   
+    for(int layer=1;layer<=4;layer++)
+    {
+        for(int pcb=1;pcb<=16;pcb++)
+   {
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+IPorHO+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"MMG\");   
+    
+   }
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+IPorHO+\"L\"+layer+\"MMG\");
+  }
+
+ 
+ 
+     for(int layer=1;layer<=4;layer++)
+    {
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
+    x=x+460;          
+    } 
+   
+  
+"
+E2 25
+"PRIMITIVE_TEXT3"
+""
+1 759 33 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 759 33 801 50
+0 2 2 "0s" 0 0 0 192 0 0  759 33 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 4 Mode
+2 26
+"PRIMITIVE_TEXT4"
+""
+1 799 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 799 6 839 24
+0 2 2 "0s" 0 0 0 192 0 0  799 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Type
+2 27
+"PRIMITIVE_TEXT5"
+""
+1 887 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 887 6 947 24
+0 2 2 "0s" 0 0 0 192 0 0  887 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Voltage
+2 29
+"PRIMITIVE_TEXT7"
+""
+1 986 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 986 6 1032 24
+0 2 2 "0s" 0 0 0 192 0 0  986 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Temp
+2 142
+"PRIMITIVE_TEXT8"
+""
+1 1290 22 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+142 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 1290 22 1448 39
+0 2 2 "0s" 0 0 0 192 0 0  1290 22 1
+1
+LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
+0 1
+LANG:1 21 SCA-OPC Server Status
+7 143
+"ELLIPSE1"
+""
+1 886 25 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+143 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_setBackColor();
+}
+
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:_OpcUaScaServer.State.ConnState:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:_OpcUaScaServer.State.ConnState:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, unsigned uNewValue)
+{
+  if (uNewValue == 1)
+    setValue(\"\", \"backCol\", \"FwStateOKPhysics\");
+  else
+    setValue(\"\", \"backCol\", \"Red\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:_OpcUaScaServer.State.ConnState}
+// DPConfig {:_online.._value}
+// DPType {unsigned}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {1}
+// Color1 {FwStateOKPhysics}
+// Operator2 {else}
+// Operant2 {}
+// Color2 {Red}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.6785714285714286 0 0.7142857142857143 860.785714285714 13.14285714285714 1 E 886 25 14 14
+30 144
+"FRAME2"
+""
+1 703 0 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+144 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.475247524752475 0 0.7727272727272727 244.9009900990103 11 0 E 703 0 906 45
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+14 146
+"TEXT_FIELD1"
+""
+1 1480 23.35294117647059 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  1478 19 1577 43
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:_OpcUaScaServer.State.ServerState:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:_OpcUaScaServer.State.ServerState:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, string sNewValue)
+{
+  setValue(\"\", \"text\", sNewValue);
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:_OpcUaScaServer.State.ServerState}
+// DPConfig {:_online.._value}
+// DPType {string}
+// UseDPUnit {FALSE}
+// UseDPFormat {FALSE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+13 150
+"hoButton"
+""
+1 113 52 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+150 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  111 42 193 74
+
+T 
+1
+LANG:1 2 HO
+"main(mapping event)
+{
+  
+  string IPorHO;
+  int sector=1;
+  int x=10;
+  int y=100;
+
+  IPorHO=\"HO\";  
+  
+ this.enabled(FALSE); 
+ if(!ipButton.enabled())
+ {
+   
+    for(int layer=1;layer<=4;layer++)
+    {
+        for(int pcb=1;pcb<=16;pcb++)
+   {
+
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Left\"+\"MMG\");   
+    removeSymbol(myModuleName(),myPanelName(),\"Param_\"+\"Side\"+\"IP\"+\"PCB\"+pcb+\"Layer\"+layer+\"Right\"+\"MMG\");   
+   }
+       removeSymbol(myModuleName(),myPanelName(),\"eltx\"+\"IP\"+\"L\"+layer+\"MMG\");
+
+  }
+
+ }
+ ipButton.enabled(TRUE); 
+ 
+
+ 
+     for(int layer=1;layer<=4;layer++)
+    {
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
+    x=x+460;          
+    }
+
+  
+}" 0
+ E E E
+13 151
+"mmgDPT"
+""
+1 1709.956407563025 12 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
+0  1708 30 1831 55
+
+T 
+1
+LANG:1 7 MMG DPT
+"main(mapping event)
+{
+  
+dyn_dyn_string elements;
+dyn_dyn_int types; 
+
+// elements
+
+int count=1;
+
+elements[count]=makeDynString(\"SCAELTX_MMG\",\"\");
+types[count]=makeDynInt(DPEL_STRUCT);
+
+string leftRight,side,upDownValue;
+  
+ for(int sector=0;sector<=1;sector++)
+ {
+        if(sector==0)
+          side=\"IP\";
+        if(sector==1)
+          side=\"HO\";  
+  
+  for(int pcb=1;pcb<=8;pcb++)
+  {
+    for(int layer=1;layer<=4;layer++)
+    {
+      for(int leftOrRight=0;leftOrRight<=1;leftOrRight++)
+      {
+        if(leftOrRight==0)
+          leftRight=\"Left\";
+        if(leftOrRight==1)
+          leftRight=\"Right\";
+        
+        for(int upDown=0;upDown<=1;upDown++)
+          {
+        if(upDown==0)
+          upDownValue=\"Up\";
+        if(upDown==1)
+          upDownValue=\"Down\";  
+                 
+     count++;   
+     elements[count]=makeDynString(\"\",\"Side\"+side+\"PCB\"+pcb+\"Layer\"+layer+leftRight+upDownValue);
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+    
+
+       }
+     }
+    }
+  }
+}
+
+     
+int x=dpTypeCreate(elements,types);
+
+ if (x == 0){
+    DebugN(\"Datapoint type creation succeeded!\");
+    this.enabled(FALSE);
+  }
+  else {
+    DebugN (\"Datapoint type creation returned an error!\");
+  } 
+
+
+  dpCreate(\"MMG-S1\",\"SCAELTX_MMG\");
+  
+
+}" 0
+ E E E
+13 154
+"PUSH_BUTTON1"
+""
+1 1043 32 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+154 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  1041 24 1076 52
+
+P 
+4294967295
+"pictures/config_params_24.png"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+      ChildPanelOnCentral(\"objects/sca/modeSettings.pnl\", \"Mode Configuration\", makeDynString(\"$detector:\"+\"MMG\"),500,500,0,1,1);
+}" 0
+ E E E
+30 155
+"FRAME3"
+""
+1 556 1 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+155 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 0.9702702702702702 0 1.071428571428571 196.5297297297298 -4.071428571428569 0 E 556 1 927 58
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+13 156
+"settingsButton"
+""
+1 1147 24 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+156 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  1145 11 1242 49
+
+T 
+1
+LANG:1 8 Settings
+"main(mapping event)
+{
+        ChildPanelOnCentral(\"objects/sca/wedgeSetup.pnl\", \"Settings\", makeDynString(\"$detector:\"+\"MMG\"),500,500,0,1,1);
+}" 0
+ E E E
+2 157
+"PRIMITIVE_TEXT10"
+""
+1 343 11 E E E 1 E 1 E N "white" E N "FwAtlasBg" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  1 E 343 11 415 42
+0 2 2 "0s" 0 0 0 192 0 0  343 11 1
+1
+LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 3 MMG
+30 158
+"FRAME4"
+""
+1 556 767 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+158 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.125000000000001 0 1.035087719298253 -184.5000000000005 -796.9122807017601 0 E 556 767 701 825
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 159
+"RECTANGLE5"
+""
+1 1828 1004 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.084337349397592 0 0.9612832014851266 -1473.168674698797 -959.1283342910664 2  1 0  "pictures/Brookhaven Logo/BNL_bnllogo.gif" 4294967295 E 1828 1004 1911 1034
+2 160
+"PRIMITIVE_TEXT11"
+""
+1 1813 75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E 1 0 0.849444575253555 -1311 -25.83262430903864 0 E 1813 75 1915 93
+0 2 2 "0s" 0 0 0 192 0 0  1813 75 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 12 N.T.U.Athens
+7 161
+"ELLIPSE5"
+""
+1 1777 46 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E -1 1 3 2 1 E 1 0 1 -1302 -15.99999999999932 2  1 0  "pictures/NTUA Logo/rsz_logo[80].png" 4294967295 E 1777 46 24 24
+13 162
+"PUSH_BUTTON2"
+""
+1 1610 15 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+162 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  1608 9 1673 33
+
+T 
+1
+LANG:1 5 Start
+"main(mapping event)
+{
+  
+  string detector=\"MMG\";
+  dyn_string detectorAllChannels,allChannels,channelParameters,channels;
+  int countParametersChannels=1;
+  int countChannels=1;
+    
+  detectorAllChannels=dpNames(detector+\"-S1.*\",\"SCAELTX_\"+detector);
+  
+  
+  for(int i=1;i<=dynlen(detectorAllChannels);i++)
+  {
+    dpGet(detectorAllChannels[i]+\".Channel\",allChannels[i]);
+    if(allChannels[i]!=\"\")
+    {
+      dynClear(channelParameters);
+      channelParameters=dpNames(allChannels[i]+\"/ai/*\");
+       for(int j=1;j<=dynlen(channelParameters);j++)
+      {
+        channels[countChannels++]=channelParameters[j]+\".value\";
+        
+      }
+
+    }   
+    
+  }
+    
+    // Archive configuration
+  
+    string archiveClassName = \"TBSCS_Archive\";
+    int archiveType = DPATTR_ARCH_PROC_SIMPLESM;
+    int smoothProcedure = DPATTR_TIME_AND_VALUE_SMOOTH;
+    dyn_string exceptionInfo;
+    bool checkClass = TRUE;
+    float deadband= 0.1;
+    float timeInterval=1.0;
+  
+    for (int i = 1; i<=dynlen(channels); i++) {
+                
+        fwArchive_configMultiple(channels[i], archiveClassName, archiveType, smoothProcedure,
+                          deadband, timeInterval, exceptionInfo, checkClass);
+        if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);
+                                            
+    }
+        
+    delay(1);    
+    // Start archiving
+    
+    for (int i = 1; i <= dynlen(channels); i++) {
+        fwArchive_startMultiple(channels[i], exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);
+        
+    }  
+       
+    
+  dpSet(detector+\"-S1-Settings.Archiving\",1);
+  
+      
+      
+      
+      
+      
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:MMG-S1-Settings.Archiving:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:MMG-S1-Settings.Archiving:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", !boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:MMG-S1-Settings.Archiving}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 163
+"PUSH_BUTTON3"
+""
+1 1610 38 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+163 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0  1608 32 1673 56
+
+T 
+1
+LANG:1 4 Stop
+"main(mapping event)
+{
+  string detector=\"MMG\";
+  dyn_string detectorAllChannels,allChannels,channelParameters,channels;
+  int countParametersChannels=1;
+  int countChannels=1;
+    
+  detectorAllChannels=dpNames(detector+\"-S1.*\",\"SCAELTX_\"+detector);
+  
+  
+  for(int i=1;i<=dynlen(detectorAllChannels);i++)
+  {
+    dpGet(detectorAllChannels[i]+\".Channel\",allChannels[i]);
+    if(allChannels[i]!=\"\")
+    {
+      dynClear(channelParameters);
+      channelParameters=dpNames(allChannels[i]+\"/ai/*\");
+       for(int j=1;j<=dynlen(channelParameters);j++)
+      {
+        channels[countChannels++]=channelParameters[j]+\".value\";
+        
+      }
+
+    }   
+    
+  }
+      dyn_string exceptionInfo;
+      
+    for (int i = 1; i <= dynlen(channels); i++) {
+  
+     fwArchive_stopMultiple(channels[i], exceptionInfo);
+        if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);     
+   }
+     
+     dpSet(detector+\"-S1-Settings.Archiving\",0);  
+     
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:MMG-S1-Settings.Archiving:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:MMG-S1-Settings.Archiving:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:MMG-S1-Settings.Archiving}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+30 164
+"FRAME5"
+""
+1 1503 80 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+164 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.684210526315789 0 0.8450704225352113 -939.3684210526314 -68.60563380281691 0 E 1503 80 1561 152
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Archive
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+1 1 "SHAPE_GROUP2" -1
+4 0 
+142 143 144 146 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 2 "SHAPE_GROUP9" -1
+4 0 
+158 159 160 161 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0
