@@ -1,0 +1,159 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 347 117 N "FwAtlasBg" 0
+E E E E E 1 -1 -1 0  100 110
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+13 0
+"PUSH_BUTTON1"
+""
+1 43 52 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  41 34 295 83
+
+T 
+1
+LANG:1 9 Calibrate
+"main(mapping event)
+{
+  
+dyn_string boards=dpNames(\"*\",\"fwScaSCA\");
+
+dyn_string scaTemperature;
+dyn_string feastValue;
+
+
+dyn_string boards_MMFE8, boards_L1DDC, boards_ADDC;
+
+float scaTemp;
+
+float feast1V5ValueL1DDC,feast2V5ValueL1DDC ,feast1V2DValue, feast1V3Value, feast1V3EValue,feast1V5ValueADDC,feast2V5ValueADDC;
+
+
+file l1ddcFile,mmfe8File,addcFile; 
+l1ddcFile=fopen(\"/home/bb5user/Desktop/L1DDC_FEAST_CALIBRATION.txt\",\"w+\");
+mmfe8File=fopen(\"/home/bb5user/Desktop/MMFE8_FEAST_CALIBRATION.txt\",\"w+\");
+addcFile=fopen(\"/home/bb5user/Desktop/ADDC_FEAST_CALIBRATION.txt\",\"w+\");
+
+for(int i=1;i<=dynlen(boards);i++)
+{
+  strreplace(boards[i],getSystemName(),\"\");
+  if(uniPatternMatch(\"*MMFE8*\",boards[i]))
+ {
+   dynAppend(boards_MMFE8,boards[i]);  
+   dpGet(boards[i]+\"/ai/internalTemperature.temperature\",scaTemp);
+
+   
+   dpGet(boards[i]+\"/ai/pTat1V2D.value\",feast1V2DValue);
+   dpGet(boards[i]+\"/ai/pTat1V3A.value\",feast1V3Value);   
+   dpGet(boards[i]+\"/ai/pTat1V3AE.value\",feast1V3EValue);
+   
+   fprintf (mmfe8File,\"%s %4.7f %4.7f %4.7f \\n\",boards[i],feast1V2DValue*1000.0-8.43*(scaTemp-25.0),feast1V3Value*1000.0-8.43*(scaTemp-25.0),feast1V3EValue*1000.0-8.43*(scaTemp-25.0)); 
+   
+ }
+  if(uniPatternMatch(\"*ADDC*\",boards[i]))
+ {
+   dynAppend(boards_ADDC,boards[i]);  
+   dpGet(boards[i]+\"/ai/internalTemperature.temperature\",scaTemp);
+
+   dpGet(boards[i]+\"/ai/feastTemp1v5.value\",feast1V5ValueADDC);
+   dpGet(boards[i]+\"/ai/feastTemp2v5.value\",feast2V5ValueADDC);  
+
+   fprintf (addcFile,\"%s %4.7f %4.7f \\n\",boards[i],feast1V5ValueADDC*1000.0-8.43*(scaTemp-25.0),feast2V5ValueADDC*1000.0-8.43*(scaTemp-25.0)); 
+   
+ }  
+  if(uniPatternMatch(\"*L1DDC*\",boards[i]))
+ {
+   dynAppend(boards_L1DDC,boards[i]); 
+   dpGet(boards[i]+\"/ai/internalTemperature.temperature\",scaTemp);
+
+   dpGet(boards[i]+\"/ai/1V5_PTAT.value\",feast1V5ValueL1DDC);
+   dpGet(boards[i]+\"/ai/2V5_PTAT.value\",feast2V5ValueL1DDC);
+
+   fprintf (l1ddcFile,\"%s %4.7f %4.7f \\n\",boards[i],feast1V5ValueL1DDC*1000.0-8.43*(scaTemp-25.0),feast2V5ValueL1DDC*1000.0-8.43*(scaTemp-25.0)); 
+   
+ }  
+  
+}
+
+
+
+fclose(l1ddcFile); 
+fclose(mmfe8File); 
+fclose(addcFile); 
+
+
+  
+  
+}" 0
+ E E E
+30 1
+"FRAME1"
+""
+1 19 0 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 1 -17 -3 0 E 19 0 362 114
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

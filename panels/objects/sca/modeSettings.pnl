@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 396 424 N "_3DFace" 1
+PANEL,-1 -1 396 424 N "FwAtlasBg" 1
 "$detector"
 "main()
 {
@@ -36,8 +36,9 @@ PANEL,-1 -1 396 424 N "_3DFace" 1
   typeBox_STG.appendItem(\"sFEB\");
   typeBox_STG.appendItem(\"pFEB\");    
   typeBox_STG.appendItem(\"L1DDC\");   
-  
-  
+  typeBox_STG.appendItem(\"RouterBoard\");   
+  typeBox_STG.appendItem(\"RimL1DDC\");  
+  typeBox_STG.appendItem(\"PadTrigger\");  
   
   }  
     
@@ -98,7 +99,7 @@ LANG:1 18 Mode Configuration
 30 2
 "frame_MMG"
 ""
-1 15 46 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+1 15 46 E E E 1 E 0 E N "white" E N {0,0,0} E E
  E E
 2 0 0 0 0 0
 E E E
@@ -118,7 +119,7 @@ LANG:1 3 MMG
 2 3
 "tempText_MMG"
 ""
-1 26 145 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 26 145 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -162,7 +163,7 @@ E
 2 6
 "voltText_MMG"
 ""
-1 25 106 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 25 106 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 6 0 0 0 0 0
 E E E
@@ -206,7 +207,7 @@ E
 30 8
 "frame_STG"
 ""
-1 15 46 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
+1 15 46 E E E 1 E 0 E N "white" E N {0,0,0} E E
  E E
 8 0 0 0 0 0
 E E E
@@ -226,7 +227,7 @@ LANG:1 3 STG
 2 9
 "tempText_STG"
 ""
-1 26 287 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 26 287 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 9 0 0 0 0 0
 E E E
@@ -270,7 +271,7 @@ E
 2 11
 "voltText_STG"
 ""
-1 25 250 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 25 250 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 11 0 0 0 0 0
 E E E
@@ -411,7 +412,7 @@ LANG:1 3 Set
 2 14
 "typeText_MMG"
 ""
-1 25 69 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 25 69 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 14 0 0 0 0 0
 E E E
@@ -605,7 +606,7 @@ E
 2 16
 "typeText_STG"
 ""
-1 26 212 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
+1 26 212 E E E 1 E 0 E N "white" E N "_Window" E E
  E E
 16 0 0 0 0 0
 E E E
@@ -739,18 +740,91 @@ E
   
   }  
   
+     if(this.text()==\"RimL1DDC\")
+  {
+  
+/*  
+  voltBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  voltBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  voltBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+  */
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
   
   /*
-  for(int i=1;i<=dynlen(aiItems);i++)
-  {
-   
-  position=strpos(aiItems[i],\"/\");
-  aiItemCorrected[i]=substr(aiItems[i],position);
-  voltBox_STG.appendItem(aiItemCorrected[i]);
-  tempBox_STG.appendItem(aiItemCorrected[i]);
-  }
-  
+  tempBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  tempBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  tempBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  tempBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  tempBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  tempBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
   */
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  }  
+  
+     if(this.text()==\"PadTrigger\")
+  {
+  /*    
+  voltBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  voltBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  voltBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+    */
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+    /*
+  tempBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  tempBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  tempBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  tempBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  tempBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  tempBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+    */
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  }  
+  
+     if(this.text()==\"RouterBoard\")
+  {
+      /*
+  voltBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  voltBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  voltBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  voltBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  voltBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  voltBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  voltBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+    */
+  voltBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+    /*
+  tempBox_STG.appendItem(\"/ai/GBTX1_TEMP\");
+  tempBox_STG.appendItem(\"/ai/GBTX2_TEMP\");
+  tempBox_STG.appendItem(\"/ai/1V5_PTAT\"); 
+  tempBox_STG.appendItem(\"/ai/2V5_PTAT\");
+  tempBox_STG.appendItem(\"/ai/P1V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/P2V5_SCA\");
+  tempBox_STG.appendItem(\"/ai/VTRX1_RSSI\"); 
+  tempBox_STG.appendItem(\"/ai/VTRX2_RSSI\");
+    */
+  tempBox_STG.appendItem(\"/ai/internalTemperature\");
+  
+  }  
+  
   voltBox_STG.enabled(1);  
   tempBox_STG.enabled(1);
   
@@ -769,6 +843,31 @@ E
 
 E
  0 0
+13 18
+"closeButton"
+""
+1 330.1813063063063 398 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  328.1813063063063 388.3 390.4313063063063 414.3
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
 0
 LAYER, 1 
 1

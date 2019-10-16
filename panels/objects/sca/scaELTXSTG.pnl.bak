@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1838 486 N "_3DFace" 0
+PANEL,-1 -1 1838 486 N "FwAtlasBg" 0
 "main()
 {
   /*
@@ -105,6 +105,7 @@ LANG:1 2 IP
     }
  
 
+//  addSymbol(myModuleName(),myPanelName(),\"objects/sca/RIM.pnl\",\"RIM_STG\",makeDynString(\"$layer:\"+\"\",\"$sector:\"+1,\"$IPorHO:\"+\"\",\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"STG\",\"$configurationMode:\"+FALSE),x-70,y+200,0,1,1); 
   
 }" 0
  E E E
@@ -131,7 +132,7 @@ LANG:1 0
 2 20
 "TitleTBSCS"
 ""
-1 191 98 E E E 1 E 1 E N "FwAtlasBg" E N "FwAtlasBg" E E
+1 191 98 E E E 1 E 1 E N "white" E N "FwAtlasBg" E E
  E E
 20 0 0 0 0 0
 E E E
@@ -152,7 +153,7 @@ LANG:1 23 ELTX SCA-GBT Monitoring
 29 23
 "modeSlider"
 ""
-1 203 -11 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 203 -11 E E E 1 E 1 E N "_3DText" E N "FwAtlasBg" E E
  E E
 23 0 0 0 0 0
 E E E
@@ -162,7 +163,7 @@ LANG:1 0
 
 6
 "orientation" "enum 0"
-"maxValue" "int 2"
+"maxValue" "int 3"
 "value" "int 1"
 "invertedAppearance" "bool FALSE"
 "tickPosition" "enum 1"
@@ -220,7 +221,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 E2 25
 "PRIMITIVE_TEXT3"
 ""
-1 722 33 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 722 33 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 25 0 0 0 0 0
 E E E
@@ -239,76 +240,10 @@ E E 2 1 3 2 1 E U  0 E 722 33 764 50
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 0 1
 LANG:1 4 Mode
-2 26
-"PRIMITIVE_TEXT4"
-""
-1 762 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-26 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 762 6 802 24
-0 2 2 "0s" 0 0 0 192 0 0  762 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 4 Type
-2 27
-"PRIMITIVE_TEXT5"
-""
-1 850 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-27 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 850 6 910 24
-0 2 2 "0s" 0 0 0 192 0 0  850 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 7 Voltage
-2 29
-"PRIMITIVE_TEXT7"
-""
-1 949 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-29 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 949 6 995 24
-0 2 2 "0s" 0 0 0 192 0 0  949 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 4 Temp
 2 142
 "PRIMITIVE_TEXT8"
 ""
-1 1250 21 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1250 21 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 142 0 0 0 0 0
 E E E
@@ -522,7 +457,7 @@ LANG:1 2 HO
   
     for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXSTG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"STG\"),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXSTG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"STG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"STG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
     x=x+460;          
     }
  
@@ -533,7 +468,7 @@ LANG:1 2 HO
 13 152
 "createSettingsDPTSTG"
 ""
-1 1939 -13 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 1939 -13 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 152 0 0 0 0 0
 E E E
@@ -567,21 +502,46 @@ elements[3]=makeDynString(\"\",\"\",\"Voltage\");
 types[3]=makeDynInt(0,0,DPEL_STRING);
 elements[4]=makeDynString(\"\",\"\",\"Temperature\");
 types[4]=makeDynInt(0,0,DPEL_STRING);
+
 elements[5]=makeDynString(\"\",\"pFEB\",\"\");
 types[5]=makeDynInt(0,DPEL_STRUCT);
 elements[6]=makeDynString(\"\",\"\",\"Voltage\");
 types[6]=makeDynInt(0,0,DPEL_STRING);
 elements[7]=makeDynString(\"\",\"\",\"Temperature\");
 types[7]=makeDynInt(0,0,DPEL_STRING);
+
 elements[8]=makeDynString(\"\",\"L1DDC\",\"\");
 types[8]=makeDynInt(0,DPEL_STRUCT);
 elements[9]=makeDynString(\"\",\"\",\"Voltage\");
 types[9]=makeDynInt(0,0,DPEL_STRING);
 elements[10]=makeDynString(\"\",\"\",\"Temperature\");
 types[10]=makeDynInt(0,0,DPEL_STRING);
-elements[11]=makeDynString(\"\",\"Archiving\",\"\");
-types[11]=makeDynInt(0,DPEL_BOOL);
 
+
+elements[11]=makeDynString(\"\",\"RimL1DDC\",\"\");
+types[11]=makeDynInt(0,DPEL_STRUCT);
+elements[12]=makeDynString(\"\",\"\",\"Voltage\");
+types[12]=makeDynInt(0,0,DPEL_STRING);
+elements[13]=makeDynString(\"\",\"\",\"Temperature\");
+types[13]=makeDynInt(0,0,DPEL_STRING);
+
+
+elements[14]=makeDynString(\"\",\"PadTrigger\",\"\");
+types[14]=makeDynInt(0,DPEL_STRUCT);
+elements[15]=makeDynString(\"\",\"\",\"Voltage\");
+types[15]=makeDynInt(0,0,DPEL_STRING);
+elements[16]=makeDynString(\"\",\"\",\"Temperature\");
+types[16]=makeDynInt(0,0,DPEL_STRING);
+
+
+elements[17]=makeDynString(\"\",\"RouterBoard\",\"\");
+types[17]=makeDynInt(0,DPEL_STRUCT);
+elements[18]=makeDynString(\"\",\"\",\"Voltage\");
+types[18]=makeDynInt(0,0,DPEL_STRING);
+elements[19]=makeDynString(\"\",\"\",\"Temperature\");
+types[19]=makeDynInt(0,0,DPEL_STRING);
+elements[20]=makeDynString(\"\",\"Archiving\",\"\");
+types[20]=makeDynInt(0,DPEL_BOOL);
 
 
      
@@ -606,7 +566,7 @@ int x=dpTypeCreate(elements,types);
 13 153
 "stgDPT"
 ""
-1 1710 -15 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 1710 -15 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 153 0 0 0 0 0
 E E E
@@ -696,9 +656,68 @@ string leftRight,side,upDownValue;
         }  
         
      }
+            
     }
   }
 }
+
+//ROUTER Board
+
+string sideName;
+for(int layer=1;layer<=4;layer++)
+{
+   for(int side=0;side<=1;side++)
+    {
+      if(side==0)
+        sideName=\"IP\";
+      if(side==1)   
+        sideName=\"HO\";
+      
+     count++;   
+     elements[count]=makeDynString(\"\",\"RouterBoard_Side_\"+sideName+\"_Layer_\"+layer);
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);   
+   }    
+        
+}
+
+//Rim-L1DDC Board
+
+     count++;   
+     elements[count]=makeDynString(\"\",\"RimL1DDC\");
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);  
+     
+//Pad-Trigger Board
+     
+     count++;   
+     elements[count]=makeDynString(\"\",\"PadTrigger\");
+     types[count]=makeDynInt(0,DPEL_STRUCT);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Visibility\");
+     types[count]=makeDynInt(0,0,DPEL_BOOL);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Channel\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);
+     count++;
+     elements[count]=makeDynString(\"\",\"\",\"Type\");
+     types[count]=makeDynInt(0,0,DPEL_STRING);  
 
      
 int x=dpTypeCreate(elements,types);
@@ -741,7 +760,7 @@ P
 LANG:1 12 PUSH_BUTTON1
 "main(mapping event)
 {
-      ChildPanelOnCentral(\"objects/sca/modeSettings.pnl\", \"Mode Configuration\", makeDynString(\"$detector:\"+\"both\"),500,500,0,1,1);
+      ChildPanelOnCentral(\"objects/sca/modeSettings.pnl\", \"Mode Configuration\", makeDynString(\"$detector:\"+\"STG\"),500,500,0,1,1);
 }" 0
  E E E
 30 155
@@ -850,7 +869,7 @@ E E -1 1 3 2 1 E 1.084337349397592 0 0.9612832014851266 -1487.168674698797 -960.
 2 161
 "PRIMITIVE_TEXT11"
 ""
-1 1813 75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1813 75 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 161 0 0 0 0 0
 E E E
@@ -884,7 +903,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "1"
-E E -1 1 3 2 1 E 1 0 1 -1316 -16.99999999999932 2  1 0  "pictures/NTUA Logo/rsz_logo[80].png" 4294967295 E 1777 46 24 24
+E E -1 1 3 2 1 E 1 0 1 -1316 -16.99999999999932 2  1 0  "pictures/NTUA Logo/NTUA-white[2000].png" 4294967295 E 1777 46 24 24
 13 163
 "PUSH_BUTTON2"
 ""
@@ -1109,7 +1128,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
 30 165
 "FRAME5"
 ""
-1 1503 80 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+1 1503 80 E E E 1 E 1 E N "white" E N {0,0,0} E E
  E E
 165 0 0 0 0 0
 E E E
@@ -1126,6 +1145,94 @@ E E 2 1 3 2 1 E 1.684210526315789 0 0.8450704225352113 -958.3684210526314 -70.60
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Archive
+2 167
+"PRIMITIVE_TEXT4"
+""
+1 760 6 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 760 6 800 24
+0 2 2 "0s" 0 0 0 192 0 0  760 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Type
+2 168
+"PRIMITIVE_TEXT5"
+""
+1 815 6 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 815 6 875 24
+0 2 2 "0s" 0 0 0 192 0 0  815 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Voltage
+2 169
+"PRIMITIVE_TEXT7"
+""
+1 885 6 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 885 6 931 24
+0 2 2 "0s" 0 0 0 192 0 0  885 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Temp
+2 170
+"PRIMITIVE_TEXT12"
+""
+1 943 6 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 943 6 998 24
+0 2 2 "0s" 0 0 0 192 0 0  943 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 6 SCA ID
 0
 LAYER, 1 
 1
@@ -1155,16 +1262,4 @@ LAYER, 7
 1
 LANG:1 0 
 0
-1 0 "SHAPE_GROUP1" -1
-8 0 
-23 25 26 27 29 154 155 156 
-
-"layoutAlignment" "AlignNone"
-"" ""
-1 1 "SHAPE_GROUP2" -1
-4 0 
-142 143 144 146 
-
-"layoutAlignment" "AlignNone"
-"" ""
 0

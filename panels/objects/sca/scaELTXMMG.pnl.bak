@@ -1,37 +1,139 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 1838 701 N "_3DFace" 0
-"main()
-{
-  /*
-  string IPorHO;
-  int x=10;
-  int y=100;
-  for(int side=1;side<=1;side++)
-  {
-     if(side==1)
-       IPorHO=\"IP\";
-     if(side==2)      
-       IPorHO=\"HO\"; 
-     
-  int x=10;
-
-  
-    for(int layer=1;layer<=4;layer++)
-    {
-      addSymbol(myModuleName(),myPanelName(),\"objects/layerOfSectorELTX.pnl\",\"eltx\"+side+\"L\"+layer,makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y),x,y,0,1,1); 
-    x=x+460;          
-    }
-    y=y+500;
-  } 
-  */
-  
-  
-}" 0
- E E E E 1 -1 -1 0  -2 65
+PANEL,-1 -1 1838 701 N "FwAtlasBg" 0
+E E E E E 1 -1 -1 0  -2 65
 ""0  1
-E E 3
+E "#uses \"CtrlXml\"
+dyn_int getChildNodesWithName (int docNum, int parentNode, string name)
+{
+//   DebugN(\"Inside \"+name,docNum);
+  dyn_int result;
+  int node = xmlFirstChild (docNum, parentNode);
+  while (node >= 0)
+    {
+      if (xmlNodeName (docNum, node) == name)
+	dynAppend (result, node);
+      node = xmlNextSibling (docNum, node);
+    }
+  
+ 
+  return result;
+
+}
+
+dyn_string analogItemsWithCalculatedVariable()
+{
+  string configFileName=\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/small_sector_12.xml\";
+  string searchInputName=\"ai\";
+  string inputSystemName=\"AnalogInputSystem\";
+  string xmlSectionToSearch=\"AnalogInput\";
+                          
+  string errMsg;
+  int errLine;
+  int errColumn;
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+   
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  dyn_int numberOfInput;
+  
+  int inputSystemChild;
+  
+  string name;
+  string boardName;
+  dyn_string inputChildItem;
+  
+  dyn_string allInputsItems;
+  
+  dyn_uint numberOfSystemsPerSca;
+  string nodeName;
+  
+  int nodeToSearchIn;
+  bool didFindSystem=FALSE;
+  
+  int CalculatedVariableChild;
+  int CalculatedVariableItemCounter=1; 
+  dyn_string CalculatedVariableItem;
+  dyn_string finalDpesWithCalculatedVariable;
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);            
+       inputSystemChild=xmlFirstChild (docNum, numberOfBoards[i]);
+       
+       xmlChildNodes(docNum, numberOfBoards[i],numberOfSystemsPerSca);
+
+        didFindSystem=FALSE;
+       for(int z=1;z<=dynlen(numberOfSystemsPerSca);z++)
+         {
+           nodeName=xmlNodeName(docNum,numberOfSystemsPerSca[z]);     
+         if(nodeName==inputSystemName)
+           {
+          nodeToSearchIn=numberOfSystemsPerSca[z];
+          didFindSystem=TRUE;
+          break;  
+           }         
+       } //numberOfSystemsPerSca
+       
+       if(didFindSystem)
+       {
+       
+       numberOfInput=getChildNodesWithName(docNum, nodeToSearchIn, xmlSectionToSearch);          
+                   
+       dynClear(inputChildItem); 
+       dynClear(allInputsItems);
+       dynClear(CalculatedVariableItem);        
+
+       for(int j=1;j<=dynlen(numberOfInput);j++)
+        {
+         xmlGetElementAttribute (docNum,numberOfInput[j], \"name\", name);       
+         inputChildItem[j]=name; 
+
+         CalculatedVariableChild=xmlFirstChild (docNum, numberOfInput[j]);
+         
+         if(CalculatedVariableChild!=-1)
+         {
+           xmlGetElementAttribute (docNum,CalculatedVariableChild, \"name\", CalculatedVariableItem[j]); 
+           dynAppend(finalDpesWithCalculatedVariable,boardName+\"/\"+searchInputName+\"/\"+inputChildItem[j]+\".\"+CalculatedVariableItem[j]);
+          }
+          else
+          {
+             CalculatedVariableItem[j]=\"\";
+          }
+    
+        } //numberOfInput
+          
+       }
+      else
+       {
+          DebugTN(\"ERROR\",\"Did not find system \"+inputSystemName+\" inside Board \"+boardName+\" of OPC UA Server XML file! | Check XML file.\");      
+       }
+      }    //numberOfBoards
+
+      xmlCloseDocument(docNum);
+  
+      return finalDpesWithCalculatedVariable; 
+    
+}" 0
+ 3
 "CBRef" "1"
 "EClose" E
 "dpi" "96"
@@ -125,7 +227,7 @@ LANG:1 0
 2 20
 "TitleTBSCS"
 ""
-1 191 98 E E E 1 E 1 E N "FwAtlasBg" E N "FwAtlasBg" E E
+1 191 98 E E E 1 E 1 E N "white" E N "white" E E
  E E
 20 0 0 0 0 0
 E E E
@@ -218,7 +320,7 @@ int x=dpTypeCreate(elements,types);
 29 23
 "modeSlider"
 ""
-1 240 -11 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 240 -11 E E E 1 E 1 E N "white" E N "FwAtlasBg" E E
  E E
 23 0 0 0 0 0
 E E E
@@ -228,7 +330,7 @@ LANG:1 0
 
 10
 "orientation" "enum 0"
-"maxValue" "int 2"
+"maxValue" "int 3"
 "value" "int 2"
 "invertedAppearance" "bool FALSE"
 "tickPosition" "enum 1"
@@ -283,7 +385,7 @@ LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 E2 25
 "PRIMITIVE_TEXT3"
 ""
-1 759 33 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 759 33 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 25 0 0 0 0 0
 E E E
@@ -305,7 +407,7 @@ LANG:1 4 Mode
 2 26
 "PRIMITIVE_TEXT4"
 ""
-1 799 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 799 6 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 26 0 0 0 0 0
 E E E
@@ -327,7 +429,7 @@ LANG:1 4 Type
 2 27
 "PRIMITIVE_TEXT5"
 ""
-1 887 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 854 6 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 27 0 0 0 0 0
 E E E
@@ -340,8 +442,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 887 6 947 24
-0 2 2 "0s" 0 0 0 192 0 0  887 6 1
+E E 2 1 3 2 1 E U  0 E 854 6 914 24
+0 2 2 "0s" 0 0 0 192 0 0  854 6 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -349,7 +451,7 @@ LANG:1 7 Voltage
 2 29
 "PRIMITIVE_TEXT7"
 ""
-1 986 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 924 6 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 29 0 0 0 0 0
 E E E
@@ -362,8 +464,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 986 6 1032 24
-0 2 2 "0s" 0 0 0 192 0 0  986 6 1
+E E 2 1 3 2 1 E U  0 E 924 6 970 24
+0 2 2 "0s" 0 0 0 192 0 0  924 6 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
 0 1
@@ -371,7 +473,7 @@ LANG:1 4 Temp
 2 142
 "PRIMITIVE_TEXT8"
 ""
-1 1290 22 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1290 22 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 142 0 0 0 0 0
 E E E
@@ -405,7 +507,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "1"
-"// SimpleCtrlScriptStart {valid}
+"// SimpleCtrlScriptStart {invalid}
 main()
 {
   EP_setBackColor();
@@ -490,7 +592,7 @@ LANG:1 0
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0  1478 19 1577 43
-2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {valid}
+2 "0s" 0 0 0 0 0 -1  E "// SimpleCtrlScriptStart {invalid}
 main()
 {
   EP_textFieldIn();
@@ -582,7 +684,7 @@ LANG:1 2 HO
  
      for(int layer=1;layer<=4;layer++)
     {
-     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\"),x,y,0,1,1); 
+     addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
     x=x+460;          
     }
 
@@ -736,7 +838,7 @@ LANG:1 0
 13 156
 "settingsButton"
 ""
-1 1147 24 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1108 26 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 156 0 0 0 0 0
 E E E
@@ -748,7 +850,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  1145 11 1242 49
+0  1106 13 1182 51
 
 T 
 1
@@ -761,7 +863,7 @@ LANG:1 8 Settings
 2 157
 "PRIMITIVE_TEXT10"
 ""
-1 343 11 E E E 1 E 1 E N "white" E N "FwAtlasBg" E E
+1 343 11 E E E 1 E 1 E N "FwAtlasBg" E N "white" E E
  E E
 157 0 0 0 0 0
 E E E
@@ -819,7 +921,7 @@ E E -1 1 3 2 1 E 1.084337349397592 0 0.9612832014851266 -1473.168674698797 -959.
 2 160
 "PRIMITIVE_TEXT11"
 ""
-1 1813 75 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1813 75 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 160 0 0 0 0 0
 E E E
@@ -853,11 +955,15 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "1"
-E E -1 1 3 2 1 E 1 0 1 -1302 -15.99999999999932 2  1 0  "pictures/NTUA Logo/rsz_logo[80].png" 4294967295 E 1777 46 24 24
+E "main(mapping event)
+{
+    ChildPanelOnCentral(\"objects/sca/calibrateFeast.pnl\", \"\", makeDynString(\"Calibration\")); 
+}" 0
+ -1 1 3 2 1 E 1 0 1 -1302 -15.99999999999932 2  1 0  "pictures/NTUA Logo/NTUA-white[2000].png" 4294967295 E 1777 46 24 24
 13 162
 "PUSH_BUTTON2"
 ""
-1 1610 15 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1610 15 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
  E E
 162 0 0 0 0 0
 E E E
@@ -877,40 +983,20 @@ LANG:1 5 Start
 "main(mapping event)
 {
   
-  string detector=\"MMG\";
-  dyn_string detectorAllChannels,allChannels,channelParameters,channels;
-  int countParametersChannels=1;
-  int countChannels=1;
-    
-  detectorAllChannels=dpNames(detector+\"-S1.*\",\"SCAELTX_\"+detector);
-  
-  
-  for(int i=1;i<=dynlen(detectorAllChannels);i++)
-  {
-    dpGet(detectorAllChannels[i]+\".Channel\",allChannels[i]);
-    if(allChannels[i]!=\"\")
-    {
-      dynClear(channelParameters);
-      channelParameters=dpNames(allChannels[i]+\"/ai/*\");
-       for(int j=1;j<=dynlen(channelParameters);j++)
-      {
-        channels[countChannels++]=channelParameters[j]+\".value\";
-        
-      }
 
-    }   
-    
-  }
+  dyn_string channels=analogItemsWithCalculatedVariable();
+
     
     // Archive configuration
   
-    string archiveClassName = \"TBSCS_Archive\";
+//     string archiveClassName = \"TBSCS_Archive\"; 
+    string archiveClassName = \"ValueArchive_0000\";  
     int archiveType = DPATTR_ARCH_PROC_SIMPLESM;
     int smoothProcedure = DPATTR_TIME_AND_VALUE_SMOOTH;
     dyn_string exceptionInfo;
     bool checkClass = TRUE;
     float deadband= 0.1;
-    float timeInterval=1.0;
+    float timeInterval=300;
   
     for (int i = 1; i<=dynlen(channels); i++) {
                 
@@ -930,7 +1016,7 @@ LANG:1 5 Start
     }  
        
     
-  dpSet(detector+\"-S1-Settings.Archiving\",1);
+  dpSet(\"MMG-S1-Settings.Archiving\",1);
   
       
       
@@ -981,7 +1067,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
 13 163
 "PUSH_BUTTON3"
 ""
-1 1610 38 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1609 37.2 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
  E E
 163 0 0 0 0 0
 E E E
@@ -993,37 +1079,16 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
-0  1608 32 1673 56
+0  1607 31 1672 56
 
 T 
 1
 LANG:1 4 Stop
 "main(mapping event)
 {
-  string detector=\"MMG\";
-  dyn_string detectorAllChannels,allChannels,channelParameters,channels;
-  int countParametersChannels=1;
-  int countChannels=1;
-    
-  detectorAllChannels=dpNames(detector+\"-S1.*\",\"SCAELTX_\"+detector);
   
+  dyn_string channels=analogItemsWithCalculatedVariable();
   
-  for(int i=1;i<=dynlen(detectorAllChannels);i++)
-  {
-    dpGet(detectorAllChannels[i]+\".Channel\",allChannels[i]);
-    if(allChannels[i]!=\"\")
-    {
-      dynClear(channelParameters);
-      channelParameters=dpNames(allChannels[i]+\"/ai/*\");
-       for(int j=1;j<=dynlen(channelParameters);j++)
-      {
-        channels[countChannels++]=channelParameters[j]+\".value\";
-        
-      }
-
-    }   
-    
-  }
       dyn_string exceptionInfo;
       
     for (int i = 1; i <= dynlen(channels); i++) {
@@ -1032,7 +1097,7 @@ LANG:1 4 Stop
         if (dynlen(exceptionInfo) > 0) DebugN(exceptionInfo);     
    }
      
-     dpSet(detector+\"-S1-Settings.Archiving\",0);  
+     dpSet(\"MMG-S1-Settings.Archiving\",0);  
      
 }" 0
  E E "// SimpleCtrlScriptStart {invalid}
@@ -1078,7 +1143,7 @@ void EP_setEnabledCB(string dp, bool boNewValue)
 30 164
 "FRAME5"
 ""
-1 1503 80 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+1 1503 80 E E E 1 E 0 E N "white" E N {0,0,0} E E
  E E
 164 0 0 0 0 0
 E E E
@@ -1095,6 +1160,53 @@ E E 2 1 3 2 1 E 1.684210526315789 0 0.8450704225352113 -939.3684210526314 -68.60
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Archive
+2 165
+"PRIMITIVE_TEXT12"
+""
+1 982 6 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 982 6 1037 24
+0 2 2 "0s" 0 0 0 192 0 0  982 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 6 SCA ID
+13 166
+"PUSH_BUTTON4"
+""
+1 1200 26 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+166 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  1198 13 1275 51
+
+T 
+1
+LANG:1 4 Calc
+"main(mapping event)
+{
+        ChildPanelOnCentral(\"objects/sca/calculatedVariablesDPTfromXML.pnl\", \"Settings XML\", makeDynString(\"$detector:\"+\"MMG\"),500,500,0,1,1);
+}" 0
+ E E E
 0
 LAYER, 1 
 1
@@ -1124,16 +1236,4 @@ LAYER, 7
 1
 LANG:1 0 
 0
-1 1 "SHAPE_GROUP2" -1
-4 0 
-142 143 144 146 
-
-"layoutAlignment" "AlignNone"
-"" ""
-1 2 "SHAPE_GROUP9" -1
-4 0 
-158 159 160 161 
-
-"layoutAlignment" "AlignNone"
-"" ""
 0

@@ -121,6 +121,8 @@ LANG:1 2 IP
      addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerOfSectorELTXMMG.pnl\",\"eltx\"+IPorHO+\"L\"+layer+\"MMG\",makeDynString(\"$layer:\"+layer,\"$sector:\"+1,\"$IPorHO:\"+IPorHO,\"$x:\"+x,\"$y:\"+y,\"$detector:\"+\"MMG\",\"$configurationMode:\"+FALSE),x,y,0,1,1); 
     x=x+460;          
     }
+ 
+ 
 
   
 }" 0
@@ -250,7 +252,7 @@ LANG:1 0
 
 6
 "orientation" "enum 0"
-"maxValue" "int 2"
+"maxValue" "int 3"
 "value" "int 1"
 "invertedAppearance" "bool FALSE"
 "tickPosition" "enum 1"
@@ -344,72 +346,6 @@ E E 2 1 3 2 1 E U  0 E 704 33 746 50
 LANG:1 27 Utopia,-1,15,5,50,0,0,0,0,0
 0 1
 LANG:1 4 Mode
-2 26
-"PRIMITIVE_TEXT4"
-""
-1 744 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-26 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 744 6 784 24
-0 2 2 "0s" 0 0 0 192 0 0  744 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 4 Type
-2 27
-"PRIMITIVE_TEXT5"
-""
-1 832 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-27 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 832 6 892 24
-0 2 2 "0s" 0 0 0 192 0 0  832 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 7 Voltage
-2 29
-"PRIMITIVE_TEXT7"
-""
-1 931 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
- E E
-29 0 0 0 0 0
-E E E
-0
-1
-LANG:1 0 
-
-4
-"layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
-"antiAliased" "0"
-"transformable" "0"
-E E 2 1 3 2 1 E U  0 E 931 6 977 24
-0 2 2 "0s" 0 0 0 192 0 0  931 6 1
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0 1
-LANG:1 4 Temp
 2 142
 "PRIMITIVE_TEXT8"
 ""
@@ -1446,6 +1382,94 @@ E E 2 1 3 2 1 E 1.684210526315789 0 0.8450704225352113 -996.3684210526314 -70.60
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
 LANG:1 7 Archive
+2 165
+"PRIMITIVE_TEXT4"
+""
+1 741 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 741 6 781 24
+0 2 2 "0s" 0 0 0 192 0 0  741 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Type
+2 166
+"PRIMITIVE_TEXT5"
+""
+1 796 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 796 6 856 24
+0 2 2 "0s" 0 0 0 192 0 0  796 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Voltage
+2 167
+"PRIMITIVE_TEXT7"
+""
+1 866 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 866 6 912 24
+0 2 2 "0s" 0 0 0 192 0 0  866 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Temp
+2 168
+"PRIMITIVE_TEXT12"
+""
+1 924 6 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 924 6 979 24
+0 2 2 "0s" 0 0 0 192 0 0  924 6 1
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 6 SCA ID
 0
 LAYER, 1 
 1
@@ -1475,18 +1499,6 @@ LAYER, 7
 1
 LANG:1 0 
 0
-1 0 "SHAPE_GROUP1" 1
-8 0 
-23 25 26 27 29 154 155 156 
-
-"layoutAlignment" "AlignNone"
-"" ""
-1 1 "SHAPE_GROUP2" -1
-4 1 
-142 143 144 146 
-0 
-"layoutAlignment" "AlignNone"
-"" ""
 1 2 "SHAPE_GROUP9" -1
 4 0 
 158 159 160 161 

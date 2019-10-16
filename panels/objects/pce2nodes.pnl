@@ -1,0 +1,628 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1250 612 N "_3DFace" 0
+"main() {
+  
+  dyn_string exceptionInfo;
+  
+  // Initialize textfields
+  // Editability
+  pce0.editable = FALSE;
+  pce0pressure.editable = FALSE;
+  pce0mbar.editable = FALSE;
+
+  pce1.editable = FALSE;
+  pce1pressure.editable = FALSE;
+  pce1mbar.editable = FALSE;
+
+  // Texts  
+  pce0.text = \"NODE 1 IP\";
+  pce0mbar.text = \"mbar\";
+
+  pce1.text = \"NODE 2 HO\";
+  pce1mbar.text = \"mbar\";
+  
+  // Datapoint creation
+  if((dpExists(\"PCE0\") == FALSE) && (dpExists(\"PCE1\") == FALSE) && (dpExists(\"PCE2\") == FALSE) && (dpExists(\"PCE3\") == FALSE)) {
+    int n;
+    dyn_dyn_string dpstr;
+    dyn_dyn_int dpint;
+
+    dpstr[1] = makeDynString(\"DIFFERENTIAL_PRESSURE\", \"\");
+    dpstr[2] = makeDynString(\"\", \"PCE_Pressure\");
+    dpstr[3] = makeDynString(\"\", \"isConnected\");
+
+    dpint[1] = makeDynString(DPEL_STRUCT);
+    dpint[2] = makeDynString(0, DPEL_FLOAT);
+    dpint[3] = makeDynString(0, DPEL_BOOL);
+    
+    n = dpTypeCreate(dpstr, dpint);
+    
+    for(int i = 0; i < 4; i++) {  
+      dpCreate(\"PCE\" + i, \"DIFFERENTIAL_PRESSURE\");
+    }
+  }  
+  
+  // Initialise trends
+  if((dpExists(\"pce0\") == FALSE) && (dpExists(\"pce1\") == FALSE) && (dpExists(\"pce2\") == FALSE) && (dpExists(\"pce3\") == FALSE)) {
+    for(int i = 0; i < 4; i++) {
+      dpCreate(\"pce\" + i, \"FwTrendingPlot\");
+    }
+  }
+  
+  //fwTrending_addQuickFaceplate(myModuleName(),myPanelName(), \"node1trend\", getSystemName + \"PCE0.PCE_Pressure:_online.._value\",
+  //        14, 290, exceptionInfo, \"node1\", 1.1, 1.1,\"\",\"\");
+                          
+}" 0
+ E E E E 1 -1 -1 0  93 51
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+30 5
+"frame1"
+""
+1 45 33 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 2.506198347107438 0 1.282756281670357 -98.77892561983472 80.66904270487821 0 E 45 33 530 151
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0 1
+LANG:1 13 ONLINE VALUES
+14 6
+"pce0"
+""
+1 43.75811317082658 402.6946287366264 E E E 1 E 1 E N "STD_trend_pen3" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  27 173.6465150845125 197 246.6465150845125
+3 "0s" 0 0 0 1 0 -1  E "main() {
+
+}" 0
+ E
+14 8
+"pce0pressure"
+""
+1 223.6101542667602 120.6018643306379 E E E 1 E 1 E N "STD_trend_pen3" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  205.4517102439899 174.3333333333333 377.4517102439898 247.3333333333333
+3 "1.3f" 5 0 0 1 0 -1  E "main() {
+  
+  dpConnect(\"updateTextfield\", getSystemName() + \"PCE0.PCE_Pressure:_online.._value\");
+}
+
+void updateTextfield(string dp, float pressure) {
+ 
+    this.text = dpValToString(dp, pressure, TRUE);
+}
+" 0
+ E
+14 10
+"pce0mbar"
+""
+1 403.9461416824796 130.2493847415915 E E E 1 E 1 E N "STD_trend_pen3" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  373.1666666666669 174 460.0000000000002 247.3333333333333
+3 "0s" 0 0 0 1 0 -1  E "main() {
+  
+}" 0
+ E
+14 12
+"pce1"
+""
+1 682.0565637273114 404.0531515476525 E E E 1 E 1 E N "Blue" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  667 175 848.0000000000001 248
+3 "0s" 0 0 0 1 0 -1  E "main() {
+
+}" 0
+ E
+14 13
+"pce1pressure"
+""
+1 874.8128557874759 121.1220159127921 E E E 1 E 1 E N "Blue" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  856.6544117647056 174.8534849154875 1028.654411764706 247.8534849154874
+3 "1.3f" 5 0 0 1 0 -1  E "main() {
+  
+  dpConnect(\"updateTextfield\", getSystemName() + \"PCE1.PCE_Pressure:_online.._value\");
+}
+
+void updateTextfield(string dp, float pressure) {
+ 
+    this.text = dpValToString(dp, pressure, TRUE);
+}
+" 0
+ E
+14 14
+"pce1mbar"
+""
+1 505.6347248576849 160.4693396226415 E E E 1 E 1 E N "Blue" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,27,5,75,0,0,0,0,0
+0  1024 175 1111 248
+3 "0s" 0 0 0 1 0 -1  E "main() {
+  
+}" 0
+ E
+4 17
+"LINE3"
+""
+1 195 210.1982575422563 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  195 210.1982575422563 207.475855121995 210
+4 18
+"LINE4"
+""
+1 846.7597328668098 211.5025189477693 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  846.7597328668098 211.5025189477693 858.7022058823528 211.3017424577437
+2 19
+"PRIMITIVE_TEXT4"
+""
+1 472.7142857142857 182.4285714285714 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 472.7142857142857 182.4285714285714 549 202
+0 2 2 "0s" 0 0 0 192 0 0  472.7142857142857 182.4285714285714 1
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 6 STATUS
+6 20
+"RECTANGLE1"
+""
+1 460.0000000000001 164 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main() {
+  
+  dpConnect(\"updateStatus\", getSystemName() + \"PCE0.isConnected:_online.._value\");
+}
+
+void updateStatus(string dp, bool isConnected) {
+
+  if(isConnected == TRUE)
+    this.backCol = \"Green\";
+  else
+    this.backCol = \"stoerGingUnq\";
+}
+" 0
+ E 0 3 3 2 1 E 1 0 1 21.71428571428567 42 1 E 460.0000000000001 164 515 186
+2 21
+"PRIMITIVE_TEXT5"
+""
+1 1125.142857142857 182.4285714285714 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1125.142857142857 182.4285714285714 1202 202
+0 2 2 "0s" 0 0 0 192 0 0  1125.142857142857 182.4285714285714 1
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 6 STATUS
+6 22
+"RECTANGLE2"
+""
+1 460.0000000000001 164 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main() {
+  
+  dpConnect(\"updateStatus\", getSystemName() + \"PCE1.isConnected:_online.._value\");
+}
+
+void updateStatus(string dp, bool isConnected) {
+
+  if(isConnected == TRUE)
+    this.backCol = \"Green\";
+  else
+    this.backCol = \"stoerGingUnq\";
+}" 0
+ E 0 3 3 2 1 E 1 0 1 675.1428571428572 42 1 E 460.0000000000001 164 515 186
+30 23
+"FRAME2"
+""
+1 459 -12 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 5 2 1 1 E 0.2173913043478275 0 1.101851851851852 1007.0630699756 18.33374986983234 0 E 459 -12 1012 97
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 24
+"PRIMITIVE_TEXT3"
+""
+1 1122.875660864023 37.41980823574417 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1122.875660864023 37.41980823574417 1176 60
+0 2 2 "0s" 0 0 0 192 0 0  1122.875660864023 37.41980823574417 1
+1
+LANG:1 38 Segoe UI Historic,-1,20,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Help
+13 25
+"help"
+""
+1 1160.780589913857 30.25535866332665 E E E 1 E 1 E N "_3DFace" E N "_3DFace" E E
+ E E
+25 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+3
+"hoverfclr" "N \"_3DFace\""
+"hoverbclr" "N \"_3DFace\""
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0  1174.845678671253 32.09090909090909 1215.845678671253 73.09090909090912
+
+P 
+4294967295
+"pictures/help_32.bmp"
+1
+LANG:1 12 PUSH_BUTTON4
+"main() {
+  ChildPanelOnCentral(\"helpDifferentialPressure.pnl\", \"\", makeDynString(\"\"));
+}
+" 0
+ E E E
+13 26
+"PUSH_BUTTON1"
+""
+1 1160.780589913857 67.25535866332666 E E E 1 E 1 E N "_3DFace" E N "_3DFace" E E
+ E E
+26 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+3
+"hoverfclr" "N \"_3DFace\""
+"hoverbclr" "N \"_3DFace\""
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0  1174.845678671253 69.09090909090908 1215.845678671253 110.0909090909091
+
+P 
+4294967295
+"pictures/exit_32.png"
+1
+LANG:1 12 PUSH_BUTTON4
+"main() {
+  PanelOff();
+}
+" 0
+ E E E
+2 27
+"PRIMITIVE_TEXT6"
+""
+1 1126.131392956968 75.2337662337662 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1126.131392956968 75.2337662337662 1171 98
+0 2 2 "0s" 0 0 0 192 0 0  1126.131392956968 75.2337662337662 1
+1
+LANG:1 38 Segoe UI Historic,-1,20,5,75,0,0,0,0,0
+0 1
+LANG:1 4 Exit
+30 28
+"FRAME1"
+""
+1 459 -12 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 5 2 1 1 E 1.223893860052772 0 1.101851851851852 -305.3566925133521 18.44527751744246 0 E 459 -12 1012 97
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 29
+"PRIMITIVE_TEXT7"
+""
+1 341.5476190476192 35.79545454545455 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 341.5476190476192 35.79545454545455 781 109
+0 2 2 "0s" 0 0 0 192 0 0  341.5476190476192 35.79545454545455 2
+1
+LANG:1 27 Tahoma,-1,30,5,75,0,0,0,0,0
+0 1
+LANG:1 22 DIFFERENTIAL PRESSURE 
+1
+LANG:1 27 Tahoma,-1,30,5,75,0,0,0,0,0
+0 1
+LANG:1 23         AT OUTPUT NODES
+7 30
+"ELLIPSE1"
+""
+1 829.4999999999999 71.5 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E -1 1 3 2 1 E 1 0 1 0.8333333333333712 3.552713678800501e-14 2  1 0  "30.png" 4294967295 E 796.4166666666667 70.83333333333336 62.5 62.5
+1 31 0 "9" 73
+0
+1 108 1 "9" 73
+0
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+3 0 "pce0" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwTrending/fwTrendingFaceplate.pnl" 17 297 T 31 1.105769230769231 0 1.248945147679325 -3.798076923076924 -73.93670886075951
+22
+"$ZoomWindowTitle"""
+"$bShowGrid"""
+"$bShowLegend"""
+"$bTrendLog"""
+"$dsCurveColor"""
+"$dsCurveDPE"""
+"$dsCurveLegend"""
+"$dsCurveRange"""
+"$dsCurveScaleVisible"""
+"$dsCurveToolTipText"""
+"$dsCurveVisible"""
+"$dsCurvesType"""
+"$dsUnit"""
+"$fMaxPercentageForLog"""
+"$fMinForLog"""
+"$iMarkerType"""
+"$sBackColor"""
+"$sDpName""System1:pce0"
+"$sForeColor"""
+"$sRefName""pce0."
+"$sTimeRange"""
+"$templateParameters"""
+3 1 "pce1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/fwTrending/fwTrendingFaceplate.pnl" 656 294 T 32 1.105769230769231 0 1.248945147679325 -74.38461538461524 -72.18987341772151
+22
+"$ZoomWindowTitle"""
+"$bShowGrid"""
+"$bShowLegend"""
+"$bTrendLog"""
+"$dsCurveColor"""
+"$dsCurveDPE"""
+"$dsCurveLegend"""
+"$dsCurveRange"""
+"$dsCurveScaleVisible"""
+"$dsCurveToolTipText"""
+"$dsCurveVisible"""
+"$dsCurvesType"""
+"$dsUnit"""
+"$fMaxPercentageForLog"""
+"$fMinForLog"""
+"$iMarkerType"""
+"$sBackColor"""
+"$sDpName""System1:pce1"
+"$sForeColor"""
+"$sRefName""pce1."
+"$sTimeRange"""
+"$templateParameters"""
+0

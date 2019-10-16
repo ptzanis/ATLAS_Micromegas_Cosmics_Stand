@@ -1,0 +1,236 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 491 631 N "_3DFace" 0
+E E E E E 1 -1 -1 0  33 20
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "120"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+2 0
+"PRIMITIVE_TEXT1"
+""
+1 114 20.00000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 114 20.00000000000001 325 52
+0 2 2 "0s" 0 0 0 192 0 0  114 20.00000000000001 1
+1
+LANG:1 31 Sitka Text,-1,23,5,75,0,0,0,0,0
+0 1
+LANG:1 17 Panel Information
+30 2
+"FRAME1"
+""
+1 13 -6 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.644366197183099 0 1 -8.376760563380284 0 0 E 13 -6 298 69
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 12 88 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.636942224608406 0 1.350985450916348 -3.369422246084064 -15.93087308118928 0 E 12 88 295 451
+0 2 2 "0s" 0 0 0 64 0 0  12 88 18
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 10 Operation:
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 56 - This panel's aim is to monitor gas input differential 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 42   pressure at the MicroMegas cosmic stand.
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 54 - State will show disconnected only if a PCE's usb is 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 13   unplugged. 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 13 Troubleshoot:
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 58 - If state is connected but data looks stuck, first check 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 56   if the PCE controllers are switched off and turn them 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 11   back on. 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 56 - If data is generally stuck, try restarting Raspberry. 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 52   Unplug and plug will usually work but you have to 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 25   wait for a few minutes.
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 38 - If you need to log in the raspberry:
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 47   $ssh pi@10.0.0.7 with the usual gas password.
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 23 Tzanos Stamatios - NTUA
+1
+LANG:1 31 Sitka Text,-1,17,5,75,0,0,0,0,0
+0 1
+LANG:1 24 stamatios.tzanos@cern.ch
+7 4
+"ELLIPSE1"
+""
+1 283 470 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E -1 1 3 2 1 E 2.173076923076926 0 2.160839160839158 -219.6730769230777 -470.1500135805869 2  1 0  "pictures/pirforos2.png" 4294967295 E 283 470 22 22
+13 5
+"PUSH_BUTTON1"
+""
+1 207.4012092313062 596.7688328872131 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sitka Text,-1,20,5,75,0,0,0,0,0
+0  205.4012092313062 593.9116900300703 290.4012092313062 621.9116900300702
+
+T 
+1
+LANG:1 2 OK
+"// SimpleCtrlScriptStart {invalid}
+main() {
+  PanelOff();
+}
+" 0
+ E E E
+6 7
+"RECTANGLE1"
+""
+1 241 18 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1 88 1 2  1 0  "pictures/help_32.bmp" 4294967295 E 241 18 278 55
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

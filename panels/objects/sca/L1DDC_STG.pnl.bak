@@ -56,14 +56,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/GBTX2_TEMP.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/GBTX2_TEMP.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/GBTX2_TEMP.value:_online.._value\");
+            returnValue()+\"/ai/GBTX2_TEMP.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -73,7 +73,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -249,7 +250,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 232.4917127071823 213 283.4917127071823 231
+E E 2 1 3 2 1 E U  0 E 232.4917127071823 213 283 231
 0 2 2 "0s" 0 0 0 192 0 0  232.4917127071823 213 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -287,7 +288,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 316.4917127071823 213 350.4917127071823 231
+E E 2 1 3 2 1 E U  0 E 316.4917127071823 213 350 231
 0 2 2 "0s" 0 0 0 192 0 0  316.4917127071823 213 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -309,7 +310,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 489.4917127071823 44 514.4917127071823 59
+E E 2 1 3 2 1 E U  0 E 489.4917127071823 44 514 59
 0 2 2 "0s" 0 0 0 192 0 0  489.4917127071823 44 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -331,7 +332,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 406.4917127071823 44 431.4917127071823 59
+E E 2 1 3 2 1 E U  0 E 406.4917127071823 44 431 59
 0 2 2 "0s" 0 0 0 192 0 0  406.4917127071823 44 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -353,7 +354,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 340.4917127071823 126 351.4917127071823 144
+E E 2 1 3 2 1 E U  0 E 340.4917127071823 126 351 144
 0 2 2 "0s" 0 0 0 192 0 0  340.4917127071823 126 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -375,7 +376,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 417.4917127071823 126 428.4917127071823 144
+E E 2 1 3 2 1 E U  0 E 417.4917127071823 126 428 144
 0 2 2 "0s" 0 0 0 192 0 0  417.4917127071823 126 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -407,14 +408,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/GBTX1_TEMP.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/GBTX1_TEMP.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/GBTX1_TEMP.value:_online.._value\");
+            returnValue()+\"/ai/GBTX1_TEMP.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -424,7 +425,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -462,14 +464,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/P1V5_SCA.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/P1V5_SCA.power:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/P1V5_SCA.value:_online.._value\");
+            returnValue()+\"/ai/P1V5_SCA.power:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -479,7 +481,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\",  2.0*fNewValue);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\",  2.0*fNewValue);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -517,14 +520,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/P2V5_SCA.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/P2V5_SCA.power:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/P2V5_SCA.value:_online.._value\");
+            returnValue()+\"/ai/P2V5_SCA.power:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -534,7 +537,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\",  2.0*fNewValue);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\",  2.0*fNewValue);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -549,7 +553,7 @@ void EP_textFieldInCB(string dp, float fNewValue)
 14 23
 "TEXT_FIELD13"
 ""
-1 453.9999999999999 153.9999999999999 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 454 153 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 23 0 0 0 0 0
 E E E
@@ -561,7 +565,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  451.9999999999999 148.1666666666667 504.9999999999999 177.1666666666667
+0  452 147.1666666666668 505 176.1666666666668
 2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
 main()
 {
@@ -572,14 +576,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/internalTemperature.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/internalTemperature.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/internalTemperature.value:_online.._value\");
+            returnValue()+\"/ai/internalTemperature.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -589,12 +593,15 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
+  /*
   float temp_1=-40; 
   float adc_val_1=0.790;
   float temp_2=80; 
   float adc_val_2=0.570;  
   
   setValue(\"\", \"text\",  ((adc_val_1-fNewValue)*(temp_2-temp_1)/(adc_val_1-adc_val_2)+temp_1));
+  */
+     setValue(\"\", \"text\", fNewValue);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -630,7 +637,7 @@ LANG:1 0
   this.text(type);
 
 }" 0
- E 2 1 3 2 1 E U  0 E 242.4917127071823 3 288.4917127071823 50
+ E 2 1 3 2 1 E U  0 E 242.4917127071823 3 288 50
 0 2 2 "0s" 0 0 0 192 0 0  242.4917127071823 3 2
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
@@ -666,14 +673,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/1V5_PTAT.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/1V5_PTAT.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/1V5_PTAT.value:_online.._value\");
+            returnValue()+\"/ai/1V5_PTAT.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -721,14 +728,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/2V5_PTAT.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/2V5_PTAT.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/2V5_PTAT.value:_online.._value\");
+            returnValue()+\"/ai/2V5_PTAT.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -766,7 +773,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 506.4917127071823 61 526.4917127071823 76
+E E 2 1 3 2 1 E U  0 E 506.4917127071823 61 526 76
 0 2 2 "0s" 0 0 0 192 0 0  506.4917127071823 61 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -788,7 +795,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 506.4917127071823 84 526.4917127071823 99
+E E 2 1 3 2 1 E U  0 E 506.4917127071823 84 526 99
 0 2 2 "0s" 0 0 0 192 0 0  506.4917127071823 84 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -810,7 +817,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 423.4917127071823 60 443.4917127071823 75
+E E 2 1 3 2 1 E U  0 E 423.4917127071823 60 443 75
 0 2 2 "0s" 0 0 0 192 0 0  423.4917127071823 60 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -832,7 +839,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 423.4917127071823 83 443.4917127071823 98
+E E 2 1 3 2 1 E U  0 E 423.4917127071823 83 443 98
 0 2 2 "0s" 0 0 0 192 0 0  423.4917127071823 83 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -854,7 +861,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 467.9999999999999 126.9999999999999 501.9999999999999 144.9999999999999
+E E 2 1 3 2 1 E U  0 E 467.9999999999999 126.9999999999999 501 145
 0 2 2 "0s" 0 0 0 192 0 0  467.9999999999999 126.9999999999999 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -876,7 +883,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 506.9999999999999 154.9999999999999 526.9999999999999 169.9999999999999
+E E 2 1 3 2 1 E U  0 E 506.9999999999999 154.9999999999999 526 170
 0 2 2 "0s" 0 0 0 192 0 0  506.9999999999999 154.9999999999999 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -898,7 +905,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 156.4917127071823 212 202.4917127071823 230
+E E 2 1 3 2 1 E U  0 E 156.4917127071823 212 202 230
 0 2 2 "0s" 0 0 0 192 0 0  156.4917127071823 212 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -936,7 +943,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 378.4917127071823 213 423.4917127071823 231
+E E 2 1 3 2 1 E U  0 E 378.4917127071823 213 423 231
 0 2 2 "0s" 0 0 0 192 0 0  378.4917127071823 213 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -958,7 +965,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 344.4917127071823 155 364.4917127071823 170
+E E 2 1 3 2 1 E U  0 E 344.4917127071823 155 364 170
 0 2 2 "0s" 0 0 0 192 0 0  344.4917127071823 155 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -980,7 +987,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 414.4917127071823 155 434.4917127071823 170
+E E 2 1 3 2 1 E U  0 E 414.4917127071823 155 434 170
 0 2 2 "0s" 0 0 0 192 0 0  414.4917127071823 155 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -1067,7 +1074,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\",  2.0*fNewValue);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\",  2.0*fNewValue);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -1182,7 +1190,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\",  2.0*fNewValue);
+     setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\",  2.0*fNewValue);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}

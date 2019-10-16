@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 899 426 N "_3DFace" 2
+PANEL,-1 -1 926 426 N "FwAtlasBg" 2
 "$boardPlace"
 "$detector"
 "main()
@@ -9,9 +9,9 @@ PANEL,-1 -1 899 426 N "_3DFace" 2
  string type;
   dpGet(detector+\"-S1.\"+boardPlace+\".Type\",type);
   if(type!=\"L1DDC\")
-    addSymbol(myModuleName(),myPanelName(),\"objects/sca/\"+type+\".pnl\",\"Board \"+type+\"(\"+boardPlace+\")\",makeDynString(\"$detector:\"+detector,\"$boardPlace:\"+boardPlace),330,100,0,1,1);
+    addSymbol(myModuleName(),myPanelName(),\"objects/sca/\"+type+\".pnl\",\"Board \"+type+\"(\"+boardPlace+\")\",makeDynString(\"$detector:\"+detector,\"$boardPlace:\"+boardPlace),330,150,0,1,1);
   else
-    addSymbol(myModuleName(),myPanelName(),\"objects/sca/\"+type+\"_\"+detector+\".pnl\",\"Board \"+type+\"(\"+boardPlace+\")\",makeDynString(\"$detector:\"+detector,\"$boardPlace:\"+boardPlace),330,100,0,1,1);    
+    addSymbol(myModuleName(),myPanelName(),\"objects/sca/\"+type+\"_\"+detector+\".pnl\",\"Board \"+type+\"(\"+boardPlace+\")\",makeDynString(\"$detector:\"+detector,\"$boardPlace:\"+boardPlace),330,150,0,1,1);    
 
 
 }" 0
@@ -29,6 +29,41 @@ E "  string boardPlace=$boardPlace;
   return channel;
    
 }
+  
+void updateTable()
+{
+    
+  string channel=returnValue();
+   
+  dyn_string aiChannels=dpNames(channel+\"/ai/*\");
+//   dyn_string gpioChannels=dpNames(channel+\"/gpio/*\");
+  
+  double value;
+
+//   int numberOfItems=dynlen(aiChannels)+dynlen(gpioChannels);
+  int lenBytes;
+  
+  itemsTable.deleteAllLines();
+  
+  
+
+  for(int i=1;i<=dynlen(aiChannels);i++)
+  {
+    dpGet(aiChannels[i]+\".value\",value);
+    lenBytes=strlen(channel);    
+    strchange(aiChannels[i],0,lenBytes,\"\");
+    
+    itemsTable.appendLine(\"Item\",aiChannels[i],\"Value\",value);
+  }
+  
+                        
+ 
+  
+    
+    
+    
+    
+  }
 " 0
  3
 "CBRef" "1"
@@ -58,32 +93,9 @@ LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0  6 36 296.9999999999999 414
 "main()
 {
-
-  string channel;
-  dpGet(detector+\"-S1.\"+boardPlace+\".Channel\",channel);
   
   
-  dyn_string aiChannels=dpNames(channel+\"/ai/*\");
-  dyn_string gpioChannels=dpNames(channel+\"/gpio/*\");
-  
-  double value;
-
-  int numberOfItems=dynlen(aiChannels)+dynlen(gpioChannels);
-  int lenBytes;
-
-
-  for(int i=1;i<=numberOfItems;i++)
-  {
-    dpGet(aiChannels[i]+\".value\",value);
-    lenBytes=strlen(channel);    
-    strchange(aiChannels[i],0,lenBytes,\"\");
-    
-//  itemsTable.appendLine(\"Item\",strltrim(aiChannels[i],getSystemName()+channel),\"Value\",value);
-    itemsTable.appendLine(\"Item\",aiChannels[i],\"Value\",value);
-  }
-  
-                        
- 
+  updateTable();
 
   
   
@@ -95,13 +107,13 @@ E
 1
 LANG:1 0 
 
-180 "Value" 7 1 0 "[0.3f,False,False,ALIGNMENT_CENTER,False]" 1
+180 "Value" 8 1 0 "[0.3f,False,False,ALIGNMENT_CENTER,False]" 1
 LANG:1 5 Value
 E
 1
 LANG:1 0 
 
-98 
+105 
 20 20 10 0
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
@@ -110,7 +122,7 @@ LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 2 4
 "PRIMITIVE_TEXT3"
 ""
-1 79 11 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 411 41 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -128,16 +140,16 @@ LANG:1 0
    string channel;
   dpGet(detector+\"-S1.\"+boardPlace+\".Channel\",channel);
   
-  this.text(channel);
+  this.text(dpSubStr(channel,DPSUB_DP));
 }" 0
- E 2 1 3 2 1 E U  0 E 79 11 172 50
-0 2 2 "0s" 0 0 0 192 0 0  79 11 2
+ E 2 1 3 2 1 E U  0 E 411 41 520 88
+0 2 2 "0s" 0 0 0 192 0 0  411 41 2
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
 LANG:1 9 BoardName
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 13 5
@@ -168,7 +180,7 @@ LANG:1 5 Close
 2 6
 "PRIMITIVE_TEXT4"
 ""
-1 19 11 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 322 41 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 5 0 0 0 0 0
 E E E
@@ -181,14 +193,14 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 19 11 72 50
-0 2 2 "0s" 0 0 0 192 0 0  19 11 2
+E E 2 1 3 2 1 E U  0 E 322 41 404 88
+0 2 2 "0s" 0 0 0 192 0 0  322 41 2
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
-LANG:1 6 Board:
+LANG:1 11 Board     :
 1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
 LANG:1 0 
 7 8
@@ -254,11 +266,11 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {FwStateOKPhysics}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -244.5 5.5 1 E 656.5 51.5 13.5 13.5
+ E 0 1 3 2 1 E 1 0 1 200.5 11.5 1 E 656.5 51.5 13.5 13.5
 2 9
 "PRIMITIVE_TEXT5"
 ""
-1 335 45 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 780 51 E E E 1 E 1 E N "white" E N "_Window" E E
  E E
 8 0 0 0 0 0
 E E E
@@ -271,8 +283,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 335 45 394 67
-0 2 2 "0s" 0 0 0 192 0 0  335 45 1
+E E 2 1 3 2 1 E U  0 E 780 51 839 73
+0 2 2 "0s" 0 0 0 192 0 0  780 51 1
 1
 LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
 0 1
@@ -280,7 +292,7 @@ LANG:1 6 Status
 30 10
 "FRAME1"
 ""
-1 562 19 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+1 562 19 E E E 1 E 1 E N "white" E N {0,0,0} E E
  E E
 9 0 0 0 0 0
 E E E
@@ -288,15 +300,194 @@ E E E
 1
 LANG:1 0 
 
-3
+4
+"hoverfclr" "N \"white\""
 "layoutAlignment" "AlignNone"
-"dashclr"N "_Transparent"
+"dashclr"N "white"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.8203125 0 0.8461538461538461 -134.015625 14.92307692307692 0 E 562 19 691 72
+E E 2 1 3 2 1 E 0.8203125 0 0.8461538461538461 310.984375 20.92307692307692 0 E 562 19 691 72
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
 0 1
 LANG:1 0 
+2 11
+"scaIDText"
+""
+1 411 67 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+ dpConnect(\"updateValue\",returnValue()+\".id\");
+  
+}
+
+void updateValue(string dpSource, int fNewValue)
+{
+  this.text(fNewValue);
+}  " 0
+ E 2 1 3 2 1 E U  0 E 411 67 436 89
+0 2 2 "0s" 0 0 0 192 0 0  411 67 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 2 ID
+2 12
+"PRIMITIVE_TEXT7"
+""
+1 322 67 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 322 67 404 114
+0 2 2 "0s" 0 0 0 192 0 0  322 67 2
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 10 SCA ID   :
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 0 
+30 13
+"FRAME2"
+""
+1 562 19 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+4
+"hoverfclr" "N \"white\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "white"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 4.507812500000001 0 1.711538461538461 -2224.390625 -2.519230769230774 0 E 562 19 691 72
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 14
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.45867899309423 0 1 -10.8562463800401 -31 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+13 15
+"refreshButton"
+""
+1 275 41 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  273 36 297 60
+
+P 
+4294967295
+"pictures/refresh_e.gif"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  updateTable();
+}" 0
+ E E E
+2 16
+"PRIMITIVE_TEXT8"
+""
+1 411 96 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+ dpConnect(\"updateValue\",returnValue()+\".address\");
+  
+}
+
+void updateValue(string dpSource, string fNewValue)
+{
+  this.text(fNewValue);
+}  " 0
+ E 2 1 3 2 1 E U  0 E 411 96 469 113
+0 2 2 "0s" 0 0 0 192 0 0  411 96 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 7 Address
+2 17
+"PRIMITIVE_TEXT9"
+""
+1 322 93 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 322 93 404 115
+0 2 2 "0s" 0 0 0 192 0 0  322 93 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 9 Address :
 0
 LAYER, 1 
 1

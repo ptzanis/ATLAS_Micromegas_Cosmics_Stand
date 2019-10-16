@@ -239,18 +239,7 @@ LANG:1 12 PUSH_BUTTON3
 "main(mapping event)
 {
   
-  
-  dyn_string allchannels;
-  allchannels=dpNames(\"MMFE8-000*\");
-  DebugN(allchannels);
-  
-  for(int i=0;i<dynlen(allchannels);i++)
-  {
-//     dpDelete(allchannels[i]+\"/\");
-  }
-
-
-       dpDelete(\"MMFE8-0000\");
+DebugTN(PROJ_PATH);
   
 }" 0
  E E E

@@ -1,0 +1,875 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 401 284 N "FwAtlasBg" 0
+"main()
+{
+  
+   int x=60;
+   int y=80;
+       dyn_string parameters;
+       
+       
+//     addSymbol(myModuleName(), myPanelName(), \"objects/channelEnvGeneral.pnl\", \"analog1VMON\",
+//                           makeDynString(\"$dpe:\" +\"sector1.analog1.vMon\", \"$x:\" + x, \"$y:\" + y,\"$alias:\"+\"Analog1\",\"$unit:\"+\"V\"), x + 2, y, 0, 1, 0.9); 
+    
+
+//     dyn_string parameters;
+                          
+     parameters = makeDynString(\"$dpe:\" +\"sector1.analog1.vMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:V\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"analog1VMON\",
+              parameters, x, y, 0, .87, 1); 
+    
+    parameters = makeDynString(\"$dpe:\" +\"sector1.analog1.iMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:A\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"analog1IMON\",
+              parameters, x+72, y, 0, .87, 1); 
+    
+    
+    
+    
+    
+      int x=60; 
+    y=y+40;
+     parameters = makeDynString(\"$dpe:\" +\"sector1.analog2.vMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:V\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"analog2VMON\",
+              parameters, x, y, 0, .87, 1); 
+    
+    parameters = makeDynString(\"$dpe:\" +\"sector1.analog2.iMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:A\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"analog2IMON\",
+              parameters, x+72, y-1, 0, .87, 1); 
+     
+     int x=60;  
+     y=y+80;
+     parameters = makeDynString(\"$dpe:\" +\"sector1.digital.vMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:V\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"digitalVMON\",
+              parameters, x, y, 0, .87, 1); 
+    
+    parameters = makeDynString(\"$dpe:\" +\"sector1.digital.iMon\", \"$format:[3.1f]\",
+                                        \"$parameter:\",
+                                        \"$unit:A\",
+                                        \"$width:\",
+                                        \"$color:white\",
+                                        \"$bgcolor:_Transparent\",
+                                        \"$qualityEl:\"+\"\");
+    
+    addSymbol(myModuleName(), myPanelName(), \"objects/parameter.pnl\", \"digitalIMON\",
+              parameters, x+72, y-1, 0, .87, 1);   
+
+    
+}" 0
+ E E E E 1 -1 -1 0  -74.15746268656713 -1.25
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.519873022944977 0 1 -72.63758966362215 -21.25 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 105 7 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 105 7 295 32
+0 2 2 "0s" 0 0 0 192 0 0  105 7 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 17 LV Remote Control
+13 2
+"closeButton"
+""
+1 319 264 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  317 254.3 379.25 280.3
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+30 3
+"FRAME1"
+""
+1 26 61 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 0.9237288135593222 6 -8.347457627118654 0 E 26 61 373 180
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 13 Analog- MMFE8
+30 4
+"FRAME2"
+""
+1 26 61 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1 0 0.6101694915254238 6 131.7796610169491 0 E 26 61 373 180
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0 1
+LANG:1 20 Digital- L1DDC, ADDC
+30 5
+"FRAME3"
+""
+1 81 69 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.166077738515901 0 1.321428571428571 -52.45229681978797 -23.17857142857143 0 E 81 69 365 98
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+30 6
+"FRAME4"
+""
+1 81 69 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.166077738515901 0 1.321428571428571 -53.45229681978797 16.82142857142857 0 E 81 69 365 98
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+30 7
+"FRAME5"
+""
+1 81 69 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.166077738515901 0 1.321428571428571 -53.45229681978797 96.82142857142857 0 E 81 69 365 98
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+14 8
+"TEXT_FIELD1"
+""
+1 48 85 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  46 78.8695652173913 122 101.8695652173913
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Analog1\");
+  EP_setBackColor();
+}
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog1.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:sector1.analog1.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"red\");
+  else
+    setValue(\"\", \"backCol\", \"green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E
+14 9
+"TEXT_FIELD2"
+""
+1 49 125 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  47 118.8695652173913 123 141.8695652173913
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Analog2\");
+  EP_setBackColor();
+}
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog2.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:sector1.analog2.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"red\");
+  else
+    setValue(\"\", \"backCol\", \"green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E
+14 10
+"TEXT_FIELD3"
+""
+1 49 205 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  47 198.8695652173913 123 221.8695652173913
+2 "0s" 0 0 0 1 0 -1  E "main()
+{
+  this.text(\"Digital\");
+  EP_setBackColor();
+}
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.digital.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:sector1.digital.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, bool boNewValue)
+{
+  if (boNewValue)
+    setValue(\"\", \"backCol\", \"red\");
+  else
+    setValue(\"\", \"backCol\", \"green\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {notequal}
+// Operant1 {0}
+// Color1 {red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {green}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E
+13 18
+"PUSH_BUTTON1"
+""
+1 262 80.53333333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  260 77 314 104
+
+T 
+1
+LANG:1 3 OFF
+"main(mapping event)
+{
+      dpSet(\"sector1.analog1.status\",1);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog1.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.analog1.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", !boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 20
+"PUSH_BUTTON3"
+""
+1 318 80.53333333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  316 77 370 104
+
+T 
+1
+LANG:1 2 ON
+"main(mapping event)
+{
+      dpSet(\"sector1.analog1.status\",0);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog1.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.analog1.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 21
+"PUSH_BUTTON4"
+""
+1 261 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  259 116.4666666666667 313 143.4666666666667
+
+T 
+1
+LANG:1 3 OFF
+"main(mapping event)
+{
+      dpSet(\"sector1.analog2.status\",1);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog2.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.analog2.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", !boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 22
+"PUSH_BUTTON5"
+""
+1 317 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  315 116.4666666666667 369 143.4666666666667
+
+T 
+1
+LANG:1 2 ON
+"main(mapping event)
+{
+      dpSet(\"sector1.analog2.status\",0);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.analog2.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.analog2.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 23
+"PUSH_BUTTON6"
+""
+1 260 201 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  258 197.4666666666667 312 224.4666666666667
+
+T 
+1
+LANG:1 3 OFF
+"main(mapping event)
+{
+      dpSet(\"sector1.digital.status\",1);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.digital.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.digital.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", !boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+13 24
+"PUSH_BUTTON7"
+""
+1 316 201 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+24 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  314 197.4666666666667 368 224.4666666666667
+
+T 
+1
+LANG:1 2 ON
+"main(mapping event)
+{
+      dpSet(\"sector1.digital.status\",0);    
+}" 0
+ E E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_setEnabled();
+}
+
+void EP_setEnabled()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:sector1.digital.status:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setEnabledCB\",
+            \"System1:sector1.digital.status:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setEnabledCB(string dp, bool boNewValue)
+{
+    setValue(\"\", \"enabled\", boNewValue);
+}
+
+// SimpleCtrlScript {EP_setEnabled}
+// DP {System1:sector1.analog1.status}
+// DPConfig {:_online.._value}
+// DPType {bool}
+// Active {1}
+// Operator {less}
+// Value {TRUE}
+// SimpleCtrlScriptEnd {EP_setEnabled}
+" 0
+
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

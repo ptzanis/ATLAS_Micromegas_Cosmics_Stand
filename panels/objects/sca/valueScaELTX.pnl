@@ -1,10 +1,11 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 149 48 N "_3DFace" 9
+PANEL,-1 -1 149 48 N "FwAtlasBg" 10
 "$IPorHO"
 "$L1Exception"
 "$PCB"
+"$PadRouterException"
 "$UpDown"
 "$configurationMode"
 "$detector"
@@ -13,92 +14,113 @@ PANEL,-1 -1 149 48 N "_3DFace" 9
 "$sector"
 "main()
 {
- 
   
-  string valueToChoose;
-  string mode;
+  
+  string valueToChoose, mode;
+  
   if(modeSlider.value()==0)
     mode=\"Type\";
   if(modeSlider.value()==1)
     mode=\"Voltage\";
   if(modeSlider.value()==2)
-    mode=\"Temperature\";  
+    mode=\"Temperature\"; 
+  if(modeSlider.value()==3)
+    mode=\"SCA\";  
   
-  string dpeBoardPlace;
+    string dpeBoardPlace;
   
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {
-    dpeBoardPlace=\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft;     
-  }
-  else
-  {
-  dpeBoardPlace=\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown;
-  }
-  
-  if(rightOrLeft==\"Left\")   
-  { 
-     statusLEFT.visible(TRUE);
-       if(detector==\"STG\" && L1Exception==\"On\")
-     {statusLEFT.toolTipText(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-       else
-       {statusLEFT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-        
-     if(detector==\"STG\" && L1Exception==\"On\")    
-       { statusLEFT.name(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-       else
-     {statusLEFT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-   }
-   
-  if(rightOrLeft==\"Right\")  
-  {
-     statusRIGHT.visible(TRUE);
-     if(detector==\"STG\" && L1Exception==\"On\")
-     {statusRIGHT.toolTipText(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft); } 
-     else
-     {statusRIGHT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); }
-     
-     if(detector==\"STG\" && L1Exception==\"On\")
-       {statusRIGHT.name(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft); }
-     else
-     {statusRIGHT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); }      
 
+  
+
+//      dpeBoardPlace=\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown;
+//      value.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); 
+    
+          
+    
+  shape shapeValue,shapeStatus; 
+  if(L1Exception==\"On\" || PadRouterException==\"On\")
+     {  
+    if(L1Exception==\"On\")
+    {
+      
+      if(rightOrLeft==\"Left\")  
+      { 
+      statusLEFT.visible(TRUE);
+      statusLEFT.toolTipText(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);
+      statusLEFT.name(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);       
+      }
+      if(rightOrLeft==\"Right\")   
+      { 
+      statusRIGHT.visible(TRUE);
+      statusRIGHT.toolTipText(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft); 
+      statusRIGHT.name(\"Stats_\"+\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);             
+      }
+     
+      dpeBoardPlace=\"L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft;              
+      value.name(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);    
+
+
+      shapeValue=getShape(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);
+      shapeStatus=getShape(\"Stats_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);        
+    }
+     
+   if(PadRouterException==\"On\")
+   { 
+      statusLEFT.visible(FALSE);      
+      statusRIGHT.visible(TRUE);
+      dpeBoardPlace=\"RouterBoard\"+\"_Side_\"+side+\"_Layer_\"+layer; 
+      statusRIGHT.toolTipText(\"Stats_RouterBoardSide\"+side+\"Layer\"+layer);
+      statusRIGHT.name(\"Stats_RouterBoardSide\"+side+\"Layer\"+layer);  
+      value.name(\"Value_RouterBoardSide\"+side+\"Layer\"+layer);
+      
+
+      shapeStatus=getShape(\"Stats_RouterBoardSide\"+side+\"Layer\"+layer);  
+      shapeValue=getShape(\"Value_RouterBoardSide\"+side+\"Layer\"+layer);
+  } 
+     
    }
- /* 
-  if(detector==\"STG\" && L1Exception==\"On\")
-  { 
-     value.toolTipText(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);
-  }
   else
-  { 
-     value.toolTipText(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); 
-   }
-   */
+     {
+    
+    
+     dpeBoardPlace=\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown;
+     value.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); 
+              
+     if(rightOrLeft==\"Left\")   
+   { 
+     statusLEFT.visible(TRUE);
+     statusLEFT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+     statusLEFT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);  
+    
+   } 
+     
+     if(rightOrLeft==\"Right\")   
+   { 
+     statusRIGHT.visible(TRUE);
+     statusRIGHT.toolTipText(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+     statusRIGHT.name(\"Stats_\"+\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);  
+    
+   }   
+
+      shapeValue=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);
+      shapeStatus=getShape(\"Stats_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); 
+   
+     }
+    
+   
+    
+  // ------------------------------------------------------------------------------------------------
   
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {value.name(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-  else 
-  { value.name(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown); }   
+     
   
-  string channel,type, visibility;
+   string channel,type, visibility;
    dpGet(detector+\"-S1.\"+dpeBoardPlace+\".Channel\",channel);
    dpGet(detector+\"-S1.\"+dpeBoardPlace+\".Type\",type); 
    dpGet(detector+\"-S1.\"+dpeBoardPlace+\".Visibility\",visibility);    
    
    
-
-  
-    shape value;
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {  value=getShape(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-  else
-  {  value=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-  
-    shape status;
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {   status=getShape(\"Stats_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-  else
-  {  status=getShape(\"Stats_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-  
+    
+      
   
   if(!configurationMode)
   {
@@ -108,44 +130,44 @@ PANEL,-1 -1 149 48 N "_3DFace" 9
  
  string voltageParameter, temperatureParameter; 
  dpGet(detector+\"-S1-Settings.\"+type+\".Voltage\",voltageParameter);
- dpConnect(\"updateStatus\",channel+\".online\",channel+voltageParameter+\".value\"); 
+ dpConnectUserData(\"updateStatus\",shapeStatus,channel+\".online\",channel+voltageParameter+\".value\",\"_OpcUaScaServer.State.ConnState\"); 
+ 
+ 
+   if(mode==\"SCA\")
+ {
+   shapeValue.toolTipText(channel+\".id\");
+   dpConnectUserData(\"updateValue\",shapeValue,channel+\".id\"); 
+  }
+ 
   
   if(mode==\"Type\")
  {
-    value.text(type);
-    value.toolTipText(channel+voltageParameter+\".value\");
+    shapeValue.text(type);
+    shapeValue.toolTipText(channel+voltageParameter+\".value\");
 
   }
   
   if(mode==\"Voltage\")
   {
     dpGet(detector+\"-S1-Settings.\"+type+\".Voltage\",voltageParameter);
-    dpConnect(\"updateValue\",channel+voltageParameter+\".value\");
-    value.toolTipText(channel+voltageParameter+\".value\");
-   
+    dpConnectUserData(\"updateValue\",shapeValue,channel+voltageParameter+\".power\");
+    shapeValue.toolTipText(channel+voltageParameter+\".power\");   
   
   }
   
   if(mode==\"Temperature\") 
   {
     dpGet(detector+\"-S1-Settings.\"+type+\".Temperature\",temperatureParameter);  
-    if(temperatureParameter==\"/ai/vmmPdo0\" || temperatureParameter==\"/ai/vmmPdo1\" || temperatureParameter==\"/ai/vmmPdo2\" || temperatureParameter==\"/ai/vmmPdo3\" || temperatureParameter==\"/ai/vmmPdo4\" || temperatureParameter==\"/ai/vmmPdo5\" || temperatureParameter==\"/ai/vmmPdo6\" || temperatureParameter==\"/ai/vmmPdo7\")
-    {
-    dpConnect(\"updateValueVMM\",channel+temperatureParameter+\".value\");      
-    }
-    else
-    {
-    dpConnect(\"updateValue\",channel+temperatureParameter+\".value\");
-     }
+    dpConnectUserData(\"updateValue\",shapeValue,channel+temperatureParameter+\".temperature\");          
+    shapeValue.toolTipText(channel+temperatureParameter+\".temperature\");  
     
-    value.toolTipText(channel+temperatureParameter+\".value\");
   }
     
 }
   else
   {
-  value.visible(0);
-  status.visible(0);
+  shapeValue.visible(0);
+  shapeStatus.visible(0);
   }
 
 }
@@ -156,52 +178,31 @@ PANEL,-1 -1 149 48 N "_3DFace" 9
      dpGet(detector+\"-S1.\"+dpeBoardPlace+\".Visibility\",visibility);
      dpGet(detector+\"-S1.\"+dpeBoardPlace+\".Type\",type);
      if(visibility)
-        status.backCol(\"Green\");
+        shapeStatus.backCol(\"Green\");
      if(!visibility)
-        status.backCol(\"Red\"); 
+        shapeStatus.backCol(\"Red\"); 
      
-     value.text(type);
-  
-
-
-    
+     shapeValue.text(type);
+     
   }
   
  
   }
     
-void updateValue(string dpSource, float fNewValue)
+void updateValue(shape value,string dpSource, float fNewValue)
 {
-  shape value;
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {  value=getShape(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-  else
-  {  value=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-  
   value.text(fNewValue);
-}   
-void updateValueVMM(string dpSource, float fNewValue)
+}     
+void updateStatus(shape status,string dpSource, unsigned fNewValue,string dpSource2, float fNewValue2,string dpSource3, int fNewValue3)
 {
-  shape value;
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {  value=getShape(\"Value_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
+
+  if(fNewValue && fNewValue3==1)
+    status.backCol(\"Green\");
   else
-  {  value=getShape(\"Value_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
+    status.backCol(\"Red\");
   
-  value.text((725.0-(1.5*1000.0*fNewValue))/1.85);
-}   
-void updateStatus(string dpSource, bool fNewValue,string dpSource2, float fNewValue2)
-{
-  shape status;
-  if(detector==\"STG\" && L1Exception==\"On\")
-  {   status=getShape(\"Stats_L1Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft);}
-  else
-  {  status=getShape(\"Stats_Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown);}
-  
-  if(fNewValue)
-  status.backCol(\"Green\");
-  if(!fNewValue)
-  status.backCol(\"Red\");    
+
+    
 }
 " 0
  E E E E 1 -1 -1 0  4.507998142363585 5.950920047862082
@@ -214,7 +215,8 @@ E "  string rightOrLeft=$rightOrLeft;
   string UpDown=$UpDown;
   string detector=$detector;
   string L1Exception=$L1Exception;
-  bool configurationMode=$configurationMode;" 0
+  bool configurationMode=$configurationMode;
+  string PadRouterException=$PadRouterException;" 0
  3
 "CBRef" "1"
 "EClose" E
@@ -244,7 +246,7 @@ E E 0 1 2 1 1 E 0.8756052803999685 -0.1503702247285274 0.1332431319078741 0.7359
 14 1
 "value"
 ""
-1 38 11.83333333333326 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 38 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  "main(mapping event)
 {
 
@@ -254,8 +256,7 @@ E E 0 1 2 1 1 E 0.8756052803999685 -0.1503702247285274 0.1332431319078741 0.7359
    channelName=substr(this.name(),6);
    channelDPE=this.toolTipText();
      
-  ChildPanelOnCentral(\"objects/sca/plot.pnl\", \"Plot \"+channelName, makeDynString(\"$channelName:\"+channelName,\"$channelDPE:\"+channelDPE,\"$detector:\"+detector),500,500,0,1,1);
-     
+   ChildPanelOnCentral(\"objects/sca/plot.pnl\", \"Plot \"+channelName, makeDynString(\"$detector:\"+detector,\"$channelName:\"+channelName,\"$channelDPE:\"+channelDPE,\"$detector:\"+detector),500,500,0,1,1);
      
      
 }" 0
@@ -270,7 +271,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  36 6 102 35
+0  36 4.166666666666741 102 33.16666666666674
 2 "5s" 5 0 0 1 0 -1  "main(mapping event)
 {
    string channel;
@@ -282,9 +283,12 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
  else
    { 
    channel=\"Side\"+side+\"PCB\"+PCB+\"Layer\"+layer+rightOrLeft+UpDown;
- }
+  }
    
-  
+   if(PadRouterException==\"On\")
+   { 
+    channel=\"RouterBoard_Side_\"+side+\"_Layer_\"+layer;  
+   }
     
     if(!configurationMode)
   {
@@ -303,26 +307,11 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
     dyn_string scaList=dpNames(detector+\"-S1.*\",\"SCAELTX_\"+detector);
     dyn_string channelList;
     
-    /*
-    
-    for(int i=1;i<=dynlen(scaList);i++)
-    {
-      dpGet(scaList[i]+\".Channel\",channelList[i]);
-      if(channelList[i]!=\"\")
-         dynAppend(channelsToAppend,channelList[i]);      
-    }
-    
-     
-   
-   if(channelSetup!=\"\")
-     channelListCombo.appendItem(channelSetup);
-     
-     */
     channelListCombo.appendItem(channelSetup);
     channelListCombo.appendItem(\"\");    
     
        
-    channelsToAppend=dpNames(\"*\",\"OpcUaScaServerSCA\");
+    channelsToAppend=dpNames(\"*\",\"fwScaSCA\");
             
     for(int i=1;i<=dynlen(channelsToAppend);i++)
     {
@@ -353,7 +342,10 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
       {
        typeBox.appendItem(\"sFEB\"); 
        typeBox.appendItem(\"pFEB\");  
-       typeBox.appendItem(\"L1DDC\");     
+       typeBox.appendItem(\"L1DDC\"); 
+       typeBox.appendItem(\"RimL1DDC\");       
+       typeBox.appendItem(\"PadTrigger\"); 
+       typeBox.appendItem(\"RouterBoard\");        
        
       }
      
@@ -385,7 +377,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 2 1 1 E 0.8756052803999689 0.1503702247285257 -0.1332431319078724 0.7359711105209333 -247.5272900076236 -159.2182583514203 1 E 438 135 455 169
+E E 0 1 2 1 1 E 0.8756052803999689 0.1503702247285257 -0.1332431319078724 0.7359711105209333 -248.5272900076235 -159.2182583514203 1 E 438 135 455 169
 0
 LAYER, 1 
 1

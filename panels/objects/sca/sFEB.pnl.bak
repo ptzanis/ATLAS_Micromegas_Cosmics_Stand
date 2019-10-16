@@ -33,7 +33,7 @@ LANG:1 0
 14 0
 "TEXT_FIELD4"
 ""
-1 314 160 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 313 160 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 0 0 0 0 0 0
 E E E
@@ -45,7 +45,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  312 154.1666666666667 367 183.1666666666667
+0  311 154.1666666666667 366 183.1666666666667
 2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
 main()
 {
@@ -56,14 +56,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo2.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo2.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo2.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo2.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -73,7 +73,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -597,14 +598,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo0.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo0.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo0.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo0.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -614,7 +615,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -652,14 +654,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo1.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo1.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo1.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo1.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -669,7 +671,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -707,14 +710,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo3.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo3.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo3.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo3.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -724,7 +727,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -762,14 +766,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo4.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo4.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo4.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo4.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -779,7 +783,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -817,14 +822,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo5.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo5.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo5.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo5.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -834,7 +839,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -872,14 +878,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo6.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo7.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo6.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo7.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -889,7 +895,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -927,14 +934,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/vmmPdo7.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/vmmPdo7.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/vmmPdo7.value:_online.._value\");
+            returnValue()+\"/ai/vmmPdo7.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -944,7 +951,8 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
-  setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
+       setValue(\"\", \"text\", fNewValue);
+//   setValue(\"\", \"text\", (725.0-(1.5*1000.0*fNewValue))/1.85);
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -959,7 +967,7 @@ void EP_textFieldInCB(string dp, float fNewValue)
 14 45
 "TEXT_FIELD13"
 ""
-1 234.9999999999999 64.99999999999993 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 234 65 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 45 0 0 0 0 0
 E E E
@@ -971,7 +979,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
-0  232.9999999999999 59.16666666666667 285.9999999999999 88.16666666666667
+0  232 59.16666666666674 285 88.16666666666674
 2 "5s" 5 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
 main()
 {
@@ -982,14 +990,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/internalTemperature.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/internalTemperature.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/internalTemperature.value:_online.._value\");
+            returnValue()+\"/ai/internalTemperature.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -999,12 +1007,15 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dp, float fNewValue)
 {
+         setValue(\"\", \"text\", fNewValue);
+  /*
   float temp_1=-40; 
   float adc_val_1=0.790;
   float temp_2=80; 
   float adc_val_2=0.570;  
   
   setValue(\"\", \"text\",  ((adc_val_1-fNewValue)*(temp_2-temp_1)/(adc_val_1-adc_val_2)+temp_1));
+  */
 }
 
 // SimpleCtrlScript {EP_textFieldIn}
@@ -1297,14 +1308,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/ntcTemperature1.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/ntcTemperature1.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/ntcTemperature1.value:_online.._value\");
+            returnValue()+\"/ai/ntcTemperature1.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
@@ -1390,14 +1401,14 @@ void EP_textFieldIn()
 {
   dyn_errClass err;
 
-  if( !dpExists(returnValue()+\"/ai/ntcTemperature2.value:_online.._value\"))
+  if( !dpExists(returnValue()+\"/ai/ntcTemperature2.temperature:_online.._value\"))
   {
     setValue(\"\", \"color\", \"_dpdoesnotexist\");
     return;
   }
 
   dpConnect(\"EP_textFieldInCB\",
-            returnValue()+\"/ai/ntcTemperature2.value:_online.._value\");
+            returnValue()+\"/ai/ntcTemperature2.temperature:_online.._value\");
   err = getLastError();
   if (dynlen(err) > 0)
     setValue(\"\", \"color\", \"_dpdoesnotexist\");

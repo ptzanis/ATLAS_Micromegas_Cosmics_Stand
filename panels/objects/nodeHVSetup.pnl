@@ -1,7 +1,7 @@
 V 14
 1
 LANG:1 0 
-PANEL,-1 -1 558 970 N "WF_PanelBackground" 5
+PANEL,-1 -1 618 970 N "WF_PanelBackground" 5
 "$layer"
 "$mode"
 "$node"
@@ -19,7 +19,8 @@ string layer=$layer;
    channelsTable.font(\"Utopia\"); 
 
     dyn_string dpes;
-    float tempi0, tempv0, temprUp, temprDwn, temptripTime, VMax;
+    float tempi0, tempi1, tempv0, temprUp, temprDwn, temptripTime, VMax;
+    
     string alias;
     bool isOn;
     
@@ -29,6 +30,7 @@ string layer=$layer;
     
     for (int i = 1; i <= dynlen(allChannels); i++){
         dpGet(allChannels[i] + \".readBackSettings.i0:_original.._value\", tempi0);
+        dpGet(allChannels[i] + \".readBackSettings.i1:_original.._value\", tempi1);
         dpGet(allChannels[i] + \".readBackSettings.v0:_original.._value\", tempv0);
         dpGet(allChannels[i] + \".readBackSettings.rUp:_original.._value\", temprUp);
         dpGet(allChannels[i] + \".readBackSettings.rDwn:_original.._value\", temprDwn);
@@ -36,7 +38,7 @@ string layer=$layer;
         alias =aliasAllChannels[i];
         dpGet(allChannels[i] + \".readBackSettings.vMaxSoftValue:_original.._value\", VMax);
         channelsTable.appendLine(\"Alias\", alias, \"Channels\", substr(allChannels[i],13),
-                                 \"v0\", tempv0, \"i0\", tempi0, \"rUp\", temprUp,
+                                 \"v0\", tempv0, \"i0\", tempi0,\"i1\", tempi1, \"rUp\", temprUp,
                                  \"rDwn\", temprDwn, \"trip\", temptripTime, \"VMax\", VMax);
         dpGet(allChannels[i] + \".actual.isOn:_original.._value\", isOn);
         if (isOn) {
@@ -44,6 +46,7 @@ string layer=$layer;
             channelsTable.cellBackColRC(i-1, \"Channels\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"v0\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"i0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"i1\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"rUp\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"rDwn\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"trip\", \"FwStateOKPhysics\");
@@ -234,7 +237,7 @@ void refreshConfigurationTableCosmics(string sector) {
    channelsTable.font(\"Utopia\"); 
 
     dyn_string dpes;
-    float tempi0, tempv0, temprUp, temprDwn, temptripTime, VMax;
+    float tempi0,tempi1 , tempv0, temprUp, temprDwn, temptripTime, VMax;
     string alias;
     bool isOn;
     int startNode;
@@ -252,6 +255,7 @@ void refreshConfigurationTableCosmics(string sector) {
     
     for (int i = 1; i <= dynlen(allChannels); i++){
         dpGet(allChannels[i] + \".readBackSettings.i0:_original.._value\", tempi0);
+        dpGet(allChannels[i] + \".readBackSettings.i1:_original.._value\", tempi1);
         dpGet(allChannels[i] + \".readBackSettings.v0:_original.._value\", tempv0);
         dpGet(allChannels[i] + \".readBackSettings.rUp:_original.._value\", temprUp);
         dpGet(allChannels[i] + \".readBackSettings.rDwn:_original.._value\", temprDwn);
@@ -259,7 +263,7 @@ void refreshConfigurationTableCosmics(string sector) {
         alias =aliasAllChannels[i];
         dpGet(allChannels[i] + \".readBackSettings.vMaxSoftValue:_original.._value\", VMax);
         channelsTable.appendLine(\"Alias\", alias, \"Channels\", substr(allChannels[i],13),
-                                 \"v0\", tempv0, \"i0\", tempi0, \"rUp\", temprUp,
+                                 \"v0\", tempv0, \"i0\", tempi0, \"i1\", tempi1, \"rUp\", temprUp,
                                  \"rDwn\", temprDwn, \"trip\", temptripTime, \"VMax\", VMax);
         dpGet(allChannels[i] + \".actual.isOn:_original.._value\", isOn);
         if (isOn) {
@@ -267,6 +271,7 @@ void refreshConfigurationTableCosmics(string sector) {
             channelsTable.cellBackColRC(i-1, \"Channels\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"v0\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"i0\", \"FwStateOKPhysics\");
+            channelsTable.cellBackColRC(i-1, \"i1\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"rUp\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"rDwn\", \"FwStateOKPhysics\");
             channelsTable.cellBackColRC(i-1, \"trip\", \"FwStateOKPhysics\");
@@ -339,7 +344,7 @@ LANG:1 20 Node X, XMX, BatchID
 13 2
 "setButton"
 ""
-1 285.2478733590649 837.4559310201203 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 189 834 E E E 0 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 2 0 0 0 0 0
 E E E
@@ -351,7 +356,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  219.4410850187287 835.2898640008086 333.4410850187287 869.194305142742
+0  123.1932116596638 831.8339329806884 237.1932116596638 865.7383741226217
 
 T 
 1
@@ -384,7 +389,8 @@ LANG:1 3 Set
             dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.vMaxSoftValue:_original.._value\", textField6.text); 
         if (hvSelectionCombo.text!=\"\")  
             dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.v0:_original.._value\",(float)lines[i][3]+(float)hvSelectionCombo.text());
- 
+        if(isetField.text())
+            dpSetWait(getSystemName() + \"CAEN/\" + lines[i][2] + \".settings.i1:_original.._value\", isetField.text);
       }    
   
     delay(3);
@@ -396,6 +402,7 @@ LANG:1 3 Set
     textField5.text = \"\";
     textField6.text = \"\";
     hvSelectionCombo.text=\"\";   
+    isetField.text=\"\";
     
     channelsTable.deleteAllLines;
      if(mode==\"ValidationQA\" || mode==\"CosmicsBasic\" || mode==\"CosmicsExtra\")
@@ -416,7 +423,7 @@ LANG:1 3 Set
 14 3
 "textField1"
 ""
-1 -194.2794574906357 791.2425568030632 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 -195.2794574906357 792.2425568030632 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
  E E
 3 0 0 0 0 0
 E E E
@@ -428,7 +435,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  189.7205425093643 770.1266627633272 252.7205425093643 794.7640695041189
+0  188.7205425093643 771.1266627633272 251.7205425093643 795.7640695041189
 3 "4d" 4 1 0 1 0 -1  "main(mapping event)
 {
       hvSelectionCombo.text=\"\";
@@ -437,7 +444,7 @@ LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 14 4
 "textField2"
 ""
-1 7.266592152651929 771.3084510286385 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 7.266592152651929 772.3084510286385 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
  E E
 4 0 0 0 0 0
 E E E
@@ -449,7 +456,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  316.3734673237843 770.1925569889025 375.0023531425247 795.2585351582658
+0  316.3734673237843 771.1925569889025 375.0023531425247 796.2585351582658
 3 "2.2f" 5 1 0 1 0 -1  E E E
 14 5
 "textField3"
@@ -488,7 +495,7 @@ LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 14 7
 "textField5"
 ""
-1 231.0186291534019 738.9275676322327 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 232.0186291534019 757.9275676322327 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
  E E
 7 0 0 0 0 0
 E E E
@@ -500,7 +507,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  314.9588767699278 799.5616735924966 374.9862205199279 824.1156780154085
+0  315.9588767699278 818.5616735924966 375.9862205199279 843.1156780154085
 3 "0d" 0 1 0 1 0 -1  E E E
 13 8
 "onButton"
@@ -538,9 +545,7 @@ LANG:1 2 ON
       
    delay(2);
    channelsTable.deleteAllLines;
-   refreshConfigurationTable(TRUE,FALSE);  
-
-    dpSet(\"ALL.safetyAlarmLight\",0);       
+   refreshConfigurationTable(TRUE,FALSE);               
 
 }
 " 0
@@ -623,7 +628,7 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
-              \"textField5\", \"textField6\",\"hvSelectionCombo\");
+              \"textField5\", \"textField6\",\"hvSelectionCombo\",\"isetField\");
     toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
     
 //     if (!onButton.enabled) {
@@ -647,7 +652,7 @@ LANG:1 0
     dyn_string textfields, enabled, toLockEdit, toLockEnabled; 
     
     toLockEdit = makeDynString(\"textField1\", \"textField2\", \"textField3\", \"textField4\",
-              \"textField5\", \"textField6\",\"hvSelectionCombo\");
+              \"textField5\", \"textField6\",\"hvSelectionCombo\",\"isetField\");
     toLockEnabled = makeDynString(\"onButton\", \"offButton\", \"setButton\");
     
     if (!onButton.enabled) {
@@ -667,7 +672,7 @@ LANG:1 0
     textField5.text = \"\";
     textField6.text = \"\";  
     hvSelectionCombo.text=\"\";
-        
+    isetField.text =\"\";   
         
     }
     else {
@@ -716,7 +721,7 @@ LANG:1 8 Voltage:
 2 13
 "PRIMITIVE_TEXT8"
 ""
-1 270.3986593259028 775.1925569889032 E E E 1 E 1 E N "black" E N {247,247,247} E E
+1 270.3986593259028 776.1925569889032 E E E 1 E 1 E N "black" E N {247,247,247} E E
  E E
 13 0 0 0 0 0
 E E E
@@ -728,8 +733,8 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 252 775.1925569889032 316.3986593259028 790
-0 2 2 "0s" 0 0 0 194 0 0  316.3986593259028 775.1925569889032 1
+E E 0 1 1 2 1 E U  0 E 252 776.1925569889032 316.3986593259028 791
+0 2 2 "0s" 0 0 0 194 0 0  316.3986593259028 776.1925569889032 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
@@ -800,7 +805,7 @@ LANG:1 10 Ramp Down:
 2 17
 "PRIMITIVE_TEXT12"
 ""
-1 268.9588767699278 804.0616735924972 E E E 1 E 1 E N "black" E N {247,247,247} E E
+1 269.9588767699278 823.0616735924972 E E E 1 E 1 E N "black" E N {247,247,247} E E
  E E
 17 0 0 0 0 0
 E E E
@@ -812,8 +817,8 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 251 804.0616735924972 314.9588767699278 819
-0 2 2 "0s" 0 0 0 194 0 0  314.9588767699278 804.0616735924972 1
+E E 0 1 1 2 1 E U  0 E 252 823.0616735924972 315.9588767699278 838
+0 2 2 "0s" 0 0 0 194 0 0  315.9588767699278 823.0616735924972 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
@@ -903,7 +908,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 1.052655381086025 0 1.224519575694047 -5.127894484957397 498.3989315348454 0 E 10 213 531 311
+E E 2 1 3 2 1 E 1.141541039757879 0 1.224519575694047 -7.415410397578793 499.1773303771679 0 E 10 213 531 311
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
@@ -911,7 +916,7 @@ LANG:1 38 HV Actions (Choose Section from table)
 13 20
 "closeButton"
 ""
-1 495 947 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 553 947 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 20 0 0 0 0 0
 E E E
@@ -923,7 +928,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  493 937.3000000000001 555.25 963.3000000000001
+0  551 937.3000000000001 613.25 963.3000000000001
 
 T 
 1
@@ -961,7 +966,7 @@ LANG:1 33   Click the lock to make changes.
 25 22
 "channelsTable"
 ""
-1 4.79241799183274 -197.5511534173742 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+1 3.877046661953635 -197.5511534173742 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
  E E
 22 0 0 0 0 0
 E E E
@@ -973,7 +978,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  11.98100172711572 24 548 758.0000000000002
+0  11.98100172711572 24 600.9999999999998 758.0000000000002
 "main()
 {
     
@@ -1089,7 +1094,7 @@ void colorTable(string channelDp, bool isOn) {
 }
  
     " 0
-E 1 0 1 8 1 "Alias" 4 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
+E 1 0 1 9 1 "Alias" 4 1 0 "[0s,,,ALIGNMENT_BEGINNING]" 1
 LANG:1 7 Section
 E
 1
@@ -1107,13 +1112,19 @@ E
 1
 LANG:1 0 
 
-50 "i0" 5 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
+50 "i0" 3 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
 LANG:1 4 Imax
 E
 1
 LANG:1 0 
 
-65 "rUp" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+40 "i1" 3 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
+LANG:1 4 iSet
+E
+1
+LANG:1 0 
+
+40 "rUp" 4 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
 LANG:1 3 rUp
 E
 1
@@ -1160,7 +1171,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 2 1 3 2 1 E 0.9288461538461538 0 0.8865979381443303 -4.106643356643344 686.1546391752577 0 E 10 213 531 311
+E E 2 1 3 2 1 E 0.9288461538461538 0 0.8865979381443303 42.89335664335665 686.1546391752577 0 E 10 213 531 311
 1
 LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 0 1
@@ -1168,7 +1179,7 @@ LANG:1 13 Configuration
 13 24
 "PUSH_BUTTON1"
 ""
-1 252.1818181818182 934 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 299.1818181818182 934 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 24 0 0 0 0 0
 E E E
@@ -1180,7 +1191,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  186.375029841482 931.8737279858663 300.375029841482 958.612102108488
+0  233.375029841482 931.8737279858663 347.375029841482 958.612102108488
 
 T 
 1
@@ -1237,7 +1248,7 @@ LANG:1 5 Load
 2 25
 "PRIMITIVE_TEXT1"
 ""
-1 117.1818181818182 889 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 164.1818181818182 889 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 25 0 0 0 0 0
 E E E
@@ -1250,8 +1261,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 117.1818181818182 889 161 904
-0 2 2 "0s" 0 0 0 192 0 0  117.1818181818182 889 1
+E E 2 1 3 2 1 E U  0 E 164.1818181818182 889 208 904
+0 2 2 "0s" 0 0 0 192 0 0  164.1818181818182 889 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
@@ -1259,7 +1270,7 @@ LANG:1 7 Status:
 14 26
 "configurationStatusField"
 ""
-1 163.1818181818178 891 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 210.1818181818178 891 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 26 0 0 0 0 0
 E E E
@@ -1271,7 +1282,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
-0  161.1818181818178 887 368.1818181818178 908
+0  208.1818181818178 887 415.1818181818178 908
 3 "0s" 0 0 0 0 0 -1  E "main()
 {
   string node=$node;
@@ -1341,11 +1352,11 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 // Color2 {Green}
 // SimpleCtrlScriptEnd {EP_setBackColor}
 " 0
- E 0 1 3 2 1 E 1 0 1 -299.3181818181819 362.5 1 E 681.5 534.5 9.5 9.5
+ E 0 1 3 2 1 E 1 0 1 -252.3181818181819 362.5 1 E 681.5 534.5 9.5 9.5
 2 28
 "PRIMITIVE_TEXT13"
 ""
-1 15.18181818181818 913 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 62.18181818181818 913 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
  E E
 28 0 0 0 0 0
 E E E
@@ -1358,8 +1369,8 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 15.18181818181818 913 79 928
-0 2 2 "0s" 0 0 0 192 0 0  15.18181818181818 913 1
+E E 2 1 3 2 1 E U  0 E 62.18181818181818 913 126 928
+0 2 2 "0s" 0 0 0 192 0 0  62.18181818181818 913 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
@@ -1367,7 +1378,7 @@ LANG:1 10 Directory:
 13 29
 "browseButton"
 ""
-1 103.1818181818182 221 E E E 1 E 1 E N {0,0,0} E N {236,236,236} E E
+1 150.1818181818182 221 E E E 1 E 1 E N {0,0,0} E N {236,236,236} E E
  E E
 29 0 0 0 0 0
 E E E
@@ -1381,7 +1392,7 @@ LANG:10001 0
 2
 LANG:1 26 Arial,-1,13,5,40,0,0,0,0,0
 LANG:10001 84 -*-Arial-*-r-normal-*-13-*-100-100-*-*-iso8859-1|-13,0,0,0,404,0,0,0,0,0,0,0,0,Arial
-0  450.1818181818182 905.4375 484.1818181818182 939.4375
+0  497.1818181818182 905.4375 531.1818181818182 939.4375
 
 P 
 14215660
@@ -1419,7 +1430,7 @@ LANG:10001 0
 14 30
 "destFolderTextField"
 ""
-1 78.18181818181824 881 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
+1 125.1818181818182 881 E E E 1 E 1 E N "_WindowText" E N {236,236,236} E E
  E E
 30 0 0 0 0 0
 E E E
@@ -1431,7 +1442,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
-0  75.90026379870119 909.7500000000001 449.9002637987013 935
+0  122.9002637987012 909.7500000000001 496.9002637987013 935
 3 "0s" 0 0 0 0 0 -1  E "main()
 {
     
@@ -1441,6 +1452,83 @@ LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
 }
 " 0
  E
+13 31
+"testMapping"
+""
+1 464 860 E E E 1 E 0 E N "Red" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  462 850 586 874
+
+T 
+1
+LANG:1 12 Test Mapping
+"main(mapping event)
+{
+    dyn_string allChannels,aliasAllChannels;
+    dynAppend(allChannels,channelsReturn(TRUE,FALSE));
+    dynAppend(aliasAllChannels,aliasAllChannelsReturn(TRUE,FALSE));
+    
+    float hvSetupCounter=0.0;
+    
+    for(int i=1;i<=dynlen(allChannels);i++)
+    {
+     hvSetupCounter=hvSetupCounter+0.5; 
+     dpSet(allChannels[i]+\".settings.v0\",hvSetupCounter);               
+    }
+    channelsTable.deleteAllLines;
+    delay(3);
+   refreshConfigurationTable(TRUE,FALSE);
+
+}" 0
+ E E E
+14 32
+"isetField"
+""
+1 7 796 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignCenter"
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0  316.1068751711324 794.884105960264 374.7357609898728 819.9500841296273
+3 "2.2f" 5 1 0 1 0 -1  E E E
+2 33
+"PRIMITIVE_TEXT14"
+""
+1 269.1320671732509 799.8841059602647 E E E 1 E 1 E N "black" E N {247,247,247} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  0 E 260 799.8841059602647 315.1320671732509 815
+0 2 2 "0s" 0 0 0 194 0 0  315.1320671732509 799.8841059602647 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 10 Iset (uA):
 0
 LAYER, 1 
 1

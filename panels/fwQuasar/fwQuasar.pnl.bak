@@ -1,0 +1,804 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 392 523 N "_3DFace" 0
+"main()
+{
+  DPT_PREFIX.text(\"MyQuasarServer\");
+  SERVER_NAME.text(\"QuasarServer\");
+  SUBSCRIPTION.text(\"MyQuasarSubscription\");
+  DRIVER_NUMBER.value(69);
+}" 0
+ E E E E 1 -1 -1 0  10 20
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+2 1
+"PRIMITIVE_TEXT1"
+""
+1 11.88235294117647 15.50000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 11.88235294117647 15.50000000000001 89 34
+0 2 2 "0s" 0 0 0 192 0 0  11.88235294117647 15.50000000000001 1
+1
+LANG:1 31 Sans Serif,-1,16,5,50,0,0,0,0,0
+0 1
+LANG:1 8 fwQuasar
+30 3
+"FRAME1"
+""
+1 10 33 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.027027027027027 0 1.228070175438596 -0.2702702702702712 9.473684210526327 0 E 10 33 381 91
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 46 Step 1: select the path to your quasar project
+14 4
+"QUASAR_PROJECT_PATH"
+""
+1 19.99999999999997 75.33333333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  17.99999999999998 68 382 92
+3 "0s" 0 0 0 0 0 -1  E E E
+13 5
+"PUSH_BUTTON1"
+""
+1 20 95.33333333333333 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  18 88 162 112
+
+T 
+1
+LANG:1 20 Open folder selector
+"main(mapping event)
+{
+  string path;
+  int result = folderSelector(path);
+  if (result == 1)
+    QUASAR_PROJECT_PATH.text(path);
+}" 0
+ E E E
+13 6
+"PUSH_BUTTON2"
+""
+1 240.0000000000001 93.00000000000003 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  238 88.00000000000004 382 112
+
+T 
+1
+LANG:1 16 Chosen, move on!
+"main(mapping event)
+{
+  string path = QUASAR_PROJECT_PATH.text;
+  bool designExists = isfile(path + \"/Design/Design.xml\");
+  if (!designExists)
+  {
+    STEP2_TEXT.text = \"Design.xml not found. You need to point to parent directory of quasar project.\";
+    return;
+  }
+  bool cacophonyExists = isdir(path + \"/Cacophony\");
+  if (!cacophonyExists)
+  {
+    STEP2_TEXT.text = \"Cacophony module seems not deployed, cant proceed!\";
+    return;  
+  }
+  
+  STEP2_TEXT.text = \"OK\";
+  DPT_PREFIX.enabled(true);
+  SERVER_NAME.enabled(true);
+  SUBSCRIPTION.enabled(true);
+  DRIVER_NUMBER.enabled(true);
+  BUTTON_CONFIRM_PREFIX.enabled(true);
+  
+  
+  
+}" 0
+ E E E
+30 7
+"FRAME2"
+""
+1 10 123 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.027027027027027 0 0.5154639175257734 -0.2702702702702702 66.83323226197695 0 E 10 123 381 221
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 41 Step 2: initial validation of chosen path
+2 9
+"STEP2_TEXT"
+""
+1 30 150 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 25.38884689707751 0 1.171652262111621 -739.6650742977599 -24.39259589224833 0 E 30 150 175 164
+0 2 2 "0s" 0 0 0 192 0 0  30 150 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 30 ..... finish step1 first .....
+30 11
+"FRAME3"
+""
+1 10 173 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.027027027027027 0 1.489361702127659 -0.2702702702703323 42.34042553191507 0 E 10 173 381 221
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Step 4: DPT
+2 12
+"STEP3_GEN_DPT_TEXT"
+""
+1 252 230 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 12.55318260897945 0 1.143676782668111 -2961.384251465337 58.98138939290359 0 E 252 230 322 244
+0 2 2 "0s" 0 0 0 192 0 0  252 230 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 14 ... status ...
+2 14
+"PRIMITIVE_TEXT2"
+""
+1 20 204.3333333333333 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.700379000495215 0 1.144299801663651 -11.82505138221951 -31.60285453828694 0 E 20 204.3333333333333 88 218
+0 2 2 "0s" 0 0 0 192 0 0  20 204.3333333333333 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 11 DPT Prefix:
+14 15
+"DPT_PREFIX"
+""
+1 140 200 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  138 198 382 222
+3 "0s" 0 0 0 0 0 -1  E E E
+13 16
+"STEP3_RUN_DPT"
+""
+1 20 343 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  18 336.8333333333334 202 360.8333333333337
+
+T 
+1
+LANG:1 27 Run the DPT creation script
+"main(mapping event)
+{
+  string path = QUASAR_PROJECT_PATH.text;
+  string scriptPath = PROJ_PATH+\"scripts/libs/createDpts.ctl\";
+  string scriptContents;
+  bool loadOK = fileToString(scriptPath, scriptContents);
+  if (!loadOK)
+  {
+    STEP3_RUN_DPT_TEXT.text(\"Didn't mamange to load the script\");
+    return;
+  }
+  int evalOK;
+  int retVal = -1;
+  evalOK = evalScript(retVal,scriptContents, /*dollars...*/makeDynString());
+  if (evalOK != 0)
+  {
+    STEP3_RUN_DPT_TEXT.text(\"evalScript() failed. Check the log.\");
+    return;
+  }
+  if (retVal != 0)
+  {
+    STEP3_RUN_DPT_TEXT.text(\"Script failed\");
+    return;
+  }
+
+  STEP3_RUN_DPT_TEXT.text(\"OK\");
+  
+}" 0
+ E E E
+2 17
+"STEP3_RUN_DPT_TEXT"
+""
+1 256.9999999999994 343 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 13.53671341724635 0 1.139938093083626 -3276.890113158183 -48.98436037035707 0 E 256.9999999999994 343 326 357
+0 2 2 "0s" 0 0 0 192 0 0  256.9999999999994 343 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 14 ... status ...
+30 18
+"FRAME4"
+""
+1 10 283 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.027027027027027 0 2.631578947368418 -0.2702702702702497 -374.7368421052622 0 E 10 283 381 341
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 40 Step 5: import quasar server config file
+13 19
+"BUTTON_CONFIG_FILE_SELECTOR"
+""
+1 19.99999999999998 413 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  17.99999999999998 408.0000000000002 172 431.9999999999999
+
+T 
+1
+LANG:1 20 Config file selector
+"main(mapping event)
+{
+  string path;
+  int result = fileSelector(path, QUASAR_PROJECT_PATH.text());
+  if (result == 0)
+    CONFIG_FILE_PATH.text(path);
+}" 0
+ E E E
+14 20
+"CONFIG_FILE_PATH"
+""
+1 19.99999999999998 395.3333333333333 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 25 quasar server config file
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  17.99999999999998 388 382 411.9999999999999
+3 "0s" 0 0 0 0 0 -1  E E E
+13 21
+"BUTTON_CREATE_INSTANCES"
+""
+1 250.0000000000001 453.2709597488535 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  248.0000000000001 448.2709597488535 382.0000000000001 472.2709597488535
+
+T 
+1
+LANG:1 8 Execute!
+"main(mapping event)
+{
+  string path = QUASAR_PROJECT_PATH.text;
+  string scriptPath = PROJ_PATH+\"scripts/libs\";
+  string scriptContents;
+  bool loadOK = fileToString(scriptPath, scriptContents);
+  if (!loadOK)
+  {
+    DP_INSTANCES_TEXT.text(\"Didn't mamange to load the script\");
+    return;
+  }
+  int evalOK;
+  
+  string configPath = CONFIG_FILE_PATH.text;
+  bool createDatapoints = EXECUTE_OPTIONS.state(0);
+  bool assignAddresses = EXECUTE_OPTIONS.state(1);
+  bool continueOnError = EXECUTE_OPTIONS.state(2);  
+  
+  int retVal = -1;
+  evalOK = evalScript(retVal,scriptContents, /*dollars...*/makeDynString(), configPath, createDatapoints, assignAddresses, continueOnError);
+  if (evalOK != 0)
+  {
+    DP_INSTANCES_TEXT.text(\"evalScript() failed. Check the log.\");
+    return;
+  }
+  if (retVal != 0)
+  {
+    DP_INSTANCES_TEXT.text(\"Script failed\");
+    return;
+  }
+
+  DP_INSTANCES_TEXT.text(\"OK\");
+}" 0
+ E E E
+13 22
+"BUTTON_CONFIRM_PREFIX"
+""
+1 189.9999999999997 273 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  188.0000000000001 268 382.0000000000003 292
+
+T 
+1
+LANG:1 28 Confirm and generate tooling
+"main(mapping event)
+{
+
+  string path = QUASAR_PROJECT_PATH.text;
+  string dpt_prefix = DPT_PREFIX.text;
+  string server_name = SERVER_NAME.text;
+  string subscription  = SUBSCRIPTION.text;
+  int driverNumber = DRIVER_NUMBER.value;  
+  
+  int rv = system(\"cd \"+path+\"; python Cacophony/generateStuff.py\"+
+                  \" --dpt_prefix \"+dpt_prefix+
+                  \" --server_name \"+server_name+
+                  \" --subscription \"+subscription+
+                  \" --driver_number \"+driverNumber);
+  if (rv == 0)
+  {
+    STEP3_GEN_DPT_TEXT.text(\"OK\");
+  }
+  else
+  {
+    STEP3_GEN_DPT_TEXT.text(\"Failed - check the log!\");
+    return;
+  }
+    
+  STEP3_RUN_DPT.enabled(true);  
+  
+  CONFIG_FILE_PATH.enabled(true);
+  BUTTON_CONFIG_FILE_SELECTOR.enabled(true);
+  BUTTON_CONFIG_FILE_CHOSEN.enabled(true);
+}" 0
+ E E E
+13 23
+"BUTTON_CONFIG_FILE_CHOSEN"
+""
+1 250 413 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  248 408 382 431.9999999999999
+
+T 
+1
+LANG:1 16 Chosen, move on!
+"main(mapping event)
+{
+  EXECUTE_OPTIONS.enabled(true);
+  BUTTON_CREATE_INSTANCES.enabled(true);
+}" 0
+ E E E
+2 24
+"DP_INSTANCES_TEXT"
+""
+1 196.9999999999996 468 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+5
+"sizePolicy" "Maximum Preferred"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 3.596682484971108 0 1.226472749415729 -686.5458000675042 -82.60529996327452 0 E 196.9999999999996 468 296 482
+0 2 2 "0s" 0 0 0 192 0 0  196.9999999999996 468 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 22 ........status........
+6 28
+"RECTANGLE3"
+""
+1 350 10 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 2.499999999999996 0 1.7 -524.9999999999987 -18 2  1 0  "28.png" 4294967295 E 350 10 370 40
+30 29
+"FRAME5"
+""
+1 10 183 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 3.162162162162161 0 -398.6756756756753 0 E 10 183 391 221
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 31 Step 3: some important settings
+2 30
+"PRIMITIVE_TEXT3"
+""
+1 38.83333333333314 231.6666666666667 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.394798818959918 0 1.136831749074637 -32.18273587423438 -41.54666227922421 0 E 38.83333333333314 231.6666666666667 122 246
+0 2 2 "0s" 0 0 0 192 0 0  38.83333333333314 231.6666666666667 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 12 Server name:
+14 32
+"SERVER_NAME"
+""
+1 140 223 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  138 218 382 242
+3 "0s" 0 0 0 0 0 -1  E E E
+14 33
+"SUBSCRIPTION"
+""
+1 140 238 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  138 238 382.0000000000002 262.0000000000003
+3 "0s" 0 0 0 0 0 -1  E E E
+2 34
+"PRIMITIVE_TEXT4"
+""
+1 30 250 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.430130709457506 0 1.145670704375773 -20.91788480484828 -44.41718365579566 0 E 30 250 111 264
+0 2 2 "0s" 0 0 0 192 0 0  30 250 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 13 Subscription:
+2 36
+"PRIMITIVE_TEXT5"
+""
+1 30 260 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.165657202170442 0 0.7984725497165363 -13.68048415038963 54.46617759293636 0 E 30 260 130 280
+0 2 2 "0s" 0 0 0 64 0 0  30 260 1
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 11 Driver num:
+21 37
+"DRIVER_NUMBER"
+""
+1 139.905991197243 263 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  137.905991197243 258 182 282
+0
+
+E
+E
+E
+
+N 0 100 1 0 1 1
+20 38
+"EXECUTE_OPTIONS"
+""
+1 19.99999999999999 440 E E E 0 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  17.99999999999999 438 202 492
+3
+T 
+1
+LANG:1 17 Create datapoints
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 23 Assign OPC-UA addresses
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 17 Continue on error
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+0
+EE0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

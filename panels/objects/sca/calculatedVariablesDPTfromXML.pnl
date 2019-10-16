@@ -1,0 +1,1194 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 710 567 N "FwAtlasBg" 0
+E E E E E 1 -1 -1 0  -191.3149253731343 0
+""0  1
+E "#uses \"CtrlXml\"
+dyn_int getChildNodesWithName (int docNum, int parentNode, string name)
+{
+//   DebugN(\"Inside \"+name,docNum);
+  dyn_int result;
+  int node = xmlFirstChild (docNum, parentNode);
+  while (node >= 0)
+    {
+      if (xmlNodeName (docNum, node) == name)
+	dynAppend (result, node);
+      node = xmlNextSibling (docNum, node);
+    }
+  
+ 
+  return result;
+
+}
+
+
+void assignPWVoltDPEs(string dpe)
+{
+      string address;
+      dyn_string dsExceptionInfo;
+
+       address = dpe;		// address can be generated from dpe after some mods ...
+       strreplace (address, \"/\", \".\");
+       
+       fwPeriphAddress_setOPCUA (dpe /*dpe */ ,
+ 				\"SCA_OPC_UA_SERVER\" /* server name */ ,
+ 				65,
+ 				\"ns=2;s=\" + address,
+ 				\"SCA_OPC_UA_SUBSCRIPTION\" /* subscription */ ,
+ 				1 /* kind */ ,
+ 				1 /* variant */ ,
+ 				750 /* datatype */ ,
+ 				DPATTR_ADDR_MODE_INPUT_SPONT /* mode */ ,
+ 				\"\" /*poll group */ ,
+ 				dsExceptionInfo);
+                  
+}
+
+
+dyn_string analogItemsWithCalculatedVariable(string configFileName)
+{
+  string searchInputName=\"ai\";
+  string inputSystemName=\"AnalogInputSystem\";
+  string xmlSectionToSearch=\"AnalogInput\";
+                          
+  string errMsg;
+  int errLine;
+  int errColumn;
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+   
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  dyn_int numberOfInput;
+  
+  int inputSystemChild;
+  
+  string name;
+  string boardName;
+  dyn_string inputChildItem;
+  
+  dyn_string allInputsItems;
+  
+  dyn_uint numberOfSystemsPerSca;
+  string nodeName;
+  
+  int nodeToSearchIn;
+  bool didFindSystem=FALSE;
+  
+  int CalculatedVariableChild;
+  int CalculatedVariableItemCounter=1; 
+  dyn_string CalculatedVariableItem;
+  dyn_string finalDpesWithCalculatedVariable;
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);            
+       inputSystemChild=xmlFirstChild (docNum, numberOfBoards[i]);
+       
+       xmlChildNodes(docNum, numberOfBoards[i],numberOfSystemsPerSca);
+
+        didFindSystem=FALSE;
+       for(int z=1;z<=dynlen(numberOfSystemsPerSca);z++)
+         {
+           nodeName=xmlNodeName(docNum,numberOfSystemsPerSca[z]);     
+         if(nodeName==inputSystemName)
+           {
+          nodeToSearchIn=numberOfSystemsPerSca[z];
+          didFindSystem=TRUE;
+          break;  
+           }         
+       } //numberOfSystemsPerSca
+       
+       if(didFindSystem)
+       {
+       
+       numberOfInput=getChildNodesWithName(docNum, nodeToSearchIn, xmlSectionToSearch);          
+                   
+       dynClear(inputChildItem); 
+       dynClear(allInputsItems);
+       dynClear(CalculatedVariableItem);        
+
+       for(int j=1;j<=dynlen(numberOfInput);j++)
+        {
+         xmlGetElementAttribute (docNum,numberOfInput[j], \"name\", name);       
+         inputChildItem[j]=name; 
+
+         CalculatedVariableChild=xmlFirstChild (docNum, numberOfInput[j]);
+         
+         if(CalculatedVariableChild!=-1)
+         {
+           xmlGetElementAttribute (docNum,CalculatedVariableChild, \"name\", CalculatedVariableItem[j]); 
+           dynAppend(finalDpesWithCalculatedVariable,boardName+\"/\"+searchInputName+\"/\"+inputChildItem[j]+\".\"+CalculatedVariableItem[j]);
+          }
+          else
+          {
+             CalculatedVariableItem[j]=\"\";
+          }
+    
+        } //numberOfInput
+          
+       }
+      else
+       {
+          DebugTN(\"ERROR\",\"Did not find system \"+inputSystemName+\" inside Board \"+boardName+\" of OPC UA Server XML file! | Check XML file.\");      
+       }
+      }    //numberOfBoards
+
+      xmlCloseDocument(docNum);
+  
+      return finalDpesWithCalculatedVariable; 
+    
+}
+
+dyn_string inputItemsListPerSystem(string configFileName,string xmlSectionToSearch)
+{
+  
+  string searchInputName;
+  string inputSystemName;
+  if(xmlSectionToSearch==\"AnalogInput\")  
+  {
+     searchInputName=\"ai\";
+     inputSystemName=\"AnalogInputSystem\";
+   }
+  if(xmlSectionToSearch==\"DigitalIO\") 
+  { 
+     searchInputName=\"gpio\";    
+     inputSystemName=\"DigitalIOSystem\";
+   }     
+                  
+         
+  string errMsg;
+  int errLine;
+  int errColumn;
+//   string configFileName=\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/config16L1DDC16MMFE8_new.xml\";
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+   
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  dyn_int numberOfInput;
+  
+  int inputSystemChild;
+  
+  string name;
+  string boardName;
+  dyn_string inputChildItem;
+  
+  dyn_string allInputsItems;
+  
+  dyn_uint numberOfSystemsPerSca;
+  string nodeName;
+  
+  int nodeToSearchIn;
+  bool didFindSystem=FALSE;
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);            
+       inputSystemChild=xmlFirstChild (docNum, numberOfBoards[i]);
+       
+       xmlChildNodes(docNum, numberOfBoards[i],numberOfSystemsPerSca);
+
+        didFindSystem=FALSE;
+       for(int z=1;z<=dynlen(numberOfSystemsPerSca);z++)
+         {
+           nodeName=xmlNodeName(docNum,numberOfSystemsPerSca[z]);     
+         if(nodeName==inputSystemName)
+           {
+          nodeToSearchIn=numberOfSystemsPerSca[z];
+          didFindSystem=TRUE;
+          break;  
+           }         
+       } //numberOfSystemsPerSca
+       
+       if(didFindSystem)
+       {
+       
+       numberOfInput=getChildNodesWithName(docNum, nodeToSearchIn, xmlSectionToSearch);          
+                   
+       dynClear(inputChildItem); 
+       dynClear(allInputsItems);        
+
+       for(int j=1;j<=dynlen(numberOfInput);j++)
+        {
+         xmlGetElementAttribute (docNum,numberOfInput[j], \"name\", name);       
+         inputChildItem[j]=name; 
+         dynAppend(allInputsItems,boardName+\"/\"+searchInputName+\"/\"+inputChildItem[j]);
+    
+        } //numberOfInput
+          
+//         DebugN(boardName,dynlen(allInputsItems));    
+       }
+      else
+       {
+          DebugTN(\"ERROR\",\"Did not find system \"+inputSystemName+\" inside Board \"+boardName+\" of OPC UA Server XML file! | Check XML file.\");      
+       }
+      }    //numberOfBoards
+  
+      xmlCloseDocument(docNum); 
+      return allInputsItems;
+
+}
+
+int countInputItemsPerSystemPerBoard(string configFileName,string xmlSectionToSearch,string boardToSearch)
+{
+  
+  string searchInputName;
+  string inputSystemName;
+  if(xmlSectionToSearch==\"AnalogInput\")  
+  {
+     searchInputName=\"ai\";
+     inputSystemName=\"AnalogInputSystem\";
+   }
+  if(xmlSectionToSearch==\"DigitalIO\") 
+  { 
+     searchInputName=\"gpio\";    
+     inputSystemName=\"DigitalIOSystem\";
+   }     
+                  
+         
+  string errMsg;
+  int errLine;
+  int errColumn;
+//   string configFileName=\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/config16L1DDC16MMFE8_new.xml\";
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+   
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  dyn_int numberOfInput;
+  
+  int inputSystemChild;
+  
+  string name;
+  string boardName;
+  dyn_string inputChildItem;
+  
+  dyn_string allInputsItems;
+  
+  dyn_uint numberOfSystemsPerSca;
+  string nodeName;
+  
+  int nodeToSearchIn;
+  bool didFindSystem=FALSE;
+  
+  bool didFindBoard=FALSE;
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);  
+      
+       if(boardName==boardToSearch)  
+       {     
+       didFindBoard=TRUE;
+       inputSystemChild=xmlFirstChild (docNum, numberOfBoards[i]);
+       
+       xmlChildNodes(docNum, numberOfBoards[i],numberOfSystemsPerSca);
+
+        didFindSystem=FALSE;
+       for(int z=1;z<=dynlen(numberOfSystemsPerSca);z++)
+         {
+           nodeName=xmlNodeName(docNum,numberOfSystemsPerSca[z]);     
+         if(nodeName==inputSystemName)
+           {
+          nodeToSearchIn=numberOfSystemsPerSca[z];
+          didFindSystem=TRUE;
+          break;  
+           }         
+         } //numberOfSystemsPerSca
+       
+      if(didFindSystem)
+       {
+       
+       numberOfInput=getChildNodesWithName(docNum, nodeToSearchIn, xmlSectionToSearch);          
+                             
+       }
+      else
+       {
+          DebugTN(\"ERROR\",\"Did not find system \"+inputSystemName+\" inside Board \"+boardName+\" of OPC UA Server XML file! | Check XML file.\");      
+       }
+      }    //numberOfBoards
+       
+     }
+  if(!didFindBoard)   DebugTN(\"ERROR\",\"Did not find board \"+boardToSearch+\" inside OPC UA Server XML file! | Check XML file.\");   
+
+     xmlCloseDocument(docNum);
+     
+  return dynlen(numberOfInput);
+
+}
+
+dyn_string inputItemsPerSystemPerBoard(string configFileName,string xmlSectionToSearch,string boardToSearch)
+{
+  
+  string searchInputName;
+  string inputSystemName;
+  if(xmlSectionToSearch==\"AnalogInput\")  
+  {
+     searchInputName=\"ai\";
+     inputSystemName=\"AnalogInputSystem\";
+   }
+  if(xmlSectionToSearch==\"DigitalIO\") 
+  { 
+     searchInputName=\"gpio\";    
+     inputSystemName=\"DigitalIOSystem\";
+   }     
+                  
+         
+  string errMsg;
+  int errLine;
+  int errColumn;
+//   string configFileName=\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/config16L1DDC16MMFE8_new.xml\";
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+   
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  dyn_int numberOfInput;
+  
+  int inputSystemChild;
+  
+  string name;
+  string boardName;
+  dyn_string inputChildItem;
+  
+  dyn_string allInputsItems;
+  
+  dyn_uint numberOfSystemsPerSca;
+  string nodeName;
+  
+  int nodeToSearchIn;
+  bool didFindSystem=FALSE;
+  
+  bool didFindBoard=FALSE;
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);  
+      
+       if(boardName==boardToSearch)  
+       {     
+       didFindBoard=TRUE;
+       inputSystemChild=xmlFirstChild (docNum, numberOfBoards[i]);
+       
+       xmlChildNodes(docNum, numberOfBoards[i],numberOfSystemsPerSca);
+
+        didFindSystem=FALSE;
+       for(int z=1;z<=dynlen(numberOfSystemsPerSca);z++)
+         {
+           nodeName=xmlNodeName(docNum,numberOfSystemsPerSca[z]);     
+         if(nodeName==inputSystemName)
+           {
+          nodeToSearchIn=numberOfSystemsPerSca[z];
+          didFindSystem=TRUE;
+          break;  
+           }         
+         } //numberOfSystemsPerSca
+       
+      if(didFindSystem)
+       {
+       
+       numberOfInput=getChildNodesWithName(docNum, nodeToSearchIn, xmlSectionToSearch); 
+       
+       dynClear(inputChildItem); 
+       dynClear(allInputsItems);        
+
+       for(int j=1;j<=dynlen(numberOfInput);j++)
+        {
+         xmlGetElementAttribute (docNum,numberOfInput[j], \"name\", name);       
+         inputChildItem[j]=name; 
+         dynAppend(allInputsItems,boardName+\"/\"+searchInputName+\"/\"+inputChildItem[j]);
+    
+        } //numberOfInput                             
+       }
+      else
+       {
+          DebugTN(\"ERROR\",\"Did not find system \"+inputSystemName+\" inside Board \"+boardName+\" of OPC UA Server XML file! | Check XML file.\");      
+       }
+      }    //numberOfBoards
+       
+     }
+  if(!didFindBoard)   DebugTN(\"ERROR\",\"Did not find board \"+boardToSearch+\" inside OPC UA Server XML file! | Check XML file.\");   
+
+     xmlCloseDocument(docNum);
+     
+  return allInputsItems;
+
+}
+
+dyn_string boardsTotal(string configFileName)
+{
+  string errMsg;
+  int errLine;
+  int errColumn;
+//   string configFileName=\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/config16L1DDC16MMFE8_new.xml\";
+  int docNum =
+    xmlDocumentFromFile (configFileName, errMsg, errLine, errColumn);
+  
+
+  
+ int firstNode = xmlFirstChild (docNum);
+  if (firstNode < 0)
+    {
+      DebugN (\"Cant get the first child of the config file.\");
+      return -1;
+    }
+  while (xmlNodeName (docNum, firstNode) != \"configuration\")
+    {
+      firstNode = xmlNextSibling (docNum, firstNode);
+      if (firstNode < 0)
+	{
+	  DebugTN (\"configuration node not found, sorry.\");
+	  return -1;
+	}
+    }
+  // now firstNode holds configuration node   
+  dyn_int numberOfBoards = getChildNodesWithName (docNum, firstNode, \"SCA\");
+  
+  string boardName;
+  dyn_string boardsTotalList;
+  
+  
+  for (int i = 1; i <= dynlen (numberOfBoards); i++)
+    {
+       xmlGetElementAttribute (docNum,numberOfBoards[i], \"name\", boardName);    
+       dynAppend(boardsTotalList,boardName);
+    
+       } //numberOfBoards
+  
+  xmlCloseDocument(docNum);                
+  return boardsTotalList;
+
+}
+
+ void assignOPCUAAdress(string dpe,string type)
+  {
+      string address;
+      dyn_string dsExceptionInfo;
+
+      dpe = dpe + \".\"+type;
+      address = dpe;		// address can be generated from dpe after some mods ...
+      strreplace (address, \"/\", \".\");
+      fwPeriphAddress_setOPCUA (dpe /*dpe */ ,
+				\"OpcUaScaServer\" /* server name */ ,
+				15,
+				\"ns=2;s=\" + address,
+				\"OpcUaScaServerSub\" /* subscription */ ,
+				1 /* kind */ ,
+				1 /* variant */ ,
+				750 /* datatype */ ,
+				DPATTR_ADDR_MODE_INPUT_SPONT /* mode */ ,
+				\"\" /*poll group */ ,
+				dsExceptionInfo);  
+        
+    
+  }
+  
+  
+" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+6 0
+"titleBackground"
+""
+1 0 40 E E E 1 E 1 E N "STD_grey_dark" E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 2 0 1 E 1.560334851693859 0 1 -188.8640157831914 -19 4 "[conical,-1.18,1.23,153,0,{0,0,0},0.762,{255,255,255}]" E -1 60 669 20
+2 1
+"PRIMITIVE_TEXT7"
+""
+1 190.75 7.65625 E E E 1 E 1 E N "FwAtlasBg" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 190.75 7.65625 470 33
+0 2 2 "0s" 0 0 0 192 0 0  190.75 7.65625 1
+1
+LANG:1 27 Utopia,-1,21,5,75,0,0,0,0,0
+0 1
+LANG:1 25 XML->Analog Items DPT Fix
+13 2
+"PUSH_BUTTON1"
+""
+1 29 112.1125 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  27 98.11250000000001 241 132.1125
+
+T 
+1
+LANG:1 22 Display SCA-Boards IDs
+"main(mapping event)
+{
+   string path=filePath.text();
+   dyn_string boards=boardsTotal(path);
+
+
+   dyn_string boardSum;
+   dyn_int boardCounter;
+   int mmfe8Counter=0;
+   int l1ddcCounter=0;
+   int addcCounter=0;
+   int boardTypeCounter=0;
+   
+   totalBoardList.deleteAllLines();
+   boardSumTable.deleteAllLines();
+       
+   dyn_bool flagBoard=FALSE;   
+   
+
+   int analogItems;
+   int digitalItems;
+   
+   for(int i=1;i<=dynlen(boards);i++)
+    {
+        analogItems=countInputItemsPerSystemPerBoard(path,\"AnalogInput\",boards[i]);
+        digitalItems=countInputItemsPerSystemPerBoard(path,\"DigitalIO\",boards[i]);
+        
+        totalBoardList.appendLine(\"Num\",i,\"Boards\",boards[i],\"ai\",analogItems,\"gpio\",digitalItems); 
+        if(uniPatternMatch(\"*MMFE8*\",boards[i]))
+        {
+          mmfe8Counter++;
+          boardCounter[1]=mmfe8Counter;
+          boardSum[1]=\"MMFE8\"; 
+          flagBoard[1]=TRUE;         
+        }
+        
+        if(uniPatternMatch(\"*L1DDC*\",boards[i]))
+        {
+          l1ddcCounter++;
+          boardCounter[2]=l1ddcCounter;
+          boardSum[2]=\"L1DDC\"; 
+          flagBoard[2]=TRUE;                  
+        }
+        
+        if(uniPatternMatch(\"*ADDC*\",boards[i]))
+        {
+          addcCounter++;
+          boardCounter[3]=addcCounter;
+          boardSum[3]=\"ADDC\";  
+          flagBoard[3]=TRUE;                 
+        }        
+        
+    }
+    
+   totalBoards.text(dynlen(boards));  
+     
+   for(int i=1;i<=dynlen(boardSum);i++)
+    {
+      if(flagBoard[i]) boardSumTable.appendLine(\"Board\",boardSum[i],\"Sum\",boardCounter[i]); 
+     }
+       
+    
+}" 0
+ E E E
+13 3
+"closeButton"
+""
+1 622 493 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  620 483.3 682.25 509.3
+
+T 
+1
+LANG:1 5 Close
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+13 4
+"PUSH_BUTTON2"
+""
+1 398 197 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  396.3460199119295 187 653.3460199119295 221
+
+T 
+1
+LANG:1 25 Add power/Temp to ai DPEs
+"main(mapping event)
+{
+   
+dyn_dyn_string elements;
+dyn_dyn_int types;  
+
+     elements[1]=makeDynString(\"fwScaAnalogInput\",\"\");
+     elements[2]=makeDynString(\"\",\"value\");
+     elements[3]=makeDynString(\"\",\"rawValue\");
+     elements[4]=makeDynString(\"\",\"power\");
+     elements[5]=makeDynString(\"\",\"temperature\");
+     
+     types[1]=makeDynInt(DPEL_STRUCT);
+     types[2]=makeDynInt(0,DPEL_FLOAT);
+     types[3]=makeDynInt(0,DPEL_UINT);
+     types[4]=makeDynInt(0,DPEL_FLOAT);
+     types[5]=makeDynInt(0,DPEL_FLOAT);     
+     
+    dpTypeChange(elements,types); 
+   
+}" 0
+ E E E
+13 5
+"PUSH_BUTTON3"
+""
+1 398 272 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  395.9375 261.925 652.9375 295.925
+
+T 
+1
+LANG:1 32 Assign OPC UA to power/temp DPEs
+"main(mapping event)
+{
+    
+  dyn_string analogItemsWithCalculatedVariableList=analogItemsWithCalculatedVariable(filePath.text());
+
+  for(int i=1;i<=dynlen(analogItemsWithCalculatedVariableList);i++)
+  {   
+   assignPWVoltDPEs(analogItemsWithCalculatedVariableList[i]);             
+  }
+ 
+   
+  DebugTN(\"Assign of Power/Temperature OPC UA Address:\",\"READY\");
+  
+  
+
+  
+}" 0
+ E E E
+13 7
+"PUSH_BUTTON5"
+""
+1 379 366 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  377 353.275 525 390.275
+
+T 
+1
+LANG:1 20 Assign OPC UA Adress
+"main(mapping event)
+{
+
+  dyn_string analogItemsTotalList=analogItemsTotal();
+  string dpElement=parameterBox.text();
+  
+  for(int i=1;i<=dynlen(analogItemsTotalList);i++)
+  {     
+  assignOPCUAAdress(analogItemsTotalList[i],dpElement);      
+  }
+  
+    DebugTN(\"Assign of \"+dpElement+\" OPC UA Address:\",\"READY\");
+  
+}" 0
+ E E E
+30 8
+"FRAME1"
+""
+1 280 53 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.8831168831168831 90 287.1948051948052 0 E 280 53 601 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+22 10
+"parameterBox"
+""
+1 540.625 363.125 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  538.625 357.125 662.625 383.125
+2
+1
+LANG:1 5 value
+
+0
+1
+LANG:1 8 rawValue
+
+0
+
+E
+E
+E
+ 0 0
+25 11
+"totalBoardList"
+""
+1 29 142 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  27 140 337.9999999999999 413.0000000000001
+EE 1 0 1 4 0 "Num" 2 1 0 "s" 1
+LANG:1 3 Num
+E
+1
+LANG:1 0 
+
+32 "Boards" 15 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 6 Boards
+E
+1
+LANG:1 0 
+
+177 "ai" 2 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 2 ai
+E
+1
+LANG:1 0 
+
+40 "gpio" 2 1 0 "[0s,,,ALIGNMENT_CENTER]" 1
+LANG:1 4 gpio
+E
+1
+LANG:1 0 
+
+40 
+15 15 10 0
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+30 12
+"FRAME2"
+""
+1 280 53 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.00274953358209 0 1.818181818181818 88.72527985074591 68.6363636363636 0 E 280 53 601 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 13
+"PRIMITIVE_TEXT8"
+""
+1 65 525 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 65 525 108 542
+0 2 2 "0s" 0 0 0 192 0 0  65 525 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Total:
+14 14
+"totalBoards"
+""
+1 132 524 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0  130 519 184 548
+3 "0s" 0 0 0 1 0 -1  E E E
+30 24
+"FRAME3"
+""
+1 280 53 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.4656250000000001 0 0.5454545454545453 -76.37499999999997 480.0909090909091 0 E 280 53 601 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 26
+"PRIMITIVE_TEXT14"
+""
+1 25 57 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 25 57 93 74
+0 2 2 "0s" 0 0 0 192 0 0  25 57 1
+1
+LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
+0 1
+LANG:1 9 XML File:
+14 27
+"filePath"
+""
+1 91 59 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  89 52 612 77
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"/home/bb5user/Documents/ATLNSWELTX/scripts/examples/ScaOpcUa/small_sector_12.xml\");
+}" 0
+ E
+13 28
+"PUSH_BUTTON7"
+""
+1 626 59 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+28 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  624 51 659 80
+
+P 
+4294967295
+"pictures/folderNew.png"
+1
+LANG:1 12 PUSH_BUTTON7
+"main(mapping event)
+{
+ string fileDirectory;
+ fileSelector(fileDirectory, PROJ_PATH,false, \"*.xml\", false, \"MyId\");
+ filePath.text(fileDirectory);
+ 
+    totalBoardList.deleteAllLines();
+    boardSumTable.deleteAllLines();
+ 
+}" 0
+ E E E
+13 29
+"PUSH_BUTTON8"
+""
+1 397 239 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+29 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  395 225 651 259
+
+T 
+1
+LANG:1 18 Display Calculated
+"main()
+{
+   
+  DebugN(analogItemsWithCalculatedVariable(filePath.text()));
+  
+}
+    " 0
+ E E E
+25 33
+"boardSumTable"
+""
+1 30 111 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  27 415 241 512
+EE 1 0 1 2 0 "Board" 10 1 0 "s" 1
+LANG:1 5 Board
+E
+1
+LANG:1 0 
+
+128 "Sum" 6 1 0 "s" 1
+LANG:1 3 Sum
+E
+1
+LANG:1 0 
+
+80 
+15 15 10 0
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+13 34
+"PUSH_BUTTON9"
+""
+1 409 126 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+34 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  407 115 667 150
+
+T 
+1
+LANG:1 11 Create DPTs
+"#uses \"fwSca/fwScaConfigParser.ctl\"
+main(mapping event)
+{
+  fwSca_parseConfig(filePath.text(),TRUE, TRUE, FALSE);
+}" 0
+ E E E
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

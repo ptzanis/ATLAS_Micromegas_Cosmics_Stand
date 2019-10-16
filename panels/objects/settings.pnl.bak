@@ -941,7 +941,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E 0.2050927044033372 0 0.7132802545503736 366.6989523701989 449.5743630901959 1 E 10 47 619 145
+E E 0 1 1 2 1 E 0.2050927044033372 0 0.9887904586320049 366.6989523701989 436.6253834983593 1 E 10 47 619 145
 30 43
 "FRAME13"
 ""
@@ -957,7 +957,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.2193390816019103 0 0.2081245222118407 366.5426324867359 358.6990146946403 0 E 10 554 581 941
+E E 0 0 1 0 1 E 0.2193390816019103 0 0.2772020725388598 366.5426324867359 320.4300518134717 0 E 10 554 581 941
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
@@ -1051,7 +1051,7 @@ void EP_setBackColorCB(string dpSource, bool boNewValue)
 13 48
 "closeButton"
 ""
-1 475 581 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 475 591 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 35 0 0 0 0 0
 E E E
@@ -1063,7 +1063,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  473 571.3 535.25 597.3
+0  473 581.3 535.25 607.3
 
 T 
 1
@@ -1174,7 +1174,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E 0.4046063804101386 0 0.6471993052540154 21.25129336101143 447.1561007381678 1 E 10 47 619 145
+E E 0 1 1 2 1 E 0.4046063804101386 0 0.6471993052540154 19.25129336101143 447.1561007381678 1 E 10 47 619 145
 30 66
 "FRAME14"
 ""
@@ -1190,7 +1190,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 0 1 0 1 E 0.4327115981410253 0 0.1735751295336784 22.53229047548918 377.8393782383422 0 E 10 554 581 941
+E E 0 0 1 0 1 E 0.4327115981410253 0 0.1735751295336784 20.53229047548918 377.8393782383422 0 E 10 554 581 941
 1
 LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
 0 1
@@ -1198,7 +1198,7 @@ LANG:1 10 Archive DB
 13 67
 "PUSH_BUTTON1"
 ""
-1 89.25000000000003 474.2872340425532 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
+1 87.25000000000003 474.2872340425532 E E E 1 E 1 E N "_ButtonText" E N {236,236,236} E E
  E E
 40 0 0 0 0 0
 E E E
@@ -1210,7 +1210,7 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
-0  87.00000000000003 492.2872340425532 210 526.2872340425532
+0  85.00000000000003 492.2872340425532 208 526.2872340425532
 
 T 
 1
@@ -1220,11 +1220,179 @@ LANG:1 10 Archive DB
     ChildPanelOnCentral(\"objects/archivedData.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
+6 76
+"RECTANGLE23"
+""
+1 27 564 E E E 1 E 1 E N {0,0,0} E N {223,223,223} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.012295081967213 0 1.189189189189189 -2.331967213114758 -116.7027027027027 1 E 27 564 271 601
+30 75
+"FRAME15"
+""
+1 27 539 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+41 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 1.008163265306123 0 1 -2.220408163265319 6 0 E 27 539 273 594
+1
+LANG:1 27 Utopia,-1,13,5,50,0,0,0,0,0
+0 1
+LANG:1 34 Output Nodes differential pressure
+13 77
+"PUSH_BUTTON2"
+""
+1 94 571 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+43 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0  92 562 209 593
+
+T 
+1
+LANG:1 8 Pressure
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentral(\"objects/pce2nodes.pnl\",
+      \"\",
+      makeDynString(\"\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/pce2nodes.pnl}
+// Panel {}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E E
+2 78
+"PRIMITIVE_TEXT5"
+""
+1 376 555 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 2 1 3 2 1 E U  0 E 376 555 442 570
+0 2 2 "0s" 0 0 0 192 0 0  376 555 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 9 Raspberry
+7 79
+"ELLIPSE4"
+""
+1 490.25 521.25 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main() {
+  EP_setBackColor();
+}
+void EP_setBackColor()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:_RPIServer.State.ConnState:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_setBackColorCB\", 
+            \"System1:_RPIServer.State.ConnState:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_setBackColorCB(string dpSource, unsigned uNewValue)
+{
+  if (uNewValue == 0)
+    setValue(\"\", \"backCol\", \"Red\");
+  else if (uNewValue == 1)
+    setValue(\"\", \"backCol\", \"S7_stateWentUnq\");
+  else
+    setValue(\"\", \"backCol\", \"STD_value_default\");
+}
+
+// SimpleCtrlScript {EP_setBackColor}
+// DP {System1:_RPIServer.State.ConnState}
+// DPConfig {:_online.._value}
+// DPType {unsigned}
+// AlertHdl {FALSE}
+// DPEInvalid {}
+// DPEConfigInvalid {}
+// Operator1 {equal}
+// Operant1 {0}
+// Color1 {Red}
+// Operator2 {equal}
+// Operant2 {1}
+// Color2 {S7_stateWentUnq}
+// Operator3 {else}
+// Operant3 {}
+// Color3 {STD_value_default}
+// SimpleCtrlScriptEnd {EP_setBackColor}
+" 0
+ E 0 1 3 2 1 E 0.6103896103896104 0 0.5844155844155844 162.7564935064935 258.3733766233767 1 E 490.25 521.25 19.25 19.25
 0
 LAYER, 1 
 1
 LANG:1 0 
-1 68 0 "" 0
+1 80 0 "" 0
 0
 0
 LAYER, 2 
