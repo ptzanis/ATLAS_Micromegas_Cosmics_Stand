@@ -1389,14 +1389,14 @@ PanelOff();
     <script name="Initialize" isEscaped="1"><![CDATA[main()
 {
   
-    int used,free;
-    dpGet(getSystemName() + &quot;_ArchivDisk.UsedKB&quot;, used);
+    int total,free;
+    dpGet(getSystemName() + &quot;_ArchivDisk.TotalKB&quot;, total);
     dpGet(getSystemName() + &quot;_ArchivDisk.FreeKB&quot;, free);
     
-    float usedGB = used / 1024 / 1024;
+    float totalGB = total / 1024 / 1024;
     float freeGB = free / 1024 / 1024;
     
-        this.text(&quot;Used/Total: &quot; + usedGB + &quot;GB / &quot; + freeGB + &quot;GB&quot;);
+        this.text(&quot;Total/Free: &quot; + totalGB + &quot;GB / &quot; + freeGB + &quot;GB&quot;);
     
 }]]></script>
    </events>
@@ -1432,15 +1432,16 @@ PanelOff();
    <events>
     <script name="Initialize" isEscaped="1"><![CDATA[main()
 {
-    int used,free;
-    dpGet(getSystemName() + &quot;_ArchivDisk.UsedKB&quot;, used);
+    int total,free;
+    dpGet(getSystemName() + &quot;_ArchivDisk.TotalKB&quot;, total);
     dpGet(getSystemName() + &quot;_ArchivDisk.FreeKB&quot;, free);
     
-    float usedGB = used / 1024 / 1024;
+    float totalGB = total / 1024 / 1024;
     float freeGB = free / 1024 / 1024;
     
-    this.progress(usedGB);
-    this.totalSteps(freeGB);
+    this.maximum(totalGB);   
+    this.value(freeGB);
+
     
     
 }]]></script>
