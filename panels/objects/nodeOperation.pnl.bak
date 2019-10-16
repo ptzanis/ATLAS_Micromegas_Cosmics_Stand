@@ -1414,7 +1414,7 @@ void pingChannels(string dpSourceRunStatus, float fNewValueIsRunRunning)
 
 void channelsToPing(string node)
 {
-    dyn_string channel;
+    string channel;
     float voltage,current;
     dyn_string stripsToAppend,driftToAppend,archivedChannel;
    dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripsToAppend);   // Append Strips Channels  
@@ -1424,11 +1424,11 @@ void channelsToPing(string node)
    
    for(int h=1;h<=dynlen(archivedChannel);h++)
    {
-      dpGet(\"N\"+node+\".Mapping.\"+archivedChannel[h]+\".Channel\",channel[h]);
-      dpGet(\"CAEN/\"+channel[h] + \".actual.iMon:_original.._value\",voltage);  
-      dpGet(\"CAEN/\"+channel[h] + \".actual.vMon:_original.._value\",current);               
-      dpSet(\"CAEN/\"+channel[h] + \".actual.iMon:_original.._value\",voltage);  
-      dpSet(\"CAEN/\"+channel[h] + \".actual.vMon:_original.._value\",current);           
+      dpGet(\"N\"+node+\".Mapping.\"+archivedChannel[h]+\".Channel\",channel);
+      dpGet(\"CAEN/\"+channel + \".actual.iMon:_original.._value\",voltage);  
+      dpGet(\"CAEN/\"+channel + \".actual.vMon:_original.._value\",current);               
+      dpSet(\"CAEN/\"+channel + \".actual.iMon:_original.._value\",voltage);  
+      dpSet(\"CAEN/\"+channel + \".actual.vMon:_original.._value\",current);           
     }         
   
   
