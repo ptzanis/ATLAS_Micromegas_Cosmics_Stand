@@ -1455,7 +1455,7 @@ LANG:1 27 Utopia,-1,11,5,50,0,0,0,0,0
 13 31
 "testMapping"
 ""
-1 464 860 E E E 1 E 1 E N "Red" E N "_Button" E E
+1 464 860 E E E 1 E 0 E N "Red" E N "_Button" E E
  E E
 31 0 0 0 0 0
 E E E

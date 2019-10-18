@@ -399,13 +399,13 @@ E
 LANG:1 0 
 
 50 "i0" 5 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
-LANG:1 4 Imax
+LANG:1 2 i0
 E
 1
 LANG:1 0 
 
 65 "i1" 5 1 0 "[0.2f,False,False,ALIGNMENT_CENTER,False]" 1
-LANG:1 4 iSet
+LANG:1 2 i1
 E
 1
 LANG:1 0 
@@ -859,12 +859,12 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 256 250.9500001858401 319.6781168165385 266
+E E 0 1 1 2 1 E U  0 E 276 250.9500001858401 319.6781168165385 266
 0 2 2 "0s" 0 0 0 194 0 0  319.6781168165385 250.9500001858401 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 10 Imax (uA):
+LANG:1 8 i0 (uA):
 2 16
 "PRIMITIVE_TEXT9"
 ""
@@ -1141,12 +1141,12 @@ LANG:1 0
 "layoutAlignment" "AlignCenter"
 "dashclr"N "_Transparent"
 "antiAliased" "0"
-E E 0 1 1 2 1 E U  0 E 263 272 318 287
+E E 0 1 1 2 1 E U  0 E 274 272 318 287
 0 2 2 "0s" 0 0 0 194 0 0  318 272 1
 1
 LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
 0 1
-LANG:1 10 Iset (uA):
+LANG:1 8 i1 (uA):
 0
 LAYER, 1 
 1
