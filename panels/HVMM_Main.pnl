@@ -299,7 +299,226 @@ void splashScreen(bool enabled) {
     }
 }
  
+void checkIfChannelPanelIsOn(){
+  
+  dyn_string node1AliasesStrips,node1AliasesDrift,node1TotalChannels;
+  dyn_string node2AliasesStrips,node2AliasesDrift,node2TotalChannels; 
+  dyn_string node3AliasesStrips,node3AliasesDrift,node3TotalChannels; 
+  dyn_string node4AliasesStrips,node4AliasesDrift,node4TotalChannels;
 
+  
+  
+  dpGet(\"N1.Mapping.ChannelsTotal.Strips\",node1AliasesStrips);
+  dpGet(\"N1.Mapping.ChannelsTotal.Drift\",node1AliasesDrift); 
+  dynAppend(node1TotalChannels,node1AliasesStrips);
+  dynAppend(node1TotalChannels,node1AliasesDrift); 
+  
+  dpGet(\"N2.Mapping.ChannelsTotal.Strips\",node2AliasesStrips);
+  dpGet(\"N2.Mapping.ChannelsTotal.Drift\",node2AliasesDrift); 
+  dynAppend(node2TotalChannels,node2AliasesStrips);
+  dynAppend(node2TotalChannels,node2AliasesDrift); 
+    
+  dpGet(\"N3.Mapping.ChannelsTotal.Strips\",node3AliasesStrips);
+  dpGet(\"N3.Mapping.ChannelsTotal.Drift\",node3AliasesDrift); 
+  dynAppend(node3TotalChannels,node3AliasesStrips);
+  dynAppend(node3TotalChannels,node3AliasesDrift); 
+    
+  dpGet(\"N4.Mapping.ChannelsTotal.Strips\",node4AliasesStrips);
+  dpGet(\"N4.Mapping.ChannelsTotal.Drift\",node4AliasesDrift); 
+  dynAppend(node4TotalChannels,node4AliasesStrips);
+  dynAppend(node4TotalChannels,node4AliasesDrift); 
+    
+  bool channelPanelOn,channelInfoPanelOn;  
+  
+  for(int i=1;i<dynlen(node1TotalChannels);i++)
+  {
+    channelPanelOn=isPanelOpen(\"Channel_\"+node1TotalChannels[i]+\"_N1\",\"embModuleN1\"); 
+    if(channelPanelOn)
+         PanelOffModule(\"Channel_\"+node1TotalChannels[i]+\"_N1\",\"embModuleN1\"); 
+    
+    channelInfoPanelOn=isPanelOpen(\"Channel_Info_\"+node1TotalChannels[i]+\"_N1\",\"embModuleN1\"); 
+    
+    if(channelInfoPanelOn)
+         PanelOffModule(\"Channel_Info_\"+node1TotalChannels[i]+\"_N1\",\"embModuleN1\"); 
+    
+  }
+  
+  for(int i=1;i<dynlen(node2TotalChannels);i++)
+  {
+    channelPanelOn=isPanelOpen(\"Channel_\"+node2TotalChannels[i]+\"_N2\",\"embModuleN2\"); 
+    if(channelPanelOn)
+         PanelOffModule(\"Channel_\"+node2TotalChannels[i]+\"_N2\",\"embModuleN2\"); 
+    
+    channelInfoPanelOn=isPanelOpen(\"Channel_Info_\"+node2TotalChannels[i]+\"_N2\",\"embModuleN2\"); 
+    
+    if(channelInfoPanelOn)
+         PanelOffModule(\"Channel_Info_\"+node2TotalChannels[i]+\"_N2\",\"embModuleN2\"); 
+  }  
+  
+ 
+  for(int i=1;i<dynlen(node3TotalChannels);i++)
+  {
+    channelPanelOn=isPanelOpen(\"Channel_\"+node3TotalChannels[i]+\"_N3\",\"embModuleN3\"); 
+    
+    if(channelPanelOn)
+         PanelOffModule(\"Channel_\"+node3TotalChannels[i]+\"_N3\",\"embModuleN3\"); 
+    
+    channelInfoPanelOn=isPanelOpen(\"Channel_Info_\"+node3TotalChannels[i]+\"_N3\",\"embModuleN3\"); 
+    
+    if(channelInfoPanelOn)
+         PanelOffModule(\"Channel_Info_\"+node3TotalChannels[i]+\"_N3\",\"embModuleN3\"); 
+  }
+  
+  for(int i=1;i<dynlen(node4TotalChannels);i++)
+  {
+    channelPanelOn=isPanelOpen(\"Channel_\"+node4TotalChannels[i]+\"_N4\",\"embModuleN4\"); 
+    
+    if(channelPanelOn)
+         PanelOffModule(\"Channel_\"+node4TotalChannels[i]+\"_N4\",\"embModuleN4\"); 
+    
+    channelInfoPanelOn=isPanelOpen(\"Channel_Info_\"+node4TotalChannels[i]+\"_N4\",\"embModuleN4\"); 
+    
+    if(channelInfoPanelOn)
+         PanelOffModule(\"Channel_Info_\"+node4TotalChannels[i]+\"_N4\",\"embModuleN4\"); 
+  }   
+  
+}
+
+void setEfficiency(string node)
+{
+    
+  dyn_string stripChannels, stripCAENChannels; 
+  int numberOfChannels;
+  
+  dpGet(\"N\"+node+\".Mapping.ChannelsTotal.Strips\",stripChannels);  
+  numberOfChannels=dynlen(stripChannels);
+  
+  for(int i=1;i<=dynlen(stripChannels);i++)
+  {
+    dpGet(\"N\"+node+\".Mapping.\"+stripChannels[i]+\".Channel\",stripCAENChannels[i]);
+    stripCAENChannels[i]=getSystemName()+\"CAEN/\"+ stripCAENChannels[i]+\".actual.vMon:_original.._value\";
+  }
+
+
+
+  
+  dyn_string layer1Channels,layer2Channels,layer3Channels,layer4Channels;
+  
+  string functionMeanVoltage,functionMeanEfficiency;
+  
+  
+  if(numberOfChannels==40)
+  {
+  for(int i=1;i<=numberOfChannels;i++)
+    {
+      if(i>=1 &&i <=10)
+         dynAppend(layer1Channels,stripCAENChannels[i]);
+      if(i>=11 &&i <=20)
+         dynAppend(layer2Channels,stripCAENChannels[i]);      
+      if(i>=21 &&i <=30)
+         dynAppend(layer3Channels,stripCAENChannels[i]);
+      if(i>=31 &&i <=40)
+         dynAppend(layer4Channels,stripCAENChannels[i]);      
+    } 
+
+    functionMeanVoltage=\"(p1+p2+p3+p4+p5+p6+p7+p8+p9+p10)/10.0\";
+//     functionMeanEfficiency=\"((0.00000201048951*p1*p1*p1*p1-0.0044572002072*p1*p1*p1+3.69031954157356*p1*p1-1351.59173141828*p1+184730.856255074)+(0.00000201048951*p2*p2*p2*p2-0.0044572002072*p2*p2*p2+3.69031954157356*p2*p2-1351.59173141828*p2+184730.856255074)+(0.00000201048951*p3*p3*p3*p3-0.0044572002072*p3*p3*p3+3.69031954157356*p3*p3-1351.59173141828*p3+184730.856255074)+(0.00000201048951*p4*p4*p4*p4-0.0044572002072*p4*p4*p4+3.69031954157356*p4*p4-1351.59173141828*p4+184730.856255074)+(0.00000201048951*p5*p5*p5*p5-0.0044572002072*p5*p5*p5+3.69031954157356*p5*p5-1351.59173141828*p5+184730.856255074)+(0.00000201048951*p6*p6*p6*p6-0.0044572002072*p6*p6*p6+3.69031954157356*p6*p6-1351.59173141828*p6+184730.856255074)+(0.00000201048951*p7*p7*p7*p7-0.0044572002072*p7*p7*p7+3.69031954157356*p7*p7-1351.59173141828*p7+184730.856255074)+(0.00000201048951*p8*p8*p8*p8-0.0044572002072*p8*p8*p8+3.69031954157356*p8*p8-1351.59173141828*p8+184730.856255074)+(0.00000201048951*p9*p9*p9*p9-0.0044572002072*p9*p9*p9+3.69031954157356*p9*p9-1351.59173141828*p9+184730.856255074)+(0.00000201048951*p10*p10*p10*p10-0.0044572002072*p10*p10*p10+3.69031954157356*p10*p10-1351.59173141828*p10+184730.856255074))/10.0\";
+    functionMeanEfficiency=\"(96.7336/(1+ exp(-0.0626969*(p1-521.418))))\";
+  }
+  
+  if(numberOfChannels==24)
+  {
+  for(int i=1;i<=numberOfChannels;i++)
+    {
+      if(i>=1 &&i <=6)
+         dynAppend(layer1Channels,stripCAENChannels[i]);
+      if(i>=7 &&i <=12)
+         dynAppend(layer2Channels,stripCAENChannels[i]);      
+      if(i>=13 &&i <=18)
+         dynAppend(layer3Channels,stripCAENChannels[i]);
+      if(i>=19 &&i <=24)
+         dynAppend(layer4Channels,stripCAENChannels[i]);      
+    }
+    functionMeanVoltage=\"(p1+p2+p3+p4+p5+p6)/6.0\";   
+//     functionMeanEfficiency=\"((0.00000201048951*p1*p1*p1*p1-0.0044572002072*p1*p1*p1+3.69031954157356*p1*p1-1351.59173141828*p1+184730.856255074)+(0.00000201048951*p2*p2*p2*p2-0.0044572002072*p2*p2*p2+3.69031954157356*p2*p2-1351.59173141828*p2+184730.856255074)+(0.00000201048951*p3*p3*p3*p3-0.0044572002072*p3*p3*p3+3.69031954157356*p3*p3-1351.59173141828*p3+184730.856255074)+(0.00000201048951*p4*p4*p4*p4-0.0044572002072*p4*p4*p4+3.69031954157356*p4*p4-1351.59173141828*p4+184730.856255074)+(0.00000201048951*p5*p5*p5*p5-0.0044572002072*p5*p5*p5+3.69031954157356*p5*p5-1351.59173141828*p5+184730.856255074)+(0.00000201048951*p6*p6*p6*p6-0.0044572002072*p6*p6*p6+3.69031954157356*p6*p6-1351.59173141828*p6+184730.856255074))/6.0\"; 
+    functionMeanEfficiency=\"(96.7336/(1+ exp(-0.0626969*(p1-521.418))))\";
+  }
+
+/*
+ DebugN(layer1Channels); 
+ DebugN(\"-------------------------\"); 
+ DebugN(layer2Channels);
+ DebugN(\"-------------------------\");  
+ DebugN(layer3Channels); 
+ DebugN(\"-------------------------\");  
+ DebugN(layer4Channels);
+ DebugN(\"-------------------------\");
+
+*/
+
+  int dpfuct=9; //simple average
+  int timeInterval=1;
+  dyn_int dyn_dpfuct;
+  dyn_dpfuct=makeDynInt(dpfuct);
+
+  
+  dpSetWait(\"N\"+node+\".Efficiency.Layer1.meanVoltage:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer1.meanVoltage:_dp_fct.._param\",layer1Channels, 
+            \"N\"+node+\".Efficiency.Layer1.meanVoltage:_dp_fct.._fct\",functionMeanVoltage);   
+
+ 
+  dpSetWait(\"N\"+node+\".Efficiency.Layer1.Eff:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer1.Eff:_dp_fct.._param\",layer1Channels, 
+            \"N\"+node+\".Efficiency.Layer1.Eff:_dp_fct.._fct\",functionMeanEfficiency);   
+   
+  
+  dpSetWait(\"N\"+node+\".Efficiency.Layer2.meanVoltage:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer2.meanVoltage:_dp_fct.._param\",layer2Channels, 
+            \"N\"+node+\".Efficiency.Layer2.meanVoltage:_dp_fct.._fct\",functionMeanVoltage);  
+  
+ 
+  dpSetWait(\"N\"+node+\".Efficiency.Layer2.Eff:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer2.Eff:_dp_fct.._param\",layer2Channels, 
+            \"N\"+node+\".Efficiency.Layer2.Eff:_dp_fct.._fct\",functionMeanEfficiency);   
+   
+
+  dpSetWait(\"N\"+node+\".Efficiency.Layer3.meanVoltage:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer3.meanVoltage:_dp_fct.._param\",layer3Channels, 
+            \"N\"+node+\".Efficiency.Layer3.meanVoltage:_dp_fct.._fct\",functionMeanVoltage);   
+
+ 
+  dpSetWait(\"N\"+node+\".Efficiency.Layer3.Eff:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer3.Eff:_dp_fct.._param\",layer3Channels, 
+            \"N\"+node+\".Efficiency.Layer3.Eff:_dp_fct.._fct\",functionMeanEfficiency);   
+   
+
+  dpSetWait(\"N\"+node+\".Efficiency.Layer4.meanVoltage:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer4.meanVoltage:_dp_fct.._param\",layer4Channels, 
+            \"N\"+node+\".Efficiency.Layer4.meanVoltage:_dp_fct.._fct\",functionMeanVoltage);     
+  
+ 
+  dpSetWait(\"N\"+node+\".Efficiency.Layer4.Eff:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Layer4.Eff:_dp_fct.._param\",layer4Channels, 
+            \"N\"+node+\".Efficiency.Layer4.Eff:_dp_fct.._fct\",functionMeanEfficiency);   
+  
+  dyn_string totalChannel=makeDynString(\"N\"+node+\".Efficiency.Layer1.meanVoltage:_original.._value\",\"N\"+node+\".Efficiency.Layer2.meanVoltage:_original.._value\",\"N\"+node+\".Efficiency.Layer3.meanVoltage:_original.._value\",\"N\"+node+\".Efficiency.Layer4.meanVoltage:_original.._value\");
+
+  
+  dpSetWait(\"N\"+node+\".Efficiency.Total.meanVoltage:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Total.meanVoltage:_dp_fct.._param\",totalChannel, 
+            \"N\"+node+\".Efficiency.Total.meanVoltage:_dp_fct.._fct\",\"(p1+p2+p3+p4)/4.0\");   
+  
+  dyn_string totalChannel=makeDynString(\"N\"+node+\".Efficiency.Layer1.Eff:_original.._value\",\"N\"+node+\".Efficiency.Layer2.Eff:_original.._value\",\"N\"+node+\".Efficiency.Layer3.Eff:_original.._value\",\"N\"+node+\".Efficiency.Layer4.Eff:_original.._value\");
+
+  
+  dpSetWait(\"N\"+node+\".Efficiency.Total.Eff:_dp_fct.._type\",60,
+            \"N\"+node+\".Efficiency.Total.Eff:_dp_fct.._param\",totalChannel, 
+            \"N\"+node+\".Efficiency.Total.Eff:_dp_fct.._fct\",\"(p1+p2+p3+p4)/4.0\");  
+  
+  
+  
+  
+}
 " 0
  4
 "CBRef" "1"
@@ -585,7 +804,7 @@ LANG:1 9 Sector #2
 13 82
 "saveButton"
 ""
-1 775.9999999999998 890.5416666666664 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+1 777 891 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 81 0 0 0 0 0
 E E E
@@ -597,7 +816,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,29,5,75,0,0,0,0,0
-0  773.9999999999994 867.9999999999991 967.9999999999997 920.3333333333328
+0  774.9999999999997 868.4583333333327 968.9999999999998 920.7916666666664
 
 T 
 1
@@ -787,6 +1006,7 @@ LANG:1 4 Save
      
      countLayer++; 
     }
+    
  // Hospital Line Cosmics MM
     bool isHospitalLineOn;
     getValue(\"HOL_RadioBox_N\"+node,\"number\",isHospitalLineOn);
@@ -799,10 +1019,10 @@ LANG:1 4 Save
     else
      dpSet(\"N\"+i+\".HospitalLine.Enabled\",FALSE); 
 
+   
    // Drift Cosmics MM 
     driftToAppend[1]=\"D\";
-    
-    
+
 
  
    
@@ -935,6 +1155,13 @@ LANG:1 4 Save
      RootPanelOnModule(\"empty.pnl\", \"about\", \"embModuleOverview\", \"\"); 
      delay(3);
      RootPanelOnModule(\"objects/nodeOverviewValidationHolder.pnl\", \"Overview\", \"embModuleOverview\", makeDynString()); 
+     
+     
+     
+//Efficiency 
+
+setEfficiency(i);     
+     
  }
    
      
@@ -964,13 +1191,13 @@ LANG:1 4 Save
    
         dpGet(\"N\"+i+\".Mapping.\"+archivedDpes[h]+\".Channel\",archivedChannel[h]);   
    
-        deadband = 0.1;      // Change these settings to adjust the detail
+        deadband = 0.5;      // Change these settings to adjust the detail
         timeInterval = 1;    // of vMon archiving.   
         fwArchive_configMultiple(\"CAEN/\"+archivedChannel[h] + \".actual.vMon\", archiveClassName, archiveType, smoothProcedure,
                           deadband, timeInterval, exceptionInfo, checkClass);
         if (dynlen(exceptionInfo)>0) DebugN(exceptionInfo);   
  
-        deadband = 0.5;        // Change these settings to adjust the detail
+        deadband = 1.0;        // Change these settings to adjust the detail
         timeInterval = 1;    // of iMon archiving.
         
         fwArchive_configMultiple(\"CAEN/\"+archivedChannel[h] + \".actual.iMon\", archiveClassName, archiveType, smoothProcedure,
@@ -1298,7 +1525,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
-0  665.0000000000001 758.0000000000001 743 782.7777777777781
+0  665.0000000000001 758 743 782.7777777777779
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -1362,7 +1589,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
-0  792.7777777777776 760.5606060606065 870.7777777777778 785.3383838383845
+0  792.7777777777775 760.5606060606063 870.7777777777778 785.3383838383845
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -1425,7 +1652,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,27,5,75,0,0,0,0,0
-0  914.9444444444443 760.5606060606066 992.9444444444442 785.3383838383845
+0  914.9444444444443 760.5606060606066 992.9444444444441 785.3383838383845
 16 ToggleSwitch.ewo
 1
 0 "toggled" "(bool on)"
@@ -1907,6 +2134,10 @@ LANG:1 10 Node 2-XMX
  {
    PanelOffModule(\"Node \"+\"4\"+\" (Setup) \",\"embModuleN4\");
  } 
+ 
+ 
+checkIfChannelPanelIsOn(); 
+ 
 }" 0
  E E E
 13 31
@@ -1955,6 +2186,10 @@ LANG:1 10 Node 3-XMX
  {
    PanelOffModule(\"Node \"+\"4\"+\" (Setup) \",\"embModuleN4\");
  } 
+ 
+ 
+checkIfChannelPanelIsOn(); 
+ 
 }" 0
  E E E
 13 32
@@ -2004,7 +2239,7 @@ LANG:1 10 Node 4-XMX
    PanelOffModule(\"Node \"+\"3\"+\" (Setup) \",\"embModuleN3\");
  } 
   
-  
+ checkIfChannelPanelIsOn(); 
 }" 0
  E E E
 13 33
@@ -2057,12 +2292,15 @@ LANG:1 10 Node 1-XMX
  } 
 
   
+checkIfChannelPanelIsOn();
+    
+ 
 }" 0
  E E E
 13 34
 "buttonOverview"
 ""
-1 717.8750000000001 68 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+1 717 67 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
  E E
 33 0 0 0 0 0
 E E E
@@ -2074,7 +2312,7 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  787.8749999999999 -6.661338147750939e-16 900.8749999999998 25
+0  786.9999999999998 -1.000000000000001 899.9999999999995 24
 
 T 
 1
@@ -2083,6 +2321,9 @@ LANG:1 8 Overview
 {
   enabledAllTabButtons();
   currentLayer(6);
+  
+  
+  checkIfChannelPanelIsOn();
 }" 0
  E E E
 13 35
@@ -2107,7 +2348,7 @@ T
 LANG:1 8 Settings
 "main(mapping event)
 {
-  ChildPanelOnCentral(\"objects/settings.pnl\", \"Settings\", makeDynString(\"\")); 
+  ChildPanelOnCentral(\"objects/settings.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
 13 36
@@ -2161,35 +2402,10 @@ LANG:1 5 Setup
   currentLayer(1);
 }" 0
  E E E
-13 135
-"PUSH_BUTTON1"
-""
-1 1081 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
- E E
-134 0 0 0 0 0
-E E E
-8
-1
-LANG:1 0 
-
-1
-"layoutAlignment" "AlignNone"
-1
-LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1151 -6.661338147750939e-16 1264 25
-
-T 
-1
-LANG:1 4 ELMB
-"main(mapping event)
-{
-  ChildPanelOnCentral(\"objects/TempPanel.pnl\", \"\", makeDynString(\"\")); 
-}" 0
- E E E
 13 136
 "PUSH_BUTTON2"
 ""
-1 965 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 1112 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 135 0 0 0 0 0
 E E E
@@ -2201,20 +2417,20 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  1035 -6.661338147750939e-16 1148 25
+0  1182 -6.661338147750939e-16 1295 25
 
 T 
 1
-LANG:1 3 SCA
+LANG:1 4 ELMB
 "main(mapping event)
 {
-  ChildPanelOnCentral(\"objects/sca/scaELTXMMG.pnl\", \"\", makeDynString(\"SCA\")); 
+  ChildPanelOnCentral(\"objects/TempPanel.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
 13 137
 "PUSH_BUTTON3"
 ""
-1 851 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+1 999 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
  E E
 136 0 0 0 0 0
 E E E
@@ -2226,14 +2442,39 @@ LANG:1 0
 "layoutAlignment" "AlignNone"
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
-0  921 -6.661338147750939e-16 1034 25
+0  1069 -6.661338147750939e-16 1182 25
+
+T 
+1
+LANG:1 3 SCA
+"main(mapping event)
+{
+  ChildPanelOnCentral(\"objects/sca/scaELTXMMG.pnl\", \"\", makeDynString(\"\")); 
+}" 0
+ E E E
+13 138
+"PUSH_BUTTON4"
+""
+1 885 68 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+137 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  955 -6.661338147750939e-16 1068 25
 
 T 
 1
 LANG:1 2 LV
 "main(mapping event)
 {
-  ChildPanelOnCentral(\"objects/LV.pnl\", \"\", makeDynString(\"LV\")); 
+  ChildPanelOnCentral(\"objects/LV.pnl\", \"\", makeDynString(\"\")); 
 }" 0
  E E E
 0
