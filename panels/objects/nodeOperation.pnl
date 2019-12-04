@@ -2709,7 +2709,7 @@ LANG:1 19 ( Trip->Vset-Vsub )
 30 171
 "FRAME12"
 ""
-1 1214 888 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+1 1214 888 E E E 1 E 0 E N "_WindowText" E N {0,0,0} E E
  E E
 84 0 0 0 0 0
 E E E
@@ -2729,7 +2729,7 @@ LANG:1 12 Auto Ramp Up
 14 174
 "vStart0"
 ""
-1 911 928 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 911 928 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 87 0 0 0 0 0
 E E E
@@ -2750,7 +2750,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 14 175
 "vEnd0"
 ""
-1 880 916 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 880 916 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 88 0 0 0 0 0
 E E E
@@ -2771,7 +2771,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 4 177
 "LINE1"
 ""
-1 963 933 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 963 933 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 90 0 0 0 0 0
 E E E
@@ -2787,7 +2787,7 @@ E E 0 2 3 2 1 E  963 933 989 933
 2 178
 "PRIMITIVE_TEXT12"
 ""
-1 917 906 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 917 906 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 91 0 0 0 0 0
 E E E
@@ -2809,7 +2809,7 @@ LANG:1 6 Vstart
 2 179
 "PRIMITIVE_TEXT13"
 ""
-1 999 906 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 999 906 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 92 0 0 0 0 0
 E E E
@@ -2831,7 +2831,7 @@ LANG:1 4 Vend
 2 180
 "PRIMITIVE_TEXT14"
 ""
-1 1062 906 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1062 906 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 93 0 0 0 0 0
 E E E
@@ -2853,7 +2853,7 @@ LANG:1 10 Delay/step
 14 181
 "delay0"
 ""
-1 876 916 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 876 916 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 94 0 0 0 0 0
 E E E
@@ -2874,7 +2874,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 2 184
 "PRIMITIVE_TEXT16"
 ""
-1 892 928 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 892 928 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 97 0 0 0 0 0
 E E E
@@ -2887,7 +2887,7 @@ LANG:1 0
 "dashclr"N "_Transparent"
 "antiAliased" "0"
 "transformable" "0"
-E E 2 1 3 2 1 E U  0 E 892 928 908 946
+E E 2 1 3 2 1 E 1.1 0 1 -91.00000000000009 0 0 E 892 928 908 946
 0 2 2 "0s" 0 0 0 192 0 0  892 928 1
 1
 LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
@@ -2896,7 +2896,7 @@ LANG:1 2 1.
 20 185
 "stepBox"
 ""
-1 868 913.9999999999997 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+1 868 913.9999999999997 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
  E E
 98 0 0 0 0 0
 E E E
@@ -3013,7 +3013,7 @@ E E
 14 188
 "status0"
 ""
-1 955 918 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 955 918 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 101 0 0 0 0 0
 E E E
@@ -3030,7 +3030,7 @@ LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 2 189
 "PRIMITIVE_TEXT17"
 ""
-1 1152 906 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 1152 906 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 102 0 0 0 0 0
 E E E
@@ -3052,7 +3052,7 @@ LANG:1 6 Status
 4 191
 "LINE3"
 ""
-1 857 952 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 857 952 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 104 0 0 0 0 0
 E E E
@@ -3068,7 +3068,7 @@ E E 0 1 3 2 1 E  857 952 1207 952
 4 192
 "LINE4"
 ""
-1 857 921 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 857 921 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 105 0 0 0 0 0
 E E E
@@ -3084,7 +3084,7 @@ E E 0 1 3 2 1 E  857 921 1207 921
 14 200
 "vStart1"
 ""
-1 911 958 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 911 958 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 113 0 0 0 0 0
 E E E
@@ -3105,7 +3105,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 14 201
 "vEnd1"
 ""
-1 880 946 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 880 946 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 114 0 0 0 0 0
 E E E
@@ -3126,7 +3126,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 4 202
 "LINE7"
 ""
-1 963 964 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 963 964 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 115 0 0 0 0 0
 E E E
@@ -3142,7 +3142,7 @@ E E 0 2 3 2 1 E  963 964 989 964
 14 203
 "delay1"
 ""
-1 876 946 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 876 946 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 116 0 0 0 0 0
 E E E
@@ -3163,7 +3163,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 2 204
 "PRIMITIVE_TEXT19"
 ""
-1 892 958 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 892 958 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 117 0 0 0 0 0
 E E E
@@ -3185,7 +3185,7 @@ LANG:1 2 2.
 14 205
 "status1"
 ""
-1 955 948 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 955 948 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 118 0 0 0 0 0
 E E E
@@ -3202,7 +3202,7 @@ LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 4 206
 "LINE8"
 ""
-1 857 982 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 857 982 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 119 0 0 0 0 0
 E E E
@@ -3218,7 +3218,7 @@ E E 0 1 3 2 1 E  857 982 1207 982
 14 207
 "vStart2"
 ""
-1 911 987 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 911 987 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 120 0 0 0 0 0
 E E E
@@ -3239,7 +3239,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 14 208
 "vEnd2"
 ""
-1 880 975 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 880 975 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 121 0 0 0 0 0
 E E E
@@ -3260,7 +3260,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 4 209
 "LINE9"
 ""
-1 963 993 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 963 993 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 122 0 0 0 0 0
 E E E
@@ -3276,7 +3276,7 @@ E E 0 2 3 2 1 E  963 993 989 993
 14 210
 "delay2"
 ""
-1 876 975 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 876 975 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 123 0 0 0 0 0
 E E E
@@ -3297,7 +3297,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 2 211
 "PRIMITIVE_TEXT20"
 ""
-1 893 989 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 893 989 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 124 0 0 0 0 0
 E E E
@@ -3319,7 +3319,7 @@ LANG:1 2 3.
 14 212
 "status2"
 ""
-1 955 977 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 955 977 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 125 0 0 0 0 0
 E E E
@@ -3336,7 +3336,7 @@ LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 4 213
 "LINE10"
 ""
-1 858 1011 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 858 1011 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 126 0 0 0 0 0
 E E E
@@ -3352,7 +3352,7 @@ E E 0 1 3 2 1 E  858 1011 1208 1011
 14 214
 "vStart3"
 ""
-1 911 1017 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 911 1017 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 127 0 0 0 0 0
 E E E
@@ -3373,7 +3373,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 14 215
 "vEnd3"
 ""
-1 880 1005 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 880 1005 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 128 0 0 0 0 0
 E E E
@@ -3394,7 +3394,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 4 216
 "LINE11"
 ""
-1 964 1023 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 964 1023 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 129 0 0 0 0 0
 E E E
@@ -3410,7 +3410,7 @@ E E 0 2 3 2 1 E  964 1023 990 1023
 14 217
 "delay3"
 ""
-1 876 1005 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 876 1005 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 130 0 0 0 0 0
 E E E
@@ -3431,7 +3431,7 @@ LANG:1 27 Utopia,-1,15,5,75,0,0,0,0,0
 2 218
 "PRIMITIVE_TEXT21"
 ""
-1 894 1019 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+1 894 1019 E E E 1 E 0 E N "_WindowText" E N "_Window" E E
  E E
 131 0 0 0 0 0
 E E E
@@ -3453,7 +3453,7 @@ LANG:1 2 4.
 14 219
 "status3"
 ""
-1 955 1007 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+1 955 1007 E E E 0 E 0 E N "_WindowText" E N "_Window" E E
  E E
 132 0 0 0 0 0
 E E E
@@ -3470,7 +3470,7 @@ LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
 4 220
 "LINE12"
 ""
-1 859 1040 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 859 1040 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 133 0 0 0 0 0
 E E E
@@ -3486,7 +3486,7 @@ E E 0 1 3 2 1 E  859 1040 1209 1040
 4 221
 "LINE13"
 ""
-1 1054 920.9999999999999 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 1054 920.9999999999999 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 134 0 0 0 0 0
 E E E
@@ -3502,7 +3502,7 @@ E E 0 1 3 2 1 E  1054 920.9999999999999 1054 1039
 4 222
 "LINE14"
 ""
-1 1135 921 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+1 1135 921 E E E 1 E 0 E N {0,0,0} E N {255,255,255} E E
  E E
 135 0 0 0 0 0
 E E E
@@ -3518,7 +3518,7 @@ E E 0 1 3 2 1 E  1135 921 1135 1039
 13 224
 "startAuto"
 ""
-1 940 1049 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+1 940 1049 E E E 0 E 0 E N "_ButtonText" E N "_Button" E E
  E E
 137 0 0 0 0 0
 E E E
@@ -3539,7 +3539,7 @@ E E E E
 13 225
 "abortAuto"
 ""
-1 1046 1049 E E E 0 E 1 E N "_ButtonText" E N "_Button" E E
+1 1046 1049 E E E 0 E 0 E N "_ButtonText" E N "_Button" E E
  E E
 138 0 0 0 0 0
 E E E

@@ -407,9 +407,7 @@ LANG:1 2 ON
     dpGet(\"N\"+node+\".Mapping.\"+channelSetOff[i]+\".Channel\",channel);
     dpSetWait(\"CAEN/\"+channel+\".settings.onOff:_original.._value\", 1);    
   }
-   
-    dpSet(\"ALL.safetyAlarmLight\",0);    
- 
+    
 }" 0
  E E E
 22 4
@@ -1295,21 +1293,10 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValue)
 {
-  
-  
-  if(voltValue<480 || effValue >100.0)
-  {
-  setValue(\"\", \"text\", \"0\");    
-  setValue(\"\", \"enabled\", 0);          
-  }
-  else
-  {
   setValue(\"\", \"text\", effValue);
-  setValue(\"\", \"enabled\", 1);          
  }
   
   
-}
 
 // SimpleCtrlScript {EP_textFieldIn}
 // DP {System1:N1.Efficiency.Layer1.Eff}
@@ -1385,21 +1372,10 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValue)
 {
-  
-  
-  if(voltValue<480 || effValue >100.0)
-  {
-  setValue(\"\", \"text\", \"0\");    
-  setValue(\"\", \"enabled\", 0);          
-  }
-  else
-  {
   setValue(\"\", \"text\", effValue);
-  setValue(\"\", \"enabled\", 1);          
  }
   
   
-}
 
 // SimpleCtrlScript {EP_textFieldIn}
 // DP {System1:N1.Efficiency.Layer1.Eff}
@@ -1475,21 +1451,10 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValue)
 {
-  
-  
-  if(voltValue<480 || effValue >100.0)
-  {
-  setValue(\"\", \"text\", \"0\");    
-  setValue(\"\", \"enabled\", 0);          
-  }
-  else
-  {
   setValue(\"\", \"text\", effValue);
-  setValue(\"\", \"enabled\", 1);          
  }
   
   
-}
 
 // SimpleCtrlScript {EP_textFieldIn}
 // DP {System1:N1.Efficiency.Layer1.Eff}
@@ -1565,21 +1530,10 @@ void EP_textFieldIn()
 
 void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValue)
 {
-  
-  
-  if(voltValue<480 || effValue >100.0)
-  {
-  setValue(\"\", \"text\", \"0\");    
-  setValue(\"\", \"enabled\", 0);          
-  }
-  else
-  {
   setValue(\"\", \"text\", effValue);
-  setValue(\"\", \"enabled\", 1);          
  }
   
   
-}
 
 // SimpleCtrlScript {EP_textFieldIn}
 // DP {System1:N1.Efficiency.Layer1.Eff}
@@ -1656,19 +1610,8 @@ void EP_textFieldIn()
 void EP_textFieldInCB(string dpEff, float effValue,string dpVolt, float voltValue)
 {
   
-  
-  if(voltValue<480 || effValue >100.0)
-  {
-  setValue(\"\", \"text\", \"0\");    
-  setValue(\"\", \"enabled\", 0);          
-  }
-  else
-  {
   setValue(\"\", \"text\", effValue);
-  setValue(\"\", \"enabled\", 1);          
- }
-  
-  
+
 }
 
 // SimpleCtrlScript {EP_textFieldIn}

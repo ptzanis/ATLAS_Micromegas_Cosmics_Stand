@@ -1,0 +1,876 @@
+V 14
+1
+LANG:1 0 
+PANEL,-1 -1 1837 308 N "FwAtlasBg" 3
+"$side"
+"$xRef"
+"$yRef"
+"main()
+{
+ 
+   updateHisto();
+
+}" 0
+ "main()
+{
+   for(int i=1;i<=dynlen(listOfItemsToHist);i++)
+  {   
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"VMM\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"SCA\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_MMFE8\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_ADDC\"); 
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_L1DDC\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"GBTX_ADDC\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"GBTX_L1DDC\");  
+  } 
+}" 0
+ E E E 1 -1 -1 0  0 0
+""0  1
+E "// dyn_float dx1, dx2, dy1, dy2;
+// dyn_string c1, c2;
+
+dyn_string listOfItemsToHist;
+int xRef=$xRef;
+int yRef=$yRef;
+
+
+void updateHisto()
+{
+ 
+ for(int i=1;i<=dynlen(listOfItemsToHist);i++)
+  {   
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"VMM\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"SCA\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_MMFE8\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_ADDC\"); 
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_L1DDC\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"GBTX_ADDC\");  
+   removeSymbol(myModuleName(), myPanelName(), \"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"GBTX_L1DDC\");  
+  } 
+  
+  int layer=layerCombo.selectedPos();
+  
+  string side=$side;  
+  
+  dyn_string totalListOfBoards;
+  totalListOfBoards=dpNames(\"*\",\"fwScaSCA\");
+  
+
+  if(boardTypeCombo.number()==0)
+  {      
+
+  dynClear(listOfItemsToHist);
+  
+  for(int i=1;i<=dynlen(totalListOfBoards);i++)
+  {
+  strreplace(totalListOfBoards[i],getSystemName(),\"\");
+  
+  if(patternMatch(\"MMFE8\"+\"_L\"+layer+\"P*_\"+side+\"*\",totalListOfBoards[i]))  
+   {
+    dynAppend(listOfItemsToHist,totalListOfBoards[i]);
+   }
+ 
+  }
+  
+  int x=1720;
+  int y=yRef+50;
+  for(int i=dynlen(listOfItemsToHist);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"VMM\",makeDynString(\"$board:\"+listOfItemsToHist[i],\"$mode:\"+\"VMM\"),x,y,0,1,1);
+   x=x-110;
+   hist1.text(\"VMM\");
+  }
+  
+  x=1720;
+  y=y+80;
+  for(int i=dynlen(listOfItemsToHist);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"SCA\",makeDynString(\"$board:\"+listOfItemsToHist[i],\"$mode:\"+\"SCA\"),x,y,0,1,1);
+   x=x-110;
+   hist2.text(\"SCA\");
+  }
+  
+  x=1720;
+  y=y+80;
+  for(int i=dynlen(listOfItemsToHist);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_MMFE8\",makeDynString(\"$board:\"+listOfItemsToHist[i],\"$mode:\"+\"FEAST_MMFE8\"),x,y,0,1,1);
+   x=x-110;
+   hist3.text(\"FEAST\");
+  }
+    
+  }
+  
+  
+ 
+  // ************************************************************************************
+  
+  if(boardTypeCombo.number()==1)
+  {
+  //L1DDC
+    dyn_string l1ddcListOfBoards;  
+
+  
+  dynClear(listOfItemsToHist);  
+  for(int i=1;i<=dynlen(totalListOfBoards);i++)
+  {
+  strreplace(totalListOfBoards[i],getSystemName(),\"\");
+  
+  if(patternMatch(\"L1DDC\"+\"_L\"+layer+\"P*_\"+side+\"*\",totalListOfBoards[i]))  
+   {
+    dynAppend(listOfItemsToHist,totalListOfBoards[i]);
+    dynAppend(l1ddcListOfBoards,totalListOfBoards[i]);
+   }
+     
+  }
+  
+  int x=1200;
+  int y=yRef+50;
+  for(int i=dynlen(l1ddcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+l1ddcListOfBoards[i]+\"_\"+\"GBTX_L1DDC\",makeDynString(\"$board:\"+l1ddcListOfBoards[i],\"$mode:\"+\"GBTX_L1DDC\"),x,y,0,1,1);
+   x=x-110;
+   hist1.text(\"GBTX\");
+  }
+  
+  x=1200;
+  y=y+80;
+  for(int i=dynlen(l1ddcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+l1ddcListOfBoards[i]+\"_\"+\"SCA\",makeDynString(\"$board:\"+l1ddcListOfBoards[i],\"$mode:\"+\"SCA\"),x,y,0,1,1);
+   x=x-110;
+   hist2.text(\"SCA\");
+  }  
+  
+  x=1200;
+  y=y+80;
+  for(int i=dynlen(l1ddcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+listOfItemsToHist[i]+\"_\"+\"FEAST_L1DDC\",makeDynString(\"$board:\"+l1ddcListOfBoards[i],\"$mode:\"+\"FEAST_L1DDC\"),x,y,0,1,1);
+   x=x-110;
+   hist3.text(\"FEAST\");
+  }
+  
+  //ADDC
+    dyn_string addcListOfBoards;  
+
+  for(int i=1;i<=dynlen(totalListOfBoards);i++)
+  {
+  strreplace(totalListOfBoards[i],getSystemName(),\"\");
+  
+  if(patternMatch(\"ADDC\"+\"_L\"+layer+\"P*_\"+side+\"*\",totalListOfBoards[i]))  
+   {
+    dynAppend(listOfItemsToHist,totalListOfBoards[i]);
+    dynAppend(addcListOfBoards,totalListOfBoards[i]);
+   }
+     
+  }
+
+  int x=760;
+  int y=yRef+50;
+  for(int i=dynlen(addcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+addcListOfBoards[i]+\"_\"+\"GBTX_ADDC\",makeDynString(\"$board:\"+addcListOfBoards[i],\"$mode:\"+\"GBTX_ADDC\"),x,y,0,1,1);
+   x=x-110;
+  }
+  
+  x=760;
+  y=y+80;
+  for(int i=dynlen(addcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+addcListOfBoards[i]+\"_\"+\"SCA\",makeDynString(\"$board:\"+addcListOfBoards[i],\"$mode:\"+\"SCA\"),x,y,0,1,1);
+   x=x-110;
+  }  
+  
+  x=760;
+  y=y+80;
+  for(int i=dynlen(addcListOfBoards);i>0;i--)
+  {
+   addSymbol(myModuleName(),myPanelName(),\"objects/sca/layerHistogramPart.pnl\",\"HistoPart_\"+addcListOfBoards[i]+\"_\"+\"FEAST_ADDC\",makeDynString(\"$board:\"+addcListOfBoards[i],\"$mode:\"+\"FEAST_ADDC\"),x,y,0,1,1);
+   x=x-110;
+  }
+  
+  
+  } 
+  
+}" 0
+ 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+1
+LANG:1 0 
+2 2
+"hist1"
+""
+1 6 72 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 6 72 39 87
+0 2 2 "0s" 0 0 0 192 0 0  6 72 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 5 hist1
+2 3
+"hist2"
+""
+1 6 153 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 6 153 39 168
+0 2 2 "0s" 0 0 0 192 0 0  6 153 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 5 hist2
+2 4
+"hist3"
+""
+1 6 231 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 6 231 39 246
+0 2 2 "0s" 0 0 0 192 0 0  6 231 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 5 hist3
+30 5
+"FRAME1"
+""
+1 11 39 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.490658001624695 0 0.9450549450549453 -16.39723801787165 -6.857142857142865 0 E 11 39 1243 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+30 6
+"FRAME2"
+""
+1 11 39 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.490658001624695 0 0.9670329670329673 -16.39723801787165 72.28571428571428 0 E 11 39 1243 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+30 7
+"FRAME3"
+""
+1 11 39 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.490658001624695 0 0.9340659340659343 -16.39723801787165 155.5714285714286 0 E 11 39 1243 131
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+2 8
+"PRIMITIVE_TEXT4"
+""
+1 6 285 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 6 285 49 300
+0 2 2 "0s" 0 0 0 192 0 0  6 285 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 6 Board:
+22 9
+"layerCombo"
+""
+1 20 8 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  18 4 112 31.99999999999999
+4
+1
+LANG:1 7 Layer 1
+
+0
+1
+LANG:1 7 Layer 2
+
+0
+1
+LANG:1 7 Layer 3
+
+0
+1
+LANG:1 7 Layer 4
+
+0
+
+E
+"main(mapping event)
+{
+ 
+  updateHisto();
+  
+  if(layerCombo.selectedPos()==1 || layerCombo.selectedPos()==2)
+  {
+    left.visible(1);
+    right.visible(0); 
+  }
+  if(layerCombo.selectedPos()==3 || layerCombo.selectedPos()==4)
+  {
+    right.visible(1); 
+    left.visible(0); 
+  }   
+    
+}" 0
+
+E
+ 0 0
+19 12
+"boardTypeCombo"
+""
+1 122 4 E E E 1 E 1 E N "white" E N "FwAtlasBg" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"layoutAlignment" "AlignNone"
+"horizontal" ""
+1
+LANG:1 27 Utopia,-1,16,5,75,0,0,0,0,0
+0  120 1.999999999999999 294.9999999999999 36.99999999999999
+2
+T 
+1
+LANG:1 6 Analog
+
+1 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+T 
+1
+LANG:1 7 Digital
+
+0 
+1
+LANG:1 0 
+E E
+0 0 0 0 0
+1
+E "main(mapping event)
+{
+ 
+  updateHisto();
+
+}" 0
+
+30 13
+"FRAME4"
+""
+1 8 7 E E E 1 E 1 E N "white" E N {0,0,0} E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 2.746626686656672 0 0.09411764705882353 -20.97301349325338 -9.992156862745098 0 E 8 7 676 93
+1
+LANG:1 27 Utopia,-1,12,5,75,0,0,0,0,0
+0 1
+LANG:1 28 Temperature Overview Monitor
+30 17
+"FRAME5"
+""
+1 593 10 E E E 1 E 1 E N "_WindowText" E N {0,0,0} E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 2 1 3 2 1 E 5.342465753424646 0 1.180612490957319 -2448.415525114146 -15.95142405487233 0 E 593 10 667 40
+1
+LANG:1 27 Utopia,-1,12,5,50,0,0,0,0,0
+0 1
+LANG:1 0 
+6 18
+"downLimitField"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "green" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 1.045454545454545 810.4794464794481 -86.51748251748243 1 E 18 88 150 110
+6 19
+"RECTANGLE2"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "FwStateAttention2" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 1.045454545454545 895.5305928639282 -86.51748251748243 1 E 18 88 150 110
+6 20
+"upLimitField"
+""
+1 18 88 E E E 1 E 1 E N {0,0,0} E N "red" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.6443268665490895 0 1.045454545454545 980.5817392484062 -86.51748251748243 1 E 18 88 150 110
+2 25
+"PRIMITIVE_TEXT5"
+""
+1 729 9.333333333333364 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 729 9.333333333333364 810 24
+0 2 2 "0s" 0 0 0 192 0 0  729 9.333333333333364 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 12 Alarm Limits
+2 27
+"PRIMITIVE_TEXT7"
+""
+1 1082 5 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1082 5 1110 27
+0 2 2 "0s" 0 0 0 192 0 0  1082 5 1
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0 1
+LANG:1 3 [C]
+2 28
+"PRIMITIVE_TEXT8"
+""
+1 846 -0.1666666666666663 E E E 1 E 1 E N "Black" E N "Black" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 846 -0.1666666666666663 863 27
+0 2 2 "0s" 0 0 0 192 0 0  846 -0.1666666666666663 1
+1
+LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
+0 1
+LANG:1 1 <
+2 29
+"PRIMITIVE_TEXT9"
+""
+1 1016 -0.1666666666666669 E E E 1 E 1 E N "Black" E N "Black" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1016 -0.1666666666666669 1033 27
+0 2 2 "0s" 0 0 0 192 0 0  1016 -0.1666666666666669 1
+1
+LANG:1 27 Utopia,-1,24,5,75,0,0,0,0,0
+0 1
+LANG:1 1 >
+14 30
+"downLimit"
+""
+1 432.2631578947373 74 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"layoutAlignment" "AlignNone"
+"textChangedCB" "main(string newText)
+{
+  dpSet(\"MMG-S1-Settings.Limits.downLimit\",newText);
+//   updateHisto();
+}"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  861 4.999999999999999 896 28
+3 "2s" 2 0 0 1 0 -1  E "// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:MMG-S1-Settings.Limits.downLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:MMG-S1-Settings.Limits.downLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MMG-S1-Settings.Limits.downLimit}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+2 34
+"PRIMITIVE_TEXT10"
+""
+1 1739.857142857143 13.14285714285714 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 1739.857142857143 13.14285714285714 1829 28
+0 2 2 "0s" 0 0 0 192 0 0  1739.857142857143 13.14285714285714 1
+1
+LANG:1 27 Utopia,-1,13,5,75,0,0,0,0,0
+0 1
+LANG:1 13 Water Cooling
+14 35
+"upLimit"
+""
+1 601 74 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+2
+"layoutAlignment" "AlignNone"
+"textChangedCB" "main(string newText)
+{
+  dpSet(\"MMG-S1-Settings.Limits.upLimit\",newText);
+//   updateHisto();
+}"
+1
+LANG:1 27 Utopia,-1,19,5,75,0,0,0,0,0
+0  1029.736842105263 4.999999999999999 1064.736842105263 28
+3 "2s" 2 0 0 1 0 -1  E "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_textFieldIn();
+}
+
+void EP_textFieldIn()
+{
+  dyn_errClass err;
+
+  if( !dpExists( \"System1:MMG-S1-Settings.Limits.upLimit:_online.._value\"))
+  {
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+    return;
+  }
+
+  dpConnect(\"EP_textFieldInCB\",
+            \"System1:MMG-S1-Settings.Limits.upLimit:_online.._value\");
+  err = getLastError();
+  if (dynlen(err) > 0)
+    setValue(\"\", \"color\", \"_dpdoesnotexist\");
+
+}
+
+
+void EP_textFieldInCB(string dp, float fNewValue)
+{
+  setValue(\"\", \"text\", dpValToString(dp, fNewValue, TRUE) );
+}
+
+// SimpleCtrlScript {EP_textFieldIn}
+// DP {System1:MMG-S1-Settings.Limits.downLimit}
+// DPConfig {:_online.._value}
+// DPType {float}
+// UseDPUnit {TRUE}
+// UseDPFormat {TRUE}
+// SimpleCtrlScriptEnd {EP_textFieldIn}
+" 0
+ E
+13 38
+"PUSH_BUTTON1"
+""
+1 1119 9 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+37 0 0 0 0 0
+E E E
+8
+1
+LANG:1 0 
+
+1
+"layoutAlignment" "AlignNone"
+1
+LANG:1 31 Sans Serif,-1,12,5,50,0,0,0,0,0
+0  1117 2.636363636363635 1153 30.63636363636363
+
+P 
+4294967295
+"pictures/info_en.gif"
+1
+LANG:1 12 PUSH_BUTTON1
+"main(mapping event)
+{
+        ChildPanelOnCentral(\"objects/sca/layerHistogramInfo.pnl\", \"Temperature Histogram Info\", makeDynString(),500,500,0,1,1);
+}" 0
+ E E E
+10 39
+"left"
+""
+1 1734.857142857142 20.22619047619047 E E E 1 E 1 E N "white" E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 1 0 1 -3.857142857142435 -0.2261904761904745 1 E 8 1734.857142857142 20.22619047619047
+1700.190476190476 20.22619047619047
+1700.190476190476 16.47619047619047
+1682.857142857142 21.47619047619047
+1700.190476190476 26.47619047619047
+1700.190476190476 22.72619047619047
+1734.857142857142 22.72619047619047
+1734.857142857142 21.47619047619047
+ 1
+10 40
+"right"
+""
+1 1734.857142857142 20.22619047619047 E E E 1 E 0 E N "white" E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+1
+LANG:1 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E -1 0 1 3414.107142857142 -0.2261904761904745 1 E 8 1734.857142857142 20.22619047619047
+1700.190476190476 20.22619047619047
+1700.190476190476 16.47619047619047
+1682.857142857142 21.47619047619047
+1700.190476190476 26.47619047619047
+1700.190476190476 22.72619047619047
+1734.857142857142 22.72619047619047
+1734.857142857142 21.47619047619047
+ 1
+0
+LAYER, 1 
+1
+LANG:1 0 
+0
+LAYER, 2 
+1
+LANG:1 0 
+0
+LAYER, 3 
+1
+LANG:1 0 
+0
+LAYER, 4 
+1
+LANG:1 0 
+0
+LAYER, 5 
+1
+LANG:1 0 
+0
+LAYER, 6 
+1
+LANG:1 0 
+0
+LAYER, 7 
+1
+LANG:1 0 
+0
+0

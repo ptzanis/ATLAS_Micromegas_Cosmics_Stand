@@ -195,14 +195,18 @@ void updateValue(shape value,string dpSource, float fNewValue)
 }     
 void updateStatus(shape status,string dpSource, unsigned fNewValue,string dpSource2, float fNewValue2,string dpSource3, int fNewValue3)
 {
-
+  
+  // dpConnectUserData(\"updateStatus\",shapeStatus,channel+\".online\",channel+voltageParameter+\".value\",\"_OpcUaScaServer.State.ConnState\"); 
+   if(fNewValue3!=1)
+     dpSet(dpSubStr(dpSource,DPSUB_DP_EL),0);
+ 
+  
   if(fNewValue && fNewValue3==1)
     status.backCol(\"Green\");
   else
     status.backCol(\"Red\");
   
 
-    
 }
 " 0
  E E E E 1 -1 -1 0  4.507998142363585 5.950920047862082

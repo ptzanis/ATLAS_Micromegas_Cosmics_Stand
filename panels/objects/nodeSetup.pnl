@@ -193,8 +193,31 @@ LANG:1 0
 "main()
 {
   string node=$node;
+  string mode=$mode;
+    
+  if(mode==\"Cosmics\")
+  {
+    if(node==\"1\") 
+      this.text(\"Type 2-IP\");   
+    if(node==\"2\") 
+      this.text(\"Type 1-IP\");    
+    if(node==\"3\") 
+      this.text(\"Type 2-HO\");   
+    if(node==\"4\") 
+      this.text(\"Type 1-HO\");   
+    if(node==\"5\") 
+      this.text(\"Type 2-IP\");   
+    if(node==\"6\") 
+      this.text(\"Type 1-IP\");    
+    if(node==\"7\") 
+      this.text(\"Type 2-HO\");   
+    if(node==\"8\") 
+      this.text(\"Type 1-HO\");     
+  }
+  else
+  {
   this.text(\"Node \"+node);  
-  
+  }
   
   
 }" 0
